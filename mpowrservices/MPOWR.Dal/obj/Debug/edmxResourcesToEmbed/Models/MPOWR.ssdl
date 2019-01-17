@@ -1,0 +1,2459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MPOWR.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AppConfig">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="150" />
+    <Property Name="Params" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ScreenName" Type="varchar" MaxLength="100" />
+    <Property Name="DisplayOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="BUBudget">
+    <Key>
+      <PropertyRef Name="BUBudgetID" />
+    </Key>
+    <Property Name="BUBudgetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="TotalMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ProgramMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CountryReserveMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="BaselineMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Status" Type="nvarchar" MaxLength="25" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="VersionID" Type="int" />
+  </EntityType>
+  <EntityType Name="BusinessUnit">
+    <Key>
+      <PropertyRef Name="BusinessUnitID" />
+    </Key>
+    <Property Name="BusinessUnitID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ContraMPOWR_UAT.dbo.ContraWeb_Upload_Configuration' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ContraWeb_Upload_Configuration">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="Key" />
+      <PropertyRef Name="Value" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="CreatedDate" />
+      <PropertyRef Name="ModifiedBy" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="Key" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Value" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_CountryMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileID" Type="int" Nullable="false" />
+    <Property Name="GeoMappingID" Type="int" />
+    <Property Name="CountryID" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_DataFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="ContainerName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FilePath" Type="varchar" MaxLength="1000" />
+    <Property Name="DataLevel" Type="varchar" MaxLength="10" />
+    <Property Name="RegionID" Type="int" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="UploadedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="UploadedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="SelectedCriteria" Type="varchar" MaxLength="1000" />
+    <Property Name="FileNameForBlob" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_FinancialYearMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileID" Type="int" Nullable="false" />
+    <Property Name="FinancialYear" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_GeoMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileID" Type="int" Nullable="false" />
+    <Property Name="GeoID" Type="smallint" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_StatusMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="WorkflowOrder" Type="smallint" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_TimeTracker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileId" Type="int" Nullable="false" />
+    <Property Name="SSISStartTime" Type="datetime" />
+    <Property Name="SSISEndTime" Type="datetime" />
+    <Property Name="SSISPRODStartTime" Type="datetime" />
+    <Property Name="SSISPRODEndTime" Type="datetime" />
+    <Property Name="RowCount" Type="int" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeoID" Type="smallint" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="100" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="TypeofSellout" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="CountryBudget">
+    <Key>
+      <PropertyRef Name="CountryBudgetID" />
+    </Key>
+    <Property Name="CountryBudgetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="FinancialYearID" Type="int" />
+    <Property Name="MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ContraMPOWR_UAT.dbo.DataLoadRefresh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DataLoadRefresh">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" />
+    <Property Name="Geo" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sellout" Type="bit" />
+    <Property Name="MDFHistory" Type="bit" />
+    <Property Name="Planned_ProjectedSales" Type="bit" />
+    <Property Name="Quarter" Type="varchar" MaxLength="20" />
+    <Property Name="LatestDataRefresh" Type="datetime" />
+    <Property Name="MailSentDate" Type="varchar" MaxLength="20" />
+    <Property Name="MailDispalyDate" Type="datetime" />
+    <Property Name="FilePath" Type="varchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsPopup" Type="bit" />
+    <Property Name="PopupDays" Type="int" />
+    <Property Name="MPOWR_RefreshDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureID" />
+    </Key>
+    <Property Name="FeatureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="RelativePath" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="SortOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="FeatureAction">
+    <Key>
+      <PropertyRef Name="FeatureActionID" />
+    </Key>
+    <Property Name="FeatureActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeatureID" Type="int" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FeatureActionTypeID" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FeatureActionType">
+    <Key>
+      <PropertyRef Name="FeatureActionTypeID" />
+    </Key>
+    <Property Name="FeatureActionTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ContraMPOWR_UAT.dbo.FeatureGeo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="FeatureGeo">
+    <Key>
+      <PropertyRef Name="FeatureActionID" />
+      <PropertyRef Name="FeatureID" />
+      <PropertyRef Name="ShortName" />
+      <PropertyRef Name="DisplayName" />
+    </Key>
+    <Property Name="FeatureActionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FeatureID" Type="int" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FeatureActionTypeID" Type="int" />
+    <Property Name="IsActive" Type="char" MaxLength="1" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearID" />
+    </Key>
+    <Property Name="FinancialYearID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PeriodType" Type="nvarchar" MaxLength="25" />
+    <Property Name="Year" Type="smallint" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'ContraMPOWR_UAT.dbo.FlatDataValidationLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="FlatDataValidationLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" />
+    <Property Name="FileName" Type="varchar" MaxLength="100" />
+    <Property Name="FileId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FocusedArea">
+    <Key>
+      <PropertyRef Name="FocusedAreaID" />
+    </Key>
+    <Property Name="FocusedAreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" />
+    <Property Name="FocusedArea" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Geo">
+    <Key>
+      <PropertyRef Name="GeoID" />
+    </Key>
+    <Property Name="GeoID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="GeoConfigDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeoID" Type="int" />
+    <Property Name="IsCountryLevel" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsOverAllocation" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" />
+    <Property Name="ScreenName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Formula" Type="varchar(max)" />
+    <Property Name="RefinedFormula" Type="varchar(max)" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsChild" Type="bit" Nullable="false" />
+    <Property Name="ParentScreenID" Type="int" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenEditDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScreenID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Formula" Type="varchar(max)" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="Approver" Type="varchar" MaxLength="200" />
+    <Property Name="ApprovalDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenParameterDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ScreenID" Type="int" Nullable="false" />
+    <Property Name="ParameterName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="RefinedParameter" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="RefinedDescription" Type="varchar(max)" />
+    <Property Name="Icon" Type="varchar" MaxLength="100" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="TableColumn" Type="varchar" MaxLength="200" />
+    <Property Name="IsFilter" Type="bit" />
+    <Property Name="ExtendedView" Type="bit" Nullable="false" />
+    <Property Name="Round2" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenParameterEditDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EditParameterID" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsApproved" Type="bit" />
+    <Property Name="Approver" Type="varchar" MaxLength="200" />
+    <Property Name="ApprovalDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="GuardRailFYConfig">
+    <Key>
+      <PropertyRef Name="GuardRailFYConfigID" />
+    </Key>
+    <Property Name="GuardRailFYConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FinancialYearID" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="RegionID" Type="smallint" />
+  </EntityType>
+  <EntityType Name="GuardRailsConfig">
+    <Key>
+      <PropertyRef Name="GuardRailConfigID" />
+    </Key>
+    <Property Name="GuardRailConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuardRailFYConfigID" Type="int" Nullable="false" />
+    <Property Name="ProgramCarveOutComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ProgramCarveOutNonComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ActualMDFAllocationComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ActualMDFAllocationNonComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDFSelloutIndexComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDFSelloutIndexNonComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="OverAllocationComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="OverAllocationNonComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="AllowOverAllocation" Type="char" MaxLength="1" />
+    <Property Name="UnderAllocationComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="UnderAllocationNonComplaintValue" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ReviewerRoleID1" Type="int" />
+    <Property Name="ReviewerRoleID2" Type="int" />
+    <Property Name="ReviewerRoleID3" Type="int" />
+    <Property Name="ReviewerRoleID4" Type="int" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LoginAuthentication">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="varchar" MaxLength="50" />
+    <Property Name="TokenID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LogInTime" Type="datetime" />
+    <Property Name="LogOffTime" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+  </EntityType>
+  <EntityType Name="MDFPlanning">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VersionNo" Type="int" Nullable="false" />
+    <Property Name="VersionName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FinancialYearID" Type="int" Nullable="false" />
+    <Property Name="PartnerTypeID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="50" />
+    <Property Name="Flag" Type="bit" />
+    <Property Name="IsFinal" Type="bit" />
+    <Property Name="AllocationLevel" Type="char" MaxLength="1" />
+    <Property Name="CountryOrGeoOrDistrict" Type="varchar(max)" />
+    <Property Name="MembershipGroupID" Type="int" />
+  </EntityType>
+  <EntityType Name="MDFVarianceReason">
+    <Key>
+      <PropertyRef Name="MDFVarianceReasonID" />
+    </Key>
+    <Property Name="MDFVarianceReasonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="varchar" MaxLength="25" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="MembershipGroup">
+    <Key>
+      <PropertyRef Name="MembershipGroupID" />
+    </Key>
+    <Property Name="MembershipGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="MembershipType">
+    <Key>
+      <PropertyRef Name="MembershipTypeID" />
+    </Key>
+    <Property Name="MembershipTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Milestone">
+    <Key>
+      <PropertyRef Name="MilestoneID" />
+    </Key>
+    <Property Name="MilestoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsActive" Type="char" MaxLength="1" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MilestoneFYConfig">
+    <Key>
+      <PropertyRef Name="MilestoneFYConfigID" />
+    </Key>
+    <Property Name="MilestoneFYConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegionID" Type="smallint" Nullable="false" />
+    <Property Name="FinancialYearID" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MilestoneNotification">
+    <Key>
+      <PropertyRef Name="MilestoneNotificationID" />
+    </Key>
+    <Property Name="MilestoneNotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MilestoneFYConfigID" Type="int" Nullable="false" />
+    <Property Name="MilestoneDate" Type="datetime" />
+    <Property Name="ReminderEmailMessage1" Type="nvarchar" MaxLength="2000" />
+    <Property Name="SetReminderAlertDays1" Type="int" />
+    <Property Name="ReminderStatus1" Type="bit" />
+    <Property Name="ReminderEmailMessage2" Type="nvarchar" MaxLength="2000" />
+    <Property Name="SetReminderAlertDays2" Type="int" />
+    <Property Name="ReminderStatus2" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="MilestoneOrderNo" Type="int" />
+    <Property Name="MilestoneName" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MilestoneNotificationsRole">
+    <Key>
+      <PropertyRef Name="MilestoneNotificationRoleID" />
+    </Key>
+    <Property Name="MilestoneNotificationRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MilestoneNotificationID" Type="int" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="RoleOperation" Type="nvarchar" MaxLength="25" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ModelBUParameterTable">
+    <Key>
+      <PropertyRef Name="ModelBUParameterID" />
+    </Key>
+    <Property Name="ModelBUParameterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelParameterID" Type="int" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="High_Performance" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Partner_Investment" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="New_Partner_RampUp_Scale" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Preferred_Partner_Cut_Off_Percentage" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Dist_cust_membership_weight_Silver_and_Below" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Dist_cust_membership_weight_Platinum_and_Gold" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Medium_Performance" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Low_Performance" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Growth_Revenue" Type="decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="ModelDefaultOutputTable">
+    <Key>
+      <PropertyRef Name="ModelParamROutputID" />
+    </Key>
+    <Property Name="ModelParamROutputID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelParameterID" Type="int" />
+    <Property Name="PartnerID" Type="nvarchar" MaxLength="25" />
+    <Property Name="Partner_Name" Type="varchar" MaxLength="200" />
+    <Property Name="Membership_Type" Type="varchar" MaxLength="25" />
+    <Property Name="Business_Unit" Type="varchar" MaxLength="25" />
+    <Property Name="Last_Period_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Recommended_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="Median_Avg_MDF_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Alignment" Type="nvarchar" MaxLength="50" />
+    <Property Name="PREV_MDF_Assessment" Type="nvarchar" MaxLength="50" />
+    <Property Name="Planned_Sales" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Target_Achievement" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOW" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Growth" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="nvarchar" MaxLength="100" />
+    <Property Name="PMM" Type="nvarchar" MaxLength="100" />
+    <Property Name="Footprint_Growth" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="No_of_end_customers" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Total_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Incremental_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Late_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="W_MGO_Marketing_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="New_Logos_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Accuracy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Partner_Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="High_Productivity_Value" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_Recommended_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="DistrictID" Type="int" />
+    <Property Name="Growth_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sustain_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CURR_HALF_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="FinancialYearID" Type="smallint" />
+    <Property Name="PartnerTypeID" Type="int" />
+    <Property Name="Avg_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Current_Period_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_mdf" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Scaled_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Silver_Below" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Gold_Platinum" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ProjectionMethod" Type="char" MaxLength="50" />
+    <Property Name="VersionID" Type="int" />
+    <Property Name="WMGO_Ratio" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_Ratio" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prev_To_Prv_Year_sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Source_of_SellOut" Type="varchar" MaxLength="25" />
+    <Property Name="HistoryExists" Type="bit" />
+  </EntityType>
+  <EntityType Name="ModelOutputSummaryTable">
+    <Key>
+      <PropertyRef Name="OutputSummaryID" />
+    </Key>
+    <Property Name="OutputSummaryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelParameterID" Type="int" />
+    <Property Name="Business_Unit" Type="varchar" MaxLength="25" />
+    <Property Name="Allocated" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Remaining" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sales_Growth_With_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sales_Growth_Without_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_over_Sellout_Last_Period" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_over_Sellout_Current_Period" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Aligned" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MisAligned" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="sustain_percentage" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="growth_percentage" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Platinum" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Gold" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_SB" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="VersionID" Type="int" />
+  </EntityType>
+  <EntityType Name="ModelOutputTable">
+    <Key>
+      <PropertyRef Name="ModelParamROutputID" />
+    </Key>
+    <Property Name="ModelParamROutputID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelParameterID" Type="int" />
+    <Property Name="PartnerID" Type="nvarchar" MaxLength="25" />
+    <Property Name="Partner_Name" Type="varchar" MaxLength="200" />
+    <Property Name="Membership_Type" Type="varchar" MaxLength="25" />
+    <Property Name="Business_Unit" Type="varchar" MaxLength="25" />
+    <Property Name="Last_Period_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Recommended_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="Median_Avg_MDF_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Alignment" Type="nvarchar" MaxLength="50" />
+    <Property Name="PREV_MDF_Assessment" Type="nvarchar" MaxLength="50" />
+    <Property Name="Planned_Sales" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Target_Achievement" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOW" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Growth" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="nvarchar" MaxLength="100" />
+    <Property Name="PMM" Type="nvarchar" MaxLength="100" />
+    <Property Name="Footprint_Growth" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="No_of_end_customers" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Total_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Incremental_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Late_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="W_MGO_Marketing_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="New_Logos_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Accuracy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Partner_Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="High_Productivity_Value" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_Recommended_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="DistrictID" Type="int" />
+    <Property Name="Growth_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sustain_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CURR_HALF_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="FinancialYearID" Type="smallint" />
+    <Property Name="PartnerTypeID" Type="int" />
+    <Property Name="Avg_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Current_Period_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO_ROI" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_mdf" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Scaled_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Silver_Below" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Gold_Platinum" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ProjectionMethod" Type="char" MaxLength="50" />
+    <Property Name="VersionID" Type="int" />
+    <Property Name="WMGO_Ratio" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_Ratio" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_Sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prev_To_Prv_Year_sellout" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Source_of_SellOut" Type="varchar" MaxLength="25" />
+    <Property Name="HistoryExists" Type="bit" />
+  </EntityType>
+  <EntityType Name="ModelParameterConfig">
+    <Key>
+      <PropertyRef Name="ModelParameterConfigID" />
+    </Key>
+    <Property Name="ModelParameterConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelParameterFYConfigID" Type="int" Nullable="false" />
+    <Property Name="HighPerformerProductivity" Type="decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="MediumPerformerProductivityRatio" Type="decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="LowPerformerProductivityRatio" Type="decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ModelParameterFYConfig">
+    <Key>
+      <PropertyRef Name="ModelParameterFYConfigID" />
+    </Key>
+    <Property Name="ModelParameterFYConfigID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RegionID" Type="smallint" Nullable="false" />
+    <Property Name="FinancialYearID" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ModelParameterTable">
+    <Key>
+      <PropertyRef Name="ModelParameterID" />
+    </Key>
+    <Property Name="ModelParameterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Max_Sellout_HighDecline_Max_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighDecline_Min_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateDecline_Max_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateDecline_Min_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_Steady_Max_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_Steady_Min_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateGrowth_Max_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateGrowth_Min_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighGrowth_Max" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighGrowth_Min" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Target_accomplish_HighPrecision_Score" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Target_accomplish_MediumPrecision_Score" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Target_Accomplish_percentage" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Target_Accomplish_percentage" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="JPB_Max" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="JPB_Min" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_High_Max" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_High_Min" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Low_Max" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Low_Min" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_3H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Target_Productivity" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Quarter_Sellout_Scale_Factor" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="partner_size_threshold" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="VersionID" Type="int" />
+    <Property Name="WMGO_Perf_Acc_High" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_Low" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_VeryHigh" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_VeryLow" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_Medium" Type="decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="OrganisationType">
+    <Key>
+      <PropertyRef Name="OrgTypeID" />
+    </Key>
+    <Property Name="OrgTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Partner">
+    <Key>
+      <PropertyRef Name="PartnerID" />
+    </Key>
+    <Property Name="PartnerID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="PartnerShortName" Type="varchar" MaxLength="100" />
+    <Property Name="PartnerTypeID" Type="int" />
+    <Property Name="PartnerName" Type="varchar" MaxLength="100" />
+    <Property Name="MembershipTypeID" Type="int" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="IsActive" Type="char" MaxLength="1" />
+    <Property Name="DistrictID" Type="smallint" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PartnerBUBudget">
+    <Key>
+      <PropertyRef Name="PartnerBUBudgetID" />
+    </Key>
+    <Property Name="PartnerBUBudgetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartnerBudgetID" Type="bigint" Nullable="false" />
+    <Property Name="BusinessUnitID" Type="smallint" Nullable="false" />
+    <Property Name="MDFVarianceReasonID" Type="int" />
+    <Property Name="FocusedAreaID" Type="int" />
+    <Property Name="Baseline_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+    <Property Name="Additional_RecommendedMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_MDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_MDF_Reason" Type="nvarchar" MaxLength="500" />
+    <Property Name="BUBudgetID" Type="bigint" />
+    <Property Name="ModelParamROutputID" Type="bigint" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="MSA" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="TotalMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PrevPeriodMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PrevPrevPeriodMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CarveOut" Type="decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="PartnerBudget">
+    <Key>
+      <PropertyRef Name="PartnerBudgetID" />
+    </Key>
+    <Property Name="PartnerBudgetID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PartnerID" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Membership_Type" Type="varchar" MaxLength="25" />
+    <Property Name="MSA" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ModelParameterID" Type="bigint" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="DistrictID" Type="smallint" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="VersionID" Type="int" />
+    <Property Name="Aruba_MSA" Type="decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="PartnerSales">
+    <Key>
+      <PropertyRef Name="PartnerSalesID" />
+    </Key>
+    <Property Name="PartnerSalesID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GeoID" Type="smallint" />
+    <Property Name="Geo" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="PartnerID" Type="nvarchar" MaxLength="25" />
+    <Property Name="PartnerName" Type="nvarchar" MaxLength="200" />
+    <Property Name="PartnerTypeID" Type="smallint" />
+    <Property Name="PartnerType" Type="nvarchar" MaxLength="50" />
+    <Property Name="MembershipTypeID" Type="smallint" />
+    <Property Name="Membership" Type="nvarchar" MaxLength="50" />
+    <Property Name="BG" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessUnitID" Type="smallint" />
+    <Property Name="BusinessUnit" Type="nvarchar" MaxLength="25" />
+    <Property Name="FinancialYearID" Type="bigint" />
+    <Property Name="FinancialYear" Type="nvarchar" MaxLength="25" />
+    <Property Name="Planned_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Planned_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Quota_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Quota_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q1" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q2" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q3" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q4" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="PMM" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Ranking" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="DistrictID" Type="smallint" />
+    <Property Name="MDF_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Method" Type="varchar" MaxLength="25" />
+    <Property Name="Prediction_Accuracy" Type="varchar" MaxLength="10" />
+    <Property Name="Proj_Sales" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="MGO_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_ROI_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_ROI_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_ROI_1H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_ROI_2H" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Q4" Type="decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="PartnerSalesRefreshHistory">
+    <Key>
+      <PropertyRef Name="PartnerSalesRefreshHistoryID" />
+    </Key>
+    <Property Name="PartnerSalesRefreshHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CountryID" Type="smallint" />
+    <Property Name="RefreshDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PartnerType">
+    <Key>
+      <PropertyRef Name="PartnerTypeID" />
+    </Key>
+    <Property Name="PartnerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="ProgramMDF">
+    <Key>
+      <PropertyRef Name="ProgramMDFID" />
+    </Key>
+    <Property Name="ProgramMDFID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BUBudgetID" Type="bigint" Nullable="false" />
+    <Property Name="ProjectName" Type="nvarchar" MaxLength="25" />
+    <Property Name="ProjectMDF" Type="decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="RoleFeatureActivity">
+    <Key>
+      <PropertyRef Name="RoleFeatureActivityID" />
+    </Key>
+    <Property Name="RoleFeatureActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="FeatureActionID" Type="int" Nullable="false" />
+    <Property Name="IsChecked" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RolePartnerType">
+    <Key>
+      <PropertyRef Name="RolePartnerTypeID" />
+    </Key>
+    <Property Name="RolePartnerTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="PartnerTypeID" Type="int" Nullable="false" />
+    <Property Name="IsChecked" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varbinary" MaxLength="256" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserBusinessUnit">
+    <Key>
+      <PropertyRef Name="UserBusinessUnitID" />
+    </Key>
+    <Property Name="UserBusinessUnitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleUserTypeID" Type="int" />
+    <Property Name="BusinessUnitID" Type="smallint" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserCountry">
+    <Key>
+      <PropertyRef Name="UserCountryID" />
+    </Key>
+    <Property Name="UserCountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleUserTypeID" Type="int" />
+    <Property Name="CountryID" Type="smallint" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserDistrict">
+    <Key>
+      <PropertyRef Name="UserDistrictID" />
+    </Key>
+    <Property Name="UserDistrictID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleUserTypeID" Type="int" />
+    <Property Name="DistrictID" Type="smallint" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserGeo">
+    <Key>
+      <PropertyRef Name="UserGeoID" />
+    </Key>
+    <Property Name="UserGeoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleUserTypeID" Type="int" />
+    <Property Name="GeoID" Type="smallint" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserManual">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="255" />
+    <Property Name="ShortName" Type="varchar" MaxLength="255" />
+    <Property Name="DisplayName" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="UserRoleUserType">
+    <Key>
+      <PropertyRef Name="UserRoleUserTypeID" />
+    </Key>
+    <Property Name="UserRoleUserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="UserTypeID" Type="smallint" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="EditNonBUModParam" Type="bit" Nullable="false" />
+    <Property Name="GlossaryApprover" Type="bit" />
+    <Property Name="DataUpload" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRTM">
+    <Key>
+      <PropertyRef Name="UserRTMID" />
+    </Key>
+    <Property Name="UserRTMID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserRoleUserTypeID" Type="int" />
+    <Property Name="PartnerTypeID" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShortName" Type="nvarchar" MaxLength="25" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK__BUBudget__Busine__45F365D3">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="BUBudget" Type="Self.BUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="BUBudget">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BUBudget__Versio__57FD0775">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="BUBudget" Type="Self.BUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BUBudget">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__Count__1C9228E4">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="ContraWeb_Upload_CountryMapping" Type="Self.ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__16D94F8E">
+    <End Role="ContraWeb_Upload_DataFile" Type="Self.ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Role="ContraWeb_Upload_GeoMapping" Type="Self.ContraWeb_Upload_GeoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__1AA9E072">
+    <End Role="ContraWeb_Upload_DataFile" Type="Self.ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Role="ContraWeb_Upload_CountryMapping" Type="Self.ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__1F6E958F">
+    <End Role="ContraWeb_Upload_DataFile" Type="Self.ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Role="ContraWeb_Upload_FinancialYearMapping" Type="Self.ContraWeb_Upload_FinancialYearMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_FinancialYearMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__318D45CA">
+    <End Role="ContraWeb_Upload_DataFile" Type="Self.ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Role="ContraWeb_Upload_TimeTracker" Type="Self.ContraWeb_Upload_TimeTracker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_TimeTracker">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__GeoID__17CD73C7">
+    <End Role="Geo" Type="Self.Geo" Multiplicity="0..1" />
+    <End Role="ContraWeb_Upload_GeoMapping" Type="Self.ContraWeb_Upload_GeoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="GeoID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="GeoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__GeoMa__1B9E04AB">
+    <End Role="ContraWeb_Upload_GeoMapping" Type="Self.ContraWeb_Upload_GeoMapping" Multiplicity="0..1" />
+    <End Role="ContraWeb_Upload_CountryMapping" Type="Self.ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="GeoMappingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__Statu__1308BEAA">
+    <End Role="ContraWeb_Upload_StatusMaster" Type="Self.ContraWeb_Upload_StatusMaster" Multiplicity="0..1" />
+    <End Role="ContraWeb_Upload_DataFile" Type="Self.ContraWeb_Upload_DataFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_StatusMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CountryBu__Count__4BAC3F29">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="CountryBudget" Type="Self.CountryBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="CountryBudget">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CountryBu__Finan__4CA06362">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="CountryBudget" Type="Self.CountryBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="CountryBudget">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__District__Countr__4D94879B">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeatureAc__Featu__7EC1CEDB">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+    <End Role="FeatureAction" Type="Self.FeatureAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="FeatureID" />
+      </Principal>
+      <Dependent Role="FeatureAction">
+        <PropertyRef Name="FeatureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeatureAc__Featu__7FB5F314">
+    <End Role="FeatureActionType" Type="Self.FeatureActionType" Multiplicity="0..1" />
+    <End Role="FeatureAction" Type="Self.FeatureAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeatureActionType">
+        <PropertyRef Name="FeatureActionTypeID" />
+      </Principal>
+      <Dependent Role="FeatureAction">
+        <PropertyRef Name="FeatureActionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GlossaryS__Appro__507BE13E">
+    <End Role="GlossaryScreenDetails" Type="Self.GlossaryScreenDetails" Multiplicity="1" />
+    <End Role="GlossaryScreenEditDetails" Type="Self.GlossaryScreenEditDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenEditDetails">
+        <PropertyRef Name="ScreenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GlossaryS__EditP__53584DE9">
+    <End Role="GlossaryScreenParameterDetails" Type="Self.GlossaryScreenParameterDetails" Multiplicity="1" />
+    <End Role="GlossaryScreenParameterEditDetails" Type="Self.GlossaryScreenParameterEditDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenParameterDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenParameterEditDetails">
+        <PropertyRef Name="EditParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GlossaryS__Scree__4D9F7493">
+    <End Role="GlossaryScreenDetails" Type="Self.GlossaryScreenDetails" Multiplicity="1" />
+    <End Role="GlossaryScreenParameterDetails" Type="Self.GlossaryScreenParameterDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenDetails">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenParameterDetails">
+        <PropertyRef Name="ScreenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GuardRail__Finan__13BCEBC1">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="GuardRailFYConfig" Type="Self.GuardRailFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="GuardRailFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GuardRail__Finan__14B10FFA">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="GuardRailFYConfig" Type="Self.GuardRailFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="GuardRailFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Creat__5708E33C">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Finan__55209ACA">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Partn__5614BF03">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="1" />
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Finan__25DB9BFC">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="MilestoneFYConfig" Type="Self.MilestoneFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="MilestoneFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Miles__29AC2CE0">
+    <End Role="MilestoneFYConfig" Type="Self.MilestoneFYConfig" Multiplicity="1" />
+    <End Role="MilestoneNotification" Type="Self.MilestoneNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MilestoneFYConfig">
+        <PropertyRef Name="MilestoneFYConfigID" />
+      </Principal>
+      <Dependent Role="MilestoneNotification">
+        <PropertyRef Name="MilestoneFYConfigID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Miles__2C88998B">
+    <End Role="MilestoneNotification" Type="Self.MilestoneNotification" Multiplicity="1" />
+    <End Role="MilestoneNotificationsRole" Type="Self.MilestoneNotificationsRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MilestoneNotification">
+        <PropertyRef Name="MilestoneNotificationID" />
+      </Principal>
+      <Dependent Role="MilestoneNotificationsRole">
+        <PropertyRef Name="MilestoneNotificationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__RoleI__2D7CBDC4">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="MilestoneNotificationsRole" Type="Self.MilestoneNotificationsRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="MilestoneNotificationsRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelBUPa__Busin__45BE5BA9">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="0..1" />
+    <End Role="ModelBUParameterTable" Type="Self.ModelBUParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="ModelBUParameterTable">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelBUPa__Model__0BE6BFCF">
+    <End Role="ModelParameterTable" Type="Self.ModelParameterTable" Multiplicity="0..1" />
+    <End Role="ModelBUParameterTable" Type="Self.ModelBUParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelParameterTable">
+        <PropertyRef Name="ModelParameterID" />
+      </Principal>
+      <Dependent Role="ModelBUParameterTable">
+        <PropertyRef Name="ModelParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelDefa__Versi__63C3BFDC">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="ModelDefaultOutputTable" Type="Self.ModelDefaultOutputTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelDefaultOutputTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelOutp__Versi__58F12BAE">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="ModelOutputSummaryTable" Type="Self.ModelOutputSummaryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelOutputSummaryTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelOutp__Versi__59E54FE7">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="ModelOutputTable" Type="Self.ModelOutputTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelOutputTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Finan__30592A6F">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="ModelParameterFYConfig" Type="Self.ModelParameterFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="ModelParameterFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Model__3429BB53">
+    <End Role="ModelParameterFYConfig" Type="Self.ModelParameterFYConfig" Multiplicity="1" />
+    <End Role="ModelParameterConfig" Type="Self.ModelParameterConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelParameterFYConfig">
+        <PropertyRef Name="ModelParameterFYConfigID" />
+      </Principal>
+      <Dependent Role="ModelParameterConfig">
+        <PropertyRef Name="ModelParameterFYConfigID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Versi__5AD97420">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="ModelParameterTable" Type="Self.ModelParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelParameterTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Partner__Partner__793DFFAF">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="0..1" />
+    <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="Partner">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerBU__Busin__7FEAFD3E">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="PartnerBUBudget" Type="Self.PartnerBUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="PartnerBUBudget">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerBU__Partn__7EF6D905">
+    <End Role="PartnerBudget" Type="Self.PartnerBudget" Multiplicity="1" />
+    <End Role="PartnerBUBudget" Type="Self.PartnerBUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerBudget">
+        <PropertyRef Name="PartnerBudgetID" />
+      </Principal>
+      <Dependent Role="PartnerBUBudget">
+        <PropertyRef Name="PartnerBudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerBu__Versi__5BCD9859">
+    <End Role="MDFPlanning" Type="Self.MDFPlanning" Multiplicity="0..1" />
+    <End Role="PartnerBudget" Type="Self.PartnerBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PartnerBudget">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerSa__Count__370627FE">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="PartnerSalesRefreshHistory" Type="Self.PartnerSalesRefreshHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="PartnerSalesRefreshHistory">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerSa__Distr__0559BDD1">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="PartnerSales" Type="Self.PartnerSales" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictID" />
+      </Principal>
+      <Dependent Role="PartnerSales">
+        <PropertyRef Name="DistrictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProgramMD__BUBud__09FE775D">
+    <End Role="BUBudget" Type="Self.BUBudget" Multiplicity="1" />
+    <End Role="ProgramMDF" Type="Self.ProgramMDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BUBudget">
+        <PropertyRef Name="BUBudgetID" />
+      </Principal>
+      <Dependent Role="ProgramMDF">
+        <PropertyRef Name="BUBudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoleFeatu__Featu__0C1BC9F9">
+    <End Role="FeatureAction" Type="Self.FeatureAction" Multiplicity="1" />
+    <End Role="RoleFeatureActivity" Type="Self.RoleFeatureActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeatureAction">
+        <PropertyRef Name="FeatureActionID" />
+      </Principal>
+      <Dependent Role="RoleFeatureActivity">
+        <PropertyRef Name="FeatureActionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoleFeatu__RoleI__0D0FEE32">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RoleFeatureActivity" Type="Self.RoleFeatureActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RoleFeatureActivity">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePartn__Partn__0FEC5ADD">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="1" />
+    <End Role="RolePartnerType" Type="Self.RolePartnerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="RolePartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePartn__RoleI__10E07F16">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RolePartnerType" Type="Self.RolePartnerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RolePartnerType">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserBusin__Busin__084B3915">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="UserBusinessUnit" Type="Self.UserBusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="UserBusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserBusin__UserR__093F5D4E">
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="0..1" />
+    <End Role="UserBusinessUnit" Type="Self.UserBusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserBusinessUnit">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCount__Count__047AA831">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="UserCountry" Type="Self.UserCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="UserCountry">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCount__UserR__056ECC6A">
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="0..1" />
+    <End Role="UserCountry" Type="Self.UserCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserCountry">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDistr__UserR__0FB750B3">
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="0..1" />
+    <End Role="UserDistrict" Type="Self.UserDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserDistrict">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserGeo__UserRol__216BEC9A">
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="0..1" />
+    <End Role="UserGeo" Type="Self.UserGeo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserGeo">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__RoleI__5DCAEF64">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__UserI__5FB337D6">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__UserT__60A75C0F">
+    <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRTM__Partner__558AAF1E">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="1" />
+    <End Role="UserRTM" Type="Self.UserRTM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="UserRTM">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRTM__UserRol__0EC32C7A">
+    <End Role="UserRoleUserType" Type="Self.UserRoleUserType" Multiplicity="0..1" />
+    <End Role="UserRTM" Type="Self.UserRTM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserRTM">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="deleterolesfrommilestone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="milestonenotificationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="fn_GetGeoCountries" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GeoID" Type="int" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="CountryID" Type="smallint" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="GetFinancialYearId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetPlanningFinancialPeriodId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="HPE_MDF_RMODEL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+    <Parameter Name="ISDEFAULTMP" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="RefineFormulaText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar(max)">
+    <Parameter Name="FormulaText" Type="varchar(max)" Mode="In" />
+  </Function>
+  <Function Name="StringSplit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="String" Type="varchar(max)" Mode="In" />
+    <Parameter Name="Separator" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Value" Type="varchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="USERLOGGINGINFO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_CalculateRemainingBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_CheckIsActiveFlagByVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FinancialYearID" Type="int" Mode="In" />
+    <Parameter Name="PartnerTypeID" Type="int" Mode="In" />
+    <Parameter Name="CountryOrGeoOrDistrict" Type="varchar(max)" Mode="In" />
+    <Parameter Name="AllocationLevel" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_CheckVersionIsActiveFlag" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_copyBuBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OldVersionID" Type="int" Mode="In" />
+    <Parameter Name="NewVersionID" Type="int" Mode="In" />
+    <Parameter Name="NewFinancialYearID" Type="int" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_CountryBUReport2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_CreateRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+    <Parameter Name="DisplayName" Type="nvarchar" Mode="In" />
+    <Parameter Name="User" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_deleterolesfrommilestone" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="milestonenotificationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_DelFinancialVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Export_BudgetAllocationReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_BudgetReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_BudgetReport_Dynamic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_CarveOutReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_PartnerBudgetcsv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VersionID" Type="int" Mode="In" />
+    <Parameter Name="userBus" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Export_PartnerBudgetcsv_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FinancialYearID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Export_PartnerMDFMailingList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_PartnerMDFReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Export_SDFC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VersionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_FinalSummaryGraph" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Previous_Period_Year" Type="int" Mode="In" />
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_Get_AllocatedBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="versionId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetFilterColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="ExpandedView" Type="bit" Mode="In" />
+    <Parameter Name="Round2" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_GetFinalSummary_Details" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Previous_Period_Year" Type="int" Mode="In" />
+    <Parameter Name="Current_Financial_Period_Year_Id" Type="int" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetGeoData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VersionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetHistoricalPerformanceData_Dist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartnerType" Type="int" Mode="In" />
+    <Parameter Name="BUs" Type="varchar" Mode="In" />
+    <Parameter Name="MDF" Type="bit" Mode="In" />
+    <Parameter Name="NotMDF" Type="bit" Mode="In" />
+    <Parameter Name="Version" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetHistoricalPerformanceData_Reslr" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartnerType" Type="int" Mode="In" />
+    <Parameter Name="BUs" Type="varchar" Mode="In" />
+    <Parameter Name="MDF" Type="bit" Mode="In" />
+    <Parameter Name="NotMDF" Type="bit" Mode="In" />
+    <Parameter Name="Version" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetLastRefreshDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="VERSION_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPartnerBUBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="PartnerBudgetID" Type="bigint" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="WithoutHistory" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPartnerBudgetSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPartnerDetails_Pagination1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="SortColumn" Type="varchar" Mode="In" />
+    <Parameter Name="SortOrder" Type="varchar" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+    <Parameter Name="WithoutHistory" Type="bit" Mode="In" />
+    <Parameter Name="FilterColumnName" Type="varchar" Mode="In" />
+    <Parameter Name="FilterDelimeter" Type="varchar" Mode="In" />
+    <Parameter Name="FilterValue" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPartnerDetails_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="SearchColumn" Type="varchar" Mode="In" />
+    <Parameter Name="find" Type="varchar" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="WithoutHistory" Type="bit" Mode="In" />
+    <Parameter Name="FilterColumnName" Type="varchar" Mode="In" />
+    <Parameter Name="FilterDelimeter" Type="varchar" Mode="In" />
+    <Parameter Name="FilterValue" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_GetRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ShortName" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_GetRoleFeatureActionActivity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RoleID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetSearchResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="GEO_ID" Type="nvarchar" Mode="In" />
+    <Parameter Name="COUNTRY_IDs" Type="nvarchar" Mode="In" />
+    <Parameter Name="DISTRICT_IDs" Type="nvarchar" Mode="In" />
+    <Parameter Name="PARTNER_TYPE" Type="int" Mode="In" />
+    <Parameter Name="FINANCIAL_ID" Type="int" Mode="In" />
+    <Parameter Name="ACCESS_LEVEL" Type="varchar" Mode="In" />
+    <Parameter Name="USERROLE_USERTYPE_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GraphData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="type" Type="varchar" Mode="In" />
+    <Parameter Name="DEFAULT" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_HistoricMappingValue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_ImportMDF_Helper" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="financialyearId" Type="int" Mode="In" />
+    <Parameter Name="versionid" Type="int" Mode="In" />
+    <Parameter Name="bu" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_insert_milestonedetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RegionId" Type="int" Mode="In" />
+    <Parameter Name="FinancialYearId" Type="int" Mode="In" />
+    <Parameter Name="MilestoneFYConfigID" Type="int" Mode="In" />
+    <Parameter Name="MilestoneID" Type="int" Mode="In" />
+    <Parameter Name="MilestoneName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Notification1" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationAlert1" Type="int" Mode="In" />
+    <Parameter Name="Notification2" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationAlert2" Type="int" Mode="In" />
+    <Parameter Name="SubmissionDate" Type="datetime" Mode="In" />
+    <Parameter Name="Notification1Status" Type="bit" Mode="In" />
+    <Parameter Name="Notification2Status" Type="bit" Mode="In" />
+    <Parameter Name="output" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="usp_insert_milestonename" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="RegionId" Type="int" Mode="In" />
+    <Parameter Name="FinancialYearId" Type="int" Mode="In" />
+    <Parameter Name="MilestoneFYConfigID" Type="int" Mode="In" />
+    <Parameter Name="MilestoneID" Type="int" Mode="In" />
+    <Parameter Name="MilestoneName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Notification1" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationAlert1" Type="int" Mode="In" />
+    <Parameter Name="Notification2" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationAlert2" Type="int" Mode="In" />
+    <Parameter Name="SubmissionDate" Type="datetime" Mode="In" />
+    <Parameter Name="Notification1Status" Type="bit" Mode="In" />
+    <Parameter Name="Notification2Status" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="usp_InsertLastUpdateData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_insertMilestoneNotificationrole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="roleids" Type="int" Mode="In" />
+    <Parameter Name="primaryorsecondary" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_InsertPartnerBudgetData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_MileStoneMailNotification" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_PartnerBudget_Graph" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_RefineGlossaryText" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_Round2MDFCalculation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="FocusedArea" Type="int" Mode="In" />
+    <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_Save_PartnerBudget" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="versionId" Type="int" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="usp_SummarizeModelOutputTable" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="V_ID" Type="int" Mode="In" />
+    <Parameter Name="ModelParameterId" Type="int" Mode="In" />
+    <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="usp_UpdateGeoConfigDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_UpdateGlossaryFinYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_UpdateMpowrUserList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="tokenID" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApplicationID" Type="nvarchar" Mode="In" />
+    <Parameter Name="UpdateUserList" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="usp_user_adoption_report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_user_adoption_Weekly_report" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_User_Mangement_View" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_UserAdoptionReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_UserAdoptionReport_NoLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_YOYGraph" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="BusinessUnitID" Type="int" Mode="In" />
+    <Parameter Name="VersionID" Type="int" Mode="In" />
+    <Parameter Name="type" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="MPOWRStoreContainer">
+    <EntitySet Name="AppConfig" EntityType="Self.AppConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BUBudget" EntityType="Self.BUBudget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessUnit" EntityType="Self.BusinessUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_CountryMapping" EntityType="Self.ContraWeb_Upload_CountryMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_DataFile" EntityType="Self.ContraWeb_Upload_DataFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_FinancialYearMapping" EntityType="Self.ContraWeb_Upload_FinancialYearMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_GeoMapping" EntityType="Self.ContraWeb_Upload_GeoMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_StatusMaster" EntityType="Self.ContraWeb_Upload_StatusMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_TimeTracker" EntityType="Self.ContraWeb_Upload_TimeTracker" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CountryBudget" EntityType="Self.CountryBudget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeatureAction" EntityType="Self.FeatureAction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeatureActionType" EntityType="Self.FeatureActionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FinancialYear" EntityType="Self.FinancialYear" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FocusedArea" EntityType="Self.FocusedArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Geo" EntityType="Self.Geo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GeoConfigDetails" EntityType="Self.GeoConfigDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlossaryScreenDetails" EntityType="Self.GlossaryScreenDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlossaryScreenEditDetails" EntityType="Self.GlossaryScreenEditDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlossaryScreenParameterDetails" EntityType="Self.GlossaryScreenParameterDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GlossaryScreenParameterEditDetails" EntityType="Self.GlossaryScreenParameterEditDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuardRailFYConfig" EntityType="Self.GuardRailFYConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuardRailsConfig" EntityType="Self.GuardRailsConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginAuthentication" EntityType="Self.LoginAuthentication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MDFPlanning" EntityType="Self.MDFPlanning" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MDFVarianceReason" EntityType="Self.MDFVarianceReason" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MembershipGroup" EntityType="Self.MembershipGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MembershipType" EntityType="Self.MembershipType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Milestone" EntityType="Self.Milestone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MilestoneFYConfig" EntityType="Self.MilestoneFYConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MilestoneNotification" EntityType="Self.MilestoneNotification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MilestoneNotificationsRole" EntityType="Self.MilestoneNotificationsRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelBUParameterTable" EntityType="Self.ModelBUParameterTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelDefaultOutputTable" EntityType="Self.ModelDefaultOutputTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelOutputSummaryTable" EntityType="Self.ModelOutputSummaryTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelOutputTable" EntityType="Self.ModelOutputTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelParameterConfig" EntityType="Self.ModelParameterConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelParameterFYConfig" EntityType="Self.ModelParameterFYConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelParameterTable" EntityType="Self.ModelParameterTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrganisationType" EntityType="Self.OrganisationType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerBUBudget" EntityType="Self.PartnerBUBudget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerBudget" EntityType="Self.PartnerBudget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerSales" EntityType="Self.PartnerSales" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerSalesRefreshHistory" EntityType="Self.PartnerSalesRefreshHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartnerType" EntityType="Self.PartnerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProgramMDF" EntityType="Self.ProgramMDF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoleFeatureActivity" EntityType="Self.RoleFeatureActivity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePartnerType" EntityType="Self.RolePartnerType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserBusinessUnit" EntityType="Self.UserBusinessUnit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserCountry" EntityType="Self.UserCountry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDistrict" EntityType="Self.UserDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGeo" EntityType="Self.UserGeo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserManual" EntityType="Self.UserManual" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoleUserType" EntityType="Self.UserRoleUserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRTM" EntityType="Self.UserRTM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContraWeb_Upload_Configuration" EntityType="Self.ContraWeb_Upload_Configuration" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ContraWeb_Upload_Configuration].[ApplicationID] AS [ApplicationID], 
+    [ContraWeb_Upload_Configuration].[Key] AS [Key], 
+    [ContraWeb_Upload_Configuration].[Value] AS [Value], 
+    [ContraWeb_Upload_Configuration].[IsActive] AS [IsActive], 
+    [ContraWeb_Upload_Configuration].[CreatedBy] AS [CreatedBy], 
+    [ContraWeb_Upload_Configuration].[CreatedDate] AS [CreatedDate], 
+    [ContraWeb_Upload_Configuration].[ModifiedBy] AS [ModifiedBy], 
+    [ContraWeb_Upload_Configuration].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[ContraWeb_Upload_Configuration] AS [ContraWeb_Upload_Configuration]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DataLoadRefresh" EntityType="Self.DataLoadRefresh" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DataLoadRefresh].[ID] AS [ID], 
+    [DataLoadRefresh].[ApplicationID] AS [ApplicationID], 
+    [DataLoadRefresh].[Geo] AS [Geo], 
+    [DataLoadRefresh].[Sellout] AS [Sellout], 
+    [DataLoadRefresh].[MDFHistory] AS [MDFHistory], 
+    [DataLoadRefresh].[Planned_ProjectedSales] AS [Planned_ProjectedSales], 
+    [DataLoadRefresh].[Quarter] AS [Quarter], 
+    [DataLoadRefresh].[LatestDataRefresh] AS [LatestDataRefresh], 
+    [DataLoadRefresh].[MailSentDate] AS [MailSentDate], 
+    [DataLoadRefresh].[MailDispalyDate] AS [MailDispalyDate], 
+    [DataLoadRefresh].[FilePath] AS [FilePath], 
+    [DataLoadRefresh].[IsActive] AS [IsActive], 
+    [DataLoadRefresh].[CreatedBy] AS [CreatedBy], 
+    [DataLoadRefresh].[CreatedDate] AS [CreatedDate], 
+    [DataLoadRefresh].[IsPopup] AS [IsPopup], 
+    [DataLoadRefresh].[PopupDays] AS [PopupDays], 
+    [DataLoadRefresh].[MPOWR_RefreshDate] AS [MPOWR_RefreshDate]
+    FROM [dbo].[DataLoadRefresh] AS [DataLoadRefresh]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FeatureGeo" EntityType="Self.FeatureGeo" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [FeatureGeo].[FeatureActionID] AS [FeatureActionID], 
+    [FeatureGeo].[FeatureID] AS [FeatureID], 
+    [FeatureGeo].[ShortName] AS [ShortName], 
+    [FeatureGeo].[DisplayName] AS [DisplayName], 
+    [FeatureGeo].[FeatureActionTypeID] AS [FeatureActionTypeID], 
+    [FeatureGeo].[IsActive] AS [IsActive], 
+    [FeatureGeo].[CreatedBy] AS [CreatedBy], 
+    [FeatureGeo].[CreatedDate] AS [CreatedDate], 
+    [FeatureGeo].[ModifiedBy] AS [ModifiedBy], 
+    [FeatureGeo].[ModifiedDate] AS [ModifiedDate]
+    FROM [dbo].[FeatureGeo] AS [FeatureGeo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="FlatDataValidationLog" EntityType="Self.FlatDataValidationLog" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [FlatDataValidationLog].[Id] AS [Id], 
+    [FlatDataValidationLog].[Message] AS [Message], 
+    [FlatDataValidationLog].[FileName] AS [FileName], 
+    [FlatDataValidationLog].[FileId] AS [FileId], 
+    [FlatDataValidationLog].[CreatedDate] AS [CreatedDate]
+    FROM [dbo].[FlatDataValidationLog] AS [FlatDataValidationLog]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__BUBudget__Busine__45F365D3" Association="Self.FK__BUBudget__Busine__45F365D3">
+      <End Role="BusinessUnit" EntitySet="BusinessUnit" />
+      <End Role="BUBudget" EntitySet="BUBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BUBudget__Versio__57FD0775" Association="Self.FK__BUBudget__Versio__57FD0775">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="BUBudget" EntitySet="BUBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__Count__1C9228E4" Association="Self.FK__ContraWeb__Count__1C9228E4">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__16D94F8E" Association="Self.FK__ContraWeb__FileI__16D94F8E">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__1AA9E072" Association="Self.FK__ContraWeb__FileI__1AA9E072">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__1F6E958F" Association="Self.FK__ContraWeb__FileI__1F6E958F">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_FinancialYearMapping" EntitySet="ContraWeb_Upload_FinancialYearMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__318D45CA" Association="Self.FK__ContraWeb__FileI__318D45CA">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_TimeTracker" EntitySet="ContraWeb_Upload_TimeTracker" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__GeoID__17CD73C7" Association="Self.FK__ContraWeb__GeoID__17CD73C7">
+      <End Role="Geo" EntitySet="Geo" />
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__GeoMa__1B9E04AB" Association="Self.FK__ContraWeb__GeoMa__1B9E04AB">
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__Statu__1308BEAA" Association="Self.FK__ContraWeb__Statu__1308BEAA">
+      <End Role="ContraWeb_Upload_StatusMaster" EntitySet="ContraWeb_Upload_StatusMaster" />
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CountryBu__Count__4BAC3F29" Association="Self.FK__CountryBu__Count__4BAC3F29">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="CountryBudget" EntitySet="CountryBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CountryBu__Finan__4CA06362" Association="Self.FK__CountryBu__Finan__4CA06362">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="CountryBudget" EntitySet="CountryBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__District__Countr__4D94879B" Association="Self.FK__District__Countr__4D94879B">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="District" EntitySet="District" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeatureAc__Featu__7EC1CEDB" Association="Self.FK__FeatureAc__Featu__7EC1CEDB">
+      <End Role="Feature" EntitySet="Feature" />
+      <End Role="FeatureAction" EntitySet="FeatureAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeatureAc__Featu__7FB5F314" Association="Self.FK__FeatureAc__Featu__7FB5F314">
+      <End Role="FeatureActionType" EntitySet="FeatureActionType" />
+      <End Role="FeatureAction" EntitySet="FeatureAction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GlossaryS__Appro__507BE13E" Association="Self.FK__GlossaryS__Appro__507BE13E">
+      <End Role="GlossaryScreenDetails" EntitySet="GlossaryScreenDetails" />
+      <End Role="GlossaryScreenEditDetails" EntitySet="GlossaryScreenEditDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GlossaryS__EditP__53584DE9" Association="Self.FK__GlossaryS__EditP__53584DE9">
+      <End Role="GlossaryScreenParameterDetails" EntitySet="GlossaryScreenParameterDetails" />
+      <End Role="GlossaryScreenParameterEditDetails" EntitySet="GlossaryScreenParameterEditDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GlossaryS__Scree__4D9F7493" Association="Self.FK__GlossaryS__Scree__4D9F7493">
+      <End Role="GlossaryScreenDetails" EntitySet="GlossaryScreenDetails" />
+      <End Role="GlossaryScreenParameterDetails" EntitySet="GlossaryScreenParameterDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GuardRail__Finan__13BCEBC1" Association="Self.FK__GuardRail__Finan__13BCEBC1">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="GuardRailFYConfig" EntitySet="GuardRailFYConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GuardRail__Finan__14B10FFA" Association="Self.FK__GuardRail__Finan__14B10FFA">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="GuardRailFYConfig" EntitySet="GuardRailFYConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Creat__5708E33C" Association="Self.FK__MDFPlanni__Creat__5708E33C">
+      <End Role="User" EntitySet="User" />
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Finan__55209ACA" Association="Self.FK__MDFPlanni__Finan__55209ACA">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Partn__5614BF03" Association="Self.FK__MDFPlanni__Partn__5614BF03">
+      <End Role="PartnerType" EntitySet="PartnerType" />
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Finan__25DB9BFC" Association="Self.FK__Milestone__Finan__25DB9BFC">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="MilestoneFYConfig" EntitySet="MilestoneFYConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Miles__29AC2CE0" Association="Self.FK__Milestone__Miles__29AC2CE0">
+      <End Role="MilestoneFYConfig" EntitySet="MilestoneFYConfig" />
+      <End Role="MilestoneNotification" EntitySet="MilestoneNotification" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Miles__2C88998B" Association="Self.FK__Milestone__Miles__2C88998B">
+      <End Role="MilestoneNotification" EntitySet="MilestoneNotification" />
+      <End Role="MilestoneNotificationsRole" EntitySet="MilestoneNotificationsRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__RoleI__2D7CBDC4" Association="Self.FK__Milestone__RoleI__2D7CBDC4">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="MilestoneNotificationsRole" EntitySet="MilestoneNotificationsRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelBUPa__Busin__45BE5BA9" Association="Self.FK__ModelBUPa__Busin__45BE5BA9">
+      <End Role="BusinessUnit" EntitySet="BusinessUnit" />
+      <End Role="ModelBUParameterTable" EntitySet="ModelBUParameterTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelBUPa__Model__0BE6BFCF" Association="Self.FK__ModelBUPa__Model__0BE6BFCF">
+      <End Role="ModelParameterTable" EntitySet="ModelParameterTable" />
+      <End Role="ModelBUParameterTable" EntitySet="ModelBUParameterTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelDefa__Versi__63C3BFDC" Association="Self.FK__ModelDefa__Versi__63C3BFDC">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="ModelDefaultOutputTable" EntitySet="ModelDefaultOutputTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelOutp__Versi__58F12BAE" Association="Self.FK__ModelOutp__Versi__58F12BAE">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="ModelOutputSummaryTable" EntitySet="ModelOutputSummaryTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelOutp__Versi__59E54FE7" Association="Self.FK__ModelOutp__Versi__59E54FE7">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="ModelOutputTable" EntitySet="ModelOutputTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Finan__30592A6F" Association="Self.FK__ModelPara__Finan__30592A6F">
+      <End Role="FinancialYear" EntitySet="FinancialYear" />
+      <End Role="ModelParameterFYConfig" EntitySet="ModelParameterFYConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Model__3429BB53" Association="Self.FK__ModelPara__Model__3429BB53">
+      <End Role="ModelParameterFYConfig" EntitySet="ModelParameterFYConfig" />
+      <End Role="ModelParameterConfig" EntitySet="ModelParameterConfig" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Versi__5AD97420" Association="Self.FK__ModelPara__Versi__5AD97420">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="ModelParameterTable" EntitySet="ModelParameterTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Partner__Partner__793DFFAF" Association="Self.FK__Partner__Partner__793DFFAF">
+      <End Role="PartnerType" EntitySet="PartnerType" />
+      <End Role="Partner" EntitySet="Partner" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerBU__Busin__7FEAFD3E" Association="Self.FK__PartnerBU__Busin__7FEAFD3E">
+      <End Role="BusinessUnit" EntitySet="BusinessUnit" />
+      <End Role="PartnerBUBudget" EntitySet="PartnerBUBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerBU__Partn__7EF6D905" Association="Self.FK__PartnerBU__Partn__7EF6D905">
+      <End Role="PartnerBudget" EntitySet="PartnerBudget" />
+      <End Role="PartnerBUBudget" EntitySet="PartnerBUBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerBu__Versi__5BCD9859" Association="Self.FK__PartnerBu__Versi__5BCD9859">
+      <End Role="MDFPlanning" EntitySet="MDFPlanning" />
+      <End Role="PartnerBudget" EntitySet="PartnerBudget" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerSa__Count__370627FE" Association="Self.FK__PartnerSa__Count__370627FE">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="PartnerSalesRefreshHistory" EntitySet="PartnerSalesRefreshHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerSa__Distr__0559BDD1" Association="Self.FK__PartnerSa__Distr__0559BDD1">
+      <End Role="District" EntitySet="District" />
+      <End Role="PartnerSales" EntitySet="PartnerSales" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProgramMD__BUBud__09FE775D" Association="Self.FK__ProgramMD__BUBud__09FE775D">
+      <End Role="BUBudget" EntitySet="BUBudget" />
+      <End Role="ProgramMDF" EntitySet="ProgramMDF" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoleFeatu__Featu__0C1BC9F9" Association="Self.FK__RoleFeatu__Featu__0C1BC9F9">
+      <End Role="FeatureAction" EntitySet="FeatureAction" />
+      <End Role="RoleFeatureActivity" EntitySet="RoleFeatureActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoleFeatu__RoleI__0D0FEE32" Association="Self.FK__RoleFeatu__RoleI__0D0FEE32">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RoleFeatureActivity" EntitySet="RoleFeatureActivity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePartn__Partn__0FEC5ADD" Association="Self.FK__RolePartn__Partn__0FEC5ADD">
+      <End Role="PartnerType" EntitySet="PartnerType" />
+      <End Role="RolePartnerType" EntitySet="RolePartnerType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePartn__RoleI__10E07F16" Association="Self.FK__RolePartn__RoleI__10E07F16">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="RolePartnerType" EntitySet="RolePartnerType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserBusin__Busin__084B3915" Association="Self.FK__UserBusin__Busin__084B3915">
+      <End Role="BusinessUnit" EntitySet="BusinessUnit" />
+      <End Role="UserBusinessUnit" EntitySet="UserBusinessUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserBusin__UserR__093F5D4E" Association="Self.FK__UserBusin__UserR__093F5D4E">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+      <End Role="UserBusinessUnit" EntitySet="UserBusinessUnit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCount__Count__047AA831" Association="Self.FK__UserCount__Count__047AA831">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="UserCountry" EntitySet="UserCountry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCount__UserR__056ECC6A" Association="Self.FK__UserCount__UserR__056ECC6A">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+      <End Role="UserCountry" EntitySet="UserCountry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDistr__UserR__0FB750B3" Association="Self.FK__UserDistr__UserR__0FB750B3">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+      <End Role="UserDistrict" EntitySet="UserDistrict" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserGeo__UserRol__216BEC9A" Association="Self.FK__UserGeo__UserRol__216BEC9A">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+      <End Role="UserGeo" EntitySet="UserGeo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__RoleI__5DCAEF64" Association="Self.FK__UserRoleU__RoleI__5DCAEF64">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__UserI__5FB337D6" Association="Self.FK__UserRoleU__UserI__5FB337D6">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__UserT__60A75C0F" Association="Self.FK__UserRoleU__UserT__60A75C0F">
+      <End Role="UserType" EntitySet="UserType" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRTM__Partner__558AAF1E" Association="Self.FK__UserRTM__Partner__558AAF1E">
+      <End Role="PartnerType" EntitySet="PartnerType" />
+      <End Role="UserRTM" EntitySet="UserRTM" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRTM__UserRol__0EC32C7A" Association="Self.FK__UserRTM__UserRol__0EC32C7A">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserType" />
+      <End Role="UserRTM" EntitySet="UserRTM" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

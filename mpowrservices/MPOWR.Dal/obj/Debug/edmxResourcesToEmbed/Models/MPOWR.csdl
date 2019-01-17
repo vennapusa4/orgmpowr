@@ -1,0 +1,2319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MPOWR" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BusinessUnit">
+    <Key>
+      <PropertyRef Name="BusinessUnitID" />
+    </Key>
+    <Property Name="BusinessUnitID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PartnerBUBudgets" Relationship="Self.FK__PartnerBU__Busin__7FEAFD3E" FromRole="BusinessUnit" ToRole="PartnerBUBudget" />
+    <NavigationProperty Name="UserBusinessUnits" Relationship="Self.FK__UserBusin__Busin__084B3915" FromRole="BusinessUnit" ToRole="UserBusinessUnit" />
+    <NavigationProperty Name="BUBudgets" Relationship="MPOWR.FK__BUBudget__Busine__45F365D3" FromRole="BusinessUnit" ToRole="BUBudget" />
+    <NavigationProperty Name="ModelBUParameterTables" Relationship="MPOWR.FK__ModelBUPa__Busin__45BE5BA9" FromRole="BusinessUnit" ToRole="ModelBUParameterTable" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Name="CountryID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CountryBudgets" Relationship="Self.FK__CountryBu__Count__4BAC3F29" FromRole="Country" ToRole="CountryBudget" />
+    <NavigationProperty Name="Districts" Relationship="Self.FK__District__Countr__4D94879B" FromRole="Country" ToRole="District" />
+    <NavigationProperty Name="PartnerSalesRefreshHistories" Relationship="Self.FK__PartnerSa__Count__370627FE" FromRole="Country" ToRole="PartnerSalesRefreshHistory" />
+    <NavigationProperty Name="UserCountries" Relationship="Self.FK__UserCount__Count__047AA831" FromRole="Country" ToRole="UserCountry" />
+    <Property Name="GeoID" Type="Int16" />
+    <NavigationProperty Name="Geo" Relationship="MPOWR.FK__Country__GeoID__31A25463" FromRole="Country" ToRole="Geo" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="TypeofSellout" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ContraWeb_Upload_CountryMapping" Relationship="MPOWR.FK__ContraWeb__Count__1C9228E4" FromRole="Country" ToRole="ContraWeb_Upload_CountryMapping" />
+  </EntityType>
+  <EntityType Name="CountryBudget">
+    <Key>
+      <PropertyRef Name="CountryBudgetID" />
+    </Key>
+    <Property Name="CountryBudgetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="FinancialYearID" Type="Int32" />
+    <Property Name="MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__CountryBu__Count__4BAC3F29" FromRole="CountryBudget" ToRole="Country" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK__CountryBu__Finan__4CA06362" FromRole="CountryBudget" ToRole="FinancialYear" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__District__Countr__4D94879B" FromRole="District" ToRole="Country" />
+    <NavigationProperty Name="UserDistricts" Relationship="Self.FK__UserDistr__Distr__10AB74EC" FromRole="District" ToRole="UserDistrict" />
+    <NavigationProperty Name="PartnerSales" Relationship="MPOWR.FK__PartnerSa__Distr__0DCF0841" FromRole="District" ToRole="PartnerSale" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="FinancialYear">
+    <Key>
+      <PropertyRef Name="FinancialYearID" />
+    </Key>
+    <Property Name="FinancialYearID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PeriodType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int16" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="CountryBudgets" Relationship="Self.FK__CountryBu__Finan__4CA06362" FromRole="FinancialYear" ToRole="CountryBudget" />
+    <NavigationProperty Name="GuardRailFYConfigs" Relationship="Self.FK__GuardRail__Finan__13BCEBC1" FromRole="FinancialYear" ToRole="GuardRailFYConfig" />
+    <NavigationProperty Name="GuardRailFYConfigs1" Relationship="Self.FK__GuardRail__Finan__14B10FFA" FromRole="FinancialYear" ToRole="GuardRailFYConfig" />
+    <NavigationProperty Name="MilestoneFYConfigs" Relationship="Self.FK__Milestone__Finan__25DB9BFC" FromRole="FinancialYear" ToRole="MilestoneFYConfig" />
+    <NavigationProperty Name="ModelParameterFYConfigs" Relationship="Self.FK__ModelPara__Finan__30592A6F" FromRole="FinancialYear" ToRole="ModelParameterFYConfig" />
+    <NavigationProperty Name="MDFPlannings" Relationship="MPOWR.FK__MDFPlanni__Finan__55209ACA" FromRole="FinancialYear" ToRole="MDFPlanning" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="GuardRailFYConfig">
+    <Key>
+      <PropertyRef Name="GuardRailFYConfigID" />
+    </Key>
+    <Property Name="GuardRailFYConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionID" Type="Int16" />
+    <Property Name="FinancialYearID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK__GuardRail__Finan__13BCEBC1" FromRole="GuardRailFYConfig" ToRole="FinancialYear" />
+    <NavigationProperty Name="FinancialYear1" Relationship="Self.FK__GuardRail__Finan__14B10FFA" FromRole="GuardRailFYConfig" ToRole="FinancialYear" />
+  </EntityType>
+  <EntityType Name="GuardRailsConfig">
+    <Key>
+      <PropertyRef Name="GuardRailConfigID" />
+    </Key>
+    <Property Name="GuardRailConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuardRailFYConfigID" Type="Int32" Nullable="false" />
+    <Property Name="ProgramCarveOutComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ProgramCarveOutNonComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ActualMDFAllocationComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ActualMDFAllocationNonComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDFSelloutIndexComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDFSelloutIndexNonComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="OverAllocationComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="OverAllocationNonComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="AllowOverAllocation" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="UnderAllocationComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="UnderAllocationNonComplaintValue" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ReviewerRoleID1" Type="Int32" />
+    <Property Name="ReviewerRoleID2" Type="Int32" />
+    <Property Name="ReviewerRoleID3" Type="Int32" />
+    <Property Name="ReviewerRoleID4" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="LoginAuthentication">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TokenID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LogInTime" Type="DateTime" Precision="3" />
+    <Property Name="LogOffTime" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="MDFVarianceReason">
+    <Key>
+      <PropertyRef Name="MDFVarianceReasonID" />
+    </Key>
+    <Property Name="MDFVarianceReasonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Reason" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="MembershipType">
+    <Key>
+      <PropertyRef Name="MembershipTypeID" />
+    </Key>
+    <Property Name="MembershipTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Milestone">
+    <Key>
+      <PropertyRef Name="MilestoneID" />
+    </Key>
+    <Property Name="MilestoneID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MilestoneFYConfig">
+    <Key>
+      <PropertyRef Name="MilestoneFYConfigID" />
+    </Key>
+    <Property Name="MilestoneFYConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionID" Type="Int16" Nullable="false" />
+    <Property Name="FinancialYearID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK__Milestone__Finan__25DB9BFC" FromRole="MilestoneFYConfig" ToRole="FinancialYear" />
+    <NavigationProperty Name="MilestoneNotifications" Relationship="Self.FK__Milestone__Miles__29AC2CE0" FromRole="MilestoneFYConfig" ToRole="MilestoneNotification" />
+  </EntityType>
+  <EntityType Name="MilestoneNotification">
+    <Key>
+      <PropertyRef Name="MilestoneNotificationID" />
+    </Key>
+    <Property Name="MilestoneNotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MilestoneFYConfigID" Type="Int32" Nullable="false" />
+    <Property Name="MilestoneDate" Type="DateTime" Precision="3" />
+    <Property Name="ReminderEmailMessage1" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="SetReminderAlertDays1" Type="Int32" />
+    <Property Name="ReminderStatus1" Type="Boolean" />
+    <Property Name="ReminderEmailMessage2" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="SetReminderAlertDays2" Type="Int32" />
+    <Property Name="ReminderStatus2" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="MilestoneOrderNo" Type="Int32" />
+    <Property Name="MilestoneName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MilestoneFYConfig" Relationship="Self.FK__Milestone__Miles__29AC2CE0" FromRole="MilestoneNotification" ToRole="MilestoneFYConfig" />
+    <NavigationProperty Name="MilestoneNotificationsRoles" Relationship="Self.FK__Milestone__Miles__2C88998B" FromRole="MilestoneNotification" ToRole="MilestoneNotificationsRole" />
+  </EntityType>
+  <EntityType Name="MilestoneNotificationsRole">
+    <Key>
+      <PropertyRef Name="MilestoneNotificationRoleID" />
+    </Key>
+    <Property Name="MilestoneNotificationRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MilestoneNotificationID" Type="Int32" Nullable="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleOperation" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MilestoneNotification" Relationship="Self.FK__Milestone__Miles__2C88998B" FromRole="MilestoneNotificationsRole" ToRole="MilestoneNotification" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__Milestone__RoleI__2D7CBDC4" FromRole="MilestoneNotificationsRole" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="ModelOutputTable">
+    <Key>
+      <PropertyRef Name="ModelParamROutputID" />
+    </Key>
+    <Property Name="ModelParamROutputID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelParameterID" Type="Int32" />
+    <Property Name="PartnerID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Partner_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Membership_Type" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Business_Unit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Period_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Recommended_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="Median_Avg_MDF_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Alignment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PREV_MDF_Assessment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Planned_Sales" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Target_Achievement" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOW" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Growth" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PMM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Footprint_Growth" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="No_of_end_customers" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Total_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Incremental_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Late_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="W_MGO_Marketing_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="New_Logos_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Accuracy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Partner_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="High_Productivity_Value" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_Recommended_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="DistrictID" Type="Int32" />
+    <Property Name="Growth_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sustain_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CURR_HALF_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="FinancialYearID" Type="Int16" />
+    <Property Name="PartnerTypeID" Type="Int32" />
+    <Property Name="Avg_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Current_Period_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_mdf" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Scaled_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Silver_Below" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Gold_Platinum" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ProjectionMethod" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="VersionID" Type="Int32" />
+    <Property Name="WMGO_Ratio" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_Ratio" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prev_To_Prv_Year_sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Source_of_SellOut" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__ModelOutp__Versi__59E54FE7" FromRole="ModelOutputTable" ToRole="MDFPlanning" />
+    <Property Name="HistoryExists" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ModelParameterConfig">
+    <Key>
+      <PropertyRef Name="ModelParameterConfigID" />
+    </Key>
+    <Property Name="ModelParameterConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelParameterFYConfigID" Type="Int32" Nullable="false" />
+    <Property Name="HighPerformerProductivity" Type="Decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="MediumPerformerProductivityRatio" Type="Decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="LowPerformerProductivityRatio" Type="Decimal" Precision="20" Scale="9" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ModelParameterFYConfig" Relationship="Self.FK__ModelPara__Model__3429BB53" FromRole="ModelParameterConfig" ToRole="ModelParameterFYConfig" />
+  </EntityType>
+  <EntityType Name="ModelParameterFYConfig">
+    <Key>
+      <PropertyRef Name="ModelParameterFYConfigID" />
+    </Key>
+    <Property Name="ModelParameterFYConfigID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RegionID" Type="Int16" Nullable="false" />
+    <Property Name="FinancialYearID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FinancialYear" Relationship="Self.FK__ModelPara__Finan__30592A6F" FromRole="ModelParameterFYConfig" ToRole="FinancialYear" />
+    <NavigationProperty Name="ModelParameterConfigs" Relationship="Self.FK__ModelPara__Model__3429BB53" FromRole="ModelParameterFYConfig" ToRole="ModelParameterConfig" />
+  </EntityType>
+  <EntityType Name="OrganisationType">
+    <Key>
+      <PropertyRef Name="OrgTypeID" />
+    </Key>
+    <Property Name="OrgTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Partner">
+    <Key>
+      <PropertyRef Name="PartnerID" />
+    </Key>
+    <Property Name="PartnerID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PartnerShortName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PartnerTypeID" Type="Int32" />
+    <Property Name="PartnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="MembershipTypeID" Type="Int32" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="DistrictID" Type="Int16" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PartnerType" Relationship="Self.FK__Partner__Partner__793DFFAF" FromRole="Partner" ToRole="PartnerType" />
+  </EntityType>
+  <EntityType Name="PartnerBUBudget">
+    <Key>
+      <PropertyRef Name="PartnerBUBudgetID" />
+    </Key>
+    <Property Name="PartnerBUBudgetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerBudgetID" Type="Int64" Nullable="false" />
+    <Property Name="BusinessUnitID" Type="Int16" Nullable="false" />
+    <Property Name="MDFVarianceReasonID" Type="Int32" />
+    <Property Name="FocusedAreaID" Type="Int32" />
+    <Property Name="Baseline_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Additional_RecommendedMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_MDF_Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BUBudgetID" Type="Int64" />
+    <Property Name="ModelParamROutputID" Type="Int64" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK__PartnerBU__Busin__7FEAFD3E" FromRole="PartnerBUBudget" ToRole="BusinessUnit" />
+    <NavigationProperty Name="PartnerBudget" Relationship="MPOWR.FK__PartnerBU__Partn__7EF6D905" FromRole="PartnerBUBudget" ToRole="PartnerBudget" />
+    <Property Name="MSA" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="TotalMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PrevPeriodMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PrevPrevPeriodMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CarveOut" Type="Decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <EntityType Name="PartnerSalesRefreshHistory">
+    <Key>
+      <PropertyRef Name="PartnerSalesRefreshHistoryID" />
+    </Key>
+    <Property Name="PartnerSalesRefreshHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="RefreshDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__PartnerSa__Count__370627FE" FromRole="PartnerSalesRefreshHistory" ToRole="Country" />
+  </EntityType>
+  <EntityType Name="PartnerType">
+    <Key>
+      <PropertyRef Name="PartnerTypeID" />
+    </Key>
+    <Property Name="PartnerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK__Partner__Partner__793DFFAF" FromRole="PartnerType" ToRole="Partner" />
+    <NavigationProperty Name="RolePartnerTypes" Relationship="Self.FK__RolePartn__Partn__0FEC5ADD" FromRole="PartnerType" ToRole="RolePartnerType" />
+    <NavigationProperty Name="UserRTMs" Relationship="Self.FK__UserRTM__Partner__558AAF1E" FromRole="PartnerType" ToRole="UserRTM" />
+    <NavigationProperty Name="MDFPlannings" Relationship="MPOWR.FK__MDFPlanni__Partn__5614BF03" FromRole="PartnerType" ToRole="MDFPlanning" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ProgramMDF">
+    <Key>
+      <PropertyRef Name="ProgramMDFID" />
+    </Key>
+    <Property Name="ProgramMDFID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BUBudgetID" Type="Int64" Nullable="false" />
+    <Property Name="ProjectName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BUBudget" Relationship="MPOWR.FK__ProgramMD__BUBud__09FE775D" FromRole="ProgramMDF" ToRole="BUBudget" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MilestoneNotificationsRoles" Relationship="Self.FK__Milestone__RoleI__2D7CBDC4" FromRole="Role" ToRole="MilestoneNotificationsRole" />
+    <NavigationProperty Name="RoleFeatureActivities" Relationship="Self.FK__RoleFeatu__RoleI__0D0FEE32" FromRole="Role" ToRole="RoleFeatureActivity" />
+    <NavigationProperty Name="RolePartnerTypes" Relationship="Self.FK__RolePartn__RoleI__10E07F16" FromRole="Role" ToRole="RolePartnerType" />
+    <NavigationProperty Name="UserRoleUserTypes" Relationship="MPOWR.FK__UserRoleU__RoleI__5DCAEF64" FromRole="Role" ToRole="UserRoleUserType" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="RoleFeatureActivity">
+    <Key>
+      <PropertyRef Name="RoleFeatureActivityID" />
+    </Key>
+    <Property Name="RoleFeatureActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="FeatureActionID" Type="Int32" Nullable="false" />
+    <Property Name="IsChecked" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__RoleFeatu__RoleI__0D0FEE32" FromRole="RoleFeatureActivity" ToRole="Role" />
+    <NavigationProperty Name="FeatureAction" Relationship="MPOWR.FK__RoleFeatu__Featu__0C1BC9F9" FromRole="RoleFeatureActivity" ToRole="FeatureAction" />
+  </EntityType>
+  <EntityType Name="RolePartnerType">
+    <Key>
+      <PropertyRef Name="RolePartnerTypeID" />
+    </Key>
+    <Property Name="RolePartnerTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="PartnerTypeID" Type="Int32" Nullable="false" />
+    <Property Name="IsChecked" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PartnerType" Relationship="Self.FK__RolePartn__Partn__0FEC5ADD" FromRole="RolePartnerType" ToRole="PartnerType" />
+    <NavigationProperty Name="Role" Relationship="Self.FK__RolePartn__RoleI__10E07F16" FromRole="RolePartnerType" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="Binary" MaxLength="256" FixedLength="false" />
+    <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="MDFPlannings" Relationship="MPOWR.FK__MDFPlanni__Creat__5708E33C" FromRole="User" ToRole="MDFPlanning" />
+    <NavigationProperty Name="UserRoleUserTypes" Relationship="MPOWR.FK__UserRoleU__UserI__5FB337D6" FromRole="User" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="UserBusinessUnit">
+    <Key>
+      <PropertyRef Name="UserBusinessUnitID" />
+    </Key>
+    <Property Name="UserBusinessUnitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleUserTypeID" Type="Int32" />
+    <Property Name="BusinessUnitID" Type="Int16" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BusinessUnit" Relationship="Self.FK__UserBusin__Busin__084B3915" FromRole="UserBusinessUnit" ToRole="BusinessUnit" />
+    <NavigationProperty Name="UserRoleUserType" Relationship="MPOWR.FK__UserBusin__UserR__093F5D4E" FromRole="UserBusinessUnit" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="UserCountry">
+    <Key>
+      <PropertyRef Name="UserCountryID" />
+    </Key>
+    <Property Name="UserCountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleUserTypeID" Type="Int32" />
+    <Property Name="CountryID" Type="Int16" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Country" Relationship="Self.FK__UserCount__Count__047AA831" FromRole="UserCountry" ToRole="Country" />
+    <NavigationProperty Name="UserRoleUserType" Relationship="MPOWR.FK__UserCount__UserR__056ECC6A" FromRole="UserCountry" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="UserDistrict">
+    <Key>
+      <PropertyRef Name="UserDistrictID" />
+    </Key>
+    <Property Name="UserDistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleUserTypeID" Type="Int32" />
+    <Property Name="DistrictID" Type="Int16" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="District" Relationship="Self.FK__UserDistr__Distr__10AB74EC" FromRole="UserDistrict" ToRole="District" />
+    <NavigationProperty Name="UserRoleUserType" Relationship="MPOWR.FK__UserDistr__UserR__0FB750B3" FromRole="UserDistrict" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="UserManual">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ShortName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserRTM">
+    <Key>
+      <PropertyRef Name="UserRTMID" />
+    </Key>
+    <Property Name="UserRTMID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleUserTypeID" Type="Int32" />
+    <Property Name="PartnerTypeID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="PartnerType" Relationship="Self.FK__UserRTM__Partner__558AAF1E" FromRole="UserRTM" ToRole="PartnerType" />
+    <NavigationProperty Name="UserRoleUserType" Relationship="MPOWR.FK__UserRTM__UserRol__0EC32C7A" FromRole="UserRTM" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="UserTypeID" />
+    </Key>
+    <Property Name="UserTypeID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserRoleUserTypes" Relationship="MPOWR.FK__UserRoleU__UserT__60A75C0F" FromRole="UserType" ToRole="UserRoleUserType" />
+  </EntityType>
+  <Association Name="FK__PartnerBU__Busin__7FEAFD3E">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="PartnerBUBudget" Type="Self.PartnerBUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="PartnerBUBudget">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserBusin__Busin__084B3915">
+    <End Role="BusinessUnit" Type="Self.BusinessUnit" Multiplicity="1" />
+    <End Role="UserBusinessUnit" Type="Self.UserBusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="UserBusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CountryBu__Count__4BAC3F29">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="CountryBudget" Type="Self.CountryBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="CountryBudget">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__District__Countr__4D94879B">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="District" Type="Self.District" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="District">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerSa__Count__370627FE">
+    <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+    <End Role="PartnerSalesRefreshHistory" Type="Self.PartnerSalesRefreshHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="PartnerSalesRefreshHistory">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCount__Count__047AA831">
+    <End Role="Country" Type="Self.Country" Multiplicity="1" />
+    <End Role="UserCountry" Type="Self.UserCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="UserCountry">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CountryBu__Finan__4CA06362">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="0..1" />
+    <End Role="CountryBudget" Type="Self.CountryBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="CountryBudget">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDistr__Distr__10AB74EC">
+    <End Role="District" Type="Self.District" Multiplicity="1" />
+    <End Role="UserDistrict" Type="Self.UserDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictID" />
+      </Principal>
+      <Dependent Role="UserDistrict">
+        <PropertyRef Name="DistrictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GuardRail__Finan__13BCEBC1">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="GuardRailFYConfig" Type="Self.GuardRailFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="GuardRailFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GuardRail__Finan__14B10FFA">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="GuardRailFYConfig" Type="Self.GuardRailFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="GuardRailFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Finan__25DB9BFC">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="MilestoneFYConfig" Type="Self.MilestoneFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="MilestoneFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Finan__30592A6F">
+    <End Role="FinancialYear" Type="Self.FinancialYear" Multiplicity="1" />
+    <End Role="ModelParameterFYConfig" Type="Self.ModelParameterFYConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="ModelParameterFYConfig">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Miles__29AC2CE0">
+    <End Role="MilestoneFYConfig" Type="Self.MilestoneFYConfig" Multiplicity="1" />
+    <End Role="MilestoneNotification" Type="Self.MilestoneNotification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MilestoneFYConfig">
+        <PropertyRef Name="MilestoneFYConfigID" />
+      </Principal>
+      <Dependent Role="MilestoneNotification">
+        <PropertyRef Name="MilestoneFYConfigID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__Miles__2C88998B">
+    <End Role="MilestoneNotification" Type="Self.MilestoneNotification" Multiplicity="1" />
+    <End Role="MilestoneNotificationsRole" Type="Self.MilestoneNotificationsRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MilestoneNotification">
+        <PropertyRef Name="MilestoneNotificationID" />
+      </Principal>
+      <Dependent Role="MilestoneNotificationsRole">
+        <PropertyRef Name="MilestoneNotificationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Milestone__RoleI__2D7CBDC4">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="MilestoneNotificationsRole" Type="Self.MilestoneNotificationsRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="MilestoneNotificationsRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Model__3429BB53">
+    <End Role="ModelParameterFYConfig" Type="Self.ModelParameterFYConfig" Multiplicity="1" />
+    <End Role="ModelParameterConfig" Type="Self.ModelParameterConfig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelParameterFYConfig">
+        <PropertyRef Name="ModelParameterFYConfigID" />
+      </Principal>
+      <Dependent Role="ModelParameterConfig">
+        <PropertyRef Name="ModelParameterFYConfigID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Partner__Partner__793DFFAF">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="0..1" />
+    <End Role="Partner" Type="Self.Partner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="Partner">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePartn__Partn__0FEC5ADD">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="1" />
+    <End Role="RolePartnerType" Type="Self.RolePartnerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="RolePartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRTM__Partner__558AAF1E">
+    <End Role="PartnerType" Type="Self.PartnerType" Multiplicity="1" />
+    <End Role="UserRTM" Type="Self.UserRTM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="UserRTM">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoleFeatu__RoleI__0D0FEE32">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RoleFeatureActivity" Type="Self.RoleFeatureActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RoleFeatureActivity">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolePartn__RoleI__10E07F16">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="RolePartnerType" Type="Self.RolePartnerType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="RolePartnerType">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MPOWREntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BusinessUnits" EntityType="Self.BusinessUnit" />
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="CountryBudgets" EntityType="Self.CountryBudget" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="FinancialYears" EntityType="Self.FinancialYear" />
+    <EntitySet Name="GuardRailFYConfigs" EntityType="Self.GuardRailFYConfig" />
+    <EntitySet Name="GuardRailsConfigs" EntityType="Self.GuardRailsConfig" />
+    <EntitySet Name="LoginAuthentications" EntityType="Self.LoginAuthentication" />
+    <EntitySet Name="MDFVarianceReasons" EntityType="Self.MDFVarianceReason" />
+    <EntitySet Name="MembershipTypes" EntityType="Self.MembershipType" />
+    <EntitySet Name="Milestones" EntityType="Self.Milestone" />
+    <EntitySet Name="MilestoneFYConfigs" EntityType="Self.MilestoneFYConfig" />
+    <EntitySet Name="MilestoneNotifications" EntityType="Self.MilestoneNotification" />
+    <EntitySet Name="MilestoneNotificationsRoles" EntityType="Self.MilestoneNotificationsRole" />
+    <EntitySet Name="ModelOutputTables" EntityType="Self.ModelOutputTable" />
+    <EntitySet Name="ModelParameterConfigs" EntityType="Self.ModelParameterConfig" />
+    <EntitySet Name="ModelParameterFYConfigs" EntityType="Self.ModelParameterFYConfig" />
+    <EntitySet Name="OrganisationTypes" EntityType="Self.OrganisationType" />
+    <EntitySet Name="Partners" EntityType="Self.Partner" />
+    <EntitySet Name="PartnerBUBudgets" EntityType="Self.PartnerBUBudget" />
+    <EntitySet Name="PartnerSalesRefreshHistories" EntityType="Self.PartnerSalesRefreshHistory" />
+    <EntitySet Name="PartnerTypes" EntityType="Self.PartnerType" />
+    <EntitySet Name="ProgramMDFs" EntityType="Self.ProgramMDF" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="RoleFeatureActivities" EntityType="Self.RoleFeatureActivity" />
+    <EntitySet Name="RolePartnerTypes" EntityType="Self.RolePartnerType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserBusinessUnits" EntityType="Self.UserBusinessUnit" />
+    <EntitySet Name="UserCountries" EntityType="Self.UserCountry" />
+    <EntitySet Name="UserDistricts" EntityType="Self.UserDistrict" />
+    <EntitySet Name="UserManuals" EntityType="Self.UserManual" />
+    <EntitySet Name="UserRTMs" EntityType="Self.UserRTM" />
+    <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+    <AssociationSet Name="FK__PartnerBU__Busin__7FEAFD3E" Association="Self.FK__PartnerBU__Busin__7FEAFD3E">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="PartnerBUBudget" EntitySet="PartnerBUBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserBusin__Busin__084B3915" Association="Self.FK__UserBusin__Busin__084B3915">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="UserBusinessUnit" EntitySet="UserBusinessUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CountryBu__Count__4BAC3F29" Association="Self.FK__CountryBu__Count__4BAC3F29">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="CountryBudget" EntitySet="CountryBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__District__Countr__4D94879B" Association="Self.FK__District__Countr__4D94879B">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="District" EntitySet="Districts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerSa__Count__370627FE" Association="Self.FK__PartnerSa__Count__370627FE">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="PartnerSalesRefreshHistory" EntitySet="PartnerSalesRefreshHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCount__Count__047AA831" Association="Self.FK__UserCount__Count__047AA831">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="UserCountry" EntitySet="UserCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CountryBu__Finan__4CA06362" Association="Self.FK__CountryBu__Finan__4CA06362">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="CountryBudget" EntitySet="CountryBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDistr__Distr__10AB74EC" Association="Self.FK__UserDistr__Distr__10AB74EC">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="UserDistrict" EntitySet="UserDistricts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GuardRail__Finan__13BCEBC1" Association="Self.FK__GuardRail__Finan__13BCEBC1">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="GuardRailFYConfig" EntitySet="GuardRailFYConfigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GuardRail__Finan__14B10FFA" Association="Self.FK__GuardRail__Finan__14B10FFA">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="GuardRailFYConfig" EntitySet="GuardRailFYConfigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Finan__25DB9BFC" Association="Self.FK__Milestone__Finan__25DB9BFC">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="MilestoneFYConfig" EntitySet="MilestoneFYConfigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Finan__30592A6F" Association="Self.FK__ModelPara__Finan__30592A6F">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="ModelParameterFYConfig" EntitySet="ModelParameterFYConfigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Miles__29AC2CE0" Association="Self.FK__Milestone__Miles__29AC2CE0">
+      <End Role="MilestoneFYConfig" EntitySet="MilestoneFYConfigs" />
+      <End Role="MilestoneNotification" EntitySet="MilestoneNotifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__Miles__2C88998B" Association="Self.FK__Milestone__Miles__2C88998B">
+      <End Role="MilestoneNotification" EntitySet="MilestoneNotifications" />
+      <End Role="MilestoneNotificationsRole" EntitySet="MilestoneNotificationsRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Milestone__RoleI__2D7CBDC4" Association="Self.FK__Milestone__RoleI__2D7CBDC4">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="MilestoneNotificationsRole" EntitySet="MilestoneNotificationsRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Model__3429BB53" Association="Self.FK__ModelPara__Model__3429BB53">
+      <End Role="ModelParameterFYConfig" EntitySet="ModelParameterFYConfigs" />
+      <End Role="ModelParameterConfig" EntitySet="ModelParameterConfigs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Partner__Partner__793DFFAF" Association="Self.FK__Partner__Partner__793DFFAF">
+      <End Role="PartnerType" EntitySet="PartnerTypes" />
+      <End Role="Partner" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePartn__Partn__0FEC5ADD" Association="Self.FK__RolePartn__Partn__0FEC5ADD">
+      <End Role="PartnerType" EntitySet="PartnerTypes" />
+      <End Role="RolePartnerType" EntitySet="RolePartnerTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRTM__Partner__558AAF1E" Association="Self.FK__UserRTM__Partner__558AAF1E">
+      <End Role="PartnerType" EntitySet="PartnerTypes" />
+      <End Role="UserRTM" EntitySet="UserRTMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoleFeatu__RoleI__0D0FEE32" Association="Self.FK__RoleFeatu__RoleI__0D0FEE32">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RoleFeatureActivity" EntitySet="RoleFeatureActivities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolePartn__RoleI__10E07F16" Association="Self.FK__RolePartn__RoleI__10E07F16">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="RolePartnerType" EntitySet="RolePartnerTypes" />
+    </AssociationSet>
+    <EntitySet Name="UserGeos" EntityType="MPOWR.UserGeo" />
+    <EntitySet Name="Geos" EntityType="MPOWR.Geo" />
+    <AssociationSet Name="FK__Country__GeoID__31A25463" Association="MPOWR.FK__Country__GeoID__31A25463">
+      <End Role="Geo" EntitySet="Geos" />
+      <End Role="Country" EntitySet="Countries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserGeo__GeoID__3296789C" Association="MPOWR.FK__UserGeo__GeoID__3296789C">
+      <End Role="Geo" EntitySet="Geos" />
+      <End Role="UserGeo" EntitySet="UserGeos" />
+    </AssociationSet>
+    <EntitySet Name="PartnerBudgets" EntityType="MPOWR.PartnerBudget" />
+    <AssociationSet Name="FK__PartnerBU__Partn__7EF6D905" Association="MPOWR.FK__PartnerBU__Partn__7EF6D905">
+      <End Role="PartnerBudget" EntitySet="PartnerBudgets" />
+      <End Role="PartnerBUBudget" EntitySet="PartnerBUBudgets" />
+    </AssociationSet>
+    <EntitySet Name="BUBudgets" EntityType="MPOWR.BUBudget" />
+    <AssociationSet Name="FK__BUBudget__Busine__45F365D3" Association="MPOWR.FK__BUBudget__Busine__45F365D3">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="BUBudget" EntitySet="BUBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProgramMD__BUBud__09FE775D" Association="MPOWR.FK__ProgramMD__BUBud__09FE775D">
+      <End Role="BUBudget" EntitySet="BUBudgets" />
+      <End Role="ProgramMDF" EntitySet="ProgramMDFs" />
+    </AssociationSet>
+    <EntitySet Name="MDFPlannings" EntityType="MPOWR.MDFPlanning" />
+    <EntitySet Name="ModelOutputSummaryTables" EntityType="MPOWR.ModelOutputSummaryTable" />
+    <EntitySet Name="ModelParameterTables" EntityType="MPOWR.ModelParameterTable" />
+    <EntitySet Name="UserRoleUserTypes" EntityType="MPOWR.UserRoleUserType" />
+    <AssociationSet Name="FK__BUBudget__Versio__57FD0775" Association="MPOWR.FK__BUBudget__Versio__57FD0775">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="BUBudget" EntitySet="BUBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Finan__55209ACA" Association="MPOWR.FK__MDFPlanni__Finan__55209ACA">
+      <End Role="FinancialYear" EntitySet="FinancialYears" />
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Creat__5708E33C" Association="MPOWR.FK__MDFPlanni__Creat__5708E33C">
+      <End Role="User" EntitySet="Users" />
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MDFPlanni__Partn__5614BF03" Association="MPOWR.FK__MDFPlanni__Partn__5614BF03">
+      <End Role="PartnerType" EntitySet="PartnerTypes" />
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelOutp__Versi__58F12BAE" Association="MPOWR.FK__ModelOutp__Versi__58F12BAE">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="ModelOutputSummaryTable" EntitySet="ModelOutputSummaryTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelOutp__Versi__59E54FE7" Association="MPOWR.FK__ModelOutp__Versi__59E54FE7">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="ModelOutputTable" EntitySet="ModelOutputTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelPara__Versi__5AD97420" Association="MPOWR.FK__ModelPara__Versi__5AD97420">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="ModelParameterTable" EntitySet="ModelParameterTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PartnerBu__Versi__5BCD9859" Association="MPOWR.FK__PartnerBu__Versi__5BCD9859">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="PartnerBudget" EntitySet="PartnerBudgets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__RoleI__5DCAEF64" Association="MPOWR.FK__UserRoleU__RoleI__5DCAEF64">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__UserI__5FB337D6" Association="MPOWR.FK__UserRoleU__UserI__5FB337D6">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserBusin__UserR__093F5D4E" Association="MPOWR.FK__UserBusin__UserR__093F5D4E">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+      <End Role="UserBusinessUnit" EntitySet="UserBusinessUnits" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserCount__UserR__056ECC6A" Association="MPOWR.FK__UserCount__UserR__056ECC6A">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+      <End Role="UserCountry" EntitySet="UserCountries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserDistr__UserR__0FB750B3" Association="MPOWR.FK__UserDistr__UserR__0FB750B3">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+      <End Role="UserDistrict" EntitySet="UserDistricts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserSubRe__UserR__1F83A428" Association="MPOWR.FK__UserSubRe__UserR__1F83A428">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+      <End Role="UserGeo" EntitySet="UserGeos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRoleU__UserT__60A75C0F" Association="MPOWR.FK__UserRoleU__UserT__60A75C0F">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRTM__UserRol__0EC32C7A" Association="MPOWR.FK__UserRTM__UserRol__0EC32C7A">
+      <End Role="UserRoleUserType" EntitySet="UserRoleUserTypes" />
+      <End Role="UserRTM" EntitySet="UserRTMs" />
+    </AssociationSet>
+    <EntitySet Name="PartnerSales" EntityType="MPOWR.PartnerSale" />
+    <AssociationSet Name="FK__PartnerSa__Distr__0DCF0841" Association="MPOWR.FK__PartnerSa__Distr__0DCF0841">
+      <End Role="District" EntitySet="Districts" />
+      <End Role="PartnerSale" EntitySet="PartnerSales" />
+    </AssociationSet>
+    <EntitySet Name="ModelBUParameterTables" EntityType="MPOWR.ModelBUParameterTable" />
+    <AssociationSet Name="FK__ModelBUPa__Busin__45BE5BA9" Association="MPOWR.FK__ModelBUPa__Busin__45BE5BA9">
+      <End Role="BusinessUnit" EntitySet="BusinessUnits" />
+      <End Role="ModelBUParameterTable" EntitySet="ModelBUParameterTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ModelBUPa__Model__0BE6BFCF" Association="MPOWR.FK__ModelBUPa__Model__0BE6BFCF">
+      <End Role="ModelParameterTable" EntitySet="ModelParameterTables" />
+      <End Role="ModelBUParameterTable" EntitySet="ModelBUParameterTables" />
+    </AssociationSet>
+    <EntitySet Name="Features" EntityType="MPOWR.Feature" />
+    <EntitySet Name="FeatureActions" EntityType="MPOWR.FeatureAction" />
+    <EntitySet Name="FeatureActionTypes" EntityType="MPOWR.FeatureActionType" />
+    <EntitySet Name="FocusedAreas" EntityType="MPOWR.FocusedArea" />
+    <AssociationSet Name="FK__FeatureAc__Featu__7EC1CEDB" Association="MPOWR.FK__FeatureAc__Featu__7EC1CEDB">
+      <End Role="Feature" EntitySet="Features" />
+      <End Role="FeatureAction" EntitySet="FeatureActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FeatureAc__Featu__7FB5F314" Association="MPOWR.FK__FeatureAc__Featu__7FB5F314">
+      <End Role="FeatureActionType" EntitySet="FeatureActionTypes" />
+      <End Role="FeatureAction" EntitySet="FeatureActions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RoleFeatu__Featu__0C1BC9F9" Association="MPOWR.FK__RoleFeatu__Featu__0C1BC9F9">
+      <End Role="FeatureAction" EntitySet="FeatureActions" />
+      <End Role="RoleFeatureActivity" EntitySet="RoleFeatureActivities" />
+    </AssociationSet>
+    <EntitySet Name="DataLoadRefreshes" EntityType="MPOWR.DataLoadRefresh" />
+    <EntitySet Name="MembershipGroups" EntityType="MPOWR.MembershipGroup" />
+    <EntitySet Name="ModelDefaultOutputTables" EntityType="MPOWR.ModelDefaultOutputTable" />
+    <AssociationSet Name="FK__ModelDefa__Versi__4A6E022D" Association="MPOWR.FK__ModelDefa__Versi__4A6E022D">
+      <End Role="MDFPlanning" EntitySet="MDFPlannings" />
+      <End Role="ModelDefaultOutputTable" EntitySet="ModelDefaultOutputTables" />
+    </AssociationSet>
+    <EntitySet Name="GlossaryScreenParameterDetails" EntityType="MPOWR.GlossaryScreenParameterDetail" />
+    <EntitySet Name="GlossaryScreenEditDetails" EntityType="MPOWR.GlossaryScreenEditDetail" />
+    <EntitySet Name="GlossaryScreenParameterEditDetails" EntityType="MPOWR.GlossaryScreenParameterEditDetail" />
+    <AssociationSet Name="FK__GlossaryS__EditP__53584DE9" Association="MPOWR.FK__GlossaryS__EditP__53584DE9">
+      <End Role="GlossaryScreenParameterDetail" EntitySet="GlossaryScreenParameterDetails" />
+      <End Role="GlossaryScreenParameterEditDetail" EntitySet="GlossaryScreenParameterEditDetails" />
+    </AssociationSet>
+    <FunctionImport Name="usp_UpdateGeoConfigDetails" />
+    <FunctionImport Name="usp_UpdateMpowrUserList">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="tokenID" Mode="In" Type="String" />
+      <Parameter Name="ApplicationID" Mode="In" Type="String" />
+      <Parameter Name="UpdateUserList" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="GlossaryScreenDetails" EntityType="MPOWR.GlossaryScreenDetail" />
+    <AssociationSet Name="FK__GlossaryS__Appro__507BE13E" Association="MPOWR.FK__GlossaryS__Appro__507BE13E">
+      <End Role="GlossaryScreenDetail" EntitySet="GlossaryScreenDetails" />
+      <End Role="GlossaryScreenEditDetail" EntitySet="GlossaryScreenEditDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GlossaryS__Scree__4D9F7493" Association="MPOWR.FK__GlossaryS__Scree__4D9F7493">
+      <End Role="GlossaryScreenDetail" EntitySet="GlossaryScreenDetails" />
+      <End Role="GlossaryScreenParameterDetail" EntitySet="GlossaryScreenParameterDetails" />
+    </AssociationSet>
+    <FunctionImport Name="usp_RefineGlossaryText" />
+    <FunctionImport Name="usp_UpdateGlossaryFinYear" />
+    <EntitySet Name="GeoConfigDetails" EntityType="MPOWR.GeoConfigDetails" />
+    <EntitySet Name="AppConfig" EntityType="MPOWR.AppConfig" />
+    <EntitySet Name="ContraWeb_Upload_CountryMapping" EntityType="MPOWR.ContraWeb_Upload_CountryMapping" />
+    <EntitySet Name="ContraWeb_Upload_DataFile" EntityType="MPOWR.ContraWeb_Upload_DataFile" />
+    <EntitySet Name="ContraWeb_Upload_FinancialYearMapping" EntityType="MPOWR.ContraWeb_Upload_FinancialYearMapping" />
+    <EntitySet Name="ContraWeb_Upload_GeoMapping" EntityType="MPOWR.ContraWeb_Upload_GeoMapping" />
+    <EntitySet Name="ContraWeb_Upload_StatusMaster" EntityType="MPOWR.ContraWeb_Upload_StatusMaster" />
+    <EntitySet Name="ContraWeb_Upload_TimeTracker" EntityType="MPOWR.ContraWeb_Upload_TimeTracker" />
+    <EntitySet Name="ContraWeb_Upload_Configuration" EntityType="MPOWR.ContraWeb_Upload_Configuration" />
+    <EntitySet Name="FeatureGeo" EntityType="MPOWR.FeatureGeo" />
+    <EntitySet Name="FlatDataValidationLog" EntityType="MPOWR.FlatDataValidationLog" />
+    <AssociationSet Name="FK__ContraWeb__Count__1C9228E4" Association="MPOWR.FK__ContraWeb__Count__1C9228E4">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__1AA9E072" Association="MPOWR.FK__ContraWeb__FileI__1AA9E072">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__GeoMa__1B9E04AB" Association="MPOWR.FK__ContraWeb__GeoMa__1B9E04AB">
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+      <End Role="ContraWeb_Upload_CountryMapping" EntitySet="ContraWeb_Upload_CountryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__16D94F8E" Association="MPOWR.FK__ContraWeb__FileI__16D94F8E">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__1F6E958F" Association="MPOWR.FK__ContraWeb__FileI__1F6E958F">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_FinancialYearMapping" EntitySet="ContraWeb_Upload_FinancialYearMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__FileI__318D45CA" Association="MPOWR.FK__ContraWeb__FileI__318D45CA">
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+      <End Role="ContraWeb_Upload_TimeTracker" EntitySet="ContraWeb_Upload_TimeTracker" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__Statu__1308BEAA" Association="MPOWR.FK__ContraWeb__Statu__1308BEAA">
+      <End Role="ContraWeb_Upload_StatusMaster" EntitySet="ContraWeb_Upload_StatusMaster" />
+      <End Role="ContraWeb_Upload_DataFile" EntitySet="ContraWeb_Upload_DataFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ContraWeb__GeoID__17CD73C7" Association="MPOWR.FK__ContraWeb__GeoID__17CD73C7">
+      <End Role="Geo" EntitySet="Geos" />
+      <End Role="ContraWeb_Upload_GeoMapping" EntitySet="ContraWeb_Upload_GeoMapping" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserGeo">
+    <Key>
+      <PropertyRef Name="UserGeoID" />
+    </Key>
+    <Property Name="UserGeoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserRoleUserTypeID" Type="Int32" />
+    <Property Name="GeoID" Type="Int16" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Geo" Relationship="MPOWR.FK__UserGeo__GeoID__3296789C" FromRole="UserGeo" ToRole="Geo" />
+    <NavigationProperty Name="UserRoleUserType" Relationship="MPOWR.FK__UserSubRe__UserR__1F83A428" FromRole="UserGeo" ToRole="UserRoleUserType" />
+  </EntityType>
+  <EntityType Name="Geo">
+    <Key>
+      <PropertyRef Name="GeoID" />
+    </Key>
+    <Property Name="GeoID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Countries" Relationship="MPOWR.FK__Country__GeoID__31A25463" FromRole="Geo" ToRole="Country" />
+    <NavigationProperty Name="UserGeos" Relationship="MPOWR.FK__UserGeo__GeoID__3296789C" FromRole="Geo" ToRole="UserGeo" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="ContraWeb_Upload_GeoMapping" Relationship="MPOWR.FK__ContraWeb__GeoID__17CD73C7" FromRole="Geo" ToRole="ContraWeb_Upload_GeoMapping" />
+  </EntityType>
+  <Association Name="FK__Country__GeoID__31A25463">
+    <End Type="MPOWR.Geo" Role="Geo" Multiplicity="0..1" />
+    <End Type="MPOWR.Country" Role="Country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="GeoID" />
+      </Principal>
+      <Dependent Role="Country">
+        <PropertyRef Name="GeoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserGeo__GeoID__3296789C">
+    <End Type="MPOWR.Geo" Role="Geo" Multiplicity="1" />
+    <End Type="MPOWR.UserGeo" Role="UserGeo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="GeoID" />
+      </Principal>
+      <Dependent Role="UserGeo">
+        <PropertyRef Name="GeoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PartnerBudget">
+    <Key>
+      <PropertyRef Name="PartnerBudgetID" />
+    </Key>
+    <Property Name="PartnerBudgetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PartnerID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Membership_Type" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="MSA" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ModelParameterID" Type="Int64" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="DistrictID" Type="Int16" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="VersionID" Type="Int32" />
+    <Property Name="Aruba_MSA" Type="Decimal" Precision="20" Scale="9" />
+    <NavigationProperty Name="PartnerBUBudgets" Relationship="MPOWR.FK__PartnerBU__Partn__7EF6D905" FromRole="PartnerBudget" ToRole="PartnerBUBudget" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__PartnerBu__Versi__5BCD9859" FromRole="PartnerBudget" ToRole="MDFPlanning" />
+  </EntityType>
+  <Association Name="FK__PartnerBU__Partn__7EF6D905">
+    <End Type="MPOWR.PartnerBudget" Role="PartnerBudget" Multiplicity="1" />
+    <End Type="MPOWR.PartnerBUBudget" Role="PartnerBUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerBudget">
+        <PropertyRef Name="PartnerBudgetID" />
+      </Principal>
+      <Dependent Role="PartnerBUBudget">
+        <PropertyRef Name="PartnerBudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="BUBudget">
+    <Key>
+      <PropertyRef Name="BUBudgetID" />
+    </Key>
+    <Property Name="BUBudgetID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="TotalMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ProgramMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CountryReserveMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="BaselineMDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="VersionID" Type="Int32" />
+    <NavigationProperty Name="BusinessUnit" Relationship="MPOWR.FK__BUBudget__Busine__45F365D3" FromRole="BUBudget" ToRole="BusinessUnit" />
+    <NavigationProperty Name="ProgramMDFs" Relationship="MPOWR.FK__ProgramMD__BUBud__09FE775D" FromRole="BUBudget" ToRole="ProgramMDF" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__BUBudget__Versio__57FD0775" FromRole="BUBudget" ToRole="MDFPlanning" />
+  </EntityType>
+  <Association Name="FK__BUBudget__Busine__45F365D3">
+    <End Type="MPOWR.BusinessUnit" Role="BusinessUnit" Multiplicity="0..1" />
+    <End Type="MPOWR.BUBudget" Role="BUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="BUBudget">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProgramMD__BUBud__09FE775D">
+    <End Type="MPOWR.BUBudget" Role="BUBudget" Multiplicity="1" />
+    <End Type="MPOWR.ProgramMDF" Role="ProgramMDF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BUBudget">
+        <PropertyRef Name="BUBudgetID" />
+      </Principal>
+      <Dependent Role="ProgramMDF">
+        <PropertyRef Name="BUBudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MDFPlanning">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VersionNo" Type="Int32" Nullable="false" />
+    <Property Name="VersionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FinancialYearID" Type="Int32" Nullable="false" />
+    <Property Name="PartnerTypeID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Flag" Type="Boolean" />
+    <Property Name="IsFinal" Type="Boolean" />
+    <Property Name="AllocationLevel" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CountryOrGeoOrDistrict" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BUBudgets" Relationship="MPOWR.FK__BUBudget__Versio__57FD0775" FromRole="MDFPlanning" ToRole="BUBudget" />
+    <NavigationProperty Name="FinancialYear" Relationship="MPOWR.FK__MDFPlanni__Finan__55209ACA" FromRole="MDFPlanning" ToRole="FinancialYear" />
+    <NavigationProperty Name="User" Relationship="MPOWR.FK__MDFPlanni__Creat__5708E33C" FromRole="MDFPlanning" ToRole="User" />
+    <NavigationProperty Name="PartnerType" Relationship="MPOWR.FK__MDFPlanni__Partn__5614BF03" FromRole="MDFPlanning" ToRole="PartnerType" />
+    <NavigationProperty Name="ModelOutputSummaryTables" Relationship="MPOWR.FK__ModelOutp__Versi__58F12BAE" FromRole="MDFPlanning" ToRole="ModelOutputSummaryTable" />
+    <NavigationProperty Name="ModelOutputTables" Relationship="MPOWR.FK__ModelOutp__Versi__59E54FE7" FromRole="MDFPlanning" ToRole="ModelOutputTable" />
+    <NavigationProperty Name="ModelParameterTables" Relationship="MPOWR.FK__ModelPara__Versi__5AD97420" FromRole="MDFPlanning" ToRole="ModelParameterTable" />
+    <NavigationProperty Name="PartnerBudgets" Relationship="MPOWR.FK__PartnerBu__Versi__5BCD9859" FromRole="MDFPlanning" ToRole="PartnerBudget" />
+    <Property Name="MembershipGroupID" Type="Int32" />
+    <NavigationProperty Name="ModelDefaultOutputTables" Relationship="MPOWR.FK__ModelDefa__Versi__4A6E022D" FromRole="MDFPlanning" ToRole="ModelDefaultOutputTable" />
+  </EntityType>
+  <EntityType Name="ModelOutputSummaryTable">
+    <Key>
+      <PropertyRef Name="OutputSummaryID" />
+    </Key>
+    <Property Name="OutputSummaryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelParameterID" Type="Int32" />
+    <Property Name="Business_Unit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Allocated" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Remaining" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sales_Growth_With_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sales_Growth_Without_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_over_Sellout_Last_Period" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_over_Sellout_Current_Period" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Aligned" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MisAligned" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="sustain_percentage" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="growth_percentage" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Platinum" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Gold" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_SB" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="VersionID" Type="Int32" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__ModelOutp__Versi__58F12BAE" FromRole="ModelOutputSummaryTable" ToRole="MDFPlanning" />
+  </EntityType>
+  <EntityType Name="ModelParameterTable">
+    <Key>
+      <PropertyRef Name="ModelParameterID" />
+    </Key>
+    <Property Name="ModelParameterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Max_Sellout_HighDecline_Max_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighDecline_Min_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateDecline_Max_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateDecline_Min_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_Steady_Max_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_Steady_Min_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateGrowth_Max_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_ModerateGrowth_Min_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighGrowth_Max" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Sellout_HighGrowth_Min" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Target_accomplish_HighPrecision_Score" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Target_accomplish_MediumPrecision_Score" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Max_Target_Accomplish_percentage" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Target_Accomplish_percentage" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="JPB_Max" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="JPB_Min" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_High_Max" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_High_Min" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Low_Max" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Low_Min" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Weights_applied_t_3H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Target_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Quarter_Sellout_Scale_Factor" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="partner_size_threshold" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="VersionID" Type="Int32" />
+    <Property Name="WMGO_Perf_Acc_High" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_Low" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_VeryHigh" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="WMGO_Perf_Acc_VeryLow" Type="Decimal" Precision="20" Scale="9" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__ModelPara__Versi__5AD97420" FromRole="ModelParameterTable" ToRole="MDFPlanning" />
+    <Property Name="WMGO_Perf_Acc_Medium" Type="Decimal" Precision="20" Scale="9" />
+    <NavigationProperty Name="ModelBUParameterTables" Relationship="MPOWR.FK__ModelBUPa__Model__0BE6BFCF" FromRole="ModelParameterTable" ToRole="ModelBUParameterTable" />
+  </EntityType>
+  <EntityType Name="UserRoleUserType">
+    <Key>
+      <PropertyRef Name="UserRoleUserTypeID" />
+    </Key>
+    <Property Name="UserRoleUserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="UserTypeID" Type="Int16" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="EditNonBUModParam" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="MPOWR.FK__UserRoleU__RoleI__5DCAEF64" FromRole="UserRoleUserType" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="MPOWR.FK__UserRoleU__UserI__5FB337D6" FromRole="UserRoleUserType" ToRole="User" />
+    <NavigationProperty Name="UserBusinessUnits" Relationship="MPOWR.FK__UserBusin__UserR__093F5D4E" FromRole="UserRoleUserType" ToRole="UserBusinessUnit" />
+    <NavigationProperty Name="UserCountries" Relationship="MPOWR.FK__UserCount__UserR__056ECC6A" FromRole="UserRoleUserType" ToRole="UserCountry" />
+    <NavigationProperty Name="UserDistricts" Relationship="MPOWR.FK__UserDistr__UserR__0FB750B3" FromRole="UserRoleUserType" ToRole="UserDistrict" />
+    <NavigationProperty Name="UserGeos" Relationship="MPOWR.FK__UserSubRe__UserR__1F83A428" FromRole="UserRoleUserType" ToRole="UserGeo" />
+    <NavigationProperty Name="UserType" Relationship="MPOWR.FK__UserRoleU__UserT__60A75C0F" FromRole="UserRoleUserType" ToRole="UserType" />
+    <NavigationProperty Name="UserRTMs" Relationship="MPOWR.FK__UserRTM__UserRol__0EC32C7A" FromRole="UserRoleUserType" ToRole="UserRTM" />
+    <Property Name="GlossaryApprover" Type="Boolean" />
+    <Property Name="DataUpload" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BUBudget__Versio__57FD0775">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.BUBudget" Role="BUBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BUBudget">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Finan__55209ACA">
+    <End Type="MPOWR.FinancialYear" Role="FinancialYear" Multiplicity="1" />
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinancialYear">
+        <PropertyRef Name="FinancialYearID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="FinancialYearID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Creat__5708E33C">
+    <End Type="MPOWR.User" Role="User" Multiplicity="1" />
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MDFPlanni__Partn__5614BF03">
+    <End Type="MPOWR.PartnerType" Role="PartnerType" Multiplicity="1" />
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PartnerType">
+        <PropertyRef Name="PartnerTypeID" />
+      </Principal>
+      <Dependent Role="MDFPlanning">
+        <PropertyRef Name="PartnerTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelOutp__Versi__58F12BAE">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelOutputSummaryTable" Role="ModelOutputSummaryTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelOutputSummaryTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelOutp__Versi__59E54FE7">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelOutputTable" Role="ModelOutputTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelOutputTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelPara__Versi__5AD97420">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelParameterTable" Role="ModelParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelParameterTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PartnerBu__Versi__5BCD9859">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.PartnerBudget" Role="PartnerBudget" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PartnerBudget">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__RoleI__5DCAEF64">
+    <End Type="MPOWR.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__UserI__5FB337D6">
+    <End Type="MPOWR.User" Role="User" Multiplicity="1" />
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserBusin__UserR__093F5D4E">
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserBusinessUnit" Role="UserBusinessUnit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserBusinessUnit">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserCount__UserR__056ECC6A">
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserCountry" Role="UserCountry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserCountry">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserDistr__UserR__0FB750B3">
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserDistrict" Role="UserDistrict" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserDistrict">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserSubRe__UserR__1F83A428">
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserGeo" Role="UserGeo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserGeo">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRoleU__UserT__60A75C0F">
+    <End Type="MPOWR.UserType" Role="UserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="UserTypeID" />
+      </Principal>
+      <Dependent Role="UserRoleUserType">
+        <PropertyRef Name="UserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRTM__UserRol__0EC32C7A">
+    <End Type="MPOWR.UserRoleUserType" Role="UserRoleUserType" Multiplicity="0..1" />
+    <End Type="MPOWR.UserRTM" Role="UserRTM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoleUserType">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Principal>
+      <Dependent Role="UserRTM">
+        <PropertyRef Name="UserRoleUserTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PartnerSale">
+    <Key>
+      <PropertyRef Name="PartnerSalesID" />
+    </Key>
+    <Property Name="PartnerSalesID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeoID" Type="Int16" />
+    <Property Name="Geo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PartnerID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="PartnerName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="PartnerTypeID" Type="Int16" />
+    <Property Name="PartnerType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MembershipTypeID" Type="Int16" />
+    <Property Name="Membership" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="BusinessUnit" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="FinancialYearID" Type="Int64" />
+    <Property Name="FinancialYear" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Planned_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Planned_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Quota_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Quota_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Amount_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOut_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOB_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutNet_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForPlatinumAndGold_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q1" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q2" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q3" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SellOutForSilverAndBelow_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PMM" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Ranking" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="DistrictID" Type="Int16" />
+    <Property Name="MDF_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Method" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Prediction_Accuracy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Proj_Sales" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="MGO_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_ROI_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_ROI_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_ROI_1H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Won_MGO_ROI_2H" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Q4" Type="Decimal" Precision="20" Scale="9" />
+    <NavigationProperty Name="District1" Relationship="MPOWR.FK__PartnerSa__Distr__0DCF0841" FromRole="PartnerSale" ToRole="District" />
+  </EntityType>
+  <Association Name="FK__PartnerSa__Distr__0DCF0841">
+    <End Type="MPOWR.District" Role="District" Multiplicity="0..1" />
+    <End Type="MPOWR.PartnerSale" Role="PartnerSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="DistrictID" />
+      </Principal>
+      <Dependent Role="PartnerSale">
+        <PropertyRef Name="DistrictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ModelBUParameterTable">
+    <Key>
+      <PropertyRef Name="ModelBUParameterID" />
+    </Key>
+    <Property Name="ModelBUParameterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelParameterID" Type="Int32" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="High_Performance" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Min_Partner_Investment" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="New_Partner_RampUp_Scale" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Preferred_Partner_Cut_Off_Percentage" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Dist_cust_membership_weight_Silver_and_Below" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Dist_cust_membership_weight_Platinum_and_Gold" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Medium_Performance" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Low_Performance" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BusinessUnit" Relationship="MPOWR.FK__ModelBUPa__Busin__45BE5BA9" FromRole="ModelBUParameterTable" ToRole="BusinessUnit" />
+    <NavigationProperty Name="ModelParameterTable" Relationship="MPOWR.FK__ModelBUPa__Model__0BE6BFCF" FromRole="ModelBUParameterTable" ToRole="ModelParameterTable" />
+    <Property Name="Growth_Revenue" Type="Decimal" Precision="20" Scale="9" />
+  </EntityType>
+  <Association Name="FK__ModelBUPa__Busin__45BE5BA9">
+    <End Type="MPOWR.BusinessUnit" Role="BusinessUnit" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelBUParameterTable" Role="ModelBUParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessUnit">
+        <PropertyRef Name="BusinessUnitID" />
+      </Principal>
+      <Dependent Role="ModelBUParameterTable">
+        <PropertyRef Name="BusinessUnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ModelBUPa__Model__0BE6BFCF">
+    <End Type="MPOWR.ModelParameterTable" Role="ModelParameterTable" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelBUParameterTable" Role="ModelBUParameterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelParameterTable">
+        <PropertyRef Name="ModelParameterID" />
+      </Principal>
+      <Dependent Role="ModelBUParameterTable">
+        <PropertyRef Name="ModelParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureID" />
+    </Key>
+    <Property Name="FeatureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RelativePath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SortOrder" Type="Int32" />
+    <NavigationProperty Name="FeatureActions" Relationship="MPOWR.FK__FeatureAc__Featu__7EC1CEDB" FromRole="Feature" ToRole="FeatureAction" />
+  </EntityType>
+  <EntityType Name="FeatureAction">
+    <Key>
+      <PropertyRef Name="FeatureActionID" />
+    </Key>
+    <Property Name="FeatureActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeatureID" Type="Int32" Nullable="false" />
+    <Property Name="ShortName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FeatureActionTypeID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Feature" Relationship="MPOWR.FK__FeatureAc__Featu__7EC1CEDB" FromRole="FeatureAction" ToRole="Feature" />
+    <NavigationProperty Name="FeatureActionType" Relationship="MPOWR.FK__FeatureAc__Featu__7FB5F314" FromRole="FeatureAction" ToRole="FeatureActionType" />
+    <NavigationProperty Name="RoleFeatureActivities" Relationship="MPOWR.FK__RoleFeatu__Featu__0C1BC9F9" FromRole="FeatureAction" ToRole="RoleFeatureActivity" />
+  </EntityType>
+  <EntityType Name="FeatureActionType">
+    <Key>
+      <PropertyRef Name="FeatureActionTypeID" />
+    </Key>
+    <Property Name="FeatureActionTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FeatureActions" Relationship="MPOWR.FK__FeatureAc__Featu__7FB5F314" FromRole="FeatureActionType" ToRole="FeatureAction" />
+  </EntityType>
+  <EntityType Name="FocusedArea">
+    <Key>
+      <PropertyRef Name="FocusedAreaID" />
+    </Key>
+    <Property Name="FocusedAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="FocusedArea1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK__FeatureAc__Featu__7EC1CEDB">
+    <End Type="MPOWR.Feature" Role="Feature" Multiplicity="1" />
+    <End Type="MPOWR.FeatureAction" Role="FeatureAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="FeatureID" />
+      </Principal>
+      <Dependent Role="FeatureAction">
+        <PropertyRef Name="FeatureID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FeatureAc__Featu__7FB5F314">
+    <End Type="MPOWR.FeatureActionType" Role="FeatureActionType" Multiplicity="0..1" />
+    <End Type="MPOWR.FeatureAction" Role="FeatureAction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeatureActionType">
+        <PropertyRef Name="FeatureActionTypeID" />
+      </Principal>
+      <Dependent Role="FeatureAction">
+        <PropertyRef Name="FeatureActionTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RoleFeatu__Featu__0C1BC9F9">
+    <End Type="MPOWR.FeatureAction" Role="FeatureAction" Multiplicity="1" />
+    <End Type="MPOWR.RoleFeatureActivity" Role="RoleFeatureActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FeatureAction">
+        <PropertyRef Name="FeatureActionID" />
+      </Principal>
+      <Dependent Role="RoleFeatureActivity">
+        <PropertyRef Name="FeatureActionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DataLoadRefresh">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" />
+    <Property Name="Geo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sellout" Type="Boolean" />
+    <Property Name="MDFHistory" Type="Boolean" />
+    <Property Name="Planned_ProjectedSales" Type="Boolean" />
+    <Property Name="Quarter" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LatestDataRefresh" Type="DateTime" Precision="3" />
+    <Property Name="MailSentDate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MailDispalyDate" Type="DateTime" Precision="3" />
+    <Property Name="FilePath" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsPopup" Type="Boolean" />
+    <Property Name="PopupDays" Type="Int32" />
+    <Property Name="MPOWR_RefreshDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MembershipGroup">
+    <Key>
+      <PropertyRef Name="MembershipGroupID" />
+    </Key>
+    <Property Name="MembershipGroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="ModelDefaultOutputTable">
+    <Key>
+      <PropertyRef Name="ModelParamROutputID" />
+    </Key>
+    <Property Name="ModelParamROutputID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ModelParameterID" Type="Int32" />
+    <Property Name="PartnerID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Partner_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Membership_Type" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Business_Unit" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Last_Period_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Recommended_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="YoY_change_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_Period_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Projected_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="BusinessUnitID" Type="Int16" />
+    <Property Name="Median_Avg_MDF_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MDF_Alignment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PREV_MDF_Assessment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Planned_Sales" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Target_Achievement" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOW" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="SOW_Growth" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="PBM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PMM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Footprint_Growth" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="No_of_end_customers" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Total_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Incremental_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Late_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="W_MGO_Marketing_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="New_Logos_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prediction_Accuracy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Partner_Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="High_Productivity_Value" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Additional_Recommended_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="DistrictID" Type="Int32" />
+    <Property Name="Growth_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sustain_MDF" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CURR_HALF_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="CountryID" Type="Int16" />
+    <Property Name="FinancialYearID" Type="Int16" />
+    <Property Name="PartnerTypeID" Type="Int32" />
+    <Property Name="Avg_Productivity" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Current_Period_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Current_Period_Won_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Previous_Period_Won_MGO_ROI" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_mdf" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Scaled_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Silver_Below" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Sellout_Gold_Platinum" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="ProjectionMethod" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="VersionID" Type="Int32" />
+    <Property Name="WMGO_Ratio" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="MGO_Ratio" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Last_year_Sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Prev_To_Prv_Year_sellout" Type="Decimal" Precision="20" Scale="9" />
+    <Property Name="Source_of_SellOut" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MDFPlanning" Relationship="MPOWR.FK__ModelDefa__Versi__4A6E022D" FromRole="ModelDefaultOutputTable" ToRole="MDFPlanning" />
+    <Property Name="HistoryExists" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK__ModelDefa__Versi__4A6E022D">
+    <End Type="MPOWR.MDFPlanning" Role="MDFPlanning" Multiplicity="0..1" />
+    <End Type="MPOWR.ModelDefaultOutputTable" Role="ModelDefaultOutputTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MDFPlanning">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ModelDefaultOutputTable">
+        <PropertyRef Name="VersionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GlossaryScreenParameterDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScreenID" Type="Int32" Nullable="false" />
+    <Property Name="ParameterName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="RefinedParameter" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RefinedDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Icon" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GlossaryScreenParameterEditDetails" Relationship="MPOWR.FK__GlossaryS__EditP__53584DE9" FromRole="GlossaryScreenParameterDetail" ToRole="GlossaryScreenParameterEditDetail" />
+    <NavigationProperty Name="GlossaryScreenDetail" Relationship="MPOWR.FK__GlossaryS__Scree__4D9F7493" FromRole="GlossaryScreenParameterDetail" ToRole="GlossaryScreenDetail" />
+    <Property Name="TableColumn" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsFilter" Type="Boolean" />
+    <Property Name="ExtendedView" Type="Boolean" Nullable="false" />
+    <Property Name="Round2" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenEditDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ScreenID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Formula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <Property Name="Approver" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GlossaryScreenDetail" Relationship="MPOWR.FK__GlossaryS__Appro__507BE13E" FromRole="GlossaryScreenEditDetail" ToRole="GlossaryScreenDetail" />
+  </EntityType>
+  <EntityType Name="GlossaryScreenParameterEditDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EditParameterID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsApproved" Type="Boolean" />
+    <Property Name="Approver" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GlossaryScreenParameterDetail" Relationship="MPOWR.FK__GlossaryS__EditP__53584DE9" FromRole="GlossaryScreenParameterEditDetail" ToRole="GlossaryScreenParameterDetail" />
+  </EntityType>
+  <Association Name="FK__GlossaryS__EditP__53584DE9">
+    <End Type="MPOWR.GlossaryScreenParameterDetail" Role="GlossaryScreenParameterDetail" Multiplicity="1" />
+    <End Type="MPOWR.GlossaryScreenParameterEditDetail" Role="GlossaryScreenParameterEditDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenParameterDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenParameterEditDetail">
+        <PropertyRef Name="EditParameterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GlossaryScreenDetail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" />
+    <Property Name="ScreenName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Formula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="RefinedFormula" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsChild" Type="Boolean" Nullable="false" />
+    <Property Name="ParentScreenID" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GlossaryScreenEditDetails" Relationship="MPOWR.FK__GlossaryS__Appro__507BE13E" FromRole="GlossaryScreenDetail" ToRole="GlossaryScreenEditDetail" />
+    <NavigationProperty Name="GlossaryScreenParameterDetails" Relationship="MPOWR.FK__GlossaryS__Scree__4D9F7493" FromRole="GlossaryScreenDetail" ToRole="GlossaryScreenParameterDetail" />
+  </EntityType>
+  <Association Name="FK__GlossaryS__Appro__507BE13E">
+    <End Type="MPOWR.GlossaryScreenDetail" Role="GlossaryScreenDetail" Multiplicity="1" />
+    <End Type="MPOWR.GlossaryScreenEditDetail" Role="GlossaryScreenEditDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenEditDetail">
+        <PropertyRef Name="ScreenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GlossaryS__Scree__4D9F7493">
+    <End Type="MPOWR.GlossaryScreenDetail" Role="GlossaryScreenDetail" Multiplicity="1" />
+    <End Type="MPOWR.GlossaryScreenParameterDetail" Role="GlossaryScreenParameterDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GlossaryScreenDetail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GlossaryScreenParameterDetail">
+        <PropertyRef Name="ScreenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GeoConfigDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GeoID" Type="Int32" />
+    <Property Name="IsCountryLevel" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsOverAllocation" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppConfig">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShortName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Params" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ScreenName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayOrder" Type="Int32" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_CountryMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileID" Type="Int32" Nullable="false" />
+    <Property Name="GeoMappingID" Type="Int32" />
+    <Property Name="CountryID" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="Country" Relationship="MPOWR.FK__ContraWeb__Count__1C9228E4" FromRole="ContraWeb_Upload_CountryMapping" ToRole="Country" />
+    <NavigationProperty Name="ContraWeb_Upload_DataFile" Relationship="MPOWR.FK__ContraWeb__FileI__1AA9E072" FromRole="ContraWeb_Upload_CountryMapping" ToRole="ContraWeb_Upload_DataFile" />
+    <NavigationProperty Name="ContraWeb_Upload_GeoMapping" Relationship="MPOWR.FK__ContraWeb__GeoMa__1B9E04AB" FromRole="ContraWeb_Upload_CountryMapping" ToRole="ContraWeb_Upload_GeoMapping" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_DataFile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ContainerName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FilePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="DataLevel" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="RegionID" Type="Int32" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="UploadedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="UploadedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="SelectedCriteria" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="FileNameForBlob" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ContraWeb_Upload_CountryMapping" Relationship="MPOWR.FK__ContraWeb__FileI__1AA9E072" FromRole="ContraWeb_Upload_DataFile" ToRole="ContraWeb_Upload_CountryMapping" />
+    <NavigationProperty Name="ContraWeb_Upload_GeoMapping" Relationship="MPOWR.FK__ContraWeb__FileI__16D94F8E" FromRole="ContraWeb_Upload_DataFile" ToRole="ContraWeb_Upload_GeoMapping" />
+    <NavigationProperty Name="ContraWeb_Upload_FinancialYearMapping" Relationship="MPOWR.FK__ContraWeb__FileI__1F6E958F" FromRole="ContraWeb_Upload_DataFile" ToRole="ContraWeb_Upload_FinancialYearMapping" />
+    <NavigationProperty Name="ContraWeb_Upload_TimeTracker" Relationship="MPOWR.FK__ContraWeb__FileI__318D45CA" FromRole="ContraWeb_Upload_DataFile" ToRole="ContraWeb_Upload_TimeTracker" />
+    <NavigationProperty Name="ContraWeb_Upload_StatusMaster" Relationship="MPOWR.FK__ContraWeb__Statu__1308BEAA" FromRole="ContraWeb_Upload_DataFile" ToRole="ContraWeb_Upload_StatusMaster" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_FinancialYearMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileID" Type="Int32" Nullable="false" />
+    <Property Name="FinancialYear" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ContraWeb_Upload_DataFile" Relationship="MPOWR.FK__ContraWeb__FileI__1F6E958F" FromRole="ContraWeb_Upload_FinancialYearMapping" ToRole="ContraWeb_Upload_DataFile" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_GeoMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileID" Type="Int32" Nullable="false" />
+    <Property Name="GeoID" Type="Int16" />
+    <NavigationProperty Name="ContraWeb_Upload_CountryMapping" Relationship="MPOWR.FK__ContraWeb__GeoMa__1B9E04AB" FromRole="ContraWeb_Upload_GeoMapping" ToRole="ContraWeb_Upload_CountryMapping" />
+    <NavigationProperty Name="ContraWeb_Upload_DataFile" Relationship="MPOWR.FK__ContraWeb__FileI__16D94F8E" FromRole="ContraWeb_Upload_GeoMapping" ToRole="ContraWeb_Upload_DataFile" />
+    <NavigationProperty Name="Geo" Relationship="MPOWR.FK__ContraWeb__GeoID__17CD73C7" FromRole="ContraWeb_Upload_GeoMapping" ToRole="Geo" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_StatusMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="WorkflowOrder" Type="Int16" />
+    <NavigationProperty Name="ContraWeb_Upload_DataFile" Relationship="MPOWR.FK__ContraWeb__Statu__1308BEAA" FromRole="ContraWeb_Upload_StatusMaster" ToRole="ContraWeb_Upload_DataFile" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_TimeTracker">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="Int32" Nullable="false" />
+    <Property Name="SSISStartTime" Type="DateTime" Precision="3" />
+    <Property Name="SSISEndTime" Type="DateTime" Precision="3" />
+    <Property Name="SSISPRODStartTime" Type="DateTime" Precision="3" />
+    <Property Name="SSISPRODEndTime" Type="DateTime" Precision="3" />
+    <Property Name="RowCount" Type="Int32" />
+    <NavigationProperty Name="ContraWeb_Upload_DataFile" Relationship="MPOWR.FK__ContraWeb__FileI__318D45CA" FromRole="ContraWeb_Upload_TimeTracker" ToRole="ContraWeb_Upload_DataFile" />
+  </EntityType>
+  <EntityType Name="ContraWeb_Upload_Configuration">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+      <PropertyRef Name="Key" />
+      <PropertyRef Name="Value" />
+      <PropertyRef Name="IsActive" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="CreatedDate" />
+      <PropertyRef Name="ModifiedBy" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="Key" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FeatureGeo">
+    <Key>
+      <PropertyRef Name="FeatureActionID" />
+      <PropertyRef Name="FeatureID" />
+      <PropertyRef Name="ShortName" />
+      <PropertyRef Name="DisplayName" />
+    </Key>
+    <Property Name="FeatureActionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FeatureID" Type="Int32" Nullable="false" />
+    <Property Name="ShortName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FeatureActionTypeID" Type="Int32" />
+    <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="FlatDataValidationLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FileId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK__ContraWeb__Count__1C9228E4">
+    <End Type="MPOWR.Country" Role="Country" Multiplicity="1" />
+    <End Type="MPOWR.ContraWeb_Upload_CountryMapping" Role="ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__1AA9E072">
+    <End Type="MPOWR.ContraWeb_Upload_DataFile" Role="ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Type="MPOWR.ContraWeb_Upload_CountryMapping" Role="ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__GeoMa__1B9E04AB">
+    <End Type="MPOWR.ContraWeb_Upload_GeoMapping" Role="ContraWeb_Upload_GeoMapping" Multiplicity="0..1" />
+    <End Type="MPOWR.ContraWeb_Upload_CountryMapping" Role="ContraWeb_Upload_CountryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_CountryMapping">
+        <PropertyRef Name="GeoMappingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__16D94F8E">
+    <End Type="MPOWR.ContraWeb_Upload_DataFile" Role="ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Type="MPOWR.ContraWeb_Upload_GeoMapping" Role="ContraWeb_Upload_GeoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__1F6E958F">
+    <End Type="MPOWR.ContraWeb_Upload_DataFile" Role="ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Type="MPOWR.ContraWeb_Upload_FinancialYearMapping" Role="ContraWeb_Upload_FinancialYearMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_FinancialYearMapping">
+        <PropertyRef Name="FileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__FileI__318D45CA">
+    <End Type="MPOWR.ContraWeb_Upload_DataFile" Role="ContraWeb_Upload_DataFile" Multiplicity="1" />
+    <End Type="MPOWR.ContraWeb_Upload_TimeTracker" Role="ContraWeb_Upload_TimeTracker" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_TimeTracker">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__Statu__1308BEAA">
+    <End Type="MPOWR.ContraWeb_Upload_StatusMaster" Role="ContraWeb_Upload_StatusMaster" Multiplicity="0..1" />
+    <End Type="MPOWR.ContraWeb_Upload_DataFile" Role="ContraWeb_Upload_DataFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ContraWeb_Upload_StatusMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_DataFile">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ContraWeb__GeoID__17CD73C7">
+    <End Type="MPOWR.Geo" Role="Geo" Multiplicity="0..1" />
+    <End Type="MPOWR.ContraWeb_Upload_GeoMapping" Role="ContraWeb_Upload_GeoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Geo">
+        <PropertyRef Name="GeoID" />
+      </Principal>
+      <Dependent Role="ContraWeb_Upload_GeoMapping">
+        <PropertyRef Name="GeoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

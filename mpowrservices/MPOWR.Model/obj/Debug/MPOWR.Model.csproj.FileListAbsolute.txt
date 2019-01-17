@@ -1,0 +1,5 @@
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Model\bin\Debug\MPOWR.Model.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Model\bin\Debug\MPOWR.Model.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Model\obj\Debug\MPOWR.Model.csprojResolveAssemblyReference.cache
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Model\obj\Debug\MPOWR.Model.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Model\obj\Debug\MPOWR.Model.pdb

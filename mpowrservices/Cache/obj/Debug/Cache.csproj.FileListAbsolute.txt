@@ -1,0 +1,15 @@
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Cache.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Cache.pdb
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.AzureClientHelper.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.AzureCommon.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.Client.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.Core.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.Web.DistributedCache.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.WindowsFabric.Common.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.WindowsFabric.Data.Common.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.AzureCommon.xml
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.Client.xml
+D:\MPOWR-PROD\MPOWR.Api\Cache\bin\Debug\Microsoft.ApplicationServer.Caching.Core.xml
+D:\MPOWR-PROD\MPOWR.Api\Cache\obj\Debug\Cache.csprojResolveAssemblyReference.cache
+D:\MPOWR-PROD\MPOWR.Api\Cache\obj\Debug\Cache.dll
+D:\MPOWR-PROD\MPOWR.Api\Cache\obj\Debug\Cache.pdb

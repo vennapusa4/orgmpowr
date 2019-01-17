@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MPOWRStoreContainer" CdmEntityContainer="MPOWREntities">
+    <EntitySetMapping Name="BusinessUnits">
+      <EntityTypeMapping TypeName="MPOWR.BusinessUnit">
+        <MappingFragment StoreEntitySet="BusinessUnit">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="MPOWR.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="TypeofSellout" ColumnName="TypeofSellout" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryBudgets">
+      <EntityTypeMapping TypeName="MPOWR.CountryBudget">
+        <MappingFragment StoreEntitySet="CountryBudget">
+          <ScalarProperty Name="CountryBudgetID" ColumnName="CountryBudgetID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="MDF" ColumnName="MDF" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="MPOWR.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinancialYears">
+      <EntityTypeMapping TypeName="MPOWR.FinancialYear">
+        <MappingFragment StoreEntitySet="FinancialYear">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuardRailFYConfigs">
+      <EntityTypeMapping TypeName="MPOWR.GuardRailFYConfig">
+        <MappingFragment StoreEntitySet="GuardRailFYConfig">
+          <ScalarProperty Name="GuardRailFYConfigID" ColumnName="GuardRailFYConfigID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuardRailsConfigs">
+      <EntityTypeMapping TypeName="MPOWR.GuardRailsConfig">
+        <MappingFragment StoreEntitySet="GuardRailsConfig">
+          <ScalarProperty Name="GuardRailConfigID" ColumnName="GuardRailConfigID" />
+          <ScalarProperty Name="GuardRailFYConfigID" ColumnName="GuardRailFYConfigID" />
+          <ScalarProperty Name="ProgramCarveOutComplaintValue" ColumnName="ProgramCarveOutComplaintValue" />
+          <ScalarProperty Name="ProgramCarveOutNonComplaintValue" ColumnName="ProgramCarveOutNonComplaintValue" />
+          <ScalarProperty Name="ActualMDFAllocationComplaintValue" ColumnName="ActualMDFAllocationComplaintValue" />
+          <ScalarProperty Name="ActualMDFAllocationNonComplaintValue" ColumnName="ActualMDFAllocationNonComplaintValue" />
+          <ScalarProperty Name="MDFSelloutIndexComplaintValue" ColumnName="MDFSelloutIndexComplaintValue" />
+          <ScalarProperty Name="MDFSelloutIndexNonComplaintValue" ColumnName="MDFSelloutIndexNonComplaintValue" />
+          <ScalarProperty Name="OverAllocationComplaintValue" ColumnName="OverAllocationComplaintValue" />
+          <ScalarProperty Name="OverAllocationNonComplaintValue" ColumnName="OverAllocationNonComplaintValue" />
+          <ScalarProperty Name="AllowOverAllocation" ColumnName="AllowOverAllocation" />
+          <ScalarProperty Name="UnderAllocationComplaintValue" ColumnName="UnderAllocationComplaintValue" />
+          <ScalarProperty Name="UnderAllocationNonComplaintValue" ColumnName="UnderAllocationNonComplaintValue" />
+          <ScalarProperty Name="ReviewerRoleID1" ColumnName="ReviewerRoleID1" />
+          <ScalarProperty Name="ReviewerRoleID2" ColumnName="ReviewerRoleID2" />
+          <ScalarProperty Name="ReviewerRoleID3" ColumnName="ReviewerRoleID3" />
+          <ScalarProperty Name="ReviewerRoleID4" ColumnName="ReviewerRoleID4" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginAuthentications">
+      <EntityTypeMapping TypeName="MPOWR.LoginAuthentication">
+        <MappingFragment StoreEntitySet="LoginAuthentication">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+          <ScalarProperty Name="LogInTime" ColumnName="LogInTime" />
+          <ScalarProperty Name="LogOffTime" ColumnName="LogOffTime" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MDFVarianceReasons">
+      <EntityTypeMapping TypeName="MPOWR.MDFVarianceReason">
+        <MappingFragment StoreEntitySet="MDFVarianceReason">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MDFVarianceReasonID" ColumnName="MDFVarianceReasonID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipTypes">
+      <EntityTypeMapping TypeName="MPOWR.MembershipType">
+        <MappingFragment StoreEntitySet="MembershipType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="MembershipTypeID" ColumnName="MembershipTypeID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Milestones">
+      <EntityTypeMapping TypeName="MPOWR.Milestone">
+        <MappingFragment StoreEntitySet="Milestone">
+          <ScalarProperty Name="MilestoneID" ColumnName="MilestoneID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MilestoneFYConfigs">
+      <EntityTypeMapping TypeName="MPOWR.MilestoneFYConfig">
+        <MappingFragment StoreEntitySet="MilestoneFYConfig">
+          <ScalarProperty Name="MilestoneFYConfigID" ColumnName="MilestoneFYConfigID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MilestoneNotifications">
+      <EntityTypeMapping TypeName="MPOWR.MilestoneNotification">
+        <MappingFragment StoreEntitySet="MilestoneNotification">
+          <ScalarProperty Name="MilestoneNotificationID" ColumnName="MilestoneNotificationID" />
+          <ScalarProperty Name="MilestoneFYConfigID" ColumnName="MilestoneFYConfigID" />
+          <ScalarProperty Name="MilestoneDate" ColumnName="MilestoneDate" />
+          <ScalarProperty Name="ReminderEmailMessage1" ColumnName="ReminderEmailMessage1" />
+          <ScalarProperty Name="SetReminderAlertDays1" ColumnName="SetReminderAlertDays1" />
+          <ScalarProperty Name="ReminderStatus1" ColumnName="ReminderStatus1" />
+          <ScalarProperty Name="ReminderEmailMessage2" ColumnName="ReminderEmailMessage2" />
+          <ScalarProperty Name="SetReminderAlertDays2" ColumnName="SetReminderAlertDays2" />
+          <ScalarProperty Name="ReminderStatus2" ColumnName="ReminderStatus2" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="MilestoneOrderNo" ColumnName="MilestoneOrderNo" />
+          <ScalarProperty Name="MilestoneName" ColumnName="MilestoneName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MilestoneNotificationsRoles">
+      <EntityTypeMapping TypeName="MPOWR.MilestoneNotificationsRole">
+        <MappingFragment StoreEntitySet="MilestoneNotificationsRole">
+          <ScalarProperty Name="MilestoneNotificationRoleID" ColumnName="MilestoneNotificationRoleID" />
+          <ScalarProperty Name="MilestoneNotificationID" ColumnName="MilestoneNotificationID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleOperation" ColumnName="RoleOperation" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelOutputTables">
+      <EntityTypeMapping TypeName="MPOWR.ModelOutputTable">
+        <MappingFragment StoreEntitySet="ModelOutputTable">
+          <ScalarProperty Name="HistoryExists" ColumnName="HistoryExists" />
+          <ScalarProperty Name="Source_of_SellOut" ColumnName="Source_of_SellOut" />
+          <ScalarProperty Name="Prev_To_Prv_Year_sellout" ColumnName="Prev_To_Prv_Year_sellout" />
+          <ScalarProperty Name="Last_year_Sellout" ColumnName="Last_year_Sellout" />
+          <ScalarProperty Name="MGO_Ratio" ColumnName="MGO_Ratio" />
+          <ScalarProperty Name="WMGO_Ratio" ColumnName="WMGO_Ratio" />
+          <ScalarProperty Name="ModelParamROutputID" ColumnName="ModelParamROutputID" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="Partner_Name" ColumnName="Partner_Name" />
+          <ScalarProperty Name="Membership_Type" ColumnName="Membership_Type" />
+          <ScalarProperty Name="Business_Unit" ColumnName="Business_Unit" />
+          <ScalarProperty Name="Last_Period_Sellout" ColumnName="Last_Period_Sellout" />
+          <ScalarProperty Name="Projected_Sellout" ColumnName="Projected_Sellout" />
+          <ScalarProperty Name="YoY_change_sellout" ColumnName="YoY_change_sellout" />
+          <ScalarProperty Name="Last_Period_MDF" ColumnName="Last_Period_MDF" />
+          <ScalarProperty Name="Recommended_MDF" ColumnName="Recommended_MDF" />
+          <ScalarProperty Name="YoY_change_MDF" ColumnName="YoY_change_MDF" />
+          <ScalarProperty Name="Last_Period_Productivity" ColumnName="Last_Period_Productivity" />
+          <ScalarProperty Name="Projected_Productivity" ColumnName="Projected_Productivity" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="Median_Avg_MDF_Sellout" ColumnName="Median_Avg_MDF_Sellout" />
+          <ScalarProperty Name="MDF_Alignment" ColumnName="MDF_Alignment" />
+          <ScalarProperty Name="PREV_MDF_Assessment" ColumnName="PREV_MDF_Assessment" />
+          <ScalarProperty Name="Planned_Sales" ColumnName="Planned_Sales" />
+          <ScalarProperty Name="Target_Achievement" ColumnName="Target_Achievement" />
+          <ScalarProperty Name="SOW" ColumnName="SOW" />
+          <ScalarProperty Name="SOW_Growth" ColumnName="SOW_Growth" />
+          <ScalarProperty Name="PBM" ColumnName="PBM" />
+          <ScalarProperty Name="PMM" ColumnName="PMM" />
+          <ScalarProperty Name="Footprint_Growth" ColumnName="Footprint_Growth" />
+          <ScalarProperty Name="No_of_end_customers" ColumnName="No_of_end_customers" />
+          <ScalarProperty Name="Total_MDF" ColumnName="Total_MDF" />
+          <ScalarProperty Name="Incremental_MDF" ColumnName="Incremental_MDF" />
+          <ScalarProperty Name="Late_MDF" ColumnName="Late_MDF" />
+          <ScalarProperty Name="W_MGO_Marketing_MDF" ColumnName="W_MGO_Marketing_MDF" />
+          <ScalarProperty Name="New_Logos_MGO" ColumnName="New_Logos_MGO" />
+          <ScalarProperty Name="Prediction_Accuracy" ColumnName="Prediction_Accuracy" />
+          <ScalarProperty Name="Partner_Size" ColumnName="Partner_Size" />
+          <ScalarProperty Name="High_Productivity_Value" ColumnName="High_Productivity_Value" />
+          <ScalarProperty Name="Additional_Recommended_MDF" ColumnName="Additional_Recommended_MDF" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="Growth_MDF" ColumnName="Growth_MDF" />
+          <ScalarProperty Name="Sustain_MDF" ColumnName="Sustain_MDF" />
+          <ScalarProperty Name="CURR_HALF_Sellout" ColumnName="CURR_HALF_Sellout" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="Avg_Productivity" ColumnName="Avg_Productivity" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Current_Period_MGO" ColumnName="Current_Period_MGO" />
+          <ScalarProperty Name="Current_Period_Won_MGO" ColumnName="Current_Period_Won_MGO" />
+          <ScalarProperty Name="Current_Period_MGO_ROI" ColumnName="Current_Period_MGO_ROI" />
+          <ScalarProperty Name="Current_Period_Won_MGO_ROI" ColumnName="Current_Period_Won_MGO_ROI" />
+          <ScalarProperty Name="Previous_Period_MGO" ColumnName="Previous_Period_MGO" />
+          <ScalarProperty Name="Previous_Period_Won_MGO" ColumnName="Previous_Period_Won_MGO" />
+          <ScalarProperty Name="Previous_Period_MGO_ROI" ColumnName="Previous_Period_MGO_ROI" />
+          <ScalarProperty Name="Previous_Period_Won_MGO_ROI" ColumnName="Previous_Period_Won_MGO_ROI" />
+          <ScalarProperty Name="Last_year_mdf" ColumnName="Last_year_mdf" />
+          <ScalarProperty Name="Scaled_Sellout" ColumnName="Scaled_Sellout" />
+          <ScalarProperty Name="Sellout_Silver_Below" ColumnName="Sellout_Silver_Below" />
+          <ScalarProperty Name="Sellout_Gold_Platinum" ColumnName="Sellout_Gold_Platinum" />
+          <ScalarProperty Name="ProjectionMethod" ColumnName="ProjectionMethod" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelParameterConfigs">
+      <EntityTypeMapping TypeName="MPOWR.ModelParameterConfig">
+        <MappingFragment StoreEntitySet="ModelParameterConfig">
+          <ScalarProperty Name="ModelParameterConfigID" ColumnName="ModelParameterConfigID" />
+          <ScalarProperty Name="ModelParameterFYConfigID" ColumnName="ModelParameterFYConfigID" />
+          <ScalarProperty Name="HighPerformerProductivity" ColumnName="HighPerformerProductivity" />
+          <ScalarProperty Name="MediumPerformerProductivityRatio" ColumnName="MediumPerformerProductivityRatio" />
+          <ScalarProperty Name="LowPerformerProductivityRatio" ColumnName="LowPerformerProductivityRatio" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelParameterFYConfigs">
+      <EntityTypeMapping TypeName="MPOWR.ModelParameterFYConfig">
+        <MappingFragment StoreEntitySet="ModelParameterFYConfig">
+          <ScalarProperty Name="ModelParameterFYConfigID" ColumnName="ModelParameterFYConfigID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrganisationTypes">
+      <EntityTypeMapping TypeName="MPOWR.OrganisationType">
+        <MappingFragment StoreEntitySet="OrganisationType">
+          <ScalarProperty Name="OrgTypeID" ColumnName="OrgTypeID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners">
+      <EntityTypeMapping TypeName="MPOWR.Partner">
+        <MappingFragment StoreEntitySet="Partner">
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="PartnerShortName" ColumnName="PartnerShortName" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="MembershipTypeID" ColumnName="MembershipTypeID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerBUBudgets">
+      <EntityTypeMapping TypeName="MPOWR.PartnerBUBudget">
+        <MappingFragment StoreEntitySet="PartnerBUBudget">
+          <ScalarProperty Name="CarveOut" ColumnName="CarveOut" />
+          <ScalarProperty Name="PrevPrevPeriodMDF" ColumnName="PrevPrevPeriodMDF" />
+          <ScalarProperty Name="PrevPeriodMDF" ColumnName="PrevPeriodMDF" />
+          <ScalarProperty Name="TotalMDF" ColumnName="TotalMDF" />
+          <ScalarProperty Name="MSA" ColumnName="MSA" />
+          <ScalarProperty Name="PartnerBUBudgetID" ColumnName="PartnerBUBudgetID" />
+          <ScalarProperty Name="PartnerBudgetID" ColumnName="PartnerBudgetID" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="MDFVarianceReasonID" ColumnName="MDFVarianceReasonID" />
+          <ScalarProperty Name="FocusedAreaID" ColumnName="FocusedAreaID" />
+          <ScalarProperty Name="Baseline_MDF" ColumnName="Baseline_MDF" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Additional_RecommendedMDF" ColumnName="Additional_RecommendedMDF" />
+          <ScalarProperty Name="Additional_MDF" ColumnName="Additional_MDF" />
+          <ScalarProperty Name="Additional_MDF_Reason" ColumnName="Additional_MDF_Reason" />
+          <ScalarProperty Name="BUBudgetID" ColumnName="BUBudgetID" />
+          <ScalarProperty Name="ModelParamROutputID" ColumnName="ModelParamROutputID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerSalesRefreshHistories">
+      <EntityTypeMapping TypeName="MPOWR.PartnerSalesRefreshHistory">
+        <MappingFragment StoreEntitySet="PartnerSalesRefreshHistory">
+          <ScalarProperty Name="PartnerSalesRefreshHistoryID" ColumnName="PartnerSalesRefreshHistoryID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="RefreshDate" ColumnName="RefreshDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerTypes">
+      <EntityTypeMapping TypeName="MPOWR.PartnerType">
+        <MappingFragment StoreEntitySet="PartnerType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramMDFs">
+      <EntityTypeMapping TypeName="MPOWR.ProgramMDF">
+        <MappingFragment StoreEntitySet="ProgramMDF">
+          <ScalarProperty Name="ProgramMDFID" ColumnName="ProgramMDFID" />
+          <ScalarProperty Name="BUBudgetID" ColumnName="BUBudgetID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectMDF" ColumnName="ProjectMDF" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MPOWR.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleFeatureActivities">
+      <EntityTypeMapping TypeName="MPOWR.RoleFeatureActivity">
+        <MappingFragment StoreEntitySet="RoleFeatureActivity">
+          <ScalarProperty Name="RoleFeatureActivityID" ColumnName="RoleFeatureActivityID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="FeatureActionID" ColumnName="FeatureActionID" />
+          <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePartnerTypes">
+      <EntityTypeMapping TypeName="MPOWR.RolePartnerType">
+        <MappingFragment StoreEntitySet="RolePartnerType">
+          <ScalarProperty Name="RolePartnerTypeID" ColumnName="RolePartnerTypeID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="IsChecked" ColumnName="IsChecked" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MPOWR.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserBusinessUnits">
+      <EntityTypeMapping TypeName="MPOWR.UserBusinessUnit">
+        <MappingFragment StoreEntitySet="UserBusinessUnit">
+          <ScalarProperty Name="UserBusinessUnitID" ColumnName="UserBusinessUnitID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserCountries">
+      <EntityTypeMapping TypeName="MPOWR.UserCountry">
+        <MappingFragment StoreEntitySet="UserCountry">
+          <ScalarProperty Name="UserCountryID" ColumnName="UserCountryID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserDistricts">
+      <EntityTypeMapping TypeName="MPOWR.UserDistrict">
+        <MappingFragment StoreEntitySet="UserDistrict">
+          <ScalarProperty Name="UserDistrictID" ColumnName="UserDistrictID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserManuals">
+      <EntityTypeMapping TypeName="MPOWR.UserManual">
+        <MappingFragment StoreEntitySet="UserManual">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRTMs">
+      <EntityTypeMapping TypeName="MPOWR.UserRTM">
+        <MappingFragment StoreEntitySet="UserRTM">
+          <ScalarProperty Name="UserRTMID" ColumnName="UserRTMID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="MPOWR.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGeos">
+      <EntityTypeMapping TypeName="MPOWR.UserGeo">
+        <MappingFragment StoreEntitySet="UserGeo">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+          <ScalarProperty Name="UserGeoID" ColumnName="UserGeoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Geos">
+      <EntityTypeMapping TypeName="MPOWR.Geo">
+        <MappingFragment StoreEntitySet="Geo">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerBudgets">
+      <EntityTypeMapping TypeName="MPOWR.PartnerBudget">
+        <MappingFragment StoreEntitySet="PartnerBudget">
+          <ScalarProperty Name="Aruba_MSA" ColumnName="Aruba_MSA" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+          <ScalarProperty Name="MSA" ColumnName="MSA" />
+          <ScalarProperty Name="Membership_Type" ColumnName="Membership_Type" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="PartnerBudgetID" ColumnName="PartnerBudgetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BUBudgets">
+      <EntityTypeMapping TypeName="MPOWR.BUBudget">
+        <MappingFragment StoreEntitySet="BUBudget">
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="BaselineMDF" ColumnName="BaselineMDF" />
+          <ScalarProperty Name="CountryReserveMDF" ColumnName="CountryReserveMDF" />
+          <ScalarProperty Name="ProgramMDF" ColumnName="ProgramMDF" />
+          <ScalarProperty Name="TotalMDF" ColumnName="TotalMDF" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="BUBudgetID" ColumnName="BUBudgetID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MDFPlannings">
+      <EntityTypeMapping TypeName="MPOWR.MDFPlanning">
+        <MappingFragment StoreEntitySet="MDFPlanning">
+          <ScalarProperty Name="MembershipGroupID" ColumnName="MembershipGroupID" />
+          <ScalarProperty Name="CountryOrGeoOrDistrict" ColumnName="CountryOrGeoOrDistrict" />
+          <ScalarProperty Name="AllocationLevel" ColumnName="AllocationLevel" />
+          <ScalarProperty Name="IsFinal" ColumnName="IsFinal" />
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="VersionName" ColumnName="VersionName" />
+          <ScalarProperty Name="VersionNo" ColumnName="VersionNo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelOutputSummaryTables">
+      <EntityTypeMapping TypeName="MPOWR.ModelOutputSummaryTable">
+        <MappingFragment StoreEntitySet="ModelOutputSummaryTable">
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="MDF_SB" ColumnName="MDF_SB" />
+          <ScalarProperty Name="MDF_Gold" ColumnName="MDF_Gold" />
+          <ScalarProperty Name="MDF_Platinum" ColumnName="MDF_Platinum" />
+          <ScalarProperty Name="growth_percentage" ColumnName="growth_percentage" />
+          <ScalarProperty Name="sustain_percentage" ColumnName="sustain_percentage" />
+          <ScalarProperty Name="MisAligned" ColumnName="MisAligned" />
+          <ScalarProperty Name="Aligned" ColumnName="Aligned" />
+          <ScalarProperty Name="MDF_over_Sellout_Current_Period" ColumnName="MDF_over_Sellout_Current_Period" />
+          <ScalarProperty Name="MDF_over_Sellout_Last_Period" ColumnName="MDF_over_Sellout_Last_Period" />
+          <ScalarProperty Name="Sales_Growth_Without_MDF" ColumnName="Sales_Growth_Without_MDF" />
+          <ScalarProperty Name="Sales_Growth_With_MDF" ColumnName="Sales_Growth_With_MDF" />
+          <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+          <ScalarProperty Name="Allocated" ColumnName="Allocated" />
+          <ScalarProperty Name="Business_Unit" ColumnName="Business_Unit" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+          <ScalarProperty Name="OutputSummaryID" ColumnName="OutputSummaryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelParameterTables">
+      <EntityTypeMapping TypeName="MPOWR.ModelParameterTable">
+        <MappingFragment StoreEntitySet="ModelParameterTable">
+          <ScalarProperty Name="WMGO_Perf_Acc_Medium" ColumnName="WMGO_Perf_Acc_Medium" />
+          <ScalarProperty Name="WMGO_Perf_Acc_VeryLow" ColumnName="WMGO_Perf_Acc_VeryLow" />
+          <ScalarProperty Name="WMGO_Perf_Acc_VeryHigh" ColumnName="WMGO_Perf_Acc_VeryHigh" />
+          <ScalarProperty Name="WMGO_Perf_Acc_Low" ColumnName="WMGO_Perf_Acc_Low" />
+          <ScalarProperty Name="WMGO_Perf_Acc_High" ColumnName="WMGO_Perf_Acc_High" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="partner_size_threshold" ColumnName="partner_size_threshold" />
+          <ScalarProperty Name="Last_Quarter_Sellout_Scale_Factor" ColumnName="Last_Quarter_Sellout_Scale_Factor" />
+          <ScalarProperty Name="Min_Target_Productivity" ColumnName="Min_Target_Productivity" />
+          <ScalarProperty Name="Weights_applied_t_3H" ColumnName="Weights_applied_t_3H" />
+          <ScalarProperty Name="Weights_applied_t_2H" ColumnName="Weights_applied_t_2H" />
+          <ScalarProperty Name="Weights_applied_t_1H" ColumnName="Weights_applied_t_1H" />
+          <ScalarProperty Name="Prediction_Low_Min" ColumnName="Prediction_Low_Min" />
+          <ScalarProperty Name="Prediction_Low_Max" ColumnName="Prediction_Low_Max" />
+          <ScalarProperty Name="Prediction_High_Min" ColumnName="Prediction_High_Min" />
+          <ScalarProperty Name="Prediction_High_Max" ColumnName="Prediction_High_Max" />
+          <ScalarProperty Name="JPB_Min" ColumnName="JPB_Min" />
+          <ScalarProperty Name="JPB_Max" ColumnName="JPB_Max" />
+          <ScalarProperty Name="Min_Target_Accomplish_percentage" ColumnName="Min_Target_Accomplish_percentage" />
+          <ScalarProperty Name="Max_Target_Accomplish_percentage" ColumnName="Max_Target_Accomplish_percentage" />
+          <ScalarProperty Name="Target_accomplish_MediumPrecision_Score" ColumnName="Target_accomplish_MediumPrecision_Score" />
+          <ScalarProperty Name="Target_accomplish_HighPrecision_Score" ColumnName="Target_accomplish_HighPrecision_Score" />
+          <ScalarProperty Name="Max_Sellout_HighGrowth_Min" ColumnName="Max_Sellout_HighGrowth_Min" />
+          <ScalarProperty Name="Max_Sellout_HighGrowth_Max" ColumnName="Max_Sellout_HighGrowth_Max" />
+          <ScalarProperty Name="Max_Sellout_ModerateGrowth_Min_MDF" ColumnName="Max_Sellout_ModerateGrowth_Min_MDF" />
+          <ScalarProperty Name="Max_Sellout_ModerateGrowth_Max_MDF" ColumnName="Max_Sellout_ModerateGrowth_Max_MDF" />
+          <ScalarProperty Name="Max_Sellout_Steady_Min_MDF" ColumnName="Max_Sellout_Steady_Min_MDF" />
+          <ScalarProperty Name="Max_Sellout_Steady_Max_MDF" ColumnName="Max_Sellout_Steady_Max_MDF" />
+          <ScalarProperty Name="Max_Sellout_ModerateDecline_Min_MDF" ColumnName="Max_Sellout_ModerateDecline_Min_MDF" />
+          <ScalarProperty Name="Max_Sellout_ModerateDecline_Max_MDF" ColumnName="Max_Sellout_ModerateDecline_Max_MDF" />
+          <ScalarProperty Name="Max_Sellout_HighDecline_Min_MDF" ColumnName="Max_Sellout_HighDecline_Min_MDF" />
+          <ScalarProperty Name="Max_Sellout_HighDecline_Max_MDF" ColumnName="Max_Sellout_HighDecline_Max_MDF" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoleUserTypes">
+      <EntityTypeMapping TypeName="MPOWR.UserRoleUserType">
+        <MappingFragment StoreEntitySet="UserRoleUserType">
+          <ScalarProperty Name="DataUpload" ColumnName="DataUpload" />
+          <ScalarProperty Name="GlossaryApprover" ColumnName="GlossaryApprover" />
+          <ScalarProperty Name="EditNonBUModParam" ColumnName="EditNonBUModParam" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserRoleUserTypeID" ColumnName="UserRoleUserTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PartnerSales">
+      <EntityTypeMapping TypeName="MPOWR.PartnerSale">
+        <MappingFragment StoreEntitySet="PartnerSales">
+          <ScalarProperty Name="SOW_Q4" ColumnName="SOW_Q4" />
+          <ScalarProperty Name="Won_MGO_ROI_2H" ColumnName="Won_MGO_ROI_2H" />
+          <ScalarProperty Name="Won_MGO_ROI_1H" ColumnName="Won_MGO_ROI_1H" />
+          <ScalarProperty Name="MGO_ROI_2H" ColumnName="MGO_ROI_2H" />
+          <ScalarProperty Name="MGO_ROI_1H" ColumnName="MGO_ROI_1H" />
+          <ScalarProperty Name="Won_MGO_2H" ColumnName="Won_MGO_2H" />
+          <ScalarProperty Name="Won_MGO_1H" ColumnName="Won_MGO_1H" />
+          <ScalarProperty Name="MGO_2H" ColumnName="MGO_2H" />
+          <ScalarProperty Name="MGO_1H" ColumnName="MGO_1H" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Proj_Sales" ColumnName="Proj_Sales" />
+          <ScalarProperty Name="Prediction_Accuracy" ColumnName="Prediction_Accuracy" />
+          <ScalarProperty Name="Prediction_Method" ColumnName="Prediction_Method" />
+          <ScalarProperty Name="MDF_2H" ColumnName="MDF_2H" />
+          <ScalarProperty Name="MDF_1H" ColumnName="MDF_1H" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+          <ScalarProperty Name="PMM" ColumnName="PMM" />
+          <ScalarProperty Name="PBM" ColumnName="PBM" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_2H" ColumnName="SellOutForSilverAndBelow_2H" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_1H" ColumnName="SellOutForSilverAndBelow_1H" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_Q4" ColumnName="SellOutForSilverAndBelow_Q4" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_Q3" ColumnName="SellOutForSilverAndBelow_Q3" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_Q2" ColumnName="SellOutForSilverAndBelow_Q2" />
+          <ScalarProperty Name="SellOutForSilverAndBelow_Q1" ColumnName="SellOutForSilverAndBelow_Q1" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_2H" ColumnName="SellOutForPlatinumAndGold_2H" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_1H" ColumnName="SellOutForPlatinumAndGold_1H" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_Q4" ColumnName="SellOutForPlatinumAndGold_Q4" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_Q3" ColumnName="SellOutForPlatinumAndGold_Q3" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_Q2" ColumnName="SellOutForPlatinumAndGold_Q2" />
+          <ScalarProperty Name="SellOutForPlatinumAndGold_Q1" ColumnName="SellOutForPlatinumAndGold_Q1" />
+          <ScalarProperty Name="SellOutNet_Q4" ColumnName="SellOutNet_Q4" />
+          <ScalarProperty Name="SellOutNet_Q3" ColumnName="SellOutNet_Q3" />
+          <ScalarProperty Name="SellOutNet_Q2" ColumnName="SellOutNet_Q2" />
+          <ScalarProperty Name="SellOutNet_Q1" ColumnName="SellOutNet_Q1" />
+          <ScalarProperty Name="SOB_2H" ColumnName="SOB_2H" />
+          <ScalarProperty Name="SOB_1H" ColumnName="SOB_1H" />
+          <ScalarProperty Name="SOB_Q4" ColumnName="SOB_Q4" />
+          <ScalarProperty Name="SOB_Q3" ColumnName="SOB_Q3" />
+          <ScalarProperty Name="SOB_Q2" ColumnName="SOB_Q2" />
+          <ScalarProperty Name="SOB_Q1" ColumnName="SOB_Q1" />
+          <ScalarProperty Name="SellOut_2H" ColumnName="SellOut_2H" />
+          <ScalarProperty Name="SellOut_1H" ColumnName="SellOut_1H" />
+          <ScalarProperty Name="SellOut_Q4" ColumnName="SellOut_Q4" />
+          <ScalarProperty Name="SellOut_Q3" ColumnName="SellOut_Q3" />
+          <ScalarProperty Name="SellOut_Q2" ColumnName="SellOut_Q2" />
+          <ScalarProperty Name="SellOut_Q1" ColumnName="SellOut_Q1" />
+          <ScalarProperty Name="SellOut_Amount_Q4" ColumnName="SellOut_Amount_Q4" />
+          <ScalarProperty Name="SellOut_Amount_Q3" ColumnName="SellOut_Amount_Q3" />
+          <ScalarProperty Name="SellOut_Amount_Q2" ColumnName="SellOut_Amount_Q2" />
+          <ScalarProperty Name="SellOut_Amount_Q1" ColumnName="SellOut_Amount_Q1" />
+          <ScalarProperty Name="Quota_2H" ColumnName="Quota_2H" />
+          <ScalarProperty Name="Quota_1H" ColumnName="Quota_1H" />
+          <ScalarProperty Name="Planned_2H" ColumnName="Planned_2H" />
+          <ScalarProperty Name="Planned_1H" ColumnName="Planned_1H" />
+          <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="BusinessUnit" ColumnName="BusinessUnit" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="BG" ColumnName="BG" />
+          <ScalarProperty Name="Membership" ColumnName="Membership" />
+          <ScalarProperty Name="MembershipTypeID" ColumnName="MembershipTypeID" />
+          <ScalarProperty Name="PartnerType" ColumnName="PartnerType" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="Geo" ColumnName="Geo" />
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+          <ScalarProperty Name="PartnerSalesID" ColumnName="PartnerSalesID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelBUParameterTables">
+      <EntityTypeMapping TypeName="MPOWR.ModelBUParameterTable">
+        <MappingFragment StoreEntitySet="ModelBUParameterTable">
+          <ScalarProperty Name="Growth_Revenue" ColumnName="Growth_Revenue" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Low_Performance" ColumnName="Low_Performance" />
+          <ScalarProperty Name="Medium_Performance" ColumnName="Medium_Performance" />
+          <ScalarProperty Name="Dist_cust_membership_weight_Platinum_and_Gold" ColumnName="Dist_cust_membership_weight_Platinum_and_Gold" />
+          <ScalarProperty Name="Dist_cust_membership_weight_Silver_and_Below" ColumnName="Dist_cust_membership_weight_Silver_and_Below" />
+          <ScalarProperty Name="Preferred_Partner_Cut_Off_Percentage" ColumnName="Preferred_Partner_Cut_Off_Percentage" />
+          <ScalarProperty Name="New_Partner_RampUp_Scale" ColumnName="New_Partner_RampUp_Scale" />
+          <ScalarProperty Name="Min_Partner_Investment" ColumnName="Min_Partner_Investment" />
+          <ScalarProperty Name="High_Performance" ColumnName="High_Performance" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+          <ScalarProperty Name="ModelBUParameterID" ColumnName="ModelBUParameterID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Features">
+      <EntityTypeMapping TypeName="MPOWR.Feature">
+        <MappingFragment StoreEntitySet="Feature">
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RelativePath" ColumnName="RelativePath" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeatureActions">
+      <EntityTypeMapping TypeName="MPOWR.FeatureAction">
+        <MappingFragment StoreEntitySet="FeatureAction">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FeatureActionTypeID" ColumnName="FeatureActionTypeID" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+          <ScalarProperty Name="FeatureActionID" ColumnName="FeatureActionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeatureActionTypes">
+      <EntityTypeMapping TypeName="MPOWR.FeatureActionType">
+        <MappingFragment StoreEntitySet="FeatureActionType">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FeatureActionTypeID" ColumnName="FeatureActionTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FocusedAreas">
+      <EntityTypeMapping TypeName="MPOWR.FocusedArea">
+        <MappingFragment StoreEntitySet="FocusedArea">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FocusedArea1" ColumnName="FocusedArea" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FocusedAreaID" ColumnName="FocusedAreaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataLoadRefreshes">
+      <EntityTypeMapping TypeName="MPOWR.DataLoadRefresh">
+        <MappingFragment StoreEntitySet="DataLoadRefresh">
+          <ScalarProperty Name="MPOWR_RefreshDate" ColumnName="MPOWR_RefreshDate" />
+          <ScalarProperty Name="PopupDays" ColumnName="PopupDays" />
+          <ScalarProperty Name="IsPopup" ColumnName="IsPopup" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="MailDispalyDate" ColumnName="MailDispalyDate" />
+          <ScalarProperty Name="MailSentDate" ColumnName="MailSentDate" />
+          <ScalarProperty Name="LatestDataRefresh" ColumnName="LatestDataRefresh" />
+          <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+          <ScalarProperty Name="Planned_ProjectedSales" ColumnName="Planned_ProjectedSales" />
+          <ScalarProperty Name="MDFHistory" ColumnName="MDFHistory" />
+          <ScalarProperty Name="Sellout" ColumnName="Sellout" />
+          <ScalarProperty Name="Geo" ColumnName="Geo" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipGroups">
+      <EntityTypeMapping TypeName="MPOWR.MembershipGroup">
+        <MappingFragment StoreEntitySet="MembershipGroup">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="MembershipGroupID" ColumnName="MembershipGroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelDefaultOutputTables">
+      <EntityTypeMapping TypeName="MPOWR.ModelDefaultOutputTable">
+        <MappingFragment StoreEntitySet="ModelDefaultOutputTable">
+          <ScalarProperty Name="HistoryExists" ColumnName="HistoryExists" />
+          <ScalarProperty Name="Source_of_SellOut" ColumnName="Source_of_SellOut" />
+          <ScalarProperty Name="Prev_To_Prv_Year_sellout" ColumnName="Prev_To_Prv_Year_sellout" />
+          <ScalarProperty Name="Last_year_Sellout" ColumnName="Last_year_Sellout" />
+          <ScalarProperty Name="MGO_Ratio" ColumnName="MGO_Ratio" />
+          <ScalarProperty Name="WMGO_Ratio" ColumnName="WMGO_Ratio" />
+          <ScalarProperty Name="VersionID" ColumnName="VersionID" />
+          <ScalarProperty Name="ProjectionMethod" ColumnName="ProjectionMethod" />
+          <ScalarProperty Name="Sellout_Gold_Platinum" ColumnName="Sellout_Gold_Platinum" />
+          <ScalarProperty Name="Sellout_Silver_Below" ColumnName="Sellout_Silver_Below" />
+          <ScalarProperty Name="Scaled_Sellout" ColumnName="Scaled_Sellout" />
+          <ScalarProperty Name="Last_year_mdf" ColumnName="Last_year_mdf" />
+          <ScalarProperty Name="Previous_Period_Won_MGO_ROI" ColumnName="Previous_Period_Won_MGO_ROI" />
+          <ScalarProperty Name="Previous_Period_MGO_ROI" ColumnName="Previous_Period_MGO_ROI" />
+          <ScalarProperty Name="Previous_Period_Won_MGO" ColumnName="Previous_Period_Won_MGO" />
+          <ScalarProperty Name="Previous_Period_MGO" ColumnName="Previous_Period_MGO" />
+          <ScalarProperty Name="Current_Period_Won_MGO_ROI" ColumnName="Current_Period_Won_MGO_ROI" />
+          <ScalarProperty Name="Current_Period_MGO_ROI" ColumnName="Current_Period_MGO_ROI" />
+          <ScalarProperty Name="Current_Period_Won_MGO" ColumnName="Current_Period_Won_MGO" />
+          <ScalarProperty Name="Current_Period_MGO" ColumnName="Current_Period_MGO" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Avg_Productivity" ColumnName="Avg_Productivity" />
+          <ScalarProperty Name="PartnerTypeID" ColumnName="PartnerTypeID" />
+          <ScalarProperty Name="FinancialYearID" ColumnName="FinancialYearID" />
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="CURR_HALF_Sellout" ColumnName="CURR_HALF_Sellout" />
+          <ScalarProperty Name="Sustain_MDF" ColumnName="Sustain_MDF" />
+          <ScalarProperty Name="Growth_MDF" ColumnName="Growth_MDF" />
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Additional_Recommended_MDF" ColumnName="Additional_Recommended_MDF" />
+          <ScalarProperty Name="High_Productivity_Value" ColumnName="High_Productivity_Value" />
+          <ScalarProperty Name="Partner_Size" ColumnName="Partner_Size" />
+          <ScalarProperty Name="Prediction_Accuracy" ColumnName="Prediction_Accuracy" />
+          <ScalarProperty Name="New_Logos_MGO" ColumnName="New_Logos_MGO" />
+          <ScalarProperty Name="W_MGO_Marketing_MDF" ColumnName="W_MGO_Marketing_MDF" />
+          <ScalarProperty Name="Late_MDF" ColumnName="Late_MDF" />
+          <ScalarProperty Name="Incremental_MDF" ColumnName="Incremental_MDF" />
+          <ScalarProperty Name="Total_MDF" ColumnName="Total_MDF" />
+          <ScalarProperty Name="No_of_end_customers" ColumnName="No_of_end_customers" />
+          <ScalarProperty Name="Footprint_Growth" ColumnName="Footprint_Growth" />
+          <ScalarProperty Name="PMM" ColumnName="PMM" />
+          <ScalarProperty Name="PBM" ColumnName="PBM" />
+          <ScalarProperty Name="SOW_Growth" ColumnName="SOW_Growth" />
+          <ScalarProperty Name="SOW" ColumnName="SOW" />
+          <ScalarProperty Name="Target_Achievement" ColumnName="Target_Achievement" />
+          <ScalarProperty Name="Planned_Sales" ColumnName="Planned_Sales" />
+          <ScalarProperty Name="PREV_MDF_Assessment" ColumnName="PREV_MDF_Assessment" />
+          <ScalarProperty Name="MDF_Alignment" ColumnName="MDF_Alignment" />
+          <ScalarProperty Name="Median_Avg_MDF_Sellout" ColumnName="Median_Avg_MDF_Sellout" />
+          <ScalarProperty Name="BusinessUnitID" ColumnName="BusinessUnitID" />
+          <ScalarProperty Name="Projected_Productivity" ColumnName="Projected_Productivity" />
+          <ScalarProperty Name="Last_Period_Productivity" ColumnName="Last_Period_Productivity" />
+          <ScalarProperty Name="YoY_change_MDF" ColumnName="YoY_change_MDF" />
+          <ScalarProperty Name="Recommended_MDF" ColumnName="Recommended_MDF" />
+          <ScalarProperty Name="Last_Period_MDF" ColumnName="Last_Period_MDF" />
+          <ScalarProperty Name="YoY_change_sellout" ColumnName="YoY_change_sellout" />
+          <ScalarProperty Name="Projected_Sellout" ColumnName="Projected_Sellout" />
+          <ScalarProperty Name="Last_Period_Sellout" ColumnName="Last_Period_Sellout" />
+          <ScalarProperty Name="Business_Unit" ColumnName="Business_Unit" />
+          <ScalarProperty Name="Membership_Type" ColumnName="Membership_Type" />
+          <ScalarProperty Name="Partner_Name" ColumnName="Partner_Name" />
+          <ScalarProperty Name="PartnerID" ColumnName="PartnerID" />
+          <ScalarProperty Name="ModelParameterID" ColumnName="ModelParameterID" />
+          <ScalarProperty Name="ModelParamROutputID" ColumnName="ModelParamROutputID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlossaryScreenParameterDetails">
+      <EntityTypeMapping TypeName="MPOWR.GlossaryScreenParameterDetail">
+        <MappingFragment StoreEntitySet="GlossaryScreenParameterDetails">
+          <ScalarProperty Name="Round2" ColumnName="Round2" />
+          <ScalarProperty Name="ExtendedView" ColumnName="ExtendedView" />
+          <ScalarProperty Name="IsFilter" ColumnName="IsFilter" />
+          <ScalarProperty Name="TableColumn" ColumnName="TableColumn" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="RefinedDescription" ColumnName="RefinedDescription" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="RefinedParameter" ColumnName="RefinedParameter" />
+          <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
+          <ScalarProperty Name="ScreenID" ColumnName="ScreenID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlossaryScreenEditDetails">
+      <EntityTypeMapping TypeName="MPOWR.GlossaryScreenEditDetail">
+        <MappingFragment StoreEntitySet="GlossaryScreenEditDetails">
+          <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+          <ScalarProperty Name="Approver" ColumnName="Approver" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Formula" ColumnName="Formula" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ScreenID" ColumnName="ScreenID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GlossaryScreenParameterEditDetails">
+      <EntityTypeMapping TypeName="MPOWR.GlossaryScreenParameterEditDetail">
+        <MappingFragment StoreEntitySet="GlossaryScreenParameterEditDetails">
+          <ScalarProperty Name="ApprovalDate" ColumnName="ApprovalDate" />
+          <ScalarProperty Name="Approver" ColumnName="Approver" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="EditParameterID" ColumnName="EditParameterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_UpdateGeoConfigDetails" FunctionName="MPOWR.Store.usp_UpdateGeoConfigDetails" />
+    <FunctionImportMapping FunctionImportName="usp_UpdateMpowrUserList" FunctionName="MPOWR.Store.usp_UpdateMpowrUserList" />
+    <EntitySetMapping Name="GlossaryScreenDetails">
+      <EntityTypeMapping TypeName="MPOWR.GlossaryScreenDetail">
+        <MappingFragment StoreEntitySet="GlossaryScreenDetails">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ParentScreenID" ColumnName="ParentScreenID" />
+          <ScalarProperty Name="IsChild" ColumnName="IsChild" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="RefinedFormula" ColumnName="RefinedFormula" />
+          <ScalarProperty Name="Formula" ColumnName="Formula" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ScreenName" ColumnName="ScreenName" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_RefineGlossaryText" FunctionName="MPOWR.Store.usp_RefineGlossaryText" />
+    <FunctionImportMapping FunctionImportName="usp_UpdateGlossaryFinYear" FunctionName="MPOWR.Store.usp_UpdateGlossaryFinYear" />
+    <EntitySetMapping Name="GeoConfigDetails">
+      <EntityTypeMapping TypeName="MPOWR.GeoConfigDetails">
+        <MappingFragment StoreEntitySet="GeoConfigDetails">
+          <ScalarProperty Name="IsOverAllocation" ColumnName="IsOverAllocation" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsCountryLevel" ColumnName="IsCountryLevel" />
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppConfig">
+      <EntityTypeMapping TypeName="MPOWR.AppConfig">
+        <MappingFragment StoreEntitySet="AppConfig">
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="ScreenName" ColumnName="ScreenName" />
+          <ScalarProperty Name="Params" ColumnName="Params" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_CountryMapping">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_CountryMapping">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_CountryMapping">
+          <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+          <ScalarProperty Name="GeoMappingID" ColumnName="GeoMappingID" />
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_DataFile">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_DataFile">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_DataFile">
+          <ScalarProperty Name="FileNameForBlob" ColumnName="FileNameForBlob" />
+          <ScalarProperty Name="SelectedCriteria" ColumnName="SelectedCriteria" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+          <ScalarProperty Name="UploadedBy" ColumnName="UploadedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="DataLevel" ColumnName="DataLevel" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="ContainerName" ColumnName="ContainerName" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_FinancialYearMapping">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_FinancialYearMapping">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_FinancialYearMapping">
+          <ScalarProperty Name="FinancialYear" ColumnName="FinancialYear" />
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_GeoMapping">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_GeoMapping">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_GeoMapping">
+          <ScalarProperty Name="GeoID" ColumnName="GeoID" />
+          <ScalarProperty Name="FileID" ColumnName="FileID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_StatusMaster">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_StatusMaster">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_StatusMaster">
+          <ScalarProperty Name="WorkflowOrder" ColumnName="WorkflowOrder" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_TimeTracker">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_TimeTracker">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_TimeTracker">
+          <ScalarProperty Name="RowCount" ColumnName="RowCount" />
+          <ScalarProperty Name="SSISPRODEndTime" ColumnName="SSISPRODEndTime" />
+          <ScalarProperty Name="SSISPRODStartTime" ColumnName="SSISPRODStartTime" />
+          <ScalarProperty Name="SSISEndTime" ColumnName="SSISEndTime" />
+          <ScalarProperty Name="SSISStartTime" ColumnName="SSISStartTime" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContraWeb_Upload_Configuration">
+      <EntityTypeMapping TypeName="MPOWR.ContraWeb_Upload_Configuration">
+        <MappingFragment StoreEntitySet="ContraWeb_Upload_Configuration">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Key" ColumnName="Key" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeatureGeo">
+      <EntityTypeMapping TypeName="MPOWR.FeatureGeo">
+        <MappingFragment StoreEntitySet="FeatureGeo">
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="FeatureActionTypeID" ColumnName="FeatureActionTypeID" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+          <ScalarProperty Name="FeatureActionID" ColumnName="FeatureActionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlatDataValidationLog">
+      <EntityTypeMapping TypeName="MPOWR.FlatDataValidationLog">
+        <MappingFragment StoreEntitySet="FlatDataValidationLog">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,17 @@
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Bal.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Bal.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Core.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Dal.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Model.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\log4net.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\Newtonsoft.Json.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\EntityFramework.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Core.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Dal.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\MPOWR.Model.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\log4net.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\Newtonsoft.Json.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\bin\Debug\EntityFramework.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\obj\Debug\MPOWR.Bal.csprojResolveAssemblyReference.cache
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\obj\Debug\MPOWR.Bal.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Bal\obj\Debug\MPOWR.Bal.pdb

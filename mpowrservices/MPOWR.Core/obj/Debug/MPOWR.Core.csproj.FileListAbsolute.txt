@@ -1,0 +1,9 @@
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\MPOWR.Core.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\MPOWR.Core.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\log4net.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\Newtonsoft.Json.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\log4net.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\bin\Debug\Newtonsoft.Json.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\obj\Debug\MPOWR.Core.csprojResolveAssemblyReference.cache
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\obj\Debug\MPOWR.Core.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Core\obj\Debug\MPOWR.Core.pdb

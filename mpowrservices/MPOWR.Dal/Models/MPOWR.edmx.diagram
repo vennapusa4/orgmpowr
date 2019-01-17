@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="44d4c5ec215d452fa3dd3588b79f7d11" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="MPOWR.BusinessUnit" Width="1.5" PointX="9.75" PointY="79.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.Country" Width="1.5" PointX="5.25" PointY="87.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.CountryBudget" Width="1.5" PointX="7.5" PointY="86.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.District" Width="1.5" PointX="7.5" PointY="90.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.FinancialYear" Width="1.5" PointX="0.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.GuardRailFYConfig" Width="1.5" PointX="3" PointY="49.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.GuardRailsConfig" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.LoginAuthentication" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.MembershipType" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.Milestone" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.MilestoneFYConfig" Width="1.5" PointX="6" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.MilestoneNotification" Width="1.5" PointX="8.25" PointY="49" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.MilestoneNotificationsRole" Width="1.5" PointX="10.5" PointY="49.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.ModelOutputTable" Width="2.75" PointX="12" PointY="94.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.ModelParameterConfig" Width="2" PointX="5.25" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.ModelParameterFYConfig" Width="2.25" PointX="3" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.OrganisationType" Width="1.5" PointX="6.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.Partner" Width="1.5" PointX="9.75" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.PartnerBUBudget" Width="2" PointX="16.75" PointY="84.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="MPOWR.PartnerSalesRefreshHistory" Width="1.5" PointX="7.5" PointY="100.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.PartnerType" Width="1.5" PointX="7.5" PointY="67.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.ProgramMDF" Width="1.5" PointX="14.25" PointY="67.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.Role" Width="1.5" PointX="8.25" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.RoleFeatureActivity" Width="1.5" PointX="10.5" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.RolePartnerType" Width="1.5" PointX="10.5" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.User" Width="1.5" PointX="7.5" PointY="71.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserBusinessUnit" Width="1.5" PointX="15" PointY="73" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserCountry" Width="1.5" PointX="18" PointY="80.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserDistrict" Width="1.5" PointX="12.75" PointY="90.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserManual" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserRTM" Width="1.5" PointX="18" PointY="73" IsExpanded="true" />
+        <EntityTypeShape EntityType="MPOWR.UserType" Width="1.5" PointX="10.5" PointY="60.125" IsExpanded="true" />
+        <AssociationConnector Association="MPOWR.FK__PartnerBU__Busin__7FEAFD3E" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__UserBusin__Busin__084B3915" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__CountryBu__Count__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__District__Countr__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__PartnerSa__Count__370627FE" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__UserCount__Count__047AA831" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__CountryBu__Finan__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__UserDistr__Distr__10AB74EC" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__GuardRail__Finan__13BCEBC1" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__GuardRail__Finan__14B10FFA" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__Milestone__Finan__25DB9BFC" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__ModelPara__Finan__30592A6F" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__Milestone__Miles__29AC2CE0" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__Milestone__Miles__2C88998B" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__Milestone__RoleI__2D7CBDC4" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__ModelPara__Model__3429BB53" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__Partner__Partner__793DFFAF" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__RolePartn__Partn__0FEC5ADD" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__UserRTM__Partner__558AAF1E" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__RoleFeatu__RoleI__0D0FEE32" ManuallyRouted="false" />
+        <AssociationConnector Association="MPOWR.FK__RolePartn__RoleI__10E07F16" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MPOWR.UserGeo" Width="1.5" PointX="15" PointY="62.25" />
+        <EntityTypeShape EntityType="MPOWR.Geo" Width="1.5" PointX="0.75" PointY="12" />
+        <AssociationConnector Association="MPOWR.FK__Country__GeoID__31A25463" />
+        <AssociationConnector Association="MPOWR.FK__UserGeo__GeoID__3296789C" />
+        <EntityTypeShape EntityType="MPOWR.PartnerBudget" Width="1.5" PointX="18" PointY="56.75" />
+        <AssociationConnector Association="MPOWR.FK__PartnerBU__Partn__7EF6D905" />
+        <EntityTypeShape EntityType="MPOWR.BUBudget" Width="1.5" PointX="18" PointY="67.375" />
+        <AssociationConnector Association="MPOWR.FK__BUBudget__Busine__45F365D3" />
+        <AssociationConnector Association="MPOWR.FK__ProgramMD__BUBud__09FE775D" />
+        <EntityTypeShape EntityType="MPOWR.MDFPlanning" Width="1.5" PointX="15.75" PointY="56.125" />
+        <EntityTypeShape EntityType="MPOWR.ModelOutputSummaryTable" Width="1.5" PointX="18" PointY="40.5" />
+        <EntityTypeShape EntityType="MPOWR.ModelParameterTable" Width="1.5" PointX="18" PointY="47.5" />
+        <EntityTypeShape EntityType="MPOWR.UserRoleUserType" Width="1.5" PointX="12.75" PointY="57.75" />
+        <AssociationConnector Association="MPOWR.FK__BUBudget__Versio__57FD0775" />
+        <AssociationConnector Association="MPOWR.FK__MDFPlanni__Finan__55209ACA" />
+        <AssociationConnector Association="MPOWR.FK__MDFPlanni__Creat__5708E33C" />
+        <AssociationConnector Association="MPOWR.FK__MDFPlanni__Partn__5614BF03" />
+        <AssociationConnector Association="MPOWR.FK__ModelOutp__Versi__58F12BAE" />
+        <AssociationConnector Association="MPOWR.FK__ModelOutp__Versi__59E54FE7" />
+        <AssociationConnector Association="MPOWR.FK__ModelPara__Versi__5AD97420" />
+        <AssociationConnector Association="MPOWR.FK__PartnerBu__Versi__5BCD9859" />
+        <AssociationConnector Association="MPOWR.FK__UserRoleU__RoleI__5DCAEF64" />
+        <AssociationConnector Association="MPOWR.FK__UserRoleU__UserI__5FB337D6" />
+        <AssociationConnector Association="MPOWR.FK__UserBusin__UserR__093F5D4E" />
+        <AssociationConnector Association="MPOWR.FK__UserCount__UserR__056ECC6A" />
+        <AssociationConnector Association="MPOWR.FK__UserDistr__UserR__0FB750B3" />
+        <AssociationConnector Association="MPOWR.FK__UserSubRe__UserR__1F83A428" />
+        <AssociationConnector Association="MPOWR.FK__UserRoleU__UserT__60A75C0F" />
+        <AssociationConnector Association="MPOWR.FK__UserRTM__UserRol__0EC32C7A" />
+        <EntityTypeShape EntityType="MPOWR.PartnerSale" Width="1.5" PointX="9.75" PointY="83.75" />
+        <AssociationConnector Association="MPOWR.FK__PartnerSa__Distr__0DCF0841" />
+        <EntityTypeShape EntityType="MPOWR.ModelBUParameterTable" Width="1.5" PointX="20.25" PointY="62.875" />
+        <AssociationConnector Association="MPOWR.FK__ModelBUPa__Busin__45BE5BA9" />
+        <AssociationConnector Association="MPOWR.FK__ModelBUPa__Model__0BE6BFCF" />
+        <EntityTypeShape EntityType="MPOWR.Feature" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MPOWR.FeatureAction" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="MPOWR.FeatureActionType" Width="1.5" PointX="0.75" PointY="16.125" />
+        <EntityTypeShape EntityType="MPOWR.FocusedArea" Width="1.5" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="MPOWR.MDFVarianceReason" Width="1.5" PointX="3.375" PointY="12" />
+        <AssociationConnector Association="MPOWR.FK__FeatureAc__Featu__7EC1CEDB" />
+        <AssociationConnector Association="MPOWR.FK__FeatureAc__Featu__7FB5F314" />
+        <AssociationConnector Association="MPOWR.FK__RoleFeatu__Featu__0C1BC9F9" />
+        <EntityTypeShape EntityType="MPOWR.DataLoadRefresh" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="MPOWR.MembershipGroup" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MPOWR.ModelDefaultOutputTable" Width="1.5" PointX="18.375" PointY="24.875" />
+        <AssociationConnector Association="MPOWR.FK__ModelDefa__Versi__4A6E022D" />
+        <EntityTypeShape EntityType="MPOWR.GlossaryScreenParameterDetail" Width="1.5" PointX="24.625" PointY="1.25" />
+        <EntityTypeShape EntityType="MPOWR.GlossaryScreenEditDetail" Width="3.125" PointX="24.625" PointY="6.5" />
+        <EntityTypeShape EntityType="MPOWR.GlossaryScreenParameterEditDetail" Width="1.5" PointX="26.875" PointY="1.5" />
+        <AssociationConnector Association="MPOWR.FK__GlossaryS__EditP__53584DE9" />
+        <EntityTypeShape EntityType="MPOWR.GlossaryScreenDetail" Width="1.5" PointX="22.375" PointY="3.625" />
+        <AssociationConnector Association="MPOWR.FK__GlossaryS__Appro__507BE13E" />
+        <AssociationConnector Association="MPOWR.FK__GlossaryS__Scree__4D9F7493" />
+        <EntityTypeShape EntityType="MPOWR.GeoConfigDetails" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MPOWR.AppConfig" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_CountryMapping" Width="1.5" PointX="21.125" PointY="47.875" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_DataFile" Width="1.5" PointX="15.625" PointY="8.5" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_FinancialYearMapping" Width="1.5" PointX="17.875" PointY="14.625" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_GeoMapping" Width="1.5" PointX="17.875" PointY="11.75" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_StatusMaster" Width="1.5" PointX="13.375" PointY="9.5" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_TimeTracker" Width="1.5" PointX="17.875" PointY="8.375" />
+        <EntityTypeShape EntityType="MPOWR.ContraWeb_Upload_Configuration" Width="1.5" PointX="9.375" PointY="12.75" />
+        <EntityTypeShape EntityType="MPOWR.FeatureGeo" Width="1.5" PointX="13.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MPOWR.FlatDataValidationLog" Width="1.5" PointX="11.375" PointY="13.75" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__Count__1C9228E4" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__FileI__1AA9E072" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__GeoMa__1B9E04AB" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__FileI__16D94F8E" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__FileI__1F6E958F" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__FileI__318D45CA" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__Statu__1308BEAA" />
+        <AssociationConnector Association="MPOWR.FK__ContraWeb__GeoID__17CD73C7" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

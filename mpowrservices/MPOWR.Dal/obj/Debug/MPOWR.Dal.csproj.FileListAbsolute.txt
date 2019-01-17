@@ -1,0 +1,17 @@
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Dal.dll.config
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Dal.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Dal.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\EntityFramework.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\EntityFramework.SqlServer.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Core.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Model.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\Newtonsoft.Json.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\log4net.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Core.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\MPOWR.Model.pdb
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\EntityFramework.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\EntityFramework.SqlServer.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\bin\Debug\log4net.xml
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\obj\Debug\MPOWR.Dal.csprojResolveAssemblyReference.cache
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\obj\Debug\MPOWR.Dal.dll
+D:\MPOWR-PROD\MPOWR.Api\MPOWR.Dal\obj\Debug\MPOWR.Dal.pdb
