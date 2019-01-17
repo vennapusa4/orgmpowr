@@ -1,0 +1,292 @@
+﻿<tr>
+    <th id="partner-name" ng-click="sort('','Partner_Name','partner-name')" class="thead-border-green">
+        Partner Name
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th class="history-text-t thead-border-green" id="PartnerID" ng-if="selectedPartner[1]" ng-click="sort('','PartnerID','PartnerID')">
+        Partner ID
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="Membership_Type" ng-click="sort('','Membership_Type','Membership_Type')"
+         ng-if="PartnerTypeID == 2" class="membership-type thead-border-green">
+        MemberShip Type
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    
+    <th class="sellout-col thead-border-green">
+        <div class="row">
+            <div uib-popover="Projected sellout is based on planned sales adjusted by historical target achievement"
+                 popover-trigger="'mouseenter'"
+                 popover-placement="right"
+                 id="Projected_Sellout"
+                 ng-click="sort('Sellout','Projected_Sellout','Projected_Sellout')"
+                 ng-class="{'col-lg-12': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+                Projected <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+                <span class="fa fa-info-circle"
+                      aria-hidden="true">
+                </span>
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="Last_Period_Sellout"
+                 ng-click="sort('Sellout','Last_Period_Sellout','Last_Period_Sellout')"
+                 ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+                {{previousYear}} <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="YoY_change_sellout"
+                 ng-click="sort('Sellout','YoY_change_sellout','YoY_change_sellout')"
+                 ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+                YoY (%)
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+                Projected Accuracy
+
+            </div>
+
+        </div>
+    </th>
+    <!-- # MDF HEAD -->
+    <th class="mdf-col thead-border-green">
+        <div class="row">
+            <div uib-popover="Modeled MDF amount for each partner-BU based on the parameter set in step 3."
+                 popover-trigger="'mouseenter'"
+                 popover-placement="right"
+                 id="Recommended_MDF"
+                 ng-click="sort('MDF','Recommended_MDF','Recommended_MDF')"
+                 ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                Calculated MDF
+                <span class="fa fa-info-circle"
+                      aria-hidden="true">
+                </span>
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div uib-popover="Assessment of the magnitude of change of MDF from previous period and the alignment of the change between calculated MDF and previous period MDF and the change between projected sales and previous period sales."
+                 popover-trigger="'mouseenter'"
+                 popover-placement="right"
+                 id="MDF_Alignment"
+                 ng-click="multiSort('MDF_Alignment','MDF','MDF_Alignment','PREV_MDF_Assessment')"
+                 ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                Assessment
+                <span class="fa fa-info-circle"
+                      aria-hidden="true">
+                </span>
+                <i class="pull-right fa fa-caret-down" id="dx"></i>
+            </div>
+            <div id="Last_Period_MDF"
+                 ng-click="sort('MDF','Last_Period_MDF','Last_Period_MDF')"
+                 ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                FY17 1H Allocated MDF
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="YoY_change_MDF"
+                 ng-click="sort('MDF','YoY_change_MDF','YoY_change_MDF')"
+                 ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                YoY (%)
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+        </div>
+    </th>
+    <th class="decision-mdf thead-border-green">
+        <div class="row">
+            <div uib-popover="Final MDF allocation validated by the decision maker"
+                 popover-trigger="'mouseenter'"
+                 popover-placement="right"
+                 id="BaseLineMDF"
+                 ng-click="sort('MDF','BaseLineMDF','BaseLineMDF')"
+                 class="col-lg-6">
+                Allocated MDF
+                <span class="fa fa-info-circle"
+                      aria-hidden="true">
+                </span>
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div class="col-lg-6"
+                 popover-placement="right"
+                 ng-class="expression"
+                 uib-popover="Reason for allocating an final amount that is significantly (% determined by each geography) different than the calculated MDF."
+                 popover-trigger="'mouseenter'">
+
+                Reason for Variance
+                <span class="fa fa-info-circle" />
+
+
+            </div>
+            <!-- <div class="col-lg-4">
+                Comments
+            </div> -->
+        </div>
+    </th>
+
+
+    <th class="ms-col thead-border-green">
+        <div class="row">
+            <div id="LastYearMDFOrSellout"
+                 ng-click="sort('MDFOrSellout','LastYearMDFOrSellout','LastYearMDFOrSellout')"
+                 ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}">
+                {{previousYear}} MDF/Sellout
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="ProjectedMDFOrSellout"
+                 ng-click="sort('MDFOrSellout','ProjectedMDFOrSellout','ProjectedMDFOrSellout')"
+                 ng-class="{'col-lg-12': !msExpnd, 'col-lg-3': msExpnd}">
+                Projected MDF/Sellout
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="MedianAvdMDFOrSellout"
+                 ng-click="sort('MDFOrSellout','MedianAvdMDFOrSellout','MedianAvdMDFOrSellout')"
+                 ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}">
+                Median Avg MDF/Sellout
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+            <div id="ProductivityImprovementPer"
+                 ng-click="sort('MDFOrSellout','ProductivityImprovementPer','ProductivityImprovementPer')"
+                 ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}">
+                MDF/Sellout Improvement
+                <i class="pull-right fa fa-caret-down"></i>
+            </div>
+        </div>
+    </th>
+
+
+    
+    <th class="history-text-t thead-border-green" id="" ng-if="selectedPartner[2]">
+        PBM
+    </th>
+    <th class="history-text-t thead-border-green" id="" ng-if="selectedPartner[3]">
+        PMM
+    </th>
+    <th class="history-text-t thead-border-green" id="" ng-if="selectedPartner[4]">
+        Ranking among peers
+
+    </th>
+    <th class="history-text-t thead-border-green" id="" ng-if="selectedPartner[5]">
+        Delta between sell-in and sell-out
+
+    </th>
+    <th class="history-text-t thead-border-green" id="" ng-if="selectedPartner[6]">
+        Previous period Sellout Growth
+
+    </th>
+    <th id="PlannedSales"
+        ng-click="sort('','PlannedSales','PlannedSales')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[7]">
+        Planned saled
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="targetAchievement"
+        ng-click="sort('','targetAchievement','targetAchievement')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[8]">
+        Target Achivements
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="SOW"
+        ng-click="sort('','SOW','SOW')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[9]">
+        Last Quarter SOW
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="SOWGrowth"
+        ng-click="sort('','SOWGrowth','SOWGrowth')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[10]">
+        SOW Growth
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="FootprintGrowth"
+        ng-click="sort('','FootprintGrowth','FootprintGrowth')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[11]">
+        Footprint Growth
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="Total_MDF"
+        ng-click="sort('','Total_MDF','Total_MDF')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[12]">
+        Total MDF
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="Incremental_MDF"
+        ng-click="sort('','Incremental_MDF','Incremental_MDF')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[13]">
+        Incremental MDF
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="Late_MDF"
+        ng-click="sort('','Late_MDF','Late_MDF')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[14]">
+        Late MDF
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="W_MGO_Marketing_MDF"
+        ng-click="sort('','W_MGO_Marketing_MDF','W_MGO_Marketing_MDF')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[15]">
+        WMGO/Marketing MDF
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="New_Logos_MGO"
+        ng-click="sort('','New_Logos_MGO','New_Logos_MGO')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[16]">
+        New logos/MGO
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+
+    <!-- NEW COLUMNS -->
+
+    <th id="Last_year_MGO"
+        ng-click="sort('','Last_year_MGO','Last_year_MGO')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[17]">
+        {{previousYear}} MGO
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Last_year_MGO_ROI"
+        ng-click="sort('','Last_year_MGO_ROI','Last_year_MGO_ROI')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[18]">
+        {{previousYear}} MGO ROI
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Last_year_Won_MGO"
+        ng-click="sort('','Last_year_Won_MGO','Last_year_Won_MGO')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[19]">
+        {{previousYear}} Won MGO
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Last_year_Won_MGO_ROI"
+        ng-click="sort('','Last_year_Won_MGO_ROI','Last_year_Won_MGO_ROI')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[20]">
+        {{previousYear}} Won MGO ROI
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Last_year_mdf"
+        ng-click="sort('','Last_year_mdf','Last_year_mdf')"
+        class="history-text-t thead-border-green" id="" ng-if="selectedPartner[21]">
+        {{previousYear}} MDF
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <!-- ## MSA COL -->
+    <th class="msa-col decision-mdf" ng-show=" reseller.district.DistrictID !=0 ">
+        <div class="row">
+            <div id="MSAValue"
+                 ng-click="sort('MSA','MSAValue','MSAValue')"
+                 class="col-lg-10 thead-border-green">
+                MSA
+                <!-- <div ng-class="{'col-lg-12': !msaExpnd, 'col-lg-6': msaExpnd}" class="col-lg-12">
+                         MSA
+                 </div>
+                 <div ng-class="{'hide-elem': !msaExpnd, 'col-lg-6': msaExpnd}" class="hide-elem">
+                     Recommended MSA
+                 </div> -->
+            </div>
+
+        </div>
+    </th>
+
+
+
+
+
+</tr>

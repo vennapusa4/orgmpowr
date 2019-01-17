@@ -1,0 +1,364 @@
+<!-- ###############    ###################
+    ###############    ###################
+                  Total Tab 
+    ###############    ###################
+    ###############    ###################-->
+
+
+<div class="row table-area">
+    <div class="col-lg-4 col-md-3 col-sm-3 sticky-table">
+    
+        <table  class="heads fixed_headers table table-bordered remove-margins" ng-if="buParam == 0">
+              <thead>
+                  <tr>
+                    <th id="Partner_Name" ng-click="sort('','Partner_Name','Partner_Name')" class="headcol">
+                        Partner Name
+                        <i class="pull-right fa fa-caret-down"></i>
+                      </th>
+                      <th id="PartnerID" ng-click="sort('','PartnerID','PartnerID')">
+                        Partner ID
+                        <i class="pull-right fa fa-caret-down"></i>
+                      </th>
+                  </tr>
+
+              </thead>
+        </table>
+        <!--HEADER-->
+
+
+    
+            <table class="lazy-applicable fixed_headers table table-bordered full-table sticky-total-tab" ng-if="buParam == 0" ng-init="lazyLoading()">
+
+              <!--  Total ROW  -->
+            <tbody class="like-row">
+                <tr>
+                    <td>
+                      <!-- Partner name -->
+                        Total <span ng-if="history.Partner_Name.length > 15">...</span>
+                        <i class="fa fa-caret-down expand-btn total-expand-btn exp-x pull-right" ng-click="toogleTotal()" id="icon-{{$index}}"></i>
+                    </td>
+                    <td>
+                      <!-- PID -->
+                        -
+                    </td>
+                </tr>
+                <tr  
+                    ng-repeat="bu in total.BusinnessUnitDetails"
+                    class="summary-expand graph-row">
+                    <td>
+                          {{bu.DisplayName}}
+                          <div ng-show="showSpartlines">
+                            <nvd3 options="mdfChartOption" data="bu.mdfHistory"></nvd3>
+                            <div class="graph-title">MDF</div>
+                            <nvd3 options="selloutChartOption" data="bu.selloutHistory"></nvd3>
+                            <div class="graph-title">Sellout</div>
+                          </div>
+                    </td>
+                    <td>
+                          <div class="cont">
+                              -
+                          </div>
+                    </td>
+                </tr>
+            </tbody>
+
+            <!--END of total row-->
+
+
+                <!--Actual row-->
+                <!--<tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">
+                  <!--Duplicate PartnerID's with Focusarea-->
+            <tbody ng-repeat="history in histories track by $index " ng-if="(history.FocusedAreaID==(history.FocusedAreaID==undefined?undefined:1)) || (history.FocusedAreaID==(history.FocusedAreaID==undefined?undefined:5))" ng-init="history._parent = $index;">
+
+
+                <tr  ng-class="{'gray': $index % 2 == 0}">
+                    <td title="{{history.Partner_Name}}" class="headcol">
+                        <!-- Partner name -->
+                          {{history.Partner_Name | limitTo: 30}} <span ng-if="history.Partner_Name.length > 30">...</span>
+                          <i class="fa fa-caret-down expand-btn exp-x pull-right" ng-click="toogleCurrent($index,'reseler',history,'false')" id="icon-{{$index}}"></i>
+
+                    </td>
+                    <td title="{{ history.PartnerID}}">
+                          <!-- Partner ID -->
+                           {{history.PartnerID | limitTo: 12  }}
+                          <span ng-if="history.PartnerID.length > 12">
+                              ..
+                          </span>
+                    </td>
+                </tr>
+
+
+                  <tr
+                    class="graph-row reseler-graph-row-{{history.PartnerID}}" 
+                      ng-repeat="bu in history.businessUnits">
+                      <td>
+    
+                              {{bu.Business_Unit}}
+                              <div ng-show="showSpartlines">
+                                <nvd3 options="mdfChartOption" data="bu.mdfHistory"></nvd3>
+                              <div class="graph-title">MDF</div>
+                              <nvd3 options="selloutChartOption" data="bu.selloutHistory"></nvd3>
+                              <div class="graph-title">Sellout</div>  
+                              </div>
+
+                        </td>
+                        <td>
+                                -
+                        </td>
+                  </tr>
+
+              </tbody> 
+                <!--END of actual-->
+
+                </tr>
+              </tbody>
+            </table>
+       
+         
+    </div>
+    
+    <div class="col-lg-8 col-md-9 col-sm-9 non-sticky">
+        <!-- HEADER-->
+        <table  class="fixed_headers table table-bordered remove-margins" ng-if="buParam == 0">
+              <thead ng-include="'components/budget/partner-budget/full-view/head.html'" scope="" onload="">
+
+              </thead>
+        </table>
+        <!--HEADER-->
+
+
+        <table  id="non-sticky" class="lazy-applicable fixed_headers table table-bordered full-table" ng-if="buParam == 0" ng-init="lazyLoading()">
+
+              <!--  Total ROW  -->
+            <tbody class="like-row">
+                <tr 
+                    ng-include="'components/budget/partner-budget/full-view/total.html'">
+
+                </tr>
+                <tr  
+                    ng-repeat="bu in total.BusinnessUnitDetails"
+                    class="summary-expand graph-row" 
+                    ng-include="'components/budget/partner-budget/full-view/total-expand.html'">
+                </tr>
+            </tbody>
+
+            <!--END of total row-->
+
+
+                <!--Actual row-->
+                <!--<tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">-->
+            <!--Duplicate PartnerID's with Focusarea-->
+            <tbody ng-repeat="history in histories track by $index " ng-if="history.FocusedAreaID==(history.FocusedAreaID==undefined?undefined:1)" ng-init="history._parent = $index;">
+
+
+                <tr ng-class="{'gray': $index % 2 == 0}"
+                    ng-include="'components/budget/partner-budget/full-view/row.html'"></tr>
+
+
+                <tr class="graph-row reseler-graph-row-{{history.PartnerID}}"
+                    ng-repeat="bu in history.businessUnits"
+                    ng-include="'components/budget/partner-budget/full-view/row-expand.html'"></tr>
+
+            </tbody>
+                <!--END of actual-->
+
+                </tr>
+              </tbody>
+            </table>
+    </div>
+    
+    
+</div>
+
+
+
+
+
+
+<!-- ###############    ###################
+    ###############    ###################
+                  BU Tab (DCN,ARUBA)
+    ###############    ###################
+    ###############    ###################-->
+
+
+
+
+
+<div class="row table-area bu-table">
+    <div class="col-lg-4 col-md-3 col-sm-3 sticky-table">
+    
+        <table  class="heads fixed_headers table table-bordered remove-margins" ng-if="buParam > 0">
+              <thead>
+                  <tr>
+                    <th id="Partner_Name" ng-click="sort('','Partner_Name','Partner_Name')" class="headcol">
+                        Partner Name
+                        <i class="pull-right fa fa-caret-down"></i>
+                      </th>
+                      <th id="PartnerID" ng-click="sort('','PartnerID','PartnerID')">
+                        Partner ID
+                        <i class="pull-right fa fa-caret-down"></i>
+                      </th>
+                  </tr>
+
+              </thead>
+        </table>
+        <!--HEADER-->
+         <table class="lazy-applicable fixed_headers table table-bordered full-table sticky-total-tab" ng-if="buParam > 0" ng-init="lazyLoading()">
+
+              <!--  Total ROW  -->
+            <tbody class="like-row">
+                <tr>
+                    <td>
+                      <!-- Partner name -->
+                        Total <span ng-if="history.Partner_Name.length > 15">...</span>
+                        <i class="fa fa-caret-down expand-btn total-expand-btn exp-x pull-right" ng-click="toogleTotal()" id="icon-{{$index}}"></i>
+                    </td>
+                    <td>
+                      <!-- PID -->
+                        -
+                    </td>
+                </tr>
+                <tr class="summary-expand" style="height: 230px;">  
+                    <td>
+
+                    </td>
+                </tr>
+            </tbody>
+
+            <!--END of total row-->
+
+
+                <!--Actual row-->
+                <tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">
+
+
+
+                <tr  ng-class="{'gray': $index % 2 == 0}">
+                    <td>
+						<!-- Partner name -->
+						  {{history.Partner_Name | limitTo: 30}} <span ng-if="history.Partner_Name.length > 30">...</span>
+						  <i class="fa fa-caret-down expand-btn exp-x pull-right" ng-click="toogleInBU($index,'reseler',history,'true')" id="icon-{{$index}}"></i>
+													
+					</td>
+					<td title="{{ history.PartnerID}}">
+						  <!-- Partner ID -->
+						  {{history.PartnerID | limitTo: 12  }}
+                          <span ng-if="history.PartnerID.length > 12">
+                              ..
+                          </span>
+					</td>
+                </tr>
+                <tr class="graph-row reseler-graph-row-{{history.PartnerID}} expanded-row-bu" >
+                    <td>
+
+
+                    </td>
+                    <td>
+                            -
+                    </td>
+                </tr>
+
+
+              </tbody>
+                <!--END of actual-->
+
+                </tr>
+              </tbody>
+            </table>
+        
+    </div>
+    
+    <div class="col-lg-8 col-md-9 col-sm-9 non-sticky">
+        <!-- HEADER-->
+        <table  class="fixed_headers table table-bordered remove-margins" ng-if="buParam > 0">
+              <thead ng-include="'components/budget/partner-budget/full-view/head.html'" scope="" onload="">
+
+              </thead>
+        </table>
+        <!--HEADER-->
+
+
+        <table  id="non-sticky" class="lazy-applicable fixed_headers table table-bordered full-table" ng-if="buParam > 0" ng-init="lazyLoading()">
+
+              <!--  Total ROW  -->
+            <tbody class="like-row">
+                <tr 
+                    ng-include="'components/budget/partner-budget/full-view/total.html'">
+
+                </tr>
+                <!-- ng-repeat="bu in total.BusinnessUnitDetails" -->
+                <tr  class="summary-expand graph-row" 
+                    ng-include="'components/budget/partner-budget/full-view/total-expand-bu.html'">
+                </tr>
+            </tbody>
+
+            <!--END of total row-->
+
+
+                <!--Actual row-->
+                <tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">
+
+
+
+                <tr  ng-class="{'gray': $index % 2 == 0}"
+                  ng-include="'components/budget/partner-budget/full-view/row-bu.html'">
+
+                </tr>
+
+
+                  <tr
+                    class="graph-row" id="reseler-graph-row-{{$index}}"
+                  ng-include="'components/budget/partner-budget/full-view/row-expand-bu.html'">
+
+                  </tr>
+
+              </tbody>
+                <!--END of actual-->
+
+                </tr>
+              </tbody>
+            </table>
+    </div>
+    
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

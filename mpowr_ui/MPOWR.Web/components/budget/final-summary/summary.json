@@ -1,0 +1,128 @@
+[
+    {
+        "Description": "# of Partner"
+        , "Grew_Previous_Period": "108"
+        , "Grew_Current_Period": "98"
+        , "Grew_PoP": "-9.25926%"
+        , "Decl_Previous_Period": "91"
+        , "Decl_Current_Period": "105"
+        , "Decl_PoP": "15.3846%"
+   }
+    , {
+        "Description": "# of partner with MDF"
+        , "Grew_Previous_Period": "26"
+        , "Grew_Current_Period": "20"
+        , "Grew_PoP": "-23.0769%"
+        , "Decl_Previous_Period": "12"
+        , "Decl_Current_Period": "26"
+        , "Decl_PoP": "116.667%"
+   }
+    , {
+        "Description": "% of partner with MDF"
+        , "Grew_Previous_Period": "24%"
+        , "Grew_Current_Period": "20%"
+        , "Grew_PoP": "-4%"
+        , "Decl_Previous_Period": "13%"
+        , "Decl_Current_Period": "24%"
+        , "Decl_PoP": "11%"
+   }
+    , {
+        "Description": "# of new partner"
+        , "Grew_Previous_Period": "0"
+        , "Grew_Current_Period": "0"
+        , "Grew_PoP": "0"
+        , "Decl_Previous_Period": "0"
+        , "Decl_Current_Period": "0"
+        , "Decl_PoP": "0"
+   }
+    , {
+        "Description": "# of underfunded partner"
+        , "Grew_Previous_Period": "0"
+        , "Grew_Current_Period": "0"
+        , "Grew_PoP": "0"
+        , "Decl_Previous_Period": "0"
+        , "Decl_Current_Period": "0"
+        , "Decl_PoP": "0"
+   }
+    , {
+        "Description": "# of overfunded partner"
+        , "Grew_Previous_Period": "0"
+        , "Grew_Current_Period": "0"
+        , "Grew_PoP": "0"
+        , "Decl_Previous_Period": "0"
+        , "Decl_Current_Period": "0"
+        , "Decl_PoP": "0"
+   }
+    , {
+        "Description": "Sellout ($K)"
+        , "Grew_Previous_Period": "$378199433"
+        , "Grew_Current_Period": "$96232303"
+        , "Grew_PoP": "-100%"
+        , "Decl_Previous_Period": "$33896860"
+        , "Decl_Current_Period": "$131355091"
+        , "Decl_PoP": "200%"
+   }
+    , {
+        "Description": "Sellout for partners with MDF ($K)"
+        , "Grew_Previous_Period": "$366465590"
+        , "Grew_Current_Period": "$81252123"
+        , "Grew_PoP": "-100%"
+        , "Decl_Previous_Period": "$26831424"
+        , "Decl_Current_Period": "$126758664"
+        , "Decl_PoP": "300%"
+   }
+    , {
+        "Description": "Sellout for partners with MDF (%)"
+        , "Grew_Previous_Period": "88%"
+        , "Grew_Current_Period": "35%"
+        , "Grew_PoP": "-53%"
+        , "Decl_Previous_Period": "20%"
+        , "Decl_Current_Period": "55%"
+        , "Decl_PoP": "35%"
+   }
+    , {
+        "Description": "MDF ($K)"
+        , "Grew_Previous_Period": "$2104630"
+        , "Grew_Current_Period": "$799896"
+        , "Grew_PoP": "-100%"
+        , "Decl_Previous_Period": "$790901"
+        , "Decl_Current_Period": "$2612433"
+        , "Decl_PoP": "200%"
+   }
+    , {
+        "Description": "MDF \/ Total MDF (%)"
+        , "Grew_Previous_Period": "72%"
+        , "Grew_Current_Period": "23%"
+        , "Grew_PoP": "-49%"
+        , "Decl_Previous_Period": "27%"
+        , "Decl_Current_Period": "76%"
+        , "Decl_PoP": "49%"
+   }
+    , {
+        "Description": "Average MDF\/Partner ($K)"
+        , "Grew_Previous_Period": "$ 80947.00"
+        , "Grew_Current_Period": "$ 39994.80"
+        , "Grew_PoP": "-50.59%"
+        , "Decl_Previous_Period": "$ 65908.00"
+        , "Decl_Current_Period": "$ 100478.19"
+        , "Decl_PoP": "52.45%"
+   }
+    , {
+        "Description": "MDF \/ Sellout (%)"
+        , "Grew_Previous_Period": "0%"
+        , "Grew_Current_Period": "0%"
+        , "Grew_PoP": "0%"
+        , "Decl_Previous_Period": "2%"
+        , "Decl_Current_Period": "2%"
+        , "Decl_PoP": "0%"
+   }
+    , {
+        "Description": "Sellout \/ MDF ($)"
+        , "Grew_Previous_Period": "$174"
+        , "Grew_Current_Period": "$102"
+        , "Grew_PoP": "-41%"
+        , "Decl_Previous_Period": "$34"
+        , "Decl_Current_Period": "$49"
+        , "Decl_PoP": "44%"
+   }
+]

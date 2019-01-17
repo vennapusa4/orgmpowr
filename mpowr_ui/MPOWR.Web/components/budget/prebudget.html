@@ -1,0 +1,312 @@
+<nav class="navbar navbar-fixed-top">
+    <nav-bar></nav-bar>
+</nav>
+
+<div class="row prebudgetLayout">
+    <div>
+        <div class="col-md-12 col-sm-12 col-lg-12 export-box">
+            <div class="col-lg-4 col-md-4 col-xs-4">
+            </div>
+            <div class="col-md-8 col-sm-8 col-lg-8"  ng-if="isAdmin">
+                <button class="export-button" ng-click="exportBudget()">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT Budget Report</label></div>
+                </button>
+                <button class="export-button" ng-click="exportCarveout()">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT Carveout Report</label></div>
+                </button>
+            </div>
+            </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-xs-4 custom-pan">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default shade-2">
+                <div class="panel-heading panelHeading">
+                    <h4 class="panel-title">
+                        <h5 class="model-head">
+                            Create New Plan
+                        </h5>
+                        <i class="indicator expand-btn model-btn" style="cursor:pointer" ng-class="{'glyphicon glyphicon-chevron-up': collapse, 'glyphicon glyphicon-chevron-down':  !collapse}" id="exp_0" ng-click="expand('collapse')" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+
+                        </i>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+
+                        <div class="select-region">
+                            <!--<div class="header">
+                                <h4>Select Geography &amp; Budget </h4>
+                            </div>-->
+
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Geo
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9">
+
+                                    <select class="custom-dropdown custom-dropdownPreBudget"
+                                            ng-options="geoData as geoData.DisplayName for geoData in geo track by geoData.GeoID"
+                                            ng-model="selectedGeo"
+                                            ng-change="OnGeoChange(selectedGeo)"></select>
+                                </div>
+                            </div>
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Country
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+
+                                    <div class="custom-dropdown countryDropdown"
+                                         ng-dropdown-partselect=""
+                                         options="countries"
+                                         selected-model="selectedCountry"
+                                         checkboxes="true"
+                                         extra-settings="example12settings"
+                                         display-Prop="DisplayName"
+                                         external-id-prop="CountryID"
+                                         ng-click="changeCountryOrDistrict();">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="partner">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Budget
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9">
+                                    <select class="custom-dropdown"
+                                            ng-options="partner as partner.PartnerName for partner in partners track by partner.PartnerTypeID"
+                                            ng-model="selectedPartner"
+                                            ng-change="OnPartnerChange(selectedPartner)"></select>
+                                </div>
+                            </div>
+                            <div class="country" ng-hide="hideMembership">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Membership
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9">
+
+                                    <select class="custom-dropdown custom-dropdownPreBudget"
+                                            ng-options="membershipData as membershipData.MembershipName for membershipData in memberships track by membershipData.MembershipGroupID"
+                                            ng-model="selectedMembership"></select>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <button ng-disabled="selectedPartner.PartnerTypeID === -1 ||(UserData.UserTypeID==1 ||UserData.UserTypeID==2 ?selectedCountry.length==0:false)||selectedGeo.GeoID===-1||(selectedPartner.PartnerTypeID >= 2 && selectedMembership.MembershipGroupID === null)" class="btn btn-green pull-right login-button" ng-click="procced()">
+                                    Proceed
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default shade-2">
+                <div class="panel-heading panelHeading">
+                    <h4 class="panel-title">
+                        <h5 class="model-head" class="accordion-toggle collapsed">
+                            Search Criteria
+                        </h5>
+                        <i class="indicator  expand-btn model-btn" style="cursor:pointer" id="exp_0" ng-class="{'glyphicon glyphicon-chevron-up': collapse1, 'glyphicon glyphicon-chevron-down':  !collapse1}" id="exp_0" ng-click="expand('collapse1')"  data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></i>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse set-bound">
+
+                    <div class="panel-body ">
+                        <div class="select-region">
+                            <div class="partner">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Geo
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+                                    <select class="custom-dropdown custom-dropdownPreBudget"
+                                            ng-options="geoData as geoData.DisplayName for geoData in SC_Geo track by geoData.GeoID"
+                                            ng-model="searchCriteria.SC_GeoSelectedValues"
+                                            ng-change="SC_geoChange()"></select>
+                                </div>
+                            </div>
+
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Country
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+
+                                    <div class="custom-dropdown countryDropdown dropdown-toggle" id="example40"
+                                         ng-dropdown-partselect=""
+                                         options="SC_Countries"
+                                         selected-model="searchCriteria.SC_CountrySelectedValues"
+                                         checkboxes="true"
+                                         extra-settings="example12settings"
+                                         display-Prop="DisplayName"
+                                         external-id-prop="CountryID"
+                                         ng-click="SC_CountryChange()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        District
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+                                    <div id="example39" class="custom-dropdown countryDropdown dropdown-toggle"
+                                         ng-dropdown-partselect=""
+                                         options="SC_Districts"
+                                         selected-model="searchCriteria.SC_DistrictValues"
+                                         checkboxes="true"
+                                         extra-settings="example12settings"
+                                         display-Prop="DistrictName"
+                                         external-id-prop="DistrictID"
+                                         ng-click="SC_DistrictChange()">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Budget
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+
+                                    <select class="custom-dropdown custom-dropdownPreBudget"
+                                            ng-options="Partners as Partners.PartnerName for Partners in SC_Partner track by Partners.PartnerTypeID"
+                                            ng-model="searchCriteria.SC_BudgetSelectedValues"
+                                            ng-change="SC_OnPartnerChange()"></select>
+                                </div>
+                            </div>
+
+
+                            <div class="country">
+
+                                <div class="col-lg-3 col-xs-3">
+                                    <label>
+                                        Financial Period
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-9 col-xs-9 customs">
+                                    <select class="custom-dropdown custom-dropdownPreBudget"
+                                            ng-options="FP as FP.Financialyear for FP in SC_FinancialPeriod track by FP.FinancialyearID"
+                                            ng-model="searchCriteria.SC_FinantialPeriodSelectedValues"
+                                            ng-change="SC_FyChange()"></select>
+                                </div>
+                            </div>
+                            <div class="country">
+                                <div class="col-lg-5 col-xs-3">
+                                    <label>Show Inactive</label>
+                                </div>
+                                <div class="col-lg-7 col-xs-9">
+                                    <input type="checkbox" id="active" ng-model="inactive" ng-change="showInActiveGeos(inactive)" />
+                                    <label class="check" for="active"><span class="check-label"></span></label>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <button type="button"
+                                        class="btn btn-green pull-left login-button"
+                                        style="margin-left: 10px;"
+                                        ng-click="reset_SC()">
+                                    Reset
+                                </button>
+                                <button type="button"
+                                        class="btn btn-green pull-right login-button"
+                                        ng-click="search()">
+                                    Search
+                                </button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="col-md-8 col-sm-8 col-lg-8 " ng-if="isAdmin">
+        <div class="col-md-12 col-sm-12 col-lg-12 export-box">
+            <div class="col-md-12 col-sm-12 col-lg-12" >
+                <button class="export-button" ng-click="exportBudget()">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT Budget Report</label></div>
+                </button>
+                <button class="export-button" ng-click="exportCarveout()">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT Carveout Report</label></div>
+                </button>
+                <button class="export-button">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT Partner MDF Report</label></div>
+                </button>
+            </div>
+        </div>
+    </div>-->
+        <div class="col-md-8 col-sm-8 col-lg-8 ">
+            
+            <div class="select_criteria">
+
+                <div class="data-area-container prebuj_grid ">
+                    <table class="table table-bordered table-hover preBudget_table table-responsive">
+                        <thead>
+                            <tr class="header">
+                                <th>Financial Year</th>
+
+                                <th>Geo</th>
+                                <th>Country List</th>
+                                <th>District</th>
+                                <th>Budget</th>
+                                <th>Membership</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in searchResults" ng-click="SC_proceed(x)">
+                                <td>{{x.FinancialYear}}  </td>
+
+                                <td>{{x.Geo[0].DisplayName}}</td>
+                                <td><span ng-repeat="countries in x.Country">{{countries.DisplayName}}  <i ng-if="$index + 1 < x.Country.length">, </i></span> </td>
+                                <td>{{x.District[0].DistrictName}}</td>
+                                <td>{{x.PartnerType[0].PartnerName}}</td>
+                                <td>{{x.Membership[0].MembershipName}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>

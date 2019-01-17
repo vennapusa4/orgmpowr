@@ -1,0 +1,601 @@
+﻿
+
+<section class="model-page">
+    <breadcrumb-bar>
+
+    </breadcrumb-bar>
+    <!-- Country and Bucket -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header">
+			<div class="col-lg-6">
+				
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 country">
+					<div class="col-lg-6 country-box">
+						<div class="col-lg-3 lbl">
+							<label>Country</label>
+						</div>
+						<div class="col-lg-9 control">
+							<div class="input-group">
+							  <span class="input-group-addon" id="basic-addon1" style="padding-right: 18px;">
+							  	<i class="fa fa-globe globe"></i>
+							  </span>
+							  <input type="text" readonly class="form-control" placeholder="Country" ng-model="resellerPartner.obj.name" aria-describedby="basic-addon1">
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 country-box">
+						<div class="col-lg-3 lbl col-lg-offset-1">
+							<label>Bucket</label>
+						</div>
+						<div class="col-lg-8 control">
+							<div class="input-group">
+							  
+							  <input type="text"  readonly class="form-control partner-input" placeholder="Country" ng-model="resellerPartner.partner.PartnerName" aria-describedby="basic-addon1">
+							</div>
+						</div>
+					</div>
+				</div>
+			
+	</div>
+	<!-- End of Country and Bucket -->
+
+	<!-- Tabs -->
+	<div class="col-lg-12 tabs">
+		<ul>
+		  <li class="active-tab"><a href="#home">TOTAL</a></li>
+		  <li><a href="#news">DCN COMPUTE</a></li>
+		  <li><a href="#contact">ARUBA</a></li>
+		  <li><a href="#about">STORAGE</a></li>
+		  <li><a href="#about">SERVICE</a></li>
+		</ul>
+
+		<div class="page-container">
+			<!-- left panel  -->
+			<div class="col-lg-3 custom-pan">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a style="color:#18b488;font-weight:bold;font-size:15px" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Model Parameter Summary
+                                </a>
+                                <i class="fa fa-chevron-down expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p style="font-weight:bold;font-size:14px">
+                                    Expected Productivity Improvement based on Historical Partner Productivity
+                                    <!-- Above median below 3rd Q  -->
+                                </p><br />
+                                <br /><p style="font-weight:bold;font-size:13px">Above median below 3rd Q</p>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" id="3rd_dcncompute"class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text"id="3rd_storage" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" id="3rd_aruba" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" id="3rd_service" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <!-- Below 1Q  -->
+                                <div>
+                                    <p>&nbsp;</p> <p style="font-weight:bold;font-size:13px">Below 1Q</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <!-- Above 1Q below median  -->
+                                <div>
+                                    <p>&nbsp;</p> <p style="font-weight:bold;font-size:13px">Above 1Q below median</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <p>&nbsp;</p> <p style="font-weight:bold;font-size:13px">Min Partner Investment</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <p>&nbsp;</p> <p style="font-weight:bold;font-size:13px">New Partner Ramp up Scale</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>&nbsp;</p> <p style="font-weight:bold;font-size:13px">Preferred Partner Cut-off(sales growth%)</p>
+                                </div>
+                                <p>&nbsp;</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">DCN Compute</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Storage</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Aruba</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-4 no-padding">
+                                        <label class="lbl-mp">Service</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="5%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a style="color:#18b488;font-weight:bold;font-size:15px" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    Set Boundaries for MDF Change from Last Period
+                                </a>
+                                <i class="fa fa-chevron-down expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse in">
+                            <div class="panel-body font-black">
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">High Decline</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">Decline %</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <input type="text" class="form-control" value="-50%" />
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Moderate Decline</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">Decline %</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <input type="text" class="form-control" value="-50%" />
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Low Decline</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-6 no-padding">
+                                            <label class="lbl-mp align-vertical">Decline %</label>
+                                        </div>
+                                        <div class="col-lg-6 no-padding">
+                                            <input type="text" class="form-control" value="-50%" />
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Steady</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Low Growth</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Moderate Growth</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body font-black">
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">High Growth</label>
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <label class="lbl-mp align-vertical">-20% to 100%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                    <div class="col-lg-6 no-padding">
+                                        <input type="text" class="form-control" value="-50%" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a style="color:#18b488;font-weight:bold;font-size:15px" class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Advanced Inputs
+                                </a>
+                                <i class="fa fa-chevron-down expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse in">
+                            <div class="panel-body font-black">
+                                <h5>Projected scales</h5>
+                                <p>Historical Project Accomplishment</p>
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Moderate Decline</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div> 
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Moderate Decline</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div> 
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Mediate Precision</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div>    
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Mediate Precision</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div> 
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Max</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div>  
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Max</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div>    
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Min</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div>    
+                                <div class="col-lg-6 no-padding mp-boxes">
+                                    <div class="col-lg-12 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Min</label>
+                                        <input type="text" class="form-control input-width" value="-50%">
+                                    </div>
+
+                                </div> 
+                                <div class="panel-section">
+                                    <h5>Productivity</h5>
+                                    <p>weights applied in average Historical calculations</p>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-12 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Moderate Decline</label>
+                                            <input type="text" class="form-control input-width" value="-50%">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-12 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Moderate Decline</label>
+                                            <input type="text" class="form-control input-width" value="-50%">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-12 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Mediate Precision</label>
+                                            <input type="text" class="form-control input-width" value="-50%">
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 no-padding mp-boxes">
+                                        <div class="col-lg-12 no-padding">
+                                            <label class="lbl-mp align-vertical row-head">Mediate Precision</label>
+                                            <input type="text" class="form-control input-width" value="-50%">
+                                        </div>
+
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				
+			
+			</div>
+			<!-- end of left panel -->
+			<!-- Container -->
+			<div class="col-lg-9">
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+                        <a href="model-parameters.html">model-parameters.html</a>
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+				<div class="col-lg-4 graph-box">
+					<div class="panel panel-default shade-2">
+					  <div class="panel-body">Panel Content</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of container -->
+		</div>
+	</div>	
+
+<!-- End of tabs -->
+</section>

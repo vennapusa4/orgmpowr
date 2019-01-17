@@ -1,0 +1,197 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+<form name="ModelParameter" novalidate>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 user-management partner-credit guardrial">
+        <div class="col-lg-12 data-container user-management role guardrial">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="nothing">
+                                <!-- Regins -->
+                                <div class="btn-group guard-link col-lg-1 col-md-1 col-sm-1 left-padding" ng-repeat="region in regions">
+                                    <a ng-click="setActive(region,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"
+                                       class="guard-link account-heading"
+                                       ng-class="{active : activeMenu == region.Region.RegionId }">
+                                        {{ region.Region.DisplayName }}
+                                    </a>
+                                </div>
+
+                                <!-- Finantial Year -->
+                                <div class="btn-group financial col-lg-7 col-md-3 col-sm-3 left-padding pull-right">
+                                    <label class="model-financial cursor-auto">Financial Period</label>
+                                    <div class="btn-group financial col-lg-5 col-md-3 col-sm-3 left-padding right-padding">
+
+                                        <select class="form-control"
+                                                ng-model="selectedYear"
+                                                ng-options="year.year.ShortName for year in years"
+                                                ng-change="setActive(activeDummyMenu,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"></select>
+                                        <span class="caret dropdown model-financial"></span>
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <!-- model parameter Data -->
+                    <tr>
+                        <td class="model-row-head">
+
+                            <span class="nothing">
+                                <div class="btn-group col-lg-12 col-md-12 col-sm-12 left-padding body model-row-expected">
+                                    <label class="display-block cursor-auto">
+                                        Expected Productivity
+                                    </label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="model-row-content">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding body model-row-default">
+                                    <label class="model-row-content-label">
+                                        Default value for High Performer
+                                    </label>
+                                </div>
+                                <div  ng-class="{'has-error': ModelParameter.HighPerformerProductivity.$invalid && !ModelParameter.HighPerformerProductivity.$pristine }"
+                                     class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body model-row-default">
+
+                                    <div class="inputText1 input-group model-input-group ">
+                                        <input 
+                                               type="number"
+                                               required max="100"
+                                               name="HighPerformerProductivity"
+                                               ng-model="HighPerformerProductivity"
+                                               class="model-input input-border   percentage"
+                                               id="txtCountryName">
+
+                                        <span class="input-group-addon percentage-guardrail model-span">%</span>
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="model-param-list">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding body model-row-high">
+                                    <label class="model-row-content-label">
+                                        High Performer to Medium Performer ratio
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body model-row-high">
+                                    <div ng-class="{'has-error': ModelParameter.MediumPerformerProductivityRatio.$invalid && !ModelParameter.MediumPerformerProductivityRatio.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+
+                                        <input required max="100"
+                                               type="number"
+                                               name="MediumPerformerProductivityRatio"
+                                               class="form-control input-border model-input"
+                                               id="MediumPerformerProductivityRatio"
+                                               ng-model="MediumPerformerProductivityRatio">
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="model-param-list">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding body model-row-high">
+                                    <label class="model-row-content-label">
+                                        High Performer to Low Performer ratio
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body model-row-high">
+
+                                    <div ng-class="{'has-error': ModelParameter.LowPerformerProductivityRatio.$invalid && !ModelParameter.LowPerformerProductivityRatio.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <input required max="100"
+                                               type="number"
+                                               name="LowPerformerProductivityRatio"
+                                               class="form-control input-border model-input"
+                                               id="LowPerformerProductivityRatio"
+                                               ng-model="LowPerformerProductivityRatio">
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Modal to copy Finantial year-->
+    <div class="modal fade" id="myModalguardcopy" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content copyto-model">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" id="saveClose">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Copy To
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form">
+                    <form role="form">
+                        <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                            <label for="exampleInputEmail1">Select Financial Period</label>
+                            <select class="form-control"
+                                    ng-model="selectedYearForCopy"
+                                    ng-options="year.year.ShortName for year in years"></select>
+                            <span class="caret dropdown model-copyto"></span>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button type="button" class="btn btn-default theme-colr"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button type="button" class="btn btn-primary theme-colr" ng-disabled="ModelParameter.$invalid" ng-click="copyYearData(activeMenu,selectedYearForCopy.year.FinancialYearID)">
+                        COPY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+       
+        <div class="col-lg-9 col-md-8 col-sm-8">
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+            <!-- copy Button -->
+
+            <div class="col-lg-3 col-md-2 col-sm-2 icon-holder cursor-point" data-toggle="modal" data-target="#myModalguardcopy">
+                <div><img class="model-copy" src="assets/resources/copy_calculated@1x.png"></div>
+                <div class="copy-label"><label>COPY</label></div>
+            </div>
+            <!-- Save Button -->
+            <div class="col-lg-3 col-md-2 col-sm-2 icon-holder">
+                <button class="save-disabled-footer" class="btn" ng-click="save()" ng-disabled="ModelParameter.$invalid">
+                    <div><img src="assets/resources/save@1x.png"></div>
+                    <div class="copy-label cursor-auto">
+                        <label class="cursor-auto">
+                            SAVE
+                        </label>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("a").tooltip();
+        });
+    </script>

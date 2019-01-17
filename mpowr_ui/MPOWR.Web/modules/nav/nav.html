@@ -1,0 +1,183 @@
+<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 hpe-navbar">
+    <div class="icon" ng-click="toggle()" ng-show="expandBut">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1 left-items">
+
+        <div class="logo">
+            <img src="assets/images/logo-mpowr.png" class="img-responsive">
+        </div>
+        <p><strong>{{version}}</strong></p>
+    </div>
+    <div class="right-items rigt-items pull-right">
+        <div class="avtar glossary">
+            <i class="fa glossary-img" style="font-size:34px"><a href="" ng-click="logout()"><button type="button" class="btn logout-icon glossary" style="margin-left: 82%;"><span class=""></span></button></a></i>
+        </div>
+        <div class="user">
+            <div class="name">
+            </div>
+        </div>
+    </div>
+    <div class="right-items rigt-items pull-right">
+        <div class="icnn avtar"><i class="fa fa-user-circle-o" style="font-size:28px"></i></div>
+        <div class="user">
+            <div class="name">
+                <div>Hi {{userName}}!</div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="configdays == 'true'" class="right-items rigt-items pull-right ">
+        <div class="icn user">
+            <div class="glossary">
+                <span id="notification_count">1</span>
+                <a class="anc" style="cursor: pointer;color:cadetblue;"
+                   uib-popover="Alert Notification" popover-trigger="'mouseenter'"
+                   popover-placement="bottom"
+                   ng-click="DataRefreshModel()" data-toggle="modal" data-target="#DataRefreshModel">
+                    <i class="fa fa-bell"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="right-items rigt-items pull-right" ng-if="isAdmin">
+        <div class="glossary">
+            <a ui-sref="admin.user-management"
+               uib-popover="Admin settings"
+               popover-trigger="'mouseenter'"
+               popover-placement="bottom">
+                <img class="setting-top-margin" src="assets/resources/Settings@1x.png" />
+            </a>
+
+        </div>
+    </div>
+    <div class="right-items rigt-items pull-right ">
+        <a class="anc"
+           ng-click="UserManual()" data-toggle="modal" data-target="#UserManualModel">
+
+            <img style="cursor:pointer" src="assets/resources/Training Doc@1x.png" alt="Download training document" />
+        </a>
+    </div>
+    <div class="right-items rigt-items pull-right">
+
+        <div class="avtar glossary">
+            <i class="fa glossary-img" style="font-size:34px"><button type="button" class="btn glossary-img glossary" ng-click="refreshDirective()" style="margin-left: 82%;" data-toggle="modal" data-target="#myModal"><span class=""></span></button></i>
+
+        </div>
+        <div class="user">
+            <div class="glossary">
+
+                <div><a style="cursor:pointer" ng-click="refreshDirective()" data-toggle="modal" data-target="#myModal">Glossary</a></div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="pull-right nav-menu">
+        <div class="right-items rigt-items  pull-right" ng-if="UpdatedDate.length > 0">
+            <div class="user">
+                <div class="name">
+                    <div>Last Updated:{{' ' + UpdatedDate }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="right-items rigt-items pull-right pmp-div">
+            <div class="user">
+                <div class="name">
+
+                    <a style="text-decoration:none;" class="report-link" title="This link will open only on HPE network or over VPN and only if users already have access.
+To request access to any of the above dashboard they should visit the Marketing Dashboards Portal" target="_blank" href="https://qlikview-pro.glb1.hpecorp.net/QvAJAXZfc/opendoc.htm?document=GlobalMarketing/Marketing_PMM_Dashboard.qvw&host=QVS@HpePro">
+                        PMP Report
+                    </a>
+                </div>
+            </div>
+
+            <div ng-if="testt.user.DataUpload" class="user" style="margin-left: 8px;">
+                <div class="name">
+
+                    <a style="text-decoration:none;cursor:pointer" ng-click="switchToDataUpload()" class="report-link" title="This link will open Data Upload Tool">
+                        <i style="font-size: x-large;margin-top: -6px;margin-left: 3px;" class="fa fa-cloud-upload"></i>
+                        <span style="float: right;padding-left: 3px;">Data Upload</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--<div class="right-items rigt-items  pull-right">
+            <div class="user">
+                <div class="name">
+
+                    <div>Policies</div>
+                </div>
+            </div>
+        </div>
+        <div class="right-items rigt-items  pull-right">
+            <div class="user">
+                <div class="name">
+
+                    <div>Governance</div>
+                </div>
+            </div>
+        </div>
+        <div class="right-items rigt-items  pull-right">
+            <div class="user">
+                <div class="name">
+
+                    <div style="color:#18b488;"><b>MDF Strategy</b></div>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="right-items rigt-items  pull-right" style="padding-right: 15px;">
+            <div class="user">
+                <div class="name">
+                    <div style="cursor: pointer;color: #597ab7;"
+                         onclick="window.location.href = '#/prebudget'">
+                        Home
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+<style>
+        #notification_count {
+            padding: 3px 7px 3px 7px;
+            background: #cc0000;
+            color: #ffffff;
+            font-weight: bold;
+            margin-left: 10px;
+            border-radius: 9px;
+            -moz-border-radius: 9px;
+            -webkit-border-radius: 24px;
+            position: absolute;
+            margin-top: -11px;
+            font-size: 11px;
+        }
+
+        .fa.fa-bell {
+            font-size: large;
+        }
+        /*.hpe-navbar .right-items .user {
+         padding-top: 12px;
+    }*/
+        .icn {
+            margin-top: 2px;
+        }
+
+        div.icnn.avtar {
+            padding-top: 2px !important;
+        }
+
+        .hpe-navbar .right-items .avtar {
+            height: 28px;
+            width: 28px;
+            border-radius: 28px;
+            background-color: #EEE;
+            float: left;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+</style>

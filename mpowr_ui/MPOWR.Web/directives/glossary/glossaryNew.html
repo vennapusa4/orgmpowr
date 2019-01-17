@@ -1,0 +1,163 @@
+﻿<div id="myModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="classModalLabel">
+                    Glossary
+                </h4>
+
+            </div>
+            <div class="modal-body glossary-content style-3">
+                <div ng-repeat="menu in Data">
+                    <h5 ng-if="menu.pageName!='Partner Budget Table icons'" style="margin-bottom:20px;">{{menu.pageName}}</h5>
+                    <table ng-if="menu.pageName!='Partner Budget Table icons'" id="classTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td style="width: 21%" class="name_parameter">Name of the Parameter</td>
+                                <td class="name_parameter">Description</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  ng-repeat="ParameterData in menu.ParameterDetails">
+                                <td class="name">
+                                    {{ParameterData.ParameterName}}
+                                </td>
+                                <td  ng-bind-html="ParameterData.Description">
+                                   
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 ng-if="menu.pageName=='Partner Budget Table icons'" style="margin-bottom:20px;">{{menu.pageName}}</h5>
+                    <p ng-bind-html="menu.Description" ng-if="menu.pageName=='Partner Budget Table icons'"></p>
+                    <br />
+                    <table ng-if="menu.pageName=='Partner Budget Table icons'" id="classTable" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td style="width: 7%" class="name_parameter">
+                                    Icon
+                                </td>
+                                <td style="width: 24%" class="name_parameter">
+                                    Icon name
+                                </td>
+                                <td style="width: 28%" class="name_parameter">
+                                    Criteria
+                                </td>
+                                <td style="width: 41%" class="name_parameter">
+                                    Definitions / Formula
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ParameterData in menu.ParameterDetails">
+                                <td class="name"><img ng-src={{ParameterData.Icon}} data-toggle="dropdown" class="dropdown-toggle"></td>
+                                <td><b>{{ParameterData.ParameterName}}</b></td>
+                                <td  ng-bind-html="ParameterData.Description">
+                                </td>
+                                <td ng-if="$index==0" ng-bind-html="menu.Formula" rowspan="4">
+                                  
+
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-green" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="DataRefreshModel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <br/><br />
+                <p> <b> Dear M-POWR user, </b></p>
+</div>
+                <div class="modal-body  style-3">
+                    <p>
+                        <b>
+                             <!--</br></br>--> Please be informed that historical data has been refreshed in MPOWR tool
+                            <span style='color:#e4876d'> on {{searchResults[0].MailSentDate}}</span> according to the below table of <span style='color:#e4876d'>Geos</span>.</br>Data refresh applies to Sellout, MDF history, Planned/Projected sales. </br></br> The last quarter of Sales data is <span style='color:#e4876d'> {{searchResults[0].Quarter}} (latest available completed Q). </span> </br>
+                    </p>
+                    <table id='users'>
+                        <thead>
+                            <tr>
+                                <th rowspan='2'>Geography</th>
+                                <th colspan='3' style='text-align:center;'>DataType</th>
+                                <th rowspan='2'>Date as of</th>
+                            </tr>
+                            <tr>
+                                <th>Sellout</th>
+                                <th>MDF<br /> History</th>
+                                <th>Planned/Projected<br /> Sales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in searchResults">
+                                <td>{{item.Geo}}</td>
+                                <td ng-if="item.Sellout== true" style='color:green'>&#x2714;</td>
+                                <td ng-if="item.Sellout== false" style='color:red'>&#x2716;</td>
+                                <td ng-if="item.MDFHistory== true" style='color:green'>&#x2714;</td>
+                                <td ng-if="item.MDFHistory== false" style='color:green'>&#x2716;</td>
+                                <td ng-if="item.Planned_ProjectedSales== true" style='color:green'>&#x2714;</td>
+                                <td ng-if="item.Planned_ProjectedSales== false" style='color:red'>&#x2716;</td>
+                                <td>{{item.LatestDataRefresh | date}}</td>
+                             </tr>
+                        </tbody>
+                    </table>
+                    </br>
+
+                </div>
+            </div>
+    </div>
+</div>
+
+     <!-- For Alert -->
+<style>
+    #users {
+        /*font-family: 'sans - serif';*/
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #users td, #users th {
+            border: 1px solid black;
+            padding: 3px;
+        }
+
+        #users th {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            text-align: left;
+            background-color: #C6CACB;
+            color: black;
+        }
+
+        #users th, #users td {
+            text-align: center;
+            font-weight: medium;
+        }
+    
+   #DataRefreshModel .modal-lg {
+            width: 548px  !important;
+        }
+
+        
+</style>

@@ -1,0 +1,213 @@
+<td>
+    <!-- Partner name -->
+    {{history.Partner_Name | limitTo: 40}} <span ng-if="history.Partner_Name.length > 40">...</span>
+
+    <i class="fa fa-caret-down expand-btn exp-x pull-right" ng-click="toogleInBU($index,'reseler',history,'true')" id="icon-{{$index}}"></i>
+</td>
+<td>
+    <!-- Partner ID -->
+    {{history.PartnerID  }}
+</td>
+<td>
+    <div ng-show="reseller.partner.PartnerTypeID == 2">
+        {{
+          history.Membership_Type.toUpperCase()
+        }}
+    </div>
+    <div ng-show="reseller.partner.PartnerTypeID == 1">
+        -
+    </div>
+</td>
+<td>
+    <!-- Projected Sellout -->
+    {{history.Sellout[0].Projected_Sellout | number: 0}}
+</td>
+
+
+
+<td>
+    <!-- Calculated MFD -->
+    {{history.MDF[0].Recommended_MDF | number: 0}}
+</td>
+<td>
+    <!-- WMGO MFD -->
+    {{history.MDF[0].MGO_Ratio | number: 1}}
+</td>
+<!--<td>
+    <!- - Assesment - ->
+    <!- - ************** FIRST ROW ******************** - ->
+    <!- - Misaligned &&  Overfunded - ->
+
+    <img ng-if="history.MDF[0].MDF_Alignment == 'Misaligned' && history.MDF[0].PREV_MDF_Assessment == 'Overfunded' "
+         src="assets/resources/arrow_down_red@1x.png">
+
+    <!- - Misaligned &&  Underfunded - ->
+    <img ng-if="history.MDF[0].MDF_Alignment == 'Misaligned' && history.MDF[0].PREV_MDF_Assessment == 'Underfunded' "
+         src="assets/resources/arrow_up_yellow@1x.png">
+
+    <!- - Misaligned and New Opportunity - ->
+    <!- - No Icon - ->
+    <!- - Misaligned and null - ->
+    <img ng-if="history.MDF[0].MDF_Alignment == 'Misaligned' && (history.MDF[0].PREV_MDF_Assessment == '' || history.MDF[0].PREV_MDF_Assessment == null ) "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!- - ************** End of FIRST ROW ******************** - ->
+    <!- - ************** Second ROW ******************** - ->
+    <!- - Aligned &&  Overfunded - ->
+    <img ng-if="history.MDF[0].MDF_Alignment == 'Aligned' && history.MDF[0].PREV_MDF_Assessment == 'Overfunded' "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!- - Aligned &&  Underfunded - ->
+    <img ng-if="history.MDF[0].MDF_Alignment == 'Aligned' && history.MDF[0].PREV_MDF_Assessment == 'Underfunded' "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!- - Aligned and New Opportunity - ->
+    <!- - No Icon - ->
+    <!- - Aligned and null - ->
+    <!- - No Icon - ->
+    <!- - ************** End of Second ROW ******************** - ->
+    <!- - ************** Third ROW ******************** - ->
+    <!- - null &&  Overfunded - ->
+    <!- - No Icon - ->
+    <!- - null &&  Underfunded - ->
+    <!- - No Icon - ->
+    <!- - null and New Opportunity - ->
+    <img ng-if="history.MDF[0].MDF_Alignment == '' && history.MDF[0].PREV_MDF_Assessment == 'New Opportunity' "
+         src="assets/resources/new_opportunity@1x.png">
+
+    <!- - null and null - ->
+    <!- - No Icon - ->
+    <!- - ************** End of Third ROW ******************** - ->
+</td>-->
+<td>
+    <div ng-show="reseller.district.DistrictID > 0">
+        {{history.MSA[0].MSAValue | number : 0}}
+    </div>
+    <!-- cell formating -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <input type="text"
+               class="form-control p-0 specialText right"
+               ng-class="{'yelow':'BU_MSA_' + buId +'_MDF_' + history.PartnerID == Varid}"
+               ng-mouseover='Popover($event)'
+               ng-focus="copyFromBu(histories[$index].BU_MSA)"
+               ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+               ng-keyup="AssignPosition()"
+               id="BU_MSA_{{buId}}_MDF_{{history.PartnerID}}"
+               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+               name=""
+               ng-model="histories[$index].BU_MSA" ng-blur="saveFromBU($index,$event,history,true,true)">
+    </div>
+
+</td>
+<td>
+    <div ng-show="(reseller.district.DistrictID > 0 && (buId == 0  || buId==5)) || (reseller.obj.countries[0].DisplayName=='CANADA'&& reseller.partner.PartnerName=='Reseller' &&( buId == 0  || buId==5)) ">
+        <input ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+               ng-click="copyARUBAMSAValue(history.MSA[0].ArubaMsa)"
+               ng-blur="saveMSA($index, 'ARUBA MSA')"
+               type="text" name=""
+               id="businessUnit_{{buId}}_ArubaMsa_{{history.PartnerID}}"
+               class="form-control msa-text specialText"
+               ng-keyup="AssignPosition()"
+               ng-class="{'ng-not-empty':history.MSA[0].ArubaMsa==0}"
+               ng-model="history.MSA[0].ArubaMsa">
+    </div>
+</td>
+
+ <td>
+    <input type="text"
+           ng-class="{'yelow':'businessUnit_' + buId +'_MDF_' + history.PartnerID == Varid}"
+           ng-mouseover='Popover($event)'
+           ng-focus="copyFromBu(history.TotalMDF)"
+           class="form-control p-0 specialText right"
+           ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+           ng-keyup="AssignPosition()"
+           id="businessUnit_{{buId}}_MDF_{{history.PartnerID}}"
+           onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+           name=""
+           ng-model="history.TotalMDF" ng-blur="saveFromBU($index,$event,history,true,false)">
+</td>
+<td>
+    <!-- Total MDF -->
+    {{ histories[$index].MDF[0].BaseLineMDF | number: 0}}
+    
+</td>
+<!-- CarveOut -->
+<td>
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <input type="text"
+               ng-class="{'yelow':'CarveOut_' + buId +'_MDF_' + history.PartnerID == Varid}"
+               ng-mouseover='Popover($event)'
+               ng-focus="copyFromBu(histories[$index].CarveOut)"
+               class="form-control p-0 specialText right"
+               ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+               ng-keyup="AssignPosition()"
+               id="CarveOut_{{buId}}_MDF_{{history.PartnerID}}"
+               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+               name=""
+               ng-model="histories[$index].CarveOut" ng-blur="saveFromBU($index,$event,history,true,true)">
+        </div>
+
+</td>
+
+<!--<td  class="businessUnit_{{buId}}">
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="dropdown">
+
+              
+                <select ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                        id="reason_{{$index}}"
+                        class="form-control select-for-rov2"
+                         ng-click="event = $event"
+                        ng-options="item as item.Reason for item in reason track by item.MDFVarianceReasonID"
+                        ng-model="histories[$index].MDF[0].MDFVarianceReasonID" ng-change="saveFromBU($index,event,history,false,false)"></select>
+            </div>
+            <img ng-if="history.MDF[0].Comments.length > 0"
+                 src="assets/resources/comment@1x.png"
+                 ng-class="{'disable-point': isbuu, 'enable-point': !isbuu }"
+                 ng-click="clickDD(histories[$index],$index,$event,false)"
+                 class="comment-btn"
+                 
+                 ng-hide="isbuu" />
+
+            <img ng-if="history.MDF[0].Comments.length == 0 || !history.MDF[0].Comment"
+                 src="assets/resources/comment_grey@1x.png"
+                 ng-class="{'disable-point': isbuu, 'enable-point': !isbuu }"
+                 ng-click="clickDD(histories[$index],$index,$event,false)"
+                 class="comment-btn"
+                 ng-hide="isbuu" />
+        </div>
+        <div class="pl-5 comment-button">
+
+            <div class="dropdown">
+                <span data-toggle="dropdown"
+                      class="dropdown-toggle">
+                </span>
+                <div class="dropdown-menu comment-box" style="margin-left: -325px;margin-top: 24px;">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="lbl-comment"></label>
+                        <textarea ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu" class="form-control coment-box-textarea" ng-model="histories[$index].MDF[0].Comments"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default pull-right x-button">Close</button>
+                    <button ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu" ng-click="saveFromBU($index,$event,history,false,false)" class="btn btn-success pull-right">Add Comment</button>
+                </div>
+            </div>
+         </div>
+    </div>
+</td>-->
+
+<td>
+    <!-- Projected MDF/Sellout -->
+    {{
+        history.Sellout[0].Projected_Sellout   > 0 ? (((history.MDF[0].BaseLineMDF  / history.Sellout[0].Projected_Sellout )*100) | number : 1 ): '0.0'
+    }}%
+</td>
+<!-- HSM-947 -->
+<td>
+    {{histories[$index].HQ}}
+</td>
+<td>
+    {{histories[$index].Value_Perc}}
+</td>

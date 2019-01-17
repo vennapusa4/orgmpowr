@@ -1,0 +1,193 @@
+<section class="allocation-page">
+    <breadcrumb-bar>
+
+    </breadcrumb-bar>
+</section>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance">
+	<!-- Header -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 header">
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 header-label">
+			<h4>Historical Perfomance Data</h4>
+		</div>
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 country">
+			<div class="col-lg-6 country-box">
+				<div class="col-lg-5 lbl">
+					<label>Country / US District</label>
+				</div>
+				<div class="col-lg-7 control">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1">
+					  	<i class="fa fa-globe globe"></i>
+					  </span>
+					  <input type="text" readonly class="form-control" placeholder="Country" value="India" aria-describedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 country-box">
+				<div class="col-lg-4 lbl col-lg-offset-1">
+					<label>Bucket</label>
+				</div>
+				<div class="col-lg-6 control">
+					<div class="input-group">
+					  
+					  <input type="text"  readonly class="form-control partner-input" placeholder="Country" value="Distributor" aria-describedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End of header -->
+
+	<!-- Filter -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 filter">
+		<div class="col-lg-12 filter-container">
+			<div class="col-lg-5 bu-filter padding-0">
+				<div>
+					<header class="filter-header pull-left">Select Bu</header>
+					<div class="col-lg-6 padding-0 pull-right">
+				    	<input ng-model="all" type="checkbox" id="ALLBU" />
+				    	<label for="ALLBU" style="margin-right: 71px;" class="pull-right">All</label>
+				  </div>
+				</div>
+				<div class="col-lg-12">
+				
+				  <div class="col-lg-3 padding-0" ng-repeat="b in bu">
+				    <input 
+				    	ng-model="selectedBu[b.ID]"
+				    	type="checkbox" 
+				    	id="{{b.ID}}" />
+				    <label for="{{b.ID}}">{{b.Name}}</label>
+				  </div>
+				  
+				  
+				  
+				</div>
+				
+			</div>
+			<div class="col-lg-3 mdf-status  padding-0">
+				<div>
+					<header class="filter-header pull-left">MDF Status</header>
+					<div class="col-lg-6 padding-0 pull-right">
+				    	<input type="checkbox" id="ALLMDF" />
+				    	<label for="ALLMDF" style="margin-right: 82px;" class="pull-right">All</label>
+				  </div>
+				</div>
+				
+				<div class="col-lg-12">
+				
+				  <div class="col-lg-6 padding-0">
+				    <input type="checkbox" id="Received" />
+				    <label for="Received">RECEIVED</label>
+				  </div>
+
+
+				  <div class="col-lg-6 padding-0">
+				    <input type="checkbox" id="NOTRECEIVED" />
+				    <label for="NOTRECEIVED">NOT RECEIVED</label>
+				  </div>
+
+				</div>
+				
+				
+			</div>
+
+			<div class="col-lg-4 mdf-status  padding-0">
+				
+				<button ng-click="save()" class="btn btn-success pull-right" style="margin:23px;color: #FFF;">
+					apply filter
+				</button>
+				
+			</div>
+
+		</div>
+	</div>
+	<!-- End of filter -->
+	<!-- Data -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data">
+		<div class="col-lg-12 data-container">
+			<table class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>
+		        	BG Membership
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        <th>
+		        	Last period Sellout
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        <th>
+		        	Last Period Sellout Growth
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+
+		        <th>
+		        	Last Period Sellout Growth Percentage
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        
+		        
+		        <th>
+		        	Last Period MDF
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        
+		        
+		        <th>
+		        	OverAll ROI
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        
+		        <th>
+		        	Share of Wallet growth
+		        	<i class="fa fa-caret-down pull-right"></i>
+		        </th>
+		        <th>
+		        	Footprint growth</th>
+		      	</tr>
+		    </thead>
+		    <tbody ng-repeat="history in histories">
+		      <tr>
+		        <td>
+		        	 <div class="text-hp">{{history.Name}}</div>
+		        	 <div class="text-ic">
+		        	 	<i class="fa fa-caret-down expand-btn" ng-click="toogle($index)"  id="icon-{{$index}}"></i>
+		        	 </div>
+		        </td>
+		        <td class="history-text-t">{{history.LastPeriodSellout}}</td>
+		        <td class="history-text-t">{{history.LastPeriodSelloutGrowth}}</td>
+		        <td class="history-text-t">{{history.LastPeriodSelloutGrowthPer}}</td>
+		        <td class="history-text-t">{{history.LastPeriodMDF}}</td>
+		        <td class="history-text-t">{{history.OverallROI}}</td>
+		        <td class="history-text-t">{{history.ShareOfWalletGrowth}}</td>
+		        <td class="history-text-t">{{history.FootprintGrowth}}</td>
+		      </tr>
+		      <tr class="graph-row" id="graph-row-{{$index}}">
+		        <td colspan="8">
+			        <div style="width: 35%;float: left">
+
+			        	<!-- <nvd3 options="options" data="history.sob"></nvd3> -->
+			        	<nvd3 options="options" data="history.sellout"></nvd3>
+			        	
+			        </div>
+
+			        <div style="width: 35%;float: left">
+
+			        	<!-- <nvd3 options="options" data="history.sob"></nvd3> -->
+			        	<nvd3 options="options" data="history.mdf"></nvd3>
+			        	
+			        </div>
+		        </td>
+		      </tr>
+		     
+		    </tbody>
+		  </table>
+		  <button class="btn btn-green pull-right login-button" style="margin-bottom: 21px;margin-right: 22px;">
+			Export
+		   </button>
+		</div>
+		
+	</div>
+	<!-- End of Data -->
+</div>
+

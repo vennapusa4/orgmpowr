@@ -1,0 +1,103 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 user-management">
+    <div class="col-lg-12 data-container user-management role shade-1">
+
+        <!-- Select Role & Partner Type -->
+        <div class="row">
+
+            <div class="col-lg-12 glossary-bar">
+                <div style="width:16% !important" class="col-lg-3 col-md-3 col-sm-3  holder"
+                     ng-repeat="menu in Data | filter: {IsChild:false}"
+                     ng-class="{'active': menu.active}"
+                     ng-click="loadMenuData(menu,false)">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <div class="number-bg">
+                            {{$index}}
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 glossaryMenu">
+                        {{menu.pageName}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 glossary-bar">
+                <div style="width:16% !important"
+                     ng-repeat="menu in childMenu | orderBy : 'DisplayOrder'"
+                     ng-class="menu.active? 'tab-partner-credit' :'tab-partner-credit-inactive'"
+                     ng-click="loadMenuData(menu,true)" class="col-lg-5 col-md-5 col-sm-6 col-xs-6 header-label glossary-PartnerBudget-tabs partnerTab">
+                    <div>
+                        {{menu.pageName}}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div ng-if="(selectedPage.Description==null || selectedPage.Description=='') && (selectedPage.Formula==null || selectedPage.Formula=='')
+                 && (selectedPage.EditedDesc==null || selectedPage.EditedDesc=='') && (selectedPage.EditedFormula==null || selectedPage.EditedFormula=='')" ng-click="EditScreenDetail(8000)"><b class="top-margin10 bottom-margin10"><i>Click to Add Description/Formula for Screen</i></b></div>
+        <div class="glossary-screen-div">
+            <div ng-if="(selectedPage.Description!=null && selectedPage.Description!='') || (selectedPage.Formula!=null && selectedPage.Formula!='')
+                 || (selectedPage.EditedDesc!=null && selectedPage.EditedDesc!='') || (selectedPage.EditedFormula!=null && selectedPage.EditedFormula!='')" ng-click="EditScreenDetail(8000)">
+                <div ng-if="(selectedPage.Description!=null && selectedPage.Description!='')">
+                    <b class="heading-color">Description:</b><p class="glossary-edit" ng-bind-html=selectedPage.Description></p>
+                </div>
+                <div ng-if="(selectedPage.EditedDesc!=null && selectedPage.EditedDesc!='')">
+                    <b class="heading-color">Suggested Description:</b><p class="glossary-edit" ng-bind-html=selectedPage.EditedDesc></p>
+                </div>
+                <div ng-if="(selectedPage.Formula!=null && selectedPage.Formula!='')">
+                    <b class="heading-color">Definitions/Formula:</b><p class="glossary-edit" ng-bind-html=selectedPage.Formula></p>
+                </div>
+                <div ng-if="(selectedPage.EditedFormula!=null && selectedPage.EditedFormula!='')">
+                    <b class="heading-color">Suggested Definitions/Formula:</b><p class="glossary-edit" ng-bind-html=selectedPage.EditedFormula></p>
+                </div>
+
+
+            </div>
+            <div ng-if="selectedPage.showApproval==true && ((selectedPage.EditedDesc!=null && selectedPage.EditedDesc!='') || (selectedPage.EditedFormula!=null && selectedPage.EditedFormula!=''))" class="bottom-margin10">
+                <b class="heading-color">Approval : </b>
+                <i class="fa-lg fa fa-check-circle-o glossary-icon-gray left-margin10 top-margin10" title="Approve" ng-show="selectedPage.showApproval && (selectedPage.IsApproved==null || selectedPage.IsApproved==0)" ng-click="ApproverAction(1)"></i>
+                <i class="fa-lg fa fa-check-circle-o glossary-icon-green left-margin10 top-margin10" title="Approve" ng-show="selectedPage.showApproval && selectedPage.IsApproved==1"></i>
+                <i class="fa-lg fa fa-ban glossary-icon-warning  left-margin10 top-margin10" title="Reject" ng-show="selectedPage.showApproval && selectedPage.IsApproved==0"></i>
+                <i class="fa-lg fa fa-ban glossary-icon-gray left-margin10 top-margin10" title="Reject" ng-show="selectedPage.showApproval && (selectedPage.IsApproved==null || selectedPage.IsApproved==1)" ng-click="ApproverAction(0)"></i>
+            </div>
+        </div>
+        <div style="padding-top:20px" ui-grid="gridOptions" ui-grid-edit ui-grid-resize-columns ui-grid-draggable-rows class="grid col-md-6">
+            <div ng-show="gridOptions.data.length==0">
+                <div class="msg msgNotFound">
+                    <h3>
+                        <span>
+                            No Parameter Found
+                        </span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+
+    <div class="col-lg-6 col-md-8 col-sm-8 top-ten-padding">
+        <b style="font-size:small;vertical-align:middle"><span class="heading-color">Note:</span> {{fyText}}</b>
+    </div>
+
+    <div class="col-lg-5 col-md-4 col-sm-4">
+        <div class="col-lg-12 col-md-12 col-sm-12 top-ten-padding pull-right">
+            <button type="button" ng-click="addParameter()" ng-disabled="disableAddNewParam" class="btn btn-success add-user-align glossary-btn-right">Add New Parameter</button>
+            <button ng-if="selectedPage.showApproval==true" class="btn btn-success add-user-align glossary-btn-right" ng-click="ApproveGlossary()">
+                Submit
+            </button>
+            <button ng-if="selectedPage.showApproval==true" class="btn btn-success add-user-align glossary-btn-right" ng-click="Preview()" data-toggle="modal" data-target="#myModal">
+                Preview
+            </button>
+
+            <button class="btn btn-success add-user-align glossary-btn-right" ng-click="Refresh()">
+                Refresh
+            </button>
+        </div>
+
+    </div>
+</div>
+

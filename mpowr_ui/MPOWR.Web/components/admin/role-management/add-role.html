@@ -1,0 +1,83 @@
+<div class="modal fade custom-modal" id="myModalNorm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" >
+            <!-- Modal Header -->
+            <div class="modal-header">
+                
+                <h4 class="modal-title" id="myModalLabel">
+                    Create New Role
+                </h4>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="modal-body add-user-form">
+                <form role="form" name="roleForm" autocomplete="off">
+                    <div 
+                        ng-class="{'has-error': roleForm.name.$invalid && !roleForm.name.$pristine  }"
+                        class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                        <label>Short Name</label>
+                        
+                        <input 
+                            name="name"
+                            style="" 
+                            type="text" 
+                            class="form-control input-border"
+                            id="exampleInputEmail1" 
+                            placeholder="CH_STRG" 
+                            ng-model="role.newShortName"
+                            maxlength="25" 
+                            pattern="[a-zA-Z0-9\s]+" 
+                            required />
+                        <small ng-if="roleForm.name.$error.required && !roleForm.name.$pristine">
+                            Please enter short name
+                        </small>
+                        <small ng-if="roleForm.name.$error.pattern && !roleForm.name.$pristine">
+                            Please enter only alpha numeric character
+                        </small>
+                    </div>
+
+                    <div
+                        ng-class="{'has-error': roleForm.roleName.$invalid && !roleForm.roleName.$pristine  }" 
+                        class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                        <label for="exampleInputEmail1">Role Name</label>
+                        <input 
+                            name="roleName"
+                            required 
+                            pattern="[a-zA-Z0-9\s]+" 
+                            type="text" 
+                            class="form-control input-border"
+                            id="exampleInputEmail1" 
+                            placeholder="Channel Strategy" 
+                            ng-model="role.newRoleName" 
+                            ng-blur="checkRoleName()" 
+                            maxlength="50"/>
+                        <small ng-if="roleForm.roleName.$error.required && !roleForm.roleName.$pristine">
+                            Please enter role name
+                        </small>
+                         <small ng-if="roleForm.roleName.$error.pattern && !roleForm.roleName.$pristine">
+                            Please enter only alpha numeric character
+                        </small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer add-user-form">
+                <button type="button" class="btn btn-default theme-colr"
+                        ng-click="reset(roleForm)"
+                        data-dismiss="modal">
+                    CANCEL
+                </button>
+                <button 
+                    ng-disabled="roleForm.$invalid"
+                    type="button" 
+                    class="btn btn-primary theme-colr"
+                    ng-click="newRole()">
+
+                    SAVE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

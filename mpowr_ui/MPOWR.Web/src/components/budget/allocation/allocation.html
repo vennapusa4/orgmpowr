@@ -1,0 +1,362 @@
+<section class="allocation-page">
+    <breadcrumb-bar>
+
+    </breadcrumb-bar>
+<!-- Header area -->
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header">
+	<div class="col-lg-6">
+		<h3>
+			Start by setting MDF for the period FY17 2H
+		</h3>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 country">
+			<div class="col-lg-6 country-box">
+				<div class="col-lg-3 lbl">
+					<label>Country</label>
+				</div>
+				<div class="col-lg-9 control">
+					<div class="input-group">
+					  <span class="input-group-addon" id="basic-addon1" style="padding-right: 18px;">
+					  	<i class="fa fa-globe globe"></i>
+					  </span>
+					  <input type="text" readonly class="form-control" placeholder="Country" ng-model="resellerPartner.obj.name" aria-describedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 country-box">
+				<div class="col-lg-3 lbl col-lg-offset-1">
+					<label>Bucket</label>
+				</div>
+				<div class="col-lg-8 control">
+					<div class="input-group">
+					  
+					  <input type="text"  readonly class="form-control partner-input" placeholder="Country" ng-model="resellerPartner.partner.PartnerName" aria-describedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+		</div>
+	
+</div>
+<!-- End of header area -->
+<!-- Data area -->
+<form novalidate="" autocomplete="off">
+<div class="data-area-container col-lg-11">
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-header">
+		<div class="bu light-gray-bg">
+			Business Unit 
+		</div>
+		<div class="other-cols" >
+			Total MDF Budget
+		</div>
+		<div class="pmc" style="padding-left: 106px;">
+			Program MDF/Curve Outs
+		</div>
+		<div class="other-cols">
+			Country Reserve MDF
+		</div>
+		<div class="other-cols">
+			Basline/Classic MDF
+		</div>
+	</div>
+	<!-- ######################### TOTAL ##################################### -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows total-col">
+		
+		<div class="total-head">
+			<div class="bu">
+				Total
+			</div>
+			<div class="other-cols" ng-init="getTotal()">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+			            <input readonly type="text" ng-model="MDFGrossTotal" id="MDFGrossTotal" class="form-control MDFText specialText">
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                <input type="text" ng-model="mdfTotalPer" class="form-control MDFText" value="100" tabindex="-1" readonly="" placeholder="100">
+		                <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+			</div>
+			<div class="pmc">
+				<div class="col-lg-3 controls">
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+			            <input type="text" readonly ng-model="pmcGrossTotal"  class="form-control MDFText specialText" id="pmcGrossTotal">
+			        </div>
+				</div>
+				<div class="col-lg-3 controls">
+					<div class="inputText2 input-group">
+		                <input ng-model="pmcPer"  type="text" id="pmcPer" class="form-control MDFText" tabindex="-1"  readonly="" placeholder="0">
+		                <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+				<div class="col-lg-1">
+					
+				</div>
+
+			</div>
+			<div class="other-cols">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+			            <input type="text" ng-model="crmGrossTotal" readonly class="form-control MDFText specialText" id="crmGrossTotal">
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                <input placeholder="0" ng-model="crmPer" id="crmPer" type="text" class="form-control MDFText"  tabindex="-1"  readonly="" name="">
+		                <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+			</div>
+			<div class="other-cols">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+			            <input type="text" readonly ng-model="bcmGrossTotal" class="form-control MDFText specialText" id="bcmGrossTotal" >
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                <input type="text" id="bcmPer" ng-model="bcmPer" placeholder="0" class="form-control MDFText" tabindex="-1" readonly="" name="">
+		                <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+			</div>
+			<div>
+			  <i class="fa fa-chevron-down expand-white-btn" ng-click="expand(0,'total_')"  id="total_0"   ></i>
+			  <!-- ng-click="getSummary()" -->
+			  <!-- data-toggle="collapse" data-target="#totalData" -->
+			</div>
+
+		</div>
+		<div id="totalData" class="collapse" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+			<div class="bu light-gray-bg expnd" style="">
+				
+			</div>
+			<div class="other-cols">
+				
+			</div>
+			<div class="pmc">
+
+				<div class="col-lg-12 no-padding" ng-repeat="summary in summaries">
+					<div class="col-lg-3 controls">
+							<!-- <input type="text" ng-model="summaries[$index].name" class="form-control" name=""> -->
+							<label class="summary-label">
+								{{summaries[$index].ProjectName}}
+							</label>
+						</div>
+						<div class="col-lg-4 controls">
+							<div class="inputText1 input-group">
+					            <span class="input-group-addon">$</span>
+	                    		<input ng-model="summaries[$index].ProjectMDF" type="text" class="form-control MDFText specialText"   valid-number   name="">
+					        </div>
+						</div>
+						<div class="col-lg-3 controls">
+							<div class="inputText2 input-group">
+				                <input type="text" ng-model="summaries[$index].per" class="form-control MDFText"  tabindex="-1" placeholder="0" readonly="" name="">
+	                      <span class="input-group-addon">%</span>
+			              	</div>
+						</div>
+						<div class="col-lg-1">
+							
+						</div>
+
+				</div>
+
+			</div>
+
+
+
+			<div class="other-cols">
+				
+			</div>
+			<div class="other-cols">
+				
+
+			</div>
+		</div>
+	</div>
+
+	<!-- ############### END OF TOTAL ######################### -->
+<div id="datas">
+
+	<!-- HPN Controller -->
+	<div id="hpnControl" ng-repeat="budget in budgets">
+
+		<div id="budget-head-{{$index}}" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+			<div class="bu light-gray-bg full-height">
+				{{budget.BusinessUnitName}} 
+			</div>
+			<div class="other-cols">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+	                    <input 
+	                    	type="text" 
+	                    	class="form-control MDFText specialText mdfTotal" 
+	                    	ng-model="budgets[$index].TotalMDF" 
+							ng-change="setTotalBudget($index)"
+							ng-disabled="role.disabled"
+	                    	id="txtBudgetVal">
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                 <input type="text" class="form-control MDFText" 
+		                	 tabindex="-1" 
+		                	 value="{{budgets[$index].curvePer + budgets[$index].countryPer + budgets[$index].baslinePer}}" 
+		                	 readonly=""> 
+	                    <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+			</div>
+			<div class="pmc border-bottom">
+				<div class="col-lg-3 controls">
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+	                    <input 
+	                    	type="text" 
+	                    	class="form-control MDFText specialText pmcTotal" 
+	                    	ng-model="budgets[$index].ProgramMDF"  
+	                    	ng-keyup="curveOutsCalc($index)"
+	                    	id="txtCurve1" >
+			        </div>
+				</div>
+				<div class="col-lg-3 controls">
+					<div class="inputText2 input-group">
+		                <input  type="text" class="form-control MDFText" tabindex="-1" ng-model="budgets[$index].curvePer"  readonly>
+	                      <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+				<div class="col-lg-1">
+					<i class="fa fa-plus-circle i-plus" id="add_{{$index}}"  ng-click="add($index)" aria-hidden="true"></i>
+				</div>
+
+			</div>
+			<div class="other-cols">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+	                    <input 
+	                    	type="text" 
+	                    	class="form-control MDFText specialText crmTotal"  
+	                    	ng-model="budgets[$index].CountryReserveMDF"  
+	                    	ng-keyup="countryResCalc($index)"
+	                    	id="txtCountryName">
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                <input placeholder="0" type="text" class="form-control MDFText" tabindex="-1" readonly ng-model="budgets[$index].countryPer">
+	                    <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+			</div>
+			<div class="other-cols border-bottom">
+				<div class="col-lg-8 controls">
+					<div class="inputText1 input-group">
+			            <span class="input-group-addon">$</span>
+	                    <input 
+	                    	type="text" 
+	                    	class="form-control MDFText specialText bcmTotal" 
+	                    	ng-model="budgets[$index].BaselineMDF"  
+	                    	id="txtClassName"  
+	                    	ng-keyup="baselineMdfCalc($index)"
+	                    	name="">
+			        </div>
+				</div>
+				<div class="col-lg-4 controls">
+					<div class="inputText2 input-group">
+		                <input type="text" placeholder="0" class="form-control MDFText" tabindex="-1" readonly ng-model="budgets[$index].baslinePer">
+	                      <span class="input-group-addon">%</span>
+	              	</div>
+				</div>
+				
+			</div>
+			<div>
+			  <i class="fa fa-chevron-down expand-btn" id="exp_{{$index}}" ng-click="expand($index,'exp_')" ></i>
+			  <!-- data-toggle="collapse" data-target="#budget-body-{{$index}}" -->
+			</div>
+		</div>
+
+		<!-- Expanded view -->
+		<div id="budget-body-{{$index}}" class="collapse col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+			<div class="bu light-gray-bg expnd">
+				
+			</div>
+			<div class="other-cols">
+				
+			</div>
+			<div class="pmc">
+
+				<div class="col-lg-12 no-padding" ng-repeat="project in budget.CarveProjects" ng-hide="project.Flag == 'DL' ">
+					<div class="col-lg-3 controls">
+						<input type="text" 
+								ng-change="getSummary()"
+								ng-model="budgets[$parent.$index].CarveProjects[$index].ProjectName" class="form-control project-inp" name="">
+						</div>
+						<div class="col-lg-4 controls">
+							<div class="inputText1 input-group">
+					            <span class="input-group-addon">$</span>
+	                    		<input 
+	                    			ng-model="budgets[$parent.$index].CarveProjects[$index].ProjectMDF" 
+	                    			type="text" 
+	                    			class="form-control MDFText specialText"   
+	                    			valid-number
+	                    			required   
+	                    			ng-change="calculateProjectPer($parent.$index,$index)"
+	                    			name="" />
+					        </div>
+						</div>
+						<div class="col-lg-3 controls">
+							<div class="inputText2 input-group">
+				                <input 
+				                	type="text" 
+				                	class="form-control MDFText"  
+				                	ng-model="budgets[$parent.$index].CarveProjects[$index].per" 
+				                	tabindex="-1" ng-value="getVal($index)" placeholder="0" readonly="" name="">
+	                      <span class="input-group-addon">%</span>
+			              	</div>
+						</div>
+						<div class="col-lg-1">
+							<i class="fa fa-times-circle i-remove" ng-click="remove($parent.$index,$index)" aria-hidden="true"></i>
+						</div>
+
+				</div>
+
+			</div>
+
+
+
+			<div class="other-cols">
+				
+			</div>
+			<div class="other-cols">
+				
+			</div>
+		</div>
+		<!-- End of expanded view -->
+	</div>
+	<!-- End of HPN Controller -->
+	<div class="col-lg-12" style="border-top: 1px solid #ccc;">
+		<button ng-click="save()" class="btn btn-green pull-right login-button" style= "margin:23px;color: #FFF;margin-right: -2px;">
+			SAVE
+		</button>
+	</div>
+
+	
+
+</div>
+</div>
+</form>
+
+
+<!-- End of data ares -->
+</section>

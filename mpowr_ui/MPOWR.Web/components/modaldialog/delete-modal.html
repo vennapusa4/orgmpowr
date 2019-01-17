@@ -1,0 +1,34 @@
+﻿<!-- Modal Header -->
+<div class="modal-header no-bottom">
+    <button type="button" class="close"
+            data-dismiss="modal">
+        <span aria-hidden="true">&times;</span>
+        <span class="sr-only">Close</span>
+    </button>
+    <h4 class="modal-title" id="myModalLabel">
+        {{modal.title}}
+    </h4>
+</div>
+
+<!-- Modal Body -->
+<div class="modal-body add-user-form modal-delete">
+
+    <form role="form">
+        <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+            <h5 class="user-black-bold">
+                <img class="user-info-delete-icon" src="assets/resources/export copy 2@1x.png">
+                <span class="user-info-delete-modal-text">{{modal.message}}</span>
+            </h5>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Footer -->
+<div class="modal-footer add-user-form">
+    <button type="button" class="btn btn-default theme-colr" ng-click="cancel()">
+        {{modal.cancelText}}
+    </button>
+    <button type="button" class="btn btn-primary theme-colr" ng-click="delete()">
+        {{modal.deleteText}}
+    </button>
+</div>

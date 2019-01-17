@@ -1,0 +1,223 @@
+<section class="allocation-page">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+</section>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+    <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="col-lg-9 col-md-9 col-sm-9 ng-hide" ng-show="final >= 1">
+        </div>
+        <div class="col-lg-3 col-sm-4 col-md-6 count">
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 icon-holder disableExport">
+             <button class="pull-right export-button" ng-click="export()" ng-disabled="role.exportButton">
+                <div><img src="assets/resources/export@1x.png"></div>
+                <div class="left9-padding"><label>EXPORT</label></div>
+            </button> 
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 icon-holder top-ten-padding left-padding-style">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <button class="btn btn-success sticky-prev-button" ng-click="setPrev()" ui-sref="budget.allocation" href="#/budget/partner-budget">
+                    PREVIOUS
+                </button>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <button class="btn btn-success sticky-next-button" ng-click="setNext()" ui-sref="budget.model-parameter" href="#/budget/partner-budget">
+                    NEXT
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance">
+	<!-- Header -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 header">
+		<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 header-label">
+			<h4>Historical Performance Data</h4>
+		</div>
+        <div class="budgetHeader">
+            <!--<h3>
+                Start by setting MDF for the period {{BUObj.FinancialYear}}
+            </h3>-->
+        </div>
+		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 country">
+			<div class="col-lg-4 col-md-4 col-sm-4 country-box">
+                <div class="col-lg-3 col-md-3 col-sm-3 lbl ">
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                    <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                        <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                             popover-trigger="'mouseenter'"
+                             popover-placement="bottom"
+                             uib-popover="{{ctries}}"
+                             ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                             class="input-group">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                        <span class="input-group-addon country-section" id="basic-addon1">
+                            <i class="fa fa-globe globe"></i>
+                        </span>
+                        <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 country-box">
+				<div class="col-lg-3 col-md-3 col-sm-3">
+					<label class="top9-padding">Budget</label>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-9 control">
+					<div class="input-group">
+					  
+					  <input type="text" disabled readonly class="form-control partner-input" placeholder="Country" 
+					  value="{{reseller.partner.PartnerName }} {{reseller.district.DistrictName.length > 0 ? '-': '' }} {{ reseller.district.DistrictName  }}"
+					  aria-describedby="basic-addon1">
+					</div>
+				</div>
+			</div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box"  ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <label class="top9-padding">Membership</label>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 control">
+                    <div class="input-group">
+
+                        <input type="text" disabled readonly class="form-control partner-input" placeholder="Country"
+                               value="{{reseller.membership.MembershipName }}"
+                               aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<!-- End of header -->
+
+	<!-- Filter -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 filter" style="padding-top: 40PX;">
+		<div class="col-lg-12 col-sm-12 col-md-12 filter-container">
+			<div class="col-lg-5 col-md-5 col-sm-5 bu-filter padding-0">
+				<div>
+					<header class="filter-header pull-left">Select BU</header>
+					<div class="col-lg-6 col-md-6 col-sm-6 padding-0 pull-right">
+				    	<input 
+				    		ng-model="all" 
+				    		type="checkbox" 
+				    		ng-click="checkedAll()"
+				    		id="ALLBU" />
+				    	<label for="ALLBU" class="ALLBU pull-right">All</label>
+				  </div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12">
+				
+				  <div class="col-lg-4 col-md-4 col-sm-4 padding-0" ng-repeat="b in bu">
+				    <input 
+				    	ng-model="selectedBu[b.ID]"
+				    	ng-click="buSelected()"
+				    	type="checkbox" 
+				    	id="{{b.ID}}" />
+				    <label for="{{b.ID}}">{{b.Name}}</label>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-3 col-sm-3 mdf-status  padding-0">
+				<div>
+					<header class="filter-header pull-left">MDF Status</header>
+					<div class="col-lg-6 col-md-6 col-sm-6 padding-0 pull-right">
+				    	<input 
+				    		ng-click="updateAllMDF()"
+				    		type="checkbox" 
+				    		ng-model="allMDF"
+				    		id="ALLMDF" />
+				    	<label for="ALLMDF" class="ALLMDF pull-right">All</label>
+				  </div>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12">
+				  <div class="col-lg-6 col-md-6 col-sm-6 padding-0">
+				    <input 
+				    	ng-click="updateMDF()"
+				    	ng-model="mdfReceived"
+				    	type="checkbox" 
+				    	id="Received" />
+				    <label for="Received">RECEIVED</label>
+				  </div>
+				  <div class="col-lg-6 col-md-6 col-sm-6 padding-0">
+				    <input 
+				    	ng-click="updateMDF()"
+				    	ng-model="mdfNotReceived"
+				    	type="checkbox" 
+				    	id="NOTRECEIVED" />
+				    <label for="NOTRECEIVED" class="NOTRECEIVED">NOT RECEIVED</label>
+				  </div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-4 col-sm-4 mdf-status  padding-0">
+				<button ng-click="filter()" class="btn btn-success pull-right hist-apply-filter">
+					apply filter
+				</button>
+			</div>
+		</div>
+	</div>
+	<!-- End of filter -->
+	<!-- Data -->
+	<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data" ng-init="hideGraph()" >	
+		<div 
+			ng-show=" getReseler(reseller.partner.PartnerName) == 'reseller' "	
+			ng-include="'components/budget/historical/reseller.html'"
+			scope="" onload="">
+		</div>
+		<div 
+			ng-show=" getReseler(reseller.partner.PartnerName) == 'distributor' "
+			ng-include="'components/budget/historical/distributor.html'" 
+			scope="" onload="">
+		</div>
+	</div>
+	<!-- End of Data -->
+</div>
+<div id="mdf-modal" class="modal fade   historical-chart" role="dialog">
+    <div class="modal-dialog chart-area">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{chartHead}}</h4>
+            </div>
+            <div class="modal-body">
+                <nvd3 options="option" data="data"></nvd3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="reseller-modal" class="modal fade   historical-chart" role="dialog">
+  <div class="modal-dialog chart-area">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{chartHead}}</h4>
+      </div>
+      <div class="modal-body">
+        <nvd3 options="option1" data="data"></nvd3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

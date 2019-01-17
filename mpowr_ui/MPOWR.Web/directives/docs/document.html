@@ -1,0 +1,86 @@
+﻿
+
+<div id="UserManualModel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" ng-click="displayname=''" class="close" data-dismiss="modal" aria-hidden="true">
+                    ×
+                </button>
+                <h4 class="modal-title" id="classModalLabel">
+                    Training Documents {{files}}
+                </h4>
+
+            </div>
+
+
+
+            <div class="modal-body  style-3">
+
+
+                <div>
+                    <label class="pull-left manualSearchLabel">Search</label>
+                    <input type="text" class="form-control search-input " placeholder="Search Document" ng-model="displayname">
+
+                </div>
+
+                <table class="table table-striped dynamicdata fixed_headers_doc">
+                    <thead>
+                        <tr>
+                            <th id="fileList" ng-click="orderByField='displayname'; reverseSort = !reverseSort">
+                                Name of the File
+                                <i ng-show="orderByField == 'displayname' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                                <i ng-show="orderByField == 'displayname' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                            </th>
+                            <th id="filetype" ng-click="orderByField='type'; reverseSort = !reverseSort">
+                                Type<i ng-show="orderByField == 'type' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                                <i ng-show="orderByField == 'type' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="list in userDetails | filter:{displayname} | orderBy:orderByField:reverseSort">
+                            <td class="pfd-view"><a target="_blank" href="{{list.url}}">{{list.displayname}}</a></td>
+                            <td><span class="pull-left">{{list.type}}</span><span class="pull-right"> <img ng-if="isAdmin" title="Delete File" ng-click="deleteFile(list.id)" src="assets/resources/delete_BU@1x.png"></span></td>
+                            <!-- <td class="delete-list" ></td>-->
+                        </tr>
+                    </tbody>
+
+                </table>
+                <h4 class="text-center manual-noData" ng-if="userDetails.length == 0"> No Documents Found</h4>
+            </div>
+            <div class="modal-footer">
+                <h5 class="pull-left">Total Documents : {{userDetails.length}}</h5>
+                <!--<button type="button" class="btn btn-primary sticky-prev-button pull-right" ng-click="displayname=''" data-dismiss="modal">
+                    Close
+                </button>-->
+                <!--<input id="file1"
+                       type="file" name="file"
+                       ng-files="getTheFiles($files)"
+                       multiple
+                       onchange ="angular.element(this).scope().onFileSelect(); return false;"
+                       accept="application/msword, text/plain, application/pdf, video/mp4, video/x-m4v, video/*"
+                       style="visibility: hidden;" />-->
+
+
+                <div class="inp_type_file_section">
+                    <div class="choose_file1"><input id="uploadFile" placeholder="File Name" disabled="disabled" /></div>
+                    <div class="fileUpload btn btn-primary choose_file">
+                        <span>Attach File..</span>
+                        <input id="uploadBtn" type="file" onchange="angular.element(this).scope().setFiles(this)" multiple class="upload" />
+                    </div>
+                    <button ng-show="isAdmin == true" type="button" class="btn btn-success sticky-prev-button manual-button pull-right upload_file_btn"
+                            ng-click="onFileSelect()">
+                        UPLOAD
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

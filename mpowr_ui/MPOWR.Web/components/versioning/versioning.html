@@ -1,0 +1,423 @@
+﻿<link href="assets/css/style.css" rel="stylesheet" />
+
+<section class="allocation-page versioning">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+
+        <div class="col-lg-9 col-md-9 col-sm-9 finalversion">
+            <div class="checkbox-text  pull-right versioncheckbox">
+                
+                <input type="checkbox" 
+                       id="finanitalYear" 
+                       ng-model="allFinancialsYears"
+                       ng-click="getAllVersioingData()">
+                <label id="label1" for="finanitalYear">
+                    <span class="check-label">Show all Versions </span>
+                </label>
+            </div>
+</div>
+        <div class="col-lg-2 col-md-2 col-sm-2 ">
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 icon-holder top-ten-padding">
+                <button data-toggle="modal" data-target="#myModalcreate " ng-disabled="!role.Create || NOACCESS"
+                        class="btn btn-success save-btn-align">
+                    Create 
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Header area -->
+    <form novalidate="" autocomplete="off">
+        <!-- Distributor -->
+        <!--<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 1">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h3>
+                    MDF Plans Overview
+                </h3>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 country">
+                <div class="col-lg-6 col-md-6 col-sm-6 country-box right-padding">
+                    <div class="col-lg-3 col-md-3 col-sm-3 lbl right-padding">
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                        <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                            <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                                 popover-trigger="'mouseenter'"
+                                 popover-placement="bottom"
+                                 uib-popover="{{ctries}}"
+                                 ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                                 class="input-group">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 country-box">
+                    <div class="col-lg-3 col-md-4 col-sm-3">
+                        <label class="top9-padding  budgetlabel">Budget</label>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-9 control">
+                        <div class="input-group">
+                            <input type="text" disabled
+                                   readonly class="form-control partner-input country-section-input"
+                                   placeholder="Budget" value="{{versioning.partner.PartnerName }} {{versioning.district.DistrictName.length > 0 ? '-': '' }} {{ versioning.district.DistrictName  }}" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+        <!-- Reseller -->
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <h3>
+                    MDF Plans Overview 
+                </h3>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 country">
+                <div class="col-lg-4 col-md-4 col-sm-4 country-box right-padding">
+                    <div class="col-lg-3 col-md-3 col-sm-3 lbl right-padding">
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                        <div   ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+                          
+                            <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                                 popover-trigger="'mouseenter'"
+                                 popover-placement="bottom"
+                                 uib-popover="{{ctries}}"
+                                 ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                                 class="input-group">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                 <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                            </div>
+                         </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 country-box">
+                    <div class="col-lg-3 col-md-4 col-sm-3">
+                        <label class="top9-padding  budgetlabel">Budget</label>
+                    </div>
+                    <div class="col-lg-9 col-md-8 col-sm-9 control">
+                        <div class="input-group">
+                            <input type="text" disabled
+                                   readonly class="form-control partner-input country-section-input"
+                                   placeholder="Budget" value="{{versioning.partner.PartnerName }} {{versioning.district.DistrictName.length > 0 ? '-': '' }} {{ versioning.district.DistrictName  }}" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 country-box"  ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <label class="top9-padding">Membership</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 control">
+                        <div class="input-group">
+                            <input type="text" disabled
+                                   readonly class="form-control partner-input country-section-input"
+                                   placeholder="Country" aria-describedby="basic-addon1"
+                                   value="{{versioning.membership.MembershipName }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- End of header area -->
+        <!-- Data area -->
+      
+
+
+        <section class="versiontable">
+            <div class="data-area-container allocation-container col-lg-11 col-md-11 col-sm-11">
+
+
+                <section class="mdfWrper">
+                    <div class="mdf_container">
+                        <table class="table table-hover mfd_table">
+                            <thead>
+                                <tr class="header">
+                                    <th class="inp_td"><span>Actions</span><div>Actions</div></th>
+                                    <th id="PlanId" ng-click="sort('VersionName','PlanId')"><span>Plan Name </span><div>Plan Name</div><i class="pull-right fa fa-caret-down"></i></th>
+                                    <th id="FinancialpId" ng-click="sort('FinancialPeriod','FinancialpId')"><span>Financial Period</span><div>Financial Period</div><i class="pull-right fa fa-caret-down"></i></th>
+                                    <th class="version" id="VersionId" ><span>Version</span><div ng-click="sort('VersionNo','VersionId')">Version</div><i class="pull-right fa fa-caret-down"></i></th>
+                                    <th id="totalmdf" class="toalMDF" ><span>Total MDF</span><div ng-click="sort('TotalMDF','totalmdf')">Total MDF</div><i class="pull-right fa fa-caret-down"></i></th>
+                                    <th class="baselinMDF" id="BaseLineId" ng-click="sort('BaselineMDF','BaseLineId')"><span>MDF</span><div>MDF</div><i class="pull-right fa fa-caret-down"></i></th>
+                                    <th class="ProgramMDF" id="ProgramId" ng-click="sort('ProgramMDFCaveOuts','ProgramId')"><span>Program MDF/Carve outs</span> <div>Program MDF/Carve outs</div><i class="pull-right fa fa-caret-down"></i></td>
+                                    <th class="coutryMDF" id="CountryId" ng-click="sort('CountryReverseMDF','CountryId')"><span>Country Reserve MDF</span><div>Country Reserve MDF</div><i class="pull-right fa fa-caret-down"></i> </th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in versioningData" ng-class="{'active_final': x.IsFinal == true}"><!--, 'disable_plan': x.isEnable == false}">-->
+                                    <td class="textLeft">
+                                     <!--<tr>{{ currentYear }} {{$localstorage.user.UserID}} {{$localstorage.user.IsAdmin}}{{ futurePeriod}}{{NOACCESS}}{{role.Delete}}</tr>-->
+                                     <span class="copy-img" ng-click="PassData(x)" ng-if="(role.Copy && !NOACCESS && !x.buflag && !x.disabled )" data-toggle="modal" data-target="#copyModel" title="Copy Plan"></span>
+                                        <span class="copy-img curserDisabled" ng-if="!role.Copy || NOACCESS || x.buflag || x.disabled"></span>
+                                    <!--<span class="delete-img"  ng-class="{curserDisabled: !role.Delete || NOACCESS}" ng-disabled="(!role.Delete) || NOACCESS" ng-click="PassData(x);" ng-if="($localstorage.user.IsAdmin || x.CreatedBy === $localstorage.user.UserID ) && (x.FinancialPeriod === currentYear || x.FinancialPeriod === futurePeriod) && (role.Delete || !NOACCESS)" data-toggle="modal" data-target="#deletPopup" title="Delete Plan">c</span> 
+                                    <span class="delete-img curserDisabled"  ng-if="(!$localstorage.user.IsAdmin || x.CreatedBy !== $localstorage.user.UserID ) && (x.FinancialPeriod !== currentYear && x.FinancialPeriod !== futurePeriod) && (!role.Delete || NOACCESS)" >a</span> 
+                                    <span class="delete-img curserDisabled" ng-if="(!$localstorage.user.IsAdmin && x.CreatedBy !== $localstorage.user.UserID ) || (x.FinancialPeriod !== currentYear && x.FinancialPeriod !== futurePeriod) || (!role.Delete || NOACCESS)">b</span>--> 
+                                        <span class="delete-img">
+                                        <button class="hidee"
+                                              ng-disabled="(!$localstorage.user.IsAdmin && x.CreatedBy !== $localstorage.user.UserID ) || (x.FinancialPeriod !== currentYear && x.FinancialPeriod !== futurePeriod) || (!role.Delete || NOACCESS)" 
+                                              ng-click="PassData(x);"
+                                              data-toggle="modal" data-target="#deletPopup" title="Delete Plan"></button></span>
+
+                                        <img class="cursor-point editImage pull-left" src="../../../assets/resources/Edit@1x.png" ng-click="editUserInfo(x);" ng-if="(x.FinancialPeriod === currentYear || x.FinancialPeriod === futurePeriod ) && (role.EditPlanName && !NOACCESS)" data-toggle="modal" data-target="#editPopup" title="Edit Plan">
+                                        <img class="cursor-point editImage curserDisabled pull-left" src="../../../assets/resources/Edit@1x.png" ng-if="(x.FinancialPeriod !== currentYear && x.FinancialPeriod !== futurePeriod) || (!role.EditPlanName||NOACCESS)">
+
+                                    <span  ng-class="{'finalversion-img': x.IsFinal, 'finalversion-img1': !x.IsFinal}" ng-click="isfinalVersion(x);" ng-if="(x.FinancialPeriod === currentYear || x.FinancialPeriod === futurePeriod) && (role.MarkAsFinal && !NOACCESS)" data-toggle="modal" data-target="#FinalModel" title="Mark as final"></span> 
+                                    <span class="curserDisabled" ng-class="{'finalversion-img': x.IsFinal, 'finalversion-img1': !x.IsFinal}" ng-if="(x.FinancialPeriod !== currentYear && x.FinancialPeriod !== futurePeriod) || (!role.MarkAsFinal||NOACCESS) "></span> 
+
+                                    
+                                    </td>
+                                    <td class="textLeft " ng-click="gotoBudget(x)">{{x.VersionName}}</td>
+                                    
+                                    <td class="textLeft"  ng-click="gotoBudget(x)">{{x.FinancialPeriod}}</td>
+                                    <td class="textRight"  ng-model="VersionNos"  ng-click="gotoBudget(x)">{{x.VersionNo}}</td>
+                                    <td class="textRight"  ng-click="gotoBudget(x)">$ {{x.TotalMDF | number : 0}}</td>
+                                    <td class="textRight"  ng-click="gotoBudget(x)">$ {{x.BaselineMDF | number : 0}}</td>
+                                    <td class="textRight"  ng-click="gotoBudget(x)">$ {{x.ProgramMDFCaveOuts | number : 0}}</td>
+                                    <td class="textRight"  ng-click="gotoBudget(x)">$ {{x.CountryReverseMDF | number : 0}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!--<table class="table table-hover mfd_table fixed_headers_doc">
+                    <thead>
+                        <tr>
+                            <td class="inp_td">Actions</td>
+                            <td id="PlanId" ng-click="sort('VersionName','PlanId')">Plan Name<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="FinancialpId" ng-click="sort('FinancialPeriod','FinancialpId')">Financial Period<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="VersionId" ng-click="sort('VersionNo','VersionId')">Version<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="totalmdf"  ng-click="sort('TotalMDF','totalmdf')">Total MDF<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="BaseLineId" ng-click="sort('BaselineMDF','BaseLineId')">Baseline MDF<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="ProgramId" ng-click="sort('ProgramMDFCaveOuts','ProgramId')">Program MDF/Cave Outs<i class="pull-right fa fa-caret-down"></i></td>
+                            <td id="CountryId" ng-click="sort('CountryReverseMDF','CountryId')">Country Reverse MDF<i class="pull-right fa fa-caret-down"></i> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="x in versioningData" >
+                            <td ><span class="copy-img" ng-click="PassData(x)" data-toggle="modal" data-target="#myModal"></span><span class="delete-img"></span></td>
+                            <td ng-click="gotoBudget(x)">{{x.VersionName}}</td>
+                            <td ng-click="gotoBudget(x)">{{x.FinancialPeriod}}</td>
+                            <td ng-click="gotoBudget(x)">{{x.VersionNo}}</td>
+                            <td ng-click="gotoBudget(x)">$ {{x.TotalMDF | number : 0}}</td>
+                            <td ng-click="gotoBudget(x)">$ {{x.BaselineMDF | number : 0}}</td>
+                            <td ng-click="gotoBudget(x)">$ {{x.ProgramMDFCaveOuts | number : 0}}</td>
+                            <td ng-click="gotoBudget(x)">$ {{x.CountryReverseMDF | number : 0}}</td>
+                        </tr>
+
+
+
+
+
+
+                    </tbody>
+                </table>-->
+            </div>
+        </section>
+    </form>
+
+
+    <!-- End of data ares -->
+    <!-- popup starts for copy -->
+    <div class="modal fade" id="copyModel" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <form name="copyPlan">
+                <div class="modal-content createPopup">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pad-title">Create Copy of Version </h4>
+                    </div>
+                    <div class="createConataier">
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Source Financial Period</p></div>
+                            <div class="col-md-6"><input type="text"  ng-model="a.FinancialPeriod" ng-disabled="true" name="Year"  placeholder="FY18 2H"  /></div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Version</p></div>
+                            <div class="col-md-6"><input type="text" ng-model="a.VersionNo"  ng-disabled="true" value="{{a.VersionNo}}" name="Version" placeholder="4" /></div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Source Plan Name</p></div>
+                            <div class="col-md-6"><input type="text"   name="planName" ng-model="a.VersionName"  ng-disabled="true" placeholder="MDF Plan for FY 18 2H" /></div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Destination Financial Period</p></div>
+                            <div class="col-md-6">
+                                <select name="financial" required 
+                                        ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in FinancialyearList track by Financialyears.FinancialyearID"
+                                        ng-model="drpdpwnvalue1">
+                                    <option value="" label="Select Financial Period"></option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Destination Plan Name</p></div>
+                            <div class="col-md-6"><input type="text"  ng-model="DestPlanvalue" required placeholder="Enter Plan name here..." /></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer pad-footer">
+                        <button type="button" class="btn btn-default" ng-click="copydata()" ng-disabled="copyPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+                </form>
+
+</div>
+    </div>
+    <!-- popup ends for copy -->
+    <!-- popup starts for create -->
+    <div class="modal fade" id="myModalcreate" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <div class="modal-content createPopup">
+                <form name="addPlan">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pad-title">Create New Version</h4>
+                    </div>
+                    <div class="createConataier">
+
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Financial Period</p></div>
+                            <div class="col-md-6">
+                                <select required name="finacialYear" ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in FinancialyearList track by Financialyears.FinancialyearID"
+                                        ng-model="drpdpwnvalue">
+                                    <option value="" label="Financial Period"></option>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Plan Name</p></div>
+                            <div class="col-md-6"><input type="text" required name="planname" maxlength="50" ng-model="planname" placeholder="Enter Plan name here..." /> </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer pad-footer">
+                        <button type="button" class="btn btn-default" ng-click="createdata()" ng-disabled="addPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- popup ends  for create-->
+    <!--delete popup starts-->
+    <div class="modal fade" id="deletPopup" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <div class="modal-content createPopup">
+                <form name="addPlan1">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pad-title">{{errorSingular}}</h4>
+                       
+                    </div>
+                   
+                    <div class="modal-footer pad-footer">
+                        <button type="button" class="btn btn-default"  ng-click="deleteData(a)" data-dismiss="modal">OK</button>
+                        <button type="reset" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!--edit popup starts-->
+    <div class="modal fade" id="editPopup" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <div class="modal-content createPopup">
+                <form name="editPlan">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title pad-title">Edit Plan</h4>
+                    </div>
+                    <div class="createConataier">
+
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Plan Name</p></div>
+                            <div class="col-md-6"><input type="text" required name="planname" ng-model="editPlanData.VersionName" placeholder="Enter Plan name here..." /> </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer pad-footer">
+                        <button type="button" class="btn btn-default" ng-click="editdata()" ng-disabled="editPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!--id final popup starts-->
+    <div class="modal fade" id="FinalModel" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <div class="modal-content createPopup">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title pad-title">Do you want to mark this as the Final Plan? </h4>
+                        <p style="font-weight:bold;">Only one plan can be set as final for a planning period. If any other plan of same period is already marked as final, that will be reverted. Please confirm. </p>
+
+                </div>
+               
+                <div class="modal-footer pad-footer">
+                    <button type="button" class="btn btn-default" ng-click="finalVersion()" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+

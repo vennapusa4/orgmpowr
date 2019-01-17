@@ -1,0 +1,461 @@
+<section class="allocation-page">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+</section>
+
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance partner-credit partner-credit-round-2" >
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 header">
+       
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 header-label partnerTab">
+            <a ui-sref="budget.partner-budget" class="col-lg-4 col-md-4 col-sm-4 tab-partner-credit-inactive round-1-mdf partnerTab1">
+                Round 1 MDF Allocation
+            </a>
+            <a ui-sref="budget.partner-budget-round2" class="col-lg-5 col-md-5 col-sm-4 tab-partner-credit round-2-mdf partnerTab2">
+                Round 2 MDF Allocation (Optional)
+            </a>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 country partnerTabHeader">
+            <div class="col-md-3 budgetHeader">
+                <!--<h3>
+                Start by setting MDF for the period {{BUObj.FinancialYear}}
+            </h3>-->
+                <show-version></show-version>
+
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 country-box left-padding">
+                <div class="col-lg-3 col-md-3 col-sm-3 lbl">
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                    <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                        <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                             popover-trigger="'mouseenter'"
+                             popover-placement="bottom"
+                             uib-popover="{{ctries}}"
+                             ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                             class="input-group">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                        <span class="input-group-addon country-section" id="basic-addon1">
+                            <i class="fa fa-globe globe"></i>
+                        </span>
+                        <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 country-box left-padding">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <label class="top9-padding">Budget</label>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 control">
+                    <div class="input-group">
+                        <input type="text"
+                               readonly class="form-control partner-input partner-country-section-input"
+                               placeholder="Country" disabled aria-describedby="basic-addon1"
+                               value="{{reseller.partner.PartnerName }} {{reseller.district.DistrictName.length > 0 ? '-': '' }} {{ reseller.district.DistrictName  }}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box left-padding" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+                <div class="col-lg-4 col-md-4 col-sm-4 ">
+                    <label class="top9-padding">Membership</label>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 control">
+                    <div class="input-group">
+
+                        <input type="text" disabled readonly class="form-control partner-input country-section-input" placeholder="Country" value="{{reseller.membership.MembershipName }}" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 filter" style="padding-top:10px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 filter-container round-2">
+            <div class="round-2 top">
+                <p>
+                    You have remaining budget -
+                    <!-- ng-hide="rem.Remaining == 0 " -->
+                    <span ng-repeat="rem in remaining"> {{rem.BusinessUnit}}: ${{rem.Remaining| number: 0}}
+                        <span ng-show="$index != remaining.length-1">,</span>
+                    </span>. What would you like to focus on?
+                </p>
+            </div>
+            <div class="round2-rad-section">
+                <div ng-class="{'disabled': rx.IsActive == 0}" class="col-lg-1 col-md-1 col-sm-1 mdf-status  padding-0 round-2" ng-repeat="rx in options">
+                    <div class="radio" ng-show="rx.IsActive == 1">
+                      <input ng-model="$parent.selected"
+                              ng-checked="rx.FocusedAreaID == histories[0].FocusedAreaID ? true : false"
+                               ng-value="rx" name="a"
+                               ng-disabled="rx.IsActive == 0 || role.disabled || disablePrevious || NOACCESS "
+                               id="{{rx.FocusedAreaID}}"
+                               type="radio">
+                        <label id="label_{{rx.FocusedAreaID}}" for="{{rx.FocusedAreaID}}">{{rx.FocusedArea}}</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 mdf-status  padding-0 round-2 pull-right">
+                <button ng-click="filter()" ng-disabled="remaining[0].Remaining <= 0 || role.disabled || disablePrevious || NOACCESS " class="btn btn-success pull-right allocate-round2-btn">
+                    Allocate Round 2 MDF
+                </button>
+            </div>
+            <div class="round-2 bottom">
+
+                <div ng-show="selected.FocusedAreaID == 1 ">
+                    <img class="info" src="../../../assets/resources/info@1x.png" />
+                    <p>
+                        <b>Growth in sales</b>
+                        allocates the remaining budget to partners with projected sellout growth that is greater than the threshold which is set in Step 3: Set Model Parameter.
+                    </p>
+                </div>
+
+                <div ng-show="selected.FocusedAreaID == 2 ">
+                    <img class="info" src="../../../assets/resources/info@1x.png" />
+                    <p><b>Growth in SOW</b> allocates the remaining budget to partners with SOW growth greater than 0%.</p>
+                </div>
+
+                <div ng-show="selected.FocusedAreaID == 5 ">
+                    <img class="info" src="../../../assets/resources/info@1x.png" />
+                    <p>
+                        <b>More Productive Partners</b>
+                        allocates the remaining budget to partners with top performer productivity (above 3rd quartile).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Data -->
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data" ng-init="hideGraph()">
+        <div class="row" id="search-area">
+
+            <div class="pull-left paddinRigh0">
+                <label>Search by : </label>
+            </div>
+            <div class="col-lg-2">
+                <select class="custom-dropdown-filter custom-dropdownPreBudget latestDropdown"
+                        ng-options="filter.FilterColumnNames for filter in filterList"
+                        ng-change="OnFilterColumnChange(filterColumn)"
+                        ng-model="filterColumn"></select>
+            </div>
+            <div class="col-lg-2" ng-if="!hideOperator">
+                <select class="custom-dropdown-filter custom-dropdownPreBudget latestDropdown"
+                        ng-options="operator.key for operator in operand"
+                        ng-change="OnFilterDelimeterChange(filterDelimeter)"
+                        ng-model="filterDelimeter"></select>
+            </div>
+            <div class="pull-left col-lg-3 filtertext" ng-if="!hideOperator">
+                <input type="number" class="form-control form-control-small pull-left " id="filterValue"
+                       ng-model="filterText" />
+                <!--</div>
+            <div class="pull-left col-lg-2  filtertext" >-->
+                <input type="number" class="form-control form-control-small pull-left" id="filterValue2" ng-if="!hideOperator && !hideFilterValue2"
+                       ng-model="filterText2" />
+            </div>
+
+            <div class="col-lg-3 " id="partnerInput" ng-if="!hidePartnerName && hideOperator && hidePartnerId">
+                <input type="text" class="form-control form-control-small" id="PartnerName" ng-model="Partner_Name" ng-keyup="getPartnerName(Partner_Name)" placeholder="Partner Name" />
+
+                <ul class="dropdown-menu partner_dropdown" role="menu" ng-show="Partner_Name.length > 2">
+                    <li ng-repeat="names in partnersDetails"><a href="" ng-click="selectedName(names.Partner_Name, $index)">{{names.Partner_Name}} </a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 " id="partnerInput" ng-if="!hidePartnerId && hideOperator && hidePartnerName">
+                <input type="text" class="form-control form-control-small" id="PartnerId" data-toggle="dropdown" name="{{PartnerID}}" ng-model="PartnerID" ng-keyup="getPartnerId(PartnerID)" placeholder="Partner Id" />
+
+                <ul class="dropdown-menu partner_dropdown" role="menu" ng-show="PartnerID.length > 2">
+                    <li ng-repeat="id in PartnerIDs"><a href="" ng-click="selectedPartnerID(id.PartnerID, $index)">{{id.PartnerID}}</a></li>
+                </ul>
+            </div>
+
+            <div class="pull-right right-padding action-buttons">
+                 <a type="button" class="btn btn-success pull-right  btn-sm fullscreenExpand"  title="Reset search" ng-click="clearSearch()"
+               <span>Reset</span>
+            </a>
+                <a type="button" class="btn btn-success pull-left  btn-sm fullscreenExpand" style="margin-right: 6px !important;" ng-if="!hideOperator" ng-click="filter()">
+                    <span>Filter</span>
+                </a>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 data-container">
+                <table class="table table-bordered table-striped round2-tab">
+
+                    <!-- TOP Column -->
+                    <!-- End of TOP -->
+
+                    <thead>
+                        <tr>
+                            <th id="Partner_Name" ng-click="sort('','Partner_Name','Partner_Name')" class="thead-border-green">
+                                Partner Name
+                                <i class="pull-right fa fa-caret-down"></i>
+                            </th>
+                            <th class="thead-border-green">
+                                Allocated {{CurrrentFyPeriod}} Proposed Budget - Round 1 / Sellout
+                                <!-- <i class="pull-right fa fa-caret-down"></i> -->
+                            </th>
+                            <th id="BaseLine_MDF" class="thead-border-green"
+                                ng-click="sort('MDF','BaseLine_MDF','BaseLine_MDF')">
+                                Allocated {{CurrrentFyPeriod}} Proposed Budget - Round 1
+                                <i class="pull-right fa fa-caret-down"></i>
+                            </th>
+
+                            <th id="Additional_RecommendedMDF" class="thead-border-green"
+                                ng-click="sort('MDF','Additional_RecommendedMDF','Additional_RecommendedMDF')">
+                                {{CurrrentFyPeriod}} Calculated MDF - Round 2
+                                <i class="pull-right fa fa-caret-down"></i>
+                            </th>
+                            <th id="Additional_MDF" class="thead-border-green decision-mdf"
+                                ng-click="sort('MDF','Additional_MDF','Additional_MDF')"
+                                class="decision-mdf">
+                                Allocated {{CurrrentFyPeriod}} Proposed Budget - Round 2
+                                <i class="pull-right fa fa-caret-down"></i>
+                            </th>
+                            <th class="decision-mdf thead-border-green">
+                                Specify Reason
+                            </th>
+                            <th class="thead-border-green">
+                                Allocated {{CurrrentFyPeriod}} Proposed Budget - <br />Round 1 + Round 2
+                            </th>
+                            <th class="thead-border-green">
+                                Allocated {{CurrrentFyPeriod}} Proposed Budget - <br />Round 1+Round 2 /Sellout
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <!-- ### MAIN ROW -->
+
+                    <tbody ng-repeat="partner in histories">
+                        <tr ng-class="{'even': $index % 2 == 0, 'odd': $index % 2 != 0 }">
+                            <td class="expand" title="{{partner.Partner_Name}}">
+                                <div class="text-hp ng-binding">
+                                    {{partner.Partner_Name  }}
+                                </div>
+                                <div class="text-ic btn-align">
+                                    <i class="fa expand-btn fa-caret-down" ng-click="toogle(partner,$index)" id="icon-{{partner.PartnerID}}"></i>
+                                </div>
+                            </td>
+                            <td class="ng-binding">
+                                {{
+                              partner.Sellout[0].Projected_Sellout > 0 ?  ((partner.MDF[0].BaseLineMDF / partner.Sellout[0].Projected_Sellout)*100 | number: 1  )  : "-"
+                                }}  %
+                            </td>
+                            <td class="history-text-t">
+                                {{ partner.TotalMDF | number : 0}}
+                                <!--{{ partner.MDF[0].BaseLineMDF | number : 0}}-->
+                            </td>
+
+                            <!-- Decision MDF  column-highlight -->
+                            <td class="history-text-t ">
+                                {{ partner.MDF[0].Additional_RecommendedMDF | number : 0}}
+                            </td>
+                            <td class="history-text-t">
+                                {{ partner.MDF[0].Additional_MDF | number : 0}}
+                            </td>
+                            <td class="history-text-t">
+                                <div class="row ng-binding">
+                                    -
+                                </div>
+                            </td>
+                            <td class="history-text-t">
+                                <div class="row ng-binding">
+                                    {{ (partner.MDF[0].BaseLineMDF + partner.MDF[0].Additional_MDF) | number : 0}}
+                                    <!-- {{ (getTotal_PB2(partner.BU,'Additional_MDF') + getTotal_PB2(partner.BU,'Additional_MDF')) | number }} -->
+                                </div>
+                            </td>
+                            <td class="history-text-t">
+                                <div class="row ng-binding">
+                                    {{
+                                    partner.Sellout[0].Projected_Sellout > 0 ?
+                                    ((
+                                        (partner.MDF[0].BaseLineMDF + partner.MDF[0].Additional_MDF)
+                                        /partner.Sellout[0].Projected_Sellout
+                                    ) * 100 | number : 1) : "-"
+                                    }} %
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- ################# EXPANDED VIEW ################################## -->
+                        <tr class="graph-row reseler-graph-row-{{partner.PartnerID}}" id="businessUnit_{{bu.BusinessUnitID}}" ng-repeat="bu in partner.businessUnit">
+                            <td class="history-text-t">
+                                {{bu.Business_Unit}}
+                            </td>
+                            <td class="history-text-t">
+                                {{
+                              bu.Sellout[0].Projected_Sellout > 0 ?  ((bu.MDF[0].BaseLineMDF / bu.Sellout[0].Projected_Sellout)*100 | number: 1  )  : "-"
+                                }}  %
+                            </td>
+                            <td class="history-text-t">
+                                {{bu.TotalMDF | number: 0}}
+                                <!--{{bu.MDF[0].BaseLineMDF | number: 0}}-->
+                            </td>
+                            <td class="history-text-t">
+                                {{bu.MDF[0].AdditionalRecomendedMDF | number: 0}}
+                            </td>
+                            <td class="history-text-t">
+                                <input class="form-control specialText"
+                                       id="AdditionalMDF_{{$index}}"
+                                       ng-mouseover='Popover($event)'
+                                       ng-focus="copy(bu,partner)"
+                                       ng-class="{'yelow':'AdditionalMDF_' + $index == Varid}"
+                                       ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                       ng-blur="saveData(bu,partner,false,$event)"
+                                       onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                       ng-model="histories[$parent.$index].businessUnit[$index].MDF[0].AdditionalMDF"
+                                       type="text" maxlength="15" />
+                            </td>
+                            <td class="history-text-t">
+                                <input class="form-control"
+                                       ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                       ng-blur="saveData(bu,partner,true)"
+                                       ng-model="histories[$parent.$index].businessUnit[$index].MDF[0].AdditionalMDFReason"
+                                       type="text" placeholder="Type Reason" maxlength="255" />
+                            </td>
+                            <td class="history-text-t">
+                                {{ bu.MDF[0].BaseLineMDF + bu.MDF[0].AdditionalMDF | number : 0 }}
+                            </td>
+                            <td class="history-text-t">
+                                {{
+                                    ((bu.MDF[0].AdditionalMDF > 0 ? bu.MDF[0].BaseLineMDF + bu.MDF[0].AdditionalMDF :
+                                    bu.MDF[0].BaseLineMDF + bu.MDF[0].Recommended_MDF) / bu.Sellout[0].Projected_Sellout )*100
+                                    | number : 1
+                                }}%
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                </div>
+            </div>
+        </div>
+    <!-- End of Data -->
+</div>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-8">
+        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12 pd-top-10 notification-muted">
+                <p class="">
+                    <i class="fa fa-info-circle"></i>
+                    Note: Entered Additional allocated MDF and data will be saved automatically!
+                </p>
+            </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-md-2 resetButtons">
+            <button class="col-lg-2 col-md-2 col-sm-2  icon-holder" ng-disabled="role.copy || NOACCESS"
+                   
+                    data-toggle="modal" data-target="#CopyModal">
+                <div><img class="top5-margin" src="assets/resources/Copy Green.svg"></div>
+                <div><label>COPY</label></div>
+            </button>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 icon-holder top-ten-padding">
+            <button class="btn btn-success" ng-click="setPrev()" ui-sref="budget.partner-budget">
+                PREVIOUS
+            </button>
+            <a class="btn btn-success" ng-click="setNext()">
+                NEXT
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="confirm-copy" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-1">
+                        <!-- <img src="assets/resources/export copy 2@1x.png"> -->
+                    </div>
+                    <div class="col-lg-11 col-md-11 col-sm-11">
+                        <p>
+                            <h4>
+                                Calculated MDF will be copied to Basline MDF, if Basline MDF is zero
+                            </h4>
+                            <br>
+                            <br>
+                            <h4>Do you want to continue?</h4>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 btn-area">
+                    <button class="btn btn-success pull-right" data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button ng-click="copy()"
+                            data-dismiss="modal"
+                            class="btn btn-success pull-right right7-margin">
+                        COPY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- popup starts for copy -->
+<div class="modal fade" id="CopyModal" role="dialog">
+    <div class="modal-dialog copyPopup">
+
+        <!-- Modal content-->
+        <form name="copyPlan">
+            <div class="modal-content createPopup">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Copy of Version </h4>
+                </div>
+                <div class="createConataier">
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Source Financial Period</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="versiondata.Financialyear" ng-disabled="true" name="Year" placeholder="FY18 2H" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Version</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="versiondata.VersionNo" ng-disabled="true" name="Version" placeholder="4" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Source Plan Name</p></div>
+                        <div class="col-md-6"><input type="text" name="planName" ng-model="versiondata.VersionName" ng-disabled="true" placeholder="MDF Plan for FY 18 2H" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Destination Financial Period</p></div>
+                        <div class="col-md-6">
+                            <select name="financial" required
+                                    ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in Financialyearend track by Financialyears.FinancialyearID"
+                                    ng-model="drpdpwnvalue1">
+                                <option value="" label="Select Financial Period"></option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Destination Plan Name</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="DestPlanvalue" required placeholder="Enter Plan name here..." /></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="copydata()" ng-disabled="copyPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<style>
+    .yelow{
+    border-color: #FDAD49;
+    /*border-width: medium;*/
+}
+</style>

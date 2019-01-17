@@ -1,0 +1,47 @@
+.leftbar{
+	padding: 0;
+	background-color: #425563;
+	height: 1000px;
+	box-shadow: 2px 2px 2px #ccc;
+}
+.leftbar .logo{
+	background-color: #36444F;
+    height: 58px;
+    padding-left: 11px;
+    padding-top: 19px;
+}
+.leftbar .logo img{
+	height: 16px;
+	
+}
+.menu-items > ul > li{
+	color: #ddd;
+    font-size: 18px;
+    padding-left: 30px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    height: 75px;
+}
+.menu-items > ul > li:hover{
+	background-color: #18b488;
+}
+.menu-items > ul > li img{
+	height: 25px;
+	float: left;
+}
+.left-items .icon{
+	cursor: pointer;
+}
+.menu-items > ul > li > a > h5{
+	display: none;;
+	color: #FFF;
+    padding-left: 37px;
+    padding-top: 4px;
+
+}
+.menu-items > ul > li > a{
+	text-decoration: none;
+}
+.leftnav-active{
+	background-color: #18b488;
+}

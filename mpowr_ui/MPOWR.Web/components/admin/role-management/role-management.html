@@ -1,0 +1,196 @@
+﻿    <breadcrumb-bar module="admin">
+    </breadcrumb-bar>
+
+
+    <div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 user-management">
+        <div class="col-lg-12 data-container user-management role shade-1">
+
+        <!-- Select Role & Partner Type -->
+        <div class="row">
+                <!-- Select Role -->
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div class="btn-group col-lg-6 col-md-6 col-sm-6 left-padding">
+                  
+                    <form>
+                      <div class="form-group no-topmargin">
+                        <label for="email">Role</label>
+                        <select 
+                            class="form-control" 
+                                style="width:inherit"
+                            ng-options="item as item.DisplayName for item in channelStrgyRole | orderBy:'item.DisplayName' track by item.RoleID"
+                            ng-model="selectedItem" 
+                            ng-change="selectedRole(selectedItem.RoleID)">
+                        </select>
+                        
+                      </div>
+                    </form>
+                </div>
+            </div>
+            <!--  Partner Type -->
+            <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div class="btn-group col-lg-12 col-md-12 col-sm-12 left-padding" ng-show="partnerTypeDisplay">
+                    <label class="display-block">RTM</label>
+                    
+                    <p class="checkbox-text" ng-repeat="partner in partnerTypeArray">
+                        <input type="checkbox" id="{{partner.partnerName}}" ng-model="partner.partnerTypeStatus">
+                        <label class="rtm-label" for="{{partner.partnerName}}" class="pname"><span class="check-label">{{partner.partnerName}}</span></label>
+                    </p>
+                </div>
+            </div>-->
+        </div>
+
+<!-- Role Details -->
+        <div class="row role-pages-container">
+            <div ng-repeat="data in channelStrgyRoleFeatures | orderBy:'SortOrder'" class="col-lg-12 col-sm-16 col-xs-16 col-md-16 role-pages">
+                <div class="btn-group col-lg-3 col-md-3 col-sm-3 col-xs-12 left-padding">
+                    <label class="role-top-padding">{{data.FeatureDisplayName}}</label>
+                </div>
+                <div class="col-lg-9 col-sm-9 col-xs-9 col-md-9">
+                    <div
+                        
+                        class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding" 
+                        ng-repeat="option in data.options">
+                        <p class="checkbox-text">
+                            
+                            <input 
+                                type="checkbox" 
+                                id="{{data.FeatureDisplayName}}-{{$index}}" 
+                                ng-click="switch(option,$parent.$index,$index)"
+                                ng-model="option.IsChecked">
+                            <label 
+                                for="{{data.FeatureDisplayName}}-{{$index}}" id="label1" >
+                                    <span class="check-label">{{option.FeatureActionDisplayName}}</span>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- End of  Role Details  -->
+        </div>
+    </div>
+
+
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+       
+        <div class="col-lg-6 col-md-8 col-sm-8">
+
+            <div class="col-lg-9 col-md-9 col-sm-9 ng-hide" ng-show="final >= 1">
+
+            </div>
+            <div class="col-lg-3 col-sm-4 col-md-6 count">
+
+            </div>
+
+        </div>
+        <div class="col-lg-5 col-md-4 col-sm-4" id="contol-role-management">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6" >
+                <!-- Save Role Details -->
+                <!--<div class="col-lg-4 col-md-4 col-sm-4 icon-holder">
+                    <div class="pull-right" ng-click="save()">
+                        <div><img src="assets/resources/save@1x.png"></div>
+                        <div><label ng-click="save()">SAVE</label></div>
+                    </div>
+                </div>-->
+
+                <div class="resetButtons">
+                    <button class="col-lg-2 col-md-2 col-sm-2 icon-holder"
+                            ng-click="save()">
+                        <div><img src="assets/resources/save@1x.png"></div>
+                        <div><label>SAVE</label></div>
+                    </button>
+                </div>
+                <!-- ADD NEW ROLE BUTTON -->
+                <div class="col-lg-2 col-md-2 col-sm-2 icon-holder">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#myModalNorm">
+                       ADD NEW ROLE
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal to add new role-->
+
+  <div class="modal fade custom-modal" id="myModalNorm" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header no-bottom">
+
+                <h4 class="modal-title" id="myModalLabel">
+                    Create New Role
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body add-user-form">
+                <form role="form" name="roleForm" autocomplete="off">
+                    <div ng-class="{'has-error': roleForm.name.$invalid && !roleForm.name.$pristine  }"
+                         class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                        <label>Short Name</label>
+
+                        <input name="name"
+                              
+                               type="text"
+                               class="form-control input-border"
+                               id="exampleInputEmail1"
+                               placeholder="Short name"
+                               ng-model="role.newShortName"
+                               maxlength="25"
+                               pattern="[a-zA-Z0-9\s]+"
+                               required />
+                        <small ng-if="roleForm.name.$error.required && !roleForm.name.$pristine">
+                            Please enter short name
+                        </small>
+                        <small ng-if="roleForm.name.$error.pattern && !roleForm.name.$pristine">
+                            Please enter only alpha numeric character
+                        </small>
+                    </div>
+
+                    <div ng-class="{'has-error': roleForm.roleName.$invalid && !roleForm.roleName.$pristine  }"
+                         class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                        <label for="exampleInputEmail1">Role Name</label>
+                        <input name="roleName"
+                               required
+                               pattern="[a-zA-Z0-9\s]+"
+                               type="text"
+                               class="form-control input-border"
+                               id="exampleInputEmail1"
+                               placeholder="Role name"
+                               ng-model="role.newRoleName"
+                               ng-blur="checkRoleName()"
+                               maxlength="50" />
+                        <small ng-if="roleForm.roleName.$error.required && !roleForm.roleName.$pristine">
+                            Please enter role name
+                        </small>
+                        <small ng-if="roleForm.roleName.$error.pattern && !roleForm.roleName.$pristine">
+                            Please enter only alpha numeric character
+                        </small>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer add-user-form">
+                <button type="button" class="btn btn-default theme-colr"
+                        ng-click="reset(roleForm)"
+                        data-dismiss="modal">
+                    CANCEL
+                </button>
+                <button ng-disabled="roleForm.$invalid"
+                        type="button"
+                        class="btn btn-primary theme-colr"
+                        ng-click="newRole()">
+
+                    SAVE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Modal to add new role-->

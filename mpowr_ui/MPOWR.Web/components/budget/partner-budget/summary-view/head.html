@@ -1,0 +1,153 @@
+<tr>
+    <th id="Partner_Name" ng-click="sort('','Partner_Name','Partner_Name')">
+        Partner Name
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+    <th id="PartnerID" ng-click="sort('','PartnerID','PartnerID')">
+        Partner ID
+        <i class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Membership_Type" ng-click="sort('','Membership_Type','Membership_Type')">
+        Membership Type
+        <i ng-if="PartnerTypeID == 2" class="pull-right fa fa-caret-down"></i>
+    </th>
+
+
+    <!--<th>
+        <div uib-popover="Projected sellout is based on planned sales adjusted by historical target achievement"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Projected_Sellout"
+             ng-click="sort('Sellout','Projected_Sellout','Projected_Sellout')">
+            Projected <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-down"></i>
+        </div>
+    </th>-->
+    <th>
+        <div uib-popover="Projected sellout is based on planned sales adjusted by historical target achievement"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Projected_Sellout"
+             ng-click="sort('Sellout','Projected_Sellout','Projected_Sellout')">
+            {{CurrrentFyPeriod}} M-POWR Projected <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-down"></i>
+        </div>
+    </th>
+
+
+
+
+    <th id="Recommended_MDF" ng-click="sort('MDF','Recommended_MDF','Recommended_MDF')">
+        <div uib-popover="Modeled MDF amount for each partner-BU based on the parameter set in step 3."
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom">
+            M-POWR {{CurrrentFyPeriod}} Calculated MDF  
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <th id="MGO_Ratio" ng-click="sort('','MDF','MGO_Ratio')">
+      {{SelectedPreviousFyYear}}  WMGO Ratio
+        <!--<span class="fa fa-info-circle"
+              aria-hidden="false">
+        </span>-->
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <!--MPOWR ENHANCEMENTS 3-01-19-->
+    <!--<th id="Assesment">
+        <div uib-popover="Assessment of the magnitude of change of MDF from previous period and the alignment of the change between calculated MDF and previous period MDF and the change between projected sales and previous period sales."
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="MDF_Alignment"
+             ng-click="sort('','Assesment','Assesment')">
+            Assessment
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>-->
+
+    <th class="bg-aqua" style="text-align:center !important" id="MSA">
+        <!-- ng-click="sort('MSA','MSA','MSA')" -->
+        <!-- <div class="row">
+            <div id="MSAValue"
+                 ng-click="sort('MSA','MSAValue','MSAValue')">
+                MSA
+            </div>
+
+            ng-if="reseller.district.DistrictID > 0"
+        </div> -->
+      {{CurrrentFyPeriod}} allocated MSA
+
+        <!--<i class="pull-right fa fa-caret-up"></i>-->
+    </th>
+    <th class="bg-aqua" style="text-align:center !important">
+        Aruba MSA
+    </th>
+
+    <th class="bg-aqua">
+        <div uib-popover="Final MDF allocation validated by the decision maker"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="BaseLine_MDF"
+             ng-click="sort('MDF','BaseLine_MDF','BaseLine_MDF')">
+            Allocated {{CurrrentFyPeriod}} <BR />Proposed Budget
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <th class="bg-aqua">
+        <div uib-popover="Final MDF allocation validated by the decision maker"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Total_MDF"
+             ng-click="sort('MDF','TotalMDF','TotalMDF')">
+            Total {{CurrrentFyPeriod}} Proposed Budget 
+             <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <th class="bg-aqua">
+        <div popover-placement="bottom"
+             uib-popover="Reason for allocating an final amount that is significantly (% determined by each geography) different than the calculated MDF."
+             popover-trigger="'mouseenter'"
+              ng-click="sort('MDF','CarveOut','CarveOut')">
+             Allocated {{CurrrentFyPeriod}} Carve out
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <!--MPOWR ENHANCEMENTS 3-01-19-->
+    <!--<th class="bg-aqua">
+        <div popover-placement="bottom"
+             uib-popover="Reason for allocating an final amount that is significantly (% determined by each geography) different than the calculated MDF."
+             popover-trigger="'mouseenter'">
+            Reason for Variance
+            <span class="fa fa-info-circle" />
+        </div>
+    </th>-->
+
+
+
+    <th id="ProjectedMDFOrSellout" ng-click="sort('MDF','ProjectedMDFOrSellout','ProjectedMDFOrSellout')">
+        {{CurrrentFyPeriod}} MDF/{{CurrrentFyPeriod}} Projected Sellout 
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <!-- HSM-947 -->
+    <th>
+        HQ
+    </th>
+    <th>
+        Value %
+    </th>
+</tr>

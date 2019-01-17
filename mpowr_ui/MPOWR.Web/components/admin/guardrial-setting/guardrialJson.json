@@ -1,0 +1,253 @@
+{
+  "Regions": [
+    {
+      "RegionID": 1,
+      "RegionName": "AMS"
+    },
+    {
+      "RegionID": 2,
+      "RegionName": "APJ"
+    },
+    {
+      "RegionID": 3,
+      "RegionName": "EMEA"
+    }
+  ],
+  "FinancialYears": [
+    {
+      "FinancialYearID": 1,
+      "FinancialYearName": "FY14 1H"
+    },
+    {
+      "FinancialYearID": 2,
+      "FinancialYearName": "FY14 2H"
+    },
+    {
+      "FinancialYearID": 3,
+      "FinancialYearName": "FY15 1H"
+    },
+    {
+      "FinancialYearID": 4,
+      "FinancialYearName": "FY15 2H"
+    },
+    {
+      "FinancialYearID": 5,
+      "FinancialYearName": "FY16 1H"
+    },
+    {
+      "FinancialYearID": 6,
+      "FinancialYearName": "FY16 2H"
+    },
+    {
+      "FinancialYearID": 7,
+      "FinancialYearName": "FY17 1H"
+    },
+    {
+      "FinancialYearID": 8,
+      "FinancialYearName": "FY17 2H"
+    },
+    {
+      "FinancialYearID": 9,
+      "FinancialYearName": "FY18 1H"
+    },
+    {
+      "FinancialYearID": 10,
+      "FinancialYearName": "FY18 2H"
+    },
+    {
+      "FinancialYearID": 11,
+      "FinancialYearName": "FY19 1H"
+    },
+    {
+      "FinancialYearID": 12,
+      "FinancialYearName": "FY19 2H"
+    },
+    {
+      "FinancialYearID": 13,
+      "FinancialYearName": "FY20 1H"
+    },
+    {
+      "FinancialYearID": 14,
+      "FinancialYearName": "FY20 2H"
+    },
+    {
+      "FinancialYearID": 15,
+      "FinancialYearName": "FY21 1H"
+    },
+    {
+      "FinancialYearID": 16,
+      "FinancialYearName": "FY21 2H"
+    },
+    {
+      "FinancialYearID": 17,
+      "FinancialYearName": "FY22 1H"
+    },
+    {
+      "FinancialYearID": 18,
+      "FinancialYearName": "FY22 2H"
+    },
+    {
+      "FinancialYearID": 19,
+      "FinancialYearName": "FY23 1H"
+    },
+    {
+      "FinancialYearID": 20,
+      "FinancialYearName": "FY23 2H"
+    },
+    {
+      "FinancialYearID": 21,
+      "FinancialYearName": "FY24 1H"
+    },
+    {
+      "FinancialYearID": 22,
+      "FinancialYearName": "FY24 2H"
+    },
+    {
+      "FinancialYearID": 23,
+      "FinancialYearName": "FY25 1H"
+    },
+    {
+      "FinancialYearID": 24,
+      "FinancialYearName": "FY25 2H"
+    },
+    {
+      "FinancialYearID": 25,
+      "FinancialYearName": "FY26 1H"
+    },
+    {
+      "FinancialYearID": 26,
+      "FinancialYearName": "FY26 2H"
+    },
+    {
+      "FinancialYearID": 27,
+      "FinancialYearName": "FY27 1H"
+    },
+    {
+      "FinancialYearID": 28,
+      "FinancialYearName": "FY27 2H"
+    },
+    {
+      "FinancialYearID": 29,
+      "FinancialYearName": "FY28 1H"
+    },
+    {
+      "FinancialYearID": 30,
+      "FinancialYearName": "FY28 2H"
+    },
+    {
+      "FinancialYearID": 31,
+      "FinancialYearName": "FY29 1H"
+    },
+    {
+      "FinancialYearID": 32,
+      "FinancialYearName": "FY29 2H"
+    },
+    {
+      "FinancialYearID": 33,
+      "FinancialYearName": "FY30 1H"
+    },
+    {
+      "FinancialYearID": 34,
+      "FinancialYearName": "FY30 2H"
+    }
+  ],
+  "Reviewers": [
+    {
+      "ReviewerID": 1,
+      "ReviewerName": "US District Manager\r\n"
+    },
+    {
+      "ReviewerID": 2,
+      "ReviewerName": "Country Sales\r\n"
+    },
+    {
+      "ReviewerID": 3,
+      "ReviewerName": "District Sales Lead\r\n"
+    },
+    {
+      "ReviewerID": 4,
+      "ReviewerName": "District Sales Manager\r\n"
+    },
+    {
+      "ReviewerID": 5,
+      "ReviewerName": "Marketing\r\n"
+    },
+    {
+      "ReviewerID": 6,
+      "ReviewerName": "Category Manager"
+    },
+    {
+      "ReviewerID": 7,
+      "ReviewerName": "Finance\r\n"
+    },
+    {
+      "ReviewerID": 8,
+      "ReviewerName": "Marketing - Reseller"
+    },
+    {
+      "ReviewerID": 9,
+      "ReviewerName": "Marketing - Distributor\r\n"
+    },
+    {
+      "ReviewerID": 10,
+      "ReviewerName": "Sales\r\n"
+    },
+    {
+      "ReviewerID": 11,
+      "ReviewerName": "Sales - Distributor\r\n"
+    },
+    {
+      "ReviewerID": 12,
+      "ReviewerName": "Global\r\n"
+    },
+    {
+      "ReviewerID": 13,
+      "ReviewerName": "Channel Strategy\r\n"
+    },
+    {
+      "ReviewerID": 14,
+      "ReviewerName": "Channel Marketing\r\n"
+    },
+    {
+      "ReviewerID": 16,
+      "ReviewerName": "Inside Channel Sales Support"
+    },
+    {
+      "ReviewerID": 17,
+      "ReviewerName": "Channel Sales"
+    },
+    {
+      "ReviewerID": 38,
+      "ReviewerName": "test1"
+    },
+    {
+      "ReviewerID": 39,
+      "ReviewerName": "25 char"
+    },
+    {
+      "ReviewerID": 40,
+      "ReviewerName": "more hen 25 char"
+    }
+  ],
+  "GuardRailDetails": [ 
+    {
+      "GuardRailConfigID": 1,
+      "ProgramCarveOutComplaintValue": 10,
+      "ProgramCarveOutNonComplaintValue": 10,
+      "GuardRailToolTip": 10,
+      "ActualMDFAllocationComplaintValue": 10,
+      "ActualMDFAllocationNonComplaintValue": 20,
+      "MDFSelloutIndexComplaintValue": 1.5,
+      "MDFSelloutIndexNonComplaintValue": 3.5,
+      "OverAllocationComplaintValue": 110,
+      "OverAllocationNonComplaintValue": 5,
+      "AllowOverAllocation": "Y",
+      "UnderAllocationComplaintValue": 95,
+      "UnderAllocationNonComplaintValue": 90,
+      "ReviewerRoleID1": 1,
+      "ReviewerRoleID2": 2,
+      "ReviewerRoleID3": 3,
+      "ReviewerRoleID4": 4
+    }
+  ]
+}

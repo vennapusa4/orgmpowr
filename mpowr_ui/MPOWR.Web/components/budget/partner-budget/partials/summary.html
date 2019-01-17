@@ -1,0 +1,159 @@
+<td title="{{history.Partner_Name}}">
+    <div class="text-hp">
+        Total <span ng-if="history.Partner_Name.length > 15">...</span>
+    </div>
+    <div class="text-ic">
+        <i class="fa fa-caret-down expand-btn total-expand-btn" ng-click="toogleTotal()" id="icon-{{$index}}"></i>
+    </div>
+</td>
+<td class="history-text-t" id="idcol" style="text-align: left !important"> - </td>
+<td ng-if="PartnerTypeID == 2">
+    -
+</td>
+<td class="history-text-t">
+    <div class="row">
+        <div class="formated-price" ng-class="{'col-lg-12': !selloutColExpnd, 'col-lg-3': selloutColExpnd}" ng-bind="total.Projected_Sellout  | number: 0">
+            
+            
+        </div>
+        <div class="formated-price" ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}" ng-bind="total.Last_Period_Sellout | number: 0">
+            
+        </div>
+        
+        <div ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            <span ng-bind="total.YoY_change_sellout | number: 1">
+                
+            </span> %
+        </div>
+        <div class="" ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            -
+        </div>
+    </div>
+</td>
+<td class="history-text-t">
+
+    <div class="row">
+
+        <div class="formated-price" ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}" ng-bind="total.Recommended_MDF | number: 0">
+            
+            
+
+        </div>
+        <div ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+            -
+        </div>
+        <div ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}" ng-bind="total.Last_Period_MDF | number: 0">
+            <!-- {{total.Last_Period_MDF | number: 0}} -->
+        </div>
+        <div ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+            <span class="formated-price" ng-bind="total.YoY_change_MDF | number: 1">
+                <!-- {{}} -->
+            </span> %
+        </div>
+    </div>
+</td>
+<!-- Decision MDF -->
+<td class="history-text-t">
+    <div class="row">
+        <div class="col-lg-3 formated-price" ng-bind="total.BaseLineMDF | number: 0">
+            <!-- {{}} -->
+        </div>
+        <div class="col-lg-5">
+            -
+        </div>
+        <div class="col-lg-4">
+            -
+        </div>
+    </div>
+
+</td>
+<td class="history-text-t">
+    <div class="row">
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}">
+            -
+            <!-- {{(total.BaseLineMDF / total.Projected_Sellout) | number: 1}} % -->
+        </div>
+        <div ng-class="{'col-lg-12': !msExpnd, 'col-lg-3': msExpnd}" ng-bind="(total.ProjectedMDFOrSellout | number: 1) + '%'">
+            
+            
+        </div>
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}" >
+            -
+        </div>
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}">
+                -
+        </div>
+    </div>
+
+</td>
+
+
+<td class="history-text-t" id="" ng-if="selectedPartner[2]"> - </td>
+<td class="history-text-t" id="" ng-if="selectedPartner[3]"> - </td>
+<td class="history-text-t" id="" ng-if="selectedPartner[4]"> N/A </td>
+<td class="history-text-t" id="" ng-if="selectedPartner[5]"> N/A </td>
+<td class="history-text-t" id="" ng-if="selectedPartner[6]"> N/A </td>
+<td class="history-text-t" id="" ng-if="selectedPartner[7]">
+     <!-- {{ total.PlannedSales | number : 0 }}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[8]" ng-bind="total.targetAchievement | number : 0">
+     <!-- {{ total.targetAchievement | number : 0 }}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[9]" > <!-- ng-bind="total.SOW | number : 0" -->
+    -
+     <!-- {{ total.SOW | number : 0 }}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[10]" ng-bind="total.SOWGrowth | number : 0">
+    <!-- {{ total.SOWGrowth | number : 0 }}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[11]" ng-bind="total.FootprintGrowth | number : 0">
+     <!-- {{ total.FootprintGrowth | number : 0 }} -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[12]" ng-bind="total.Total_MDF | number : 0">
+     <!-- {{ total.Total_MDF | number : 0 }}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[13]" ng-bind="total.Incremental_MDF | number : 0">
+     <!-- {{ total.Incremental_MDF | number : 0}}  -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[14]" ng-bind="total.Late_MDF | number : 0">
+     <!-- {{ total.Late_MDF | number : 0 }} -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[15]" ng-bind="total.W_MGO_Marketing_MDF | number : 0">
+     <!-- {{ total.W_MGO_Marketing_MDF | number : 0 }} -->
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[16]" ng-bind="total.New_Logos_MGO | number : 0">
+     <!-- {{ total.New_Logos_MGO | number : 0 }}  -->
+</td>
+
+
+<!-- MEW COLS -->
+
+<td class="history-text-t" id="" ng-if="selectedPartner[17]">
+     -
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[18]">
+     -
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[19]">
+     -
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[20]">
+     -
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[21]">
+     -
+</td>
+
+
+<td class="history-text-t" ng-show=" reseller.district.DistrictID != 0 ">
+
+    <div class="row" ng-bind="history.MSA[0].MSAValue">
+        
+        <!-- {{history.MSA[0].MSAValue}}  -->
+    </div>
+
+</td>

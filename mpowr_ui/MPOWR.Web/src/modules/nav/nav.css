@@ -1,0 +1,45 @@
+.hpe-navbar{
+	border-bottom: 3px solid #18B488;
+	height: 60px;
+	background-color: #FFF;
+}
+.hpe-navbar{
+	padding: 0;
+	padding-left: 10px;
+}
+.budget .hpe-navbar
+{
+	width: 94%;
+}
+.left-items{
+	padding: 0;
+	padding-left: 10px;
+}
+.hpe-navbar .icon i{
+	font-size: 25px;
+    padding-top: 17px;
+}
+.hpe-navbar > .left-items > div{
+	float: left
+}
+.hpe-navbar > .left-items > .logo img{
+	padding-top: 14px;
+    height: 42px;
+    padding-left: 7px;
+}
+.hpe-navbar .right-items{
+	padding-right: 31px;
+}
+.hpe-navbar .right-items .user{
+	 float: left;
+	 padding-top: 10px;
+}
+.hpe-navbar .right-items .avtar{
+	height: 35px;
+    width: 35px;
+    border-radius: 30px;
+    background-color: #EEE;
+    float: left;
+    margin-top: 10px;
+    margin-right: 10px;
+}

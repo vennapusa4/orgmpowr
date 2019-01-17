@@ -1,0 +1,90 @@
+
+
+<table class="fixed_headers table table-bordered remove-margins" ng-if="buParam == 0">
+      <thead ng-include="'components/budget/partner-budget/summary-view/head.html'" scope="" onload="">
+        
+      </thead>
+</table>
+
+<table class="lazy-applicable fixed_headers table table-bordered" 
+       ng-if="buParam == 0" ng-init="lazyLoading()">
+      
+    
+    <!--  Total ROW  -->
+    <tbody class="like-row">
+        <tr 
+            id="summary-total-col"
+            ng-include="'components/budget/partner-budget/summary-view/total.html'">
+
+        </tr>
+        <tr  
+            ng-repeat="bu in total.BusinnessUnitDetails"
+            class="summary-expand graph-row" 
+            ng-include="'components/budget/partner-budget/summary-view/total-expand.html'">
+        </tr>
+    </tbody>
+    
+    <!--END of total row-->
+    
+      <!--<tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">-->
+    <!--Duplicate PartnerID's with Focusarea-->
+    <tbody ng-repeat="history in histories track by $index " ng-if="(history.FocusedAreaID==(history.FocusedAreaID==undefined?undefined:1)) || (history.FocusedAreaID==(history.FocusedAreaID==undefined?undefined:5))" ng-init="history._parent = $index;">
+
+
+        <tr ng-class="{'gray': $index % 2 == 0}"
+            ng-include="'components/budget/partner-budget/summary-view/row.html'"></tr>
+
+
+        <tr class="graph-row reseler-graph-row-{{history.PartnerID}}"
+            ng-repeat="bu in history.businessUnits"
+            ng-include="'components/budget/partner-budget/summary-view/row-expand.html'"></tr>
+
+    </tbody>
+</table>
+
+
+
+
+
+<table class="fixed_headers table table-bordered remove-margins" ng-if="buParam > 0">
+      <thead ng-include="'components/budget/partner-budget/summary-view/head.html'" scope="" onload="">
+        
+      </thead>
+</table>
+
+
+<table class="lazy-applicable fixed_headers table table-bordered bu-table" ng-if="buParam > 0" ng-init="lazyLoading()">
+      
+    <!--  Total ROW  -->
+    <tbody class="like-row">
+        <tr id="summary-total-col"
+            ng-include="'components/budget/partner-budget/summary-view/total.html'">
+        </tr>
+        <tr
+            class="summary-expand graph-row"
+            ng-include="'components/budget/partner-budget/summary-view/total-expand-bu.html'">
+        </tr>
+    </tbody>
+    
+    <!--END of total row-->
+
+    
+    <tbody ng-repeat="history in histories track by history.PartnerID" ng-init="history._parent = $index;">
+        
+
+
+        <tr  ng-class="{'gray': $index % 2 == 0}"
+          ng-include="'components/budget/partner-budget/summary-view/row-bu.html'">
+
+        </tr>
+
+          
+          <tr
+                 class="graph-row reseler-graph-row-{{history.PartnerID}}" 
+               id="reseler-graph-row-{{$index}}"
+          ng-include="'components/budget/partner-budget/summary-view/row-expand-bu.html'">
+
+          </tr>
+        
+      </tbody>
+</table>

@@ -1,0 +1,284 @@
+
+<tr>
+    <th id="Previous_Period_MGO_ROI" ng-click="sort('MDF','Previous_Period_MGO_ROI','Previous_Period_MGO_ROI')">
+        {{partnerCols[15].name}}
+        <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="Membership_Type" ng-click="sort('','Membership_Type','Membership_Type')">
+        Membership Type
+        <i ng-if="PartnerTypeID == 2" class="pull-right fa fa-caret-down"></i>
+    </th>
+
+    <th id="Last_Period_Sellout" ng-click="sort('Sellout','Last_Period_Sellout','Last_Period_Sellout')">
+        {{PreviousFYear}} <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+
+    <th id="Sellout_Silver_Below" ng-class="{'gray-out': PartnerTypeID == 2}">
+        <span ng-if="PartnerTypeID == 2">
+            N/A
+        </span>
+        <span ng-if="PartnerTypeID == 1" ng-click="sort('Sellout','Sellout_Silver_Below','Sellout_Silver_Below')">
+            {{PreviousFYear}} Sellout to Silver &amp; Below
+            <i class="pull-right fa fa-caret-up"></i>
+        </span>
+    </th>
+
+    <th id="Sellout_Gold_Platinum" ng-class="{'gray-out': PartnerTypeID == 2}">
+
+        <span ng-if="PartnerTypeID == 2">
+            N/A
+        </span>
+        <span ng-if="PartnerTypeID == 1" ng-click="sort('Sellout','Sellout_Gold_Platinum','Sellout_Gold_Platinum')">
+            {{PreviousFYear}} Sellout to Platinum &amp; Gold
+            <i class="pull-right fa fa-caret-up"></i>
+        </span>
+    </th>
+
+    <th id="Unweighted_Sellout" ng-class="{'gray-out': PartnerTypeID == 2}">
+
+        <span ng-if="PartnerTypeID == 2">
+            N/A
+        </span>
+        <span ng-if="PartnerTypeID == 1">
+            {{PreviousFYear}} Unweighted Sellout
+        </span>
+    </th>
+
+    <!--<th id="YoY_change_sellout" ng-click="sort('Sellout','YoY_change_sellout','YoY_change_sellout')">
+        Sellout YoY (%)
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>-->
+
+    <th id="YoY(1H17 vs 1H16)" ng-click="sort('Sellout','YoY(1H17 vs 1H16)','YoY(1H17 vs 1H16)')">
+        YoY({{PreviousFYear}} vs {{PreviousToPreviousFyPeriod}})
+    </th>
+
+    <th id="Scaled_Sellout" ng-click="sort('Sellout','Scaled_Sellout','Scaled_Sellout')">
+        Extrapolated {{PreviousFyPeriod}} Sellout
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="Scaled_Sellout" ng-click="sort('Sellout','Scaled_Sellout','Scaled_Sellout')">
+        HoH({{PreviousFyPeriod}} vs {{PreviousFYear}})
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th>
+        <div uib-popover="Projected sellout is based on planned sales adjusted by historical target achievement"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Projected_Sellout"
+             ng-click="sort('Sellout','Projected_Sellout','Projected_Sellout')">
+            {{CurrrentFyPeriod}} M-POWR  Projected <span ng-if="PartnerTypeID == 1">Weighted</span> Sellout ($)
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-down"></i>
+        </div>
+    </th>
+
+
+    <th id="Scaled_Sellout" ng-click="sort('Sellout','Scaled_Sellout','Scaled_Sellout')">
+        Source of {{CurrrentFyPeriod}} Projected Sellout
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <th id="Scaled_Sellout" ng-click="sort('Sellout','Scaled_Sellout','Scaled_Sellout')">
+        YoY({{CurrrentFyPeriod}} Projected vs {{PreviousFYear}})
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="Recommended_MDF" ng-click="sort('MDF','Recommended_MDF','Recommended_MDF')">
+        <div uib-popover="Modeled MDF amount for each partner-BU based on the parameter set in step 3."
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom">
+            M - POWR {{CurrrentFyPeriod}} Calculated MDF
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <th id="Alloc_PrevY_MDF" ng-click="sort('MDF','Alloc_PrevY_MDF','Alloc_PrevY_MDF')">
+            Allocated {{PreviousFYear}} Proposed Budget  
+             <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+
+    <th id="Last_year_mdf" ng-click="sort('MDF','Last_year_mdf','Last_year_mdf')">
+        {{partnerCols[18].name}} Approved MDF
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th class="bg-aqua" style="text-align:center !important" id="MSA">
+       {{CurrrentFyPeriod}} allocated MSA
+    </th>
+
+    <th class="bg-aqua" style="text-align:center !important">
+        Aruba MSA
+    </th>
+    <th id="Alloc_PrevP_MDF" ng-click="sort('MDF','Alloc_PrevP_MDF','Alloc_PrevP_MDF')">
+            Allocated {{PreviousFyPeriod}} Proposed Budget 
+            <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <th id="Last_Period_MDF" ng-click="sort('MDF','Last_Period_MDF','Last_Period_MDF')">
+        {{PreviousFyPeriod}} approved MDF
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th class="bg-aqua br-trans">
+        <div uib-popover="Final MDF allocation validated by the decision maker"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Baseline_MDF"
+             ng-click="sort('MDF','Baseline_MDF','Baseline_MDF')">
+             Allocated {{CurrrentFyPeriod}} <BR />Proposed Budget
+
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+    <th class="bg-aqua br-trans">
+        <div uib-popover="Final MDF allocation validated by the decision maker"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Baseline_MDF" 
+               ng-click="sort('MDF','TotalMDF','TotalMDF')">
+            Total {{CurrrentFyPeriod}} Proposed Budget  
+         </div>
+    </th>
+    <th class="bg-aqua br-trans">
+        <div uib-popover="Final MDF allocation validated by the decision maker"
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="Baseline_MDF"
+             ng-click="sort('MDF','CarveOut','CarveOut')">
+            Allocated {{CurrrentFyPeriod}} Carve out
+            <i class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+
+    <th class="bg-aqua">
+        <div popover-placement="bottom"
+             uib-popover="Reason for allocating an final amount that is significantly (% determined by each geography) different than the calculated MDF."
+             popover-trigger="'mouseenter'">
+            Reason for Variance
+            <span class="fa fa-info-circle" />
+        </div>
+    </th>
+
+    <th id="Last_Period_MDF" ng-click="sort('MDF','Last_Period_MDF','Last_Period_MDF')">
+        {{CurrrentFyPeriod}} vs {{PreviousFYear}} MDF Delta
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="YoY_change_MDF" ng-click="sort('MDF','YoY_change_MDF','YoY_change_MDF')">
+        YoY ({{PreviousFYear}} vs {{CurrrentFyPeriod}})
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="YoY_change_MDF" ng-click="sort('MDF','YoY_change_MDF','YoY_change_MDF')">
+        HoH ({{CurrrentFyPeriod}} vs {{PreviousFyPeriod}})
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="LastYearMDFOrSellout" ng-click="sort('MDF','LastYearMDFOrSellout','LastYearMDFOrSellout')">
+        {{PreviousFYear}} MDF/{{PreviousFYear}} Sellout
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="LastYearMDFOrSellout" ng-click="sort('MDF','LastYearMDFOrSellout','LastYearMDFOrSellout')">
+        {{PreviousFyPeriod}} MDF/{{PreviousFyPeriod}} Sellout
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="ProjectedMDFOrSellout" ng-click="sort('MDF','ProjectedMDFOrSellout','ProjectedMDFOrSellout')">
+        {{CurrrentFyPeriod}} MDF/{{CurrrentFyPeriod}} Projected Sellout
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="MedianAvdMDFOrSellout">
+       {{PreviousToPreviousFyPeriod}} to {{PreviousFYear}} Median Avg MDF/Sellout
+
+    </th>
+    <th id="ProductivityImprovementPer" ng-click="sort('MDF','ProductivityImprovementPer','ProductivityImprovementPer')">
+       {{PreviousFYear}} and {{CurrrentFyPeriod}} MDF/Sellout Improvement %
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <th id="SOW"
+        ng-click="sort('','SOW','SOW')">
+        {{getLastQuater()}} SOW
+        <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="MGO_Ratio" ng-click="sort('','MDF','MGO_Ratio')">
+       {{PreviousFYear}} WMGO Ratio
+        <!--<span class="fa fa-info-circle"
+              aria-hidden="false">
+        </span>-->
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="Previous_Period_MGO" ng-click="sort('MDF','Previous_Period_MGO','Previous_Period_MGO')">
+        {{partnerCols[14].name}}
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th id="Previous_Period_Won_MGO" ng-click="sort('MDF','Previous_Period_Won_MGO','Previous_Period_Won_MGO')">
+        {{partnerCols[16].name}}
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+
+
+    <!-- NEW -->
+    <th id="Previous_Period_Won_MGO_ROI" ng-click="sort('MDF','Previous_Period_Won_MGO_ROI','Previous_Period_Won_MGO_ROI')">
+        {{partnerCols[17].name}}
+        <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+    </th>
+
+    <th>
+        Country
+    </th>
+    <th>
+        Projected Accuracy
+    </th>
+
+    <th>
+        Projection Method
+    </th>
+
+    <th id="Assesment" ng-click="sort('','Assesment','Assesment')">
+        <div uib-popover="Assessment of the magnitude of change of MDF from previous period and the alignment of the change between calculated MDF and previous period MDF and the change between projected sales and previous period sales."
+             popover-trigger="'mouseenter'"
+             popover-placement="bottom"
+             id="MDF_Alignment">
+            Assessment
+            <span class="fa fa-info-circle"
+                  aria-hidden="true">
+            </span>
+            <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+        </div>
+    </th>
+
+    <th id="Planned_Sales"
+        ng-click="sort('','Planned_Sales','Planned_Sales')">
+        Planned Sales
+        <i class="pull-right fa fa-caret-up"></i>
+    </th>
+    <th id="Target_Achievement"
+        ng-click="sort('','Target_Achievement','Target_Achievement')">
+        Avg. Target Achievements
+        <i ng-if="buId > 0" class="pull-right fa fa-caret-up"></i>
+    </th>
+    <!-- HSM-947 -->
+    <th>
+        HQ
+    </th>
+    <th>
+        Value %
+    </th>
+</tr>

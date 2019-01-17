@@ -1,0 +1,396 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 user-management partner-credit role">
+    <div class="col-lg-12 data-container user-management milestones role">
+        <div class="top-header white-back">
+        <div ng-repeat="region in regions">
+            <div class="btn-group guard-link col-lg-1 col-md-1 col-sm-1 left-padding">
+                <a ng-click="setActive(region.Region.RegionId,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"
+                   class="guard-link account-heading top-set-head"
+                   ng-class="{active : activeMenu == region.Region.RegionId }">
+                    {{ region.Region.DisplayName }}
+                </a>
+            </div>
+        </div>
+        <div class="set-fine">
+            <label>Financial Period</label>
+            <select class="form-control set-select"
+                    ng-options="item as item.year.ShortName for item in years track by item.year.FinancialYearID"
+                    ng-model="selectedYear"
+                    ng-change="setActive(activeMenu,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"></select>
+            <span class="caret dropdown set-fine"></span>
+        </div>
+        <div>
+
+        </div>
+    </div>
+
+        <table class="table">
+               
+            <thead class="set-sub-header">
+                <tr>
+                    
+                    <th>Milestone</th>
+                    <th>Milestone Date</th>
+                    <th>Reminder 1 </th>
+                    <th>Set Reminder Alert </th>
+                    <th>Status </th>
+                    <th>Reminder 2</th>
+                    <th>Set Reminder Alert </th>
+                    <th>Status </th>
+                    <th>Send To </th>
+                    <th>Copy To </th>
+                </tr>
+            </thead>
+            <tbody class="set-body" ng-init="lst = 31">
+                <tr ng-repeat="mileStone in milestones track by mileStone.Id">
+                    <td>
+                        <span class="nothing">
+                            <div class="btn-group col-lg-12 col-md-12 col-sm-12 right-padding">
+                                
+                                <div class="dropdown">
+                                    <label 
+                                           data-toggle="dropdown"
+                                           class="dropdown-toggle"
+                                           class="milestone display-block">
+                                                <!--<span class="number">{{$index+1}}.</span>-->
+                                                    {{mileStone.Name | limitTo: 15}}
+                                                    <span ng-if="mileStone.Name.length > 15">..</span>
+                                                <i class="fa fa-pencil gray-pencil"></i>
+                                    </label>
+                                    <div class="dropdown-menu">
+
+                                        <div class="dp-down">
+                                            <textarea ng-model="mileStone.Name" class="form-control"></textarea>
+                                        </div>
+                                        <button class="btn btn-success cls-btn">
+                                            CLOSE
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                    
+                    
+                    <td>
+                        <div class="bootstrap-iso">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <form action="" class="form-horizontal cal-top-align" method="post">
+                                            <div class="form-group date-format">
+
+                                                <div class="col-sm-10">
+                                                    <div class="input-group custom-calender">
+
+                                                        <input readonly class="form-control datepicker" id="milestone_{{mileStone.Id}}" name="{{mileStone.Name}}" formatted-date="medium" type="text" ng-model="mileStone.MilestoneDate" />
+                                                        <!--<div class="input-group-addon" ng-click="datepicker(mileStone.Id)">
+                                                            <i class="fa fa-calendar">
+                                                            </i>
+                                                        </div>-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="align-center">
+                        <!-- Dp -->
+                        <!-- Drop down -->
+                        <div class="dropdown img-comment align-center">
+                            <img ng-show="mileStone.Reminder1.length > 0"
+                                 src="assets/resources/comment@1x.png"
+                                 data-toggle="dropdown"
+                                 class="dropdown-toggle" />
+                            <img 
+                                 ng-show="mileStone.Reminder1.length == 0 || mileStone.Reminder1 == null"
+                                 src="assets/resources/comment_grey@1x.png"
+                                 data-toggle="dropdown"
+                                 class="dropdown-toggle" />
+
+                            
+
+                            <div class="dropdown-menu">
+
+                                <div class="dp-down">
+                                    <textarea ng-model="mileStone.Reminder1" class="form-control"></textarea>
+                                </div>
+                                <button class="btn btn-success cls-btn">
+                                    CLOSE
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group col-lg-12 col-md-3 col-sm-3 left-padding body set-reminder">
+                            <div class="col-lg-3 col-md-5 col-sm-5 input left-padding right-padding">
+                                <input 
+                                       type="number" 
+                                       class="form-control input-border set-reminder-input" 
+                                       id="id1" 
+                                       ng-model="mileStone.Period1">
+
+                            </div>
+                            <label class="guard-desc set-gaurd-desc">
+                                {{mileStone.Unit}}
+                           </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group financial col-lg-3 col-md-3 col-sm-3 left-padding">
+                            <p class="checkbox-text">
+                                <input type="checkbox" id="check1-{{$index}}"  ng-model="mileStone.Status1">
+                                <label for="check1-{{$index}}" class="set-align-top"><span class="check-label"></span></label>
+                            </p>
+                        </div>
+                    </td>
+                    <td class="align-center">
+                        <!-- Drop down -->
+                        <div class="dropdown img-comment align-center">
+                            <img ng-show="mileStone.Reminder2.length > 0"
+                                 src="assets/resources/comment@1x.png"
+                                 data-toggle="dropdown"
+                                 class="dropdown-toggle" />
+                            <img ng-show="mileStone.Reminder2.length == 0  || mileStone.Reminder2 == null"
+                                 src="assets/resources/comment_grey@1x.png"
+                                 data-toggle="dropdown"
+                                 class="dropdown-toggle" />
+
+                            <div class="dropdown-menu">
+
+                                <div class="dp-down">
+                                    <textarea ng-model="mileStone.Reminder2" class="form-control"></textarea>
+                                </div>
+                                <button class="btn btn-success cls-btn">
+                                    CLOSE
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group col-lg-12 col-md-3 col-sm-3 left-padding body set-reminder">
+                            <div class="col-lg-3 col-md-5 col-sm-5 input left-padding right-padding" ng-class="{'has-error': mileStone.Period2 < mileStone.Period1 }">
+                                <input type="number" class="form-control input-border set-reminder-input" id="id1"  ng-model="mileStone.Period2" >
+
+                            </div>
+                            <label class="guard-desc set-gaurd-desc">
+                                {{mileStone.Unit}}
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group financial col-lg-3 col-md-3 col-sm-3 left-padding">
+                            <p class="checkbox-text">
+                                <input type="checkbox" id="check2-{{$index}}" ng-model="mileStone.Status2">
+                                <label for="check2-{{$index}}" class="set-align-top"><span class="check-label"></span></label>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group send-to financial col-lg-3 col-md-3 col-sm-3 left-padding"
+                             ng-class="{'has-error': mileStone.flag,'has-empty':mileStone.SendTo.length<=0}">
+
+                            <div id="example40"
+                                 name="sentTo"
+                                 multiselect
+                                 options="roles"
+                                 selected-model="mileStone.SendTo"
+                                 checkboxes="true"
+                                 extra-settings="example14settings"
+                                 required
+                                 >
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btn-group financial copy-to col-lg-3 col-md-3 col-sm-3 left-padding"
+                             ng-class="{'has-error': mileStone.flag,'has-empty':mileStone.CopyTo.length<=0}">
+                            <div id="example40"
+                                 name="copyTo"
+                                 multiselect
+                                 options="roles"
+                                 selected-model="mileStone.CopyTo"
+                                 checkboxes="true"
+                                 extra-settings="example14settings"
+                                 required
+                                 >
+                            </div>
+                        </div>
+                    </td>
+                    </span>
+                    </td>
+                </tr>           
+               </tbody>
+        </table>
+
+        <div class="top-header white-back bottom">
+            <div>
+                <div class="btn-group guard-link col-lg-12 col-md-12 col-sm-12 left-padding">
+                    <a class="guard-link account-heading top-set-head">
+                      NOTE : <span class="set-note">Positive values '+10' indicates 10 days after milestone date.Negative values '-10' indicates 10 days prior to milestone date</span>
+                    </a>
+                </div>
+            </div>
+           
+        </div>
+
+        
+    </div>
+</div>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+
+    <div class="col-lg-8 col-md-8 col-sm-8">
+
+        <div class="col-lg-9 col-md-9 col-sm-9" ng-show="final >= 1">
+
+        </div>
+        <div class="col-lg-3 col-sm-4 col-md-6 count">
+
+        </div>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4">
+        <form name="form" class="resetButtons">
+            <button ng-disabled="validate()" class="col-lg-2 col-md-2 col-sm-2 icon-holder cursor-point" data-toggle="modal" data-target="#myModalguardcopy">
+                <div><img class="top5-margin" src="assets/resources/copy_calculated@1x.png"></div>
+                <div class="copy-label"><label>COPY</label></div>
+            </button>
+            <button ng-disabled="validate()" class="col-lg-2 col-md-2 col-sm-2 icon-holder" ng-click="save(milestones,'save')">
+                <div><img class="top5-margin" src="assets/resources/save@1x.png"></div>
+                <div class="copy-label"><label>SAVE</label></div>
+            </button>
+        </form>
+        <div class="col-lg-6 col-md-6 col-sm-6 icon-holder top-ten-padding">
+
+
+
+            <div class="col-lg-6 col-md-6 col-sm-6 ">
+                <button class="btn btn-success sticky-add-button" data-toggle="modal" data-target="#myModalguard"  ng-click="reset(milestoneForm)">
+                    ADD MILESTONE
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModalguardcopy" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-set-copy">
+            <!-- Modal Header -->
+            <div class="modal-header no-bottom">
+                <button type="button" class="close"
+                        data-dismiss="modal" id="saveClose">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Copy Previous Period
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body add-user-form modal-set-copy">
+                <form role="form">
+                    <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                        <label for="exampleInputEmail1">Select Financial Period</label>
+
+                        <select class="form-control"
+                                    ng-options="item as item.year.ShortName for item in years track by item.year.FinancialYearID"
+                                    ng-model="selectedYearForCopy">
+                                    <option value="">Please select</option>
+
+                        </select>
+                        <span class="caret dropdown setfine-copy"></span>
+                       
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer add-user-form">
+                <button type="button" class="btn btn-default theme-colr"
+                        data-dismiss="modal">
+                    CANCEL
+                </button>
+                <button type="button" class="btn btn-primary theme-colr" ng-click="copyYearData(milestones,selectedYearForCopy)">
+                    COPY
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add new milestone -->
+<div class="modal fade" id="myModalguard" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-set-copy">
+            <!-- Modal Header -->
+            <div class="modal-header no-bottom">
+                <button type="button" class="close"
+                        data-dismiss="modal" id="saveClose" ng-click="reset(milestoneForm)"
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    New Milestone
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body add-user-form modal-set-copy">
+                <form role="form" name="milestoneForm" autocomplete="off">
+                    <div 
+                         class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding"
+                         ng-class="{'has-error':milestoneForm.name.$invalid && !milestoneForm.name.$pristine }"
+                         >
+                        <label for="exampleInputEmail1">Milestone Name</label>
+                        <input 
+                               name="name"
+                               placeholder="Please enter milestone name"
+                               required
+                               pattern="[a-zA-Z0-9\s]+"
+                               maxlength="25"
+                               type="text" 
+                               class="form-control input-border"
+                               id="milestonename" 
+                               ng-model="newMilestone"/>
+                        <small ng-if="milestoneForm.name.$error.required && !milestoneForm.name.$pristine">
+                            Please enter milestone name
+                        </small>
+                        <small ng-if="milestoneForm.name.$error.pattern && !milestoneForm.name.$pristine">
+                            Please enter only alpha numeric character
+                        </small>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer add-user-form">
+                <button 
+                        ng-click="reset(milestoneForm)"
+                        type="button" class="btn btn-default theme-colr"
+                        data-dismiss="modal">
+                    CANCEL
+                </button>
+                <button ng-disabled="milestoneForm.$invalid" type="button" class="btn btn-primary theme-colr" ng-click="addNewMilestone(milestoneForm)">
+                    SAVE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

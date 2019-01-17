@@ -1,0 +1,99 @@
+
+
+<section  class="pb-full-screen-{{view}} ">
+    <div class="col-md-4 budgetHeader padding-0" ng-show="view == 'full'" id="mdfText">
+        <!--<h3>
+            Start by setting MDF for the period {{BUObj.FinancialYear}}
+        </h3>-->
+        <show-version></show-version>
+    </div>
+    <div class="row" id="search-area">
+
+        <div class="pull-left paddinRigh0">
+            <label>Search by : </label>
+        </div>
+        <div class="col-lg-2">
+            <select class="custom-dropdown-filter custom-dropdownPreBudget latestDropdown" id="filterColumnSelect"
+                    ng-options="filter.FilterColumnNames for filter in filterList"
+                    ng-change="OnFilterColumnChange(filterColumn)"
+                    ng-model="filterColumn"></select>
+        </div>
+        <div class="col-lg-2" ng-if="!hideOperator">
+            <select class="custom-dropdown-filter custom-dropdownPreBudget latestDropdown"
+                    ng-options="operator.key for operator in operand"
+                    ng-change="OnFilterDelimeterChange(filterDelimeter)"
+                    ng-model="filterDelimeter"></select>
+        </div>
+        <div class="pull-left col-lg-3 filtertext" ng-if="!hideOperator">
+            <input type="number" class="form-control form-control-small pull-left " id="filterValue" 
+                   ng-model="filterText" />
+        <!--</div>
+        <div class="pull-left col-lg-2  filtertext" >-->
+            <input type="number" class="form-control form-control-small pull-left" id="filterValue2" ng-if="!hideOperator && !hideFilterValue2"
+                   ng-model="filterText2" />
+        </div>
+        
+        <div class="col-lg-3 " id="partnerInput" ng-if="!hidePartnerName && hideOperator && hidePartnerId">
+            <input type="text" class="form-control form-control-small" id="PartnerName" ng-model="Partner_Name" ng-keyup="getPartnerName(Partner_Name)" placeholder="Partner Name" />
+
+            <ul class="dropdown-menu partner_dropdown" role="menu" ng-show="Partner_Name.length > 2">
+                <li ng-repeat="names in partnersDetails"><a href="" ng-click="selectedName(names.Partner_Name, $index)">{{names.Partner_Name}} </a></li>
+            </ul>
+        </div>
+        <div class="col-lg-3 " id="partnerInput" ng-if="!hidePartnerId && hideOperator && hidePartnerName">
+            <input type="text" class="form-control form-control-small" id="PartnerId" data-toggle="dropdown" name="{{PartnerID}}" ng-model="PartnerID" ng-keyup="getPartnerId(PartnerID)" placeholder="Partner Id" />
+
+            <ul class="dropdown-menu partner_dropdown" role="menu" ng-show="PartnerID.length > 2">
+                <li ng-repeat="id in PartnerIDs"><a href="" ng-click="selectedPartnerID(id.PartnerID, $index)">{{id.PartnerID}}</a></li>
+            </ul>
+        </div>
+      
+        <div class="pull-right right-padding action-buttons">
+            <a type="button" class="btn btn-success pull-right  btn-sm fullscreenExpand" ng-click="switchView()">
+                <span ng-show="!expanded">Extended View</span>
+                <span ng-show="expanded">Summary View</span>
+            </a>
+            <a type="button"
+               ng-show="view == 'full' "
+               ui-sref="budget.partner-budget"
+               class="btn btn-success pull-right  btn-sm exitFullScreen">
+                <span>Exit Full screen</span>
+            </a>
+            <a type="button" class="btn btn-success pull-right  btn-sm fullscreenExpand" title="Reset search" ng-click="clearSearch()"
+               <span>Reset</span>
+            </a>
+            <a type="button" class="btn btn-success pull-left  btn-sm fullscreenExpand" ng-if="!hideOperator" ng-click="filter()">
+                <span>Filter</span>
+            </a>
+        </div>
+        <!--<div class="pull-right ">
+            
+            <i style="cursor:pointer" title="Reset search" ng-click="clearSearch()"
+           class="fa fa-times reset-auto">
+        </i>
+        </div>-->
+        <!--<div class="pull-right" >
+           
+        </div>-->
+    </div>
+    <!--  FULL VIEW -->
+    <!-- IE < 10 does not like giving a tbody a height.  The workaround here applies the scrolling to a wrapped <div>. -->
+    <!--[if lte IE 9]>
+    <div class="old_ie_wrapper">
+    <!--<![endif]-->
+
+    <div class="container-tab {{ view }}" ng-if="expanded" ng-include="'components/budget/partner-budget/full-view/main-full.html'">
+
+
+    </div>
+
+    <!-- COMPACT VIEW -->
+
+    <div class="container-tab-summary {{ view }}" ng-if="!expanded" ng-include="'components/budget/partner-budget/summary-view/summary-full.html'">
+        <!--[if lte IE 9]>
+        </div>
+        <!--<![endif]-->
+
+    </div>
+
+</section>

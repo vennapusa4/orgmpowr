@@ -1,0 +1,15 @@
+<div class="col-lg-12 bradcrumb-bar">
+	<div class="col-lg-2 holder" 
+		ng-repeat="menu in menus" 
+		ng-click="goto(menu)"
+		ng-class="{'active': menu.active}">
+		<div class="col-lg-4">
+			<div class="number-bg">
+				{{$index+1}}
+			</div>
+		</div>
+		<div class="col-lg-4">
+			{{menu.name}}
+		</div>
+	</div>
+</div>

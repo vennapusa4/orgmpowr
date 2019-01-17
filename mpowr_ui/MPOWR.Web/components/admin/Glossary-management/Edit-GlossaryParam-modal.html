@@ -1,0 +1,57 @@
+﻿<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Edit Glossary</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <table style="width:100%">
+                <tr>
+                    <th>Parameter Name</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td style="width: 17%" class="name_parameter">
+                        <div ng-if=!opted.isAddNew>{{opted.ParameterName}}</div>
+                        <div ng-if=opted.isAddNew class="versionDrop glossary-edit-dropdown">
+                            <select name="parameter" class="glossary-edit-dropdown"
+                                    ng-change="selectPrameter(selectedparam)"
+                                    required
+                                    ng-options="parameter as parameter.ParameterName  for parameter in newParams track by parameter.ID"
+                                    ng-model="selectedparam">
+                                <option value="" label="Select Parameter"></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td ng-if=!opted.isAddNew class="name_parameter">
+                        <b class="heading-color">Current Description:</b><p class="glossary-edit" ng-bind-html=opted.Description></p>
+                        <b class="heading-color">Suggested Description:</b>
+                        <div name="textareaParameter" ng-keydown="textKeyDown($event)" ng-blur="ValidateLength($event)" class="glossary-text-angular" text-angular="text-angular" ng-model="opted.EditedDesc"
+                             ta-toolbar="[['bold','underline','strikeThrough','italics','undo','redo','clear', 'quote','pre','ul','ol','fontSize',
+          'fontColor','fontName','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']]"></div>
+                        <span>Characters left : {{charLeft}}</span>
+                        <!--ta-toolbar="[['bold','underline','italics','undo','redo', 'quote','pre','ul','ol']]"-->
+                    </td>
+                    <td ng-if=opted.isAddNew class="name_parameter">
+                        <b>Suggested Description:</b><div name="textareaParameter" ng-keydown="textKeyDown($event)" ng-blur="ValidateLength($event)" class="glossary-text-angular" text-angular="text-angular" ng-model="opted.EditedDesc"
+                                                          ta-toolbar="[['bold','underline','strikeThrough','italics','undo','redo','clear', 'quote','pre','ul','ol','fontSize',
+          'fontColor','fontName','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']]"></div>
+                        <span>Characters left : {{charLeft}}</span>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-disabled="disableSave" ng-click="SaveData(opted)"
+                class="btn btn-success">
+            SAVE
+        </button>
+        <button type="button" class="btn btn-success"
+                ng-click="cancel()">
+            CANCEL
+        </button>
+    </div>
+</div>

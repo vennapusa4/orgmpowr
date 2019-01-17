@@ -1,0 +1,560 @@
+    <section class="allocation-page">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 pull-right budgetFooter">
+            <div class="resetButtons">
+                <!--<button class="col-lg-2 col-md-2 col-sm-2 icon-holder"
+                        ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                        ng-click="copy()">
+                    <div><img class="top5-margin" src="assets/resources/Copy Green.svg"></div>
+                    <div><label>COPY</label></div>
+                </button>-->
+                <button class="col-lg-2 col-md-2 col-sm-2 icon-holder"
+                        data-toggle="modal" data-target="#CopyModal" ng-disabled="role.copy || NOACCESS">
+                    <div><img class="top5-margin" src="assets/resources/Copy Green.svg"></div>
+                    <div><label>COPY</label></div>
+                </button>
+            </div>
+            <!--<div class="resetButtons">
+                <button class="col-lg-2 col-md-2 col-sm-2 icon-holder"
+                        ng-disabled="role.disabled || disablePrevious  || NOACCESS  || disablePrevious "
+                        ng-click="Export()">
+                    <div><img class="top5-margin" src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT</label></div>
+                </button>
+            </div>-->
+           
+            <div class="resetButtons">
+                <button class="col-lg-2 col-md-2 col-sm-2 icon-holder"
+                        ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                        ng-click="save()">
+                    <div><img class="top5-margin" src="assets/resources/save@1x.png"></div>
+                    <div><label>SAVE</label></div>
+                </button>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 icon-holder top-ten-padding">
+                <button id="btnnext" ng-click="gotoNext()"
+                        class="btn btn-success save-btn-align">
+                    NEXT
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Header area -->
+    <form novalidate="" autocomplete="off">
+        <!-- Distributor -->
+        
+        <!-- Reseller -->
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 country">
+               
+                <div class="versionFYDrop col-md-6">
+                    <p>Planning Period</p>
+                    <select name="financial"
+                            ng-change="loadVersion(drpdpwnvalue)" 
+                            required 
+                            ng-options="Financialyears as Financialyears.Financialyear  for Financialyears in FinancialyearList track by Financialyears.FinancialyearID"
+                            ng-model="drpdpwnvalue">
+                        <!--<option value="" label="Select Financial Period"></option>-->
+                    </select>
+                </div>
+                <div class="versionDrop col-md-6">
+                    <p>Plan</p>
+                    <select class="versionName" ng-model="versionSelected" ng-change="tableload()" ng-options="version.VersionID as (version.VersionNo +'- ' + version.VersionName)  for version in versionList track by version.VersionID">
+                        <!--<option value="" label="Select Version"></option>-->
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 country left-padding" >
+                <div class="col-lg-4 col-md-4 col-sm-4 country-box left-padding">
+                    <div class="col-lg-3 col-md-3 col-sm-3 lbl left-padding">
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                        <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                        <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                            <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                                 popover-trigger="'mouseenter'"
+                                 popover-placement="bottom"
+                                 uib-popover="{{ctries}}"
+                                 ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                                 class="input-group">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                                <span class="input-group-addon country-section" id="basic-addon1">
+                                    <i class="fa fa-globe globe"></i>
+                                </span>
+                                <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 country-box left-padding">
+                    <div class="col-lg-3 col-md-3 col-sm-3 left-padding">
+                        <label class="top9-padding">Budget</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 control">
+                        
+                            <div
+                                 popover-trigger="'mouseenter'"
+                                 popover-placement="bottom"
+                                 uib-popover="{{resellerPartner.partner.PartnerName }} {{resellerPartner.district.DistrictName.length > 0 ? '-': '' }} {{ resellerPartner.district.DistrictName  }}"
+                                 ng-if="$sessionstorage.resellerPartner.district.DistrictName.length > 0"
+                                 class="input-group">
+                                <input type="text" disabled
+                                       readonly class="form-control partner-input country-section-input"
+                                       placeholder="Country" aria-describedby="basic-addon1"
+                                       value="{{resellerPartner.partner.PartnerName }} {{resellerPartner.district.DistrictName.length > 0 ? '-': '' }} {{ resellerPartner.district.DistrictName.slice(0,0)+'...'  }}">
+                            </div>
+                        <div class="input-group" ng-if="($sessionstorage.resellerPartner.district.length == 0 || $sessionstorage.resellerPartner.district.length === undefined) && ($sessionstorage.resellerPartner.district.DistrictName === undefined || $sessionstorage.resellerPartner.district.DistrictName.length == 0) ">
+                            <input type="text" disabled
+                                   readonly class="form-control partner-input country-section-input"
+                                   placeholder="Country" aria-describedby="basic-addon1"
+                                   value="{{resellerPartner.partner.PartnerName }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5 country-box left-padding" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+                    <div class="col-lg-4 col-md-4 col-sm-4 left-padding">
+                        <label class="top9-padding">Membership</label>
+                    </div>
+                    <div class="col-lg-8 col-md-8 col-sm-8 control left-padding">
+                        <div class="input-group">
+                            <input type="text" disabled
+                                   readonly class="form-control partner-input country-section-input"
+                                   placeholder="Country" aria-describedby="basic-addon1"
+                                   value="{{resellerPartner.membership.MembershipName }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="col-md-12 budgetHeader">
+                <h3>
+                    Start by setting MDF for the period {{BUObj.FinancialYear}}
+                </h3>
+            </div>-->
+           
+
+        </div>
+        <!-- End of header area -->
+        <!-- Data area -->
+
+        <div class="data-area-container allocation-container col-lg-11 col-md-11 col-sm-11 budgetContaner">
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-header">
+                <div class="bu light-gray-bg">
+                    Business Unit
+                </div>
+                <div class="other-cols">
+                    Total MDF Budget
+                </div>
+                <div class="pmc pmc-head">
+                    Country Carve outs
+                </div>
+                <div class="other-cols">
+                    Country Reserve MDF
+                </div>
+                <div class="other-cols">
+                    MDF
+                </div>
+            </div>
+            <!-- ######################### TOTAL ##################################### -->
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows total-col">
+
+                <div class="total-head">
+                    <div class="bu">
+                        Total
+                    </div>
+                    <div class="other-cols" ng-init="getTotal()">
+                        <div class="col-lg-8 col-md-8 col-sm-8 controls">
+                            <div class="inputText1 input-group">
+                                <span class="input-group-addon">$</span>
+                                <input readonly type="text" ng-model="MDFGrossTotal" id="MDFGrossTotal" class="form-control MDFText specialText">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pmc">
+                        <div class="col-lg-3 col-md-3 col-sm-3 controls">
+                            <div>
+                                <i class="fa fa-chevron-down expand-white-btn2 overriden-total-icon" ng-click="expand(0,'total_')" id="total_0"></i>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 controls">
+                            <div class="inputText1 input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" readonly ng-model="pmcGrossTotal" class="form-control MDFText specialText" id="pmcGrossTotal">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 controls">
+                            <div id="totalpmcperc" class="inputText2 input-group">
+                                <input ng-model="pmcPer" type="text" id="pmcPer" class="form-control MDFText" tabindex="-1" readonly="" placeholder="0">
+                                <span class="input-group-addon" id="pmcPerSymbol">%</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+
+                        </div>
+
+                    </div>
+                    <div class="other-cols">
+                        <div class="col-lg-8  col-md-8 col-sm-8 controls">
+                            <div class="inputText1 input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" ng-model="crmGrossTotal" readonly class="form-control MDFText specialText" id="crmGrossTotal">
+                            </div>
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4 controls">
+                            <div class="inputText2 input-group">
+                                <input placeholder="0" ng-model="crmPer" id="crmPer" type="text" class="form-control MDFText" tabindex="-1" readonly="" name="">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="other-cols">
+                        <div class="col-lg-8 col-md-8 col-sm-8 controls">
+                            <div class="inputText1 input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" readonly ng-model="bcmGrossTotal" class="form-control MDFText specialText" id="bcmGrossTotal">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 controls">
+                            <div class="inputText2 input-group">
+                                <input type="text" id="bcmPer" ng-model="bcmPer" placeholder="0" class="form-control MDFText" tabindex="-1" readonly="" name="">
+                                <span class="input-group-addon">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div>
+                        <i class="fa fa-chevron-down expand-white-btn" ng-click="expand(0,'total_')" id="total_0"></i>
+                    </div>-->
+
+                </div>
+                <div id="totalData" class="collapse" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+                    <div class="bu light-gray-bg expnd">
+
+                    </div>
+                    <div class="other-cols">
+
+                    </div>
+                    <div class="pmc">
+
+                        <div class="col-lg-12 no-padding" ng-repeat="summary in summaries">
+                            <div class="col-lg-3 col-md-3 col-sm-3 controls">
+                                <label class="summary-label">
+                                    {{summaries[$index].ProjectName}}
+                                </label>
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 controls right0-padding">
+                                <div class="inputText1 input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input ng-model="summaries[$index].ProjectMDF" type="text" class="form-control MDFText specialText" valid-number name="">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 controls">
+                                <div class="inputText2 input-group">
+                                    <input type="text" ng-model="summaries[$index].per" class="form-control MDFText" tabindex="-1" placeholder="0" readonly="" name="">
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="other-cols">
+                    </div>
+                    <div class="other-cols">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ############### END OF TOTAL ######################### -->
+            <div id="datas">
+
+                <!-- HPN Controller -->
+                <div id="hpnControl" ng-repeat="budget in budgets" class="businessUnit_{{budget.BusinessUnitID}}">
+
+                    <div id="budget-head-{{$index}}" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+                        <div class="bu light-gray-bg full-height">
+                            {{budget.BusinessUnitName}}
+                        </div>
+                        <div class="other-cols">
+                            <div class="col-lg-8 col-md-8 col-sm-8 controls"  >
+                                <div class="inputText1 input-group"  >
+                                    <span class="input-group-addon">$</span>
+                                    <input  type="text"
+                                           class="form-control MDFText specialText mdfTotal"
+                                           ng-model="budgets[$index].TotalMDF"
+                                           ng-change="setTotalBudget($index)"
+                                           maxlength="14"
+                                           ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                           id="txtBudgetVal_{{budget.BusinessUnitName}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 controls">
+                                <div class="inputText2 input-group">
+                                    <input type="text" class="form-control MDFText tmdf-per"
+                                           tabindex="-1"
+                                           value="{{ formatPercentage(( ( isN(budgets[$index].ProgramMDF) + isN(budgets[$index].CountryReserveMDF) + isN(budgets[$index].BaselineMDF))/isN(budgets[$index].TotalMDF))*100) }}"
+                                           readonly="">
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                                <!-- value="{{budgets[$index].curvePer + budgets[$index].countryPer + budgets[$index].baslinePer}}"  -->
+                            </div>
+                        </div>
+                        <div class="pmc border-bottom">
+                            <div class="col-lg-3 col-md-3 col-sm-3 controls">
+                                <div class="col-lg-1 col-md-1 col-sm-1 bt-expand">
+                                    <!--<input
+                ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                type="button"
+                ng-click="add($index)"
+                value="+"
+                class="addCLS">
+        </div>-->
+                                    <button class="fa fa-chevron-down expand-btn"
+                                    id="exp_{{$index}}" ng-click="expand($index,'exp_')"></button>
+                                </div>
+                                  
+                            </div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 controls">
+                                
+                                <div class="inputText1 input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text"
+                                           maxlength="11"
+                                           class="form-control MDFText specialText pmcTotal"
+                                           ng-model="budgets[$index].ProgramMDF"
+                                           ng-keyup="curveOutsCalc($index)"
+                                           disabled
+                                           id="txtCurve1">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 controls">
+                                <!--<div class="col-lg-7 col-md-7 col-sm-7 ">-->
+                                    <div class="inputText2 input-group">
+                                        <input type="text" class="form-control MDFText" tabindex="-1" ng-model="budgets[$index].curvePer" readonly>
+                                        <span class="input-group-addon">%</span>
+                                    </div>
+                            
+                               
+                              
+                            </div>
+                            <div class="col-lg-1 col-md-1 col-sm-1">
+                                <input title="Add Project"  ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                       type="button"
+                                       ng-click="add($index)"
+                                       value="+ Add"
+                                       class="btn btn-success bt-add ">
+                            </div>
+
+                          
+
+                        </div>
+                        <div class="other-cols">
+                            <div class="col-lg-8 col-md-8 col-sm-8 controls">
+                                <div class="inputText1 input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text"
+                                           maxlength="14"
+                                           ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                           class="form-control MDFText specialText crmTotal"
+                                           ng-model="budgets[$index].CountryReserveMDF"
+                                           ng-keyup="countryResCalc($index)"
+                                           id="txtCountryName_{{budget.BusinessUnitName}}">
+                                    <!--<input type="text"
+                                           maxlength="14"
+                                           ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                           class="form-control MDFText specialText crmTotal"
+                                           ng-model="budgets[$index].CountryReserveMDF"
+                                           id="txtCountryName_{{budget.BusinessUnitName}}">-->
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 controls">
+                                <div class="inputText2 input-group">
+                                    <input placeholder="0" type="text" class="form-control MDFText" tabindex="-1" readonly ng-model="budgets[$index].countryPer">
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="other-cols border-bottom">
+                            <div class="col-lg-8 col-md-8 col-sm-8 controls">
+                                <div class="inputText1 input-group" ng-mouseover="baselineMDFTitle($index)">
+                                    <span class="input-group-addon">$</span>
+                                    <div ng-mouseover="baselineMDFTitle($index)" type="text" 
+                                         class="form-control MDFText bcmTotal"
+                                         id="txtClassName_{{$index}}"
+                                         maxlength="14"
+                                         disabled
+                                         ng-keyup="baselineMdfCalc($index)"
+                                         ng-readonly={{true}}> 
+                                        {{budgets[$index].BaselineMDF | number: 0}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 controls">
+                                <div class="inputText2 input-group">
+                                    <input type="text" placeholder="0" class="form-control MDFText" tabindex="-1" readonly ng-model="budgets[$index].baslinePer">
+                                    <span class="input-group-addon">%</span>
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+                        <!--<div>
+                            <button class="fa fa-chevron-down expand-btn" id="exp_{{$index}}" ng-click="expand($index,'exp_')"></button>
+
+                        </div>-->
+                    </div>
+
+                    <!-- Expanded view -->
+
+
+                    <div id="budget-body-{{$index}}" class="collapse col-lg-12 col-sm-12 col-md-12 col-xs-12 data-area data-area-rows">
+                        <div class="bu light-gray-bg expnd">
+
+                        </div>
+                        <div class="other-cols">
+
+                        </div>
+                        <div class="pmc">
+                            <!--<div class="col-lg-1 col-md-1 col-sm-1">
+                                <input style="margin-bottom:5px;margin-left:244px" ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                type="button"
+                                ng-click="add($index)"
+                                value="+"
+                                class="addCLS">
+                            </div>-->
+                            <!--<div class="col-lg-1 col-md-1 col-sm-1">
+                                <input style="margin-bottom:5px;margin-left:59px" ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                       type="button"
+                                       ng-click="add($index)"
+                                       value="Add new project"
+                                       class="btn btn-success">
+                            </div>-->
+
+                            <div class="col-lg-12 no-padding left22-margin"
+                                 ng-repeat="project in budget.CarveProjects"
+                                 ng-hide="project.Flag == 'DL' "
+                                 id="project-row-{{$parent.$index}}-{{$index}} ">
+                                <div class="col-lg-4 col-md-4 col-sm-4 controls">
+                                    <input type="text"
+                                           maxlength="25"
+                                           id="project-{{$parent.$index}}-{{$index}}"
+                                           ng-change="checkDuplicate($parent.$index,$index)"
+                                           ng-model="budgets[$parent.$index].CarveProjects[$index].ProjectName"
+                                           placeholder="Project Name"
+                                           ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                           class="form-control project-inp" name="" ng-mouseover="projectNameTitle($event)">
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-5 controls">
+                                    
+                                        <div class="inputText1 input-group">
+                                                <span class="input-group-addon">$</span>
+                                                <input ng-model="budgets[$parent.$index].CarveProjects[$index].ProjectMDF"
+                                                       type="text"
+                                                       maxlength="14"
+                                                       class="form-control MDFText specialText project-mdf"
+                                                       id="pmdf-{{$parent.$index}}-{{$index}}"
+                                                       valid-number
+                                                       required
+                                                       ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                                       ng-mouseover="projectMDFTitle($event)"
+                                                       ng-change="calculateProjectPer($parent.$index,$index)"
+                                                       name="" />
+                                            </div>
+                                    </div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 controls">
+                                    <div class="inputText2 input-group">
+                                        <input type="text"
+                                               class="form-control MDFText"
+                                               ng-model="budgets[$parent.$index].CarveProjects[$index].per"
+                                               tabindex="-1" ng-value="getVal($index)" placeholder="0" readonly="" name="">
+                                        <span class="input-group-addon">%</span>
+                                    </div>
+                                </div>
+                                <button ng-disabled="role.disabled || disablePrevious  || NOACCESS "
+                                        title="Remove Project"
+                                        class="col-lg-1 col-md-1 col-sm-1 close-button businessUnit_{{bu.BusinessUnitID}}" ng-click="remove($parent.$index,$index)">
+                                    <i class="fa fa-times-circle i-remove"
+                                       aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="other-cols">
+                        </div>
+                        <div class="other-cols">
+                        </div>
+                    </div>
+                    <!-- End of expanded view -->
+                </div>
+                <!-- End of HPN Controller -->
+            </div>
+        </div>
+    </form>
+    <!-- End of data ares -->
+
+        <!-- popup starts for copy -->
+        <div class="modal fade" id="CopyModal" role="dialog">
+            <div class="modal-dialog copyPopup">
+
+                <!-- Modal content-->
+                <form name="copyPlan">
+                    <div class="modal-content createPopup">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Create Copy of Version </h4>
+                        </div>
+                        <div class="createConataier">
+                            <div class="col-md-12 createData">
+                                <div class="col-md-6"><p>Source Financial Period</p></div>
+                                <div class="col-md-6"><input type="text" ng-model="drpdpwnvalue.Financialyear" ng-disabled="true" name="Year" placeholder="FY18 2H" /></div>
+                            </div>
+                            <div class="col-md-12 createData">
+                                <div class="col-md-6"><p>Version</p></div>
+                                <div class="col-md-6"><input type="text" ng-model="versionSelected.VersionNo" ng-disabled="true" name="Version" placeholder="4" /></div>
+                            </div>
+                            <div class="col-md-12 createData">
+                                <div class="col-md-6"><p>Source Plan Name</p></div>
+                                <div class="col-md-6"><input type="text" name="planName" ng-model="versionSelected.VersionName" ng-disabled="true" placeholder="MDF Plan for FY 18 2H" /></div>
+                            </div>
+                            <div class="col-md-12 createData">
+                                <div class="col-md-6"><p>Destination Financial Period</p></div>
+                                <div class="col-md-6">
+                                    <select name="financial" required
+                                            ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in Financialyearend track by Financialyears.FinancialyearID"
+                                            ng-model="drpdpwnvalue1">
+                                        <option value="" label="Select Financial Period"></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 createData">
+                                <div class="col-md-6"><p>Destination Plan Name</p></div>
+                                <div class="col-md-6"><input type="text" ng-model="DestPlanvalue" maxlength="50" required placeholder="Enter Plan name here..." /></div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="copydata()" ng-disabled="copyPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+</section>

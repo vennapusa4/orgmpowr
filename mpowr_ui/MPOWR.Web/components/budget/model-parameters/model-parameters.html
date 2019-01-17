@@ -1,0 +1,1342 @@
+﻿<section class="model-page">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+    <!-- Country and Bucket -->
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 allocation-header">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="budgetHeader">
+                <!--
+                <h3>
+                    Start by setting MDF for the period {{BUObj.FinancialYear}}
+                </h3>
+                 -->
+                <show-version></show-version>
+            </div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 country ">
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box right-padding">
+               
+                <div class="col-lg-3 col-md-3 col-sm-3 lbl ">
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                    <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                        <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                             popover-trigger="'mouseenter'"
+                             popover-placement="bottom"
+                             uib-popover="{{ctries}}"
+                             ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                             class="input-group">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                        <span class="input-group-addon country-section" id="basic-addon1">
+                            <i class="fa fa-globe globe"></i>
+                        </span>
+                        <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <label class="top9-padding">Budget</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control">
+                    <div class="input-group">
+
+                        <input type="text" disabled readonly class="form-control partner-input country-section-input" placeholder="Country" ng-model="bucket" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2" >
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <label class="top9-padding">Membership</label>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 control">
+                    <div class="input-group">
+
+                        <input type="text" disabled readonly class="form-control partner-input country-section-input" placeholder="Country" ng-model="membership" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Country and Bucket -->
+    <!-- Tabs -->
+    <div class="col-lg-12 tabs">
+        <div class="page-container model-parameter">
+            <!-- left panel  -->
+            <div class="col-lg-3 col-md-3 sol-sm-3 custom-pan">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <h5 class="model-head" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    1. Set Model Parameter
+                                </h5>
+                                <i class="indicator glyphicon glyphicon-chevron-up expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+
+                                </i>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <p class="model-left-head">
+                                    Expected Productivity Improvement based on Historical Partner Productivity
+                                    <!-- Above median below 3rd Q  -->
+                                </p><br />
+                                <p class="sub-option">
+                                    High Performer
+                                    <a data-toggle="popover" data-content="Productivity improvement expected from Partners having historical Productivity above median and below 3rd Quartile"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+
+                                </p>
+                                <div class="sub-block">
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+                                                        <input ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                               type="text" id="highPerf_{{input.BusinessUnitID}}" class="form-control align-perc"
+                                                               ng-model="input.High_Performance"
+                                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                               ng-blur="updatePerfomance(input.High_Performance, input.BusinessUnitID, $index);" />
+                                                        <span class="input-group-addon">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Below 1Q  -->
+                                    <div>
+                                        <p class="sub-option">
+                                            Medium Performer
+                                            <a data-toggle="popover" data-content="Productivity improvement expected from Partners having historical Productivity above 1st Quartile and below median"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                        </p>
+                                    </div>
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+
+                                                        <input type="text" id="medPer_{{input.BusinessUnitID}}" class="form-control align-perc"
+                                                               ng-model="input.Medium_Performance"
+                                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57' disabled />
+                                                        <span class="input-group-addon disabled">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Above 1Q below median  -->
+                                    <div>
+                                        <p class="sub-option">
+                                            Low Performer
+                                            <a data-toggle="popover" data-content="Productivity improvement expected from Partners having historical Productivity below 1st Quartile"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                        </p>
+                                    </div>
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}} </label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+
+                                                        <input type="text" id="lowPer_{{input.BusinessUnitID}}" class="form-control align-perc align-right"
+                                                               ng-model="input.Low_Performance"
+                                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57' disabled />
+                                                        <span class="input-group-addon disabled">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p>&nbsp;</p> <p class="sub-option">
+                                        <!-- Partner-BU -->
+                                        Minimum Partner Investment
+                                        <a data-toggle="popover" data-content="Minimum MDF to be allocated for a partner that is considered effective/useful in the region"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </p>
+                                </div>
+                                <div class="sub-block end">
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+                                                        <span class="input-group-addon before">$</span>
+                                                        <input type="text" id="minPartInv_{{input.BusinessUnitID}}" class="specialText form-control align-perc align-dollar trucated "
+                                                               ng-model="input.Min_Partner_Investment"
+                                                               ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                               ng-change="AssignPosition()"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="sub-option">
+                                            New Partner Ramp up Scale
+                                            <a data-toggle="popover" data-content="Amount of MDF (%) given to a partner who has not received MDF before"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                        </p>
+                                    </div>
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+
+                                                        <input type="text" id="newPartRamp_{{input.BusinessUnitID}}" class="form-control align-perc"
+                                                               ng-model="input.New_Partner_RampUp_Scale"
+                                                               ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                                        <span class="input-group-addon">%</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="sub-option">
+                                            Preferred Partner Cut-off(sales growth%)
+                                            <a data-toggle="popover" data-content="Maximum expected sales growth for preferred Partner"><img class="cursor-point" src="assets/resources/info@1x.png" /></a>
+                                        </p>
+                                    </div>
+                                    <div class="sub-menu">
+                                        <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                    <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                    <div class="inputText2 input-group model-relative">
+                                                        <input type="text" id="preffPartRamp_{{input.BusinessUnitID}}" class="form-control  align-perc"
+                                                               ng-model="input.Preferred_Partner_Cut_Off_Percentage"
+                                                               ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                               ng-keypress="validateInput1($event,'preffPartRamp_'+input.BusinessUnitID)" />
+                                                        <span class="input-group-addon">%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div ng-show="bucket === 'Distributor'" class="sub-block">
+                                        <div>
+                                            <p class="sub-option">
+                                                Distributor customer membership weighting
+                                                <a data-toggle="popover" data-content="Weighting applied to distributor’s sellout to Platinum & Gold partners. If larger than 1 it weighs more than Silver and Below partners; If smaller than 1, it weighs less than Silver and Below partners"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="sub-option">
+                                                Silver and Below
+                                            </p>
+                                        </div>
+                                        <div class="sub-menu">
+                                            <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                        <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                        <div class="inputText2 input-group model-relative">
+                                                            <input restrict
+                                                                   type="number" id="distCustSB_{{input.BusinessUnitID}}" class="form-control  align-perc"
+                                                                   ng-model="input.Dist_cust_membership_weight_Silver_and_Below"
+                                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                                            <span class="input-group-addon">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--</div>
+                                        <div ng-show="bucket === 'Distributor'">-->
+                                        <div>
+                                            <p class="sub-option">
+                                                Platinum and Gold
+                                            </p>
+                                        </div>
+                                        <div class="sub-menu">
+                                            <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                        <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                        <div class="inputText2 input-group model-relative">
+                                                            <input restrict
+                                                                   type="number"
+                                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                                   id="distCustPG_{{input.BusinessUnitID}}" class="form-control  align-perc"
+                                                                   ng-model="input.Dist_cust_membership_weight_Platinum_and_Gold"
+                                                                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                                            <span class="input-group-addon">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="sub-block-top">
+                                        <div>
+                                            <p>&nbsp;</p>
+                                            <p class="sub-option">
+                                                Growth Weighting Factor
+                                                <!--<a data-toggle="popover" data-content="Weighting applied to distributor’s sellout to Platinum & Gold partners. If larger than 1 it weighs more than Silver and Below partners; If smaller than 1, it weighs less than Silver and Below partners"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>-->
+                                            </p>
+                                        </div>
+                                        <div class="sub-menu">
+                                            <div ng-repeat="input in data[1] track by $index" class="businessUnit_{{input.BusinessUnitID}}">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes1">
+                                                    <div class="col-lg-4 col-md-4 col-sm-4 no-padding model">
+                                                        <label class="lbl-mp">{{businessUnits[$index].Name}}</label>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                                        <div class="inputText2 input-group model-relative">
+                                                            <input restrict
+                                                                   type="number"
+                                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                                                                   id="growth_{{input.BusinessUnitID}}" class="form-control  align-perc"
+                                                                   ng-model="input.Growth_Revenue"
+                                                                   onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                                            <span class="input-group-addon">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <h5 class="model-head" class="accordion-toggle collapsed">
+                                    2. Set Boundaries for MDF Change from Last Period
+                                </h5>
+                                <i class="indicator glyphicon glyphicon-chevron-down expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse set-bound">
+                            <div class="panel-body font-black sub-heading">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head"></label>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">Projected Sellout change %</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">&nbsp;&nbsp;Max</label>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <label class="lbl-mp align-vertical row-head">&nbsp;&nbsp;Min</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body font-black no-padding">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head sub-head">High Decline</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                        <label class="lbl-mp align-vertical remove-margin">-20% to -100%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <!--<label class="lbl-mp align-vertical remove-margin">Decline %</label>-->
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="highDec_max" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_HighDecline_Max_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set maximum MDF decline % when sellout declines more than 20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="highDec_min" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_HighDecline_Min_MDF" />
+                                            <span class="input-group-addon"> %</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set minimum MDF decline % when sellout declines more than 20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-body font-black no-padding">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head sub-head">Moderate Decline</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                        <label class="lbl-mp align-vertical remove-margin">-5% to -20%</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <!--<label class="lbl-mp align-vertical remove-margin">Decline %</label>-->
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="modDec_max" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_ModerateDecline_Max_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set maximum MDF decline % when sellout declines between -5% to -20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="modDec_min" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_ModerateDecline_Min_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set minimum MDF decline % when sellout declines between -5% to -20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-body font-black no-padding">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head sub-head">Steady</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                        <label class="lbl-mp align-vertical remove-margin">-5% to +5%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="steady_max" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_Steady_Max_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="No change in MDF if there is no change in sellout"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="steady_min" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_Steady_Min_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="No change in MDF if there is no change in sellout"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-body font-black no-padding">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head sub-head">Moderate Growth</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                        <label class="lbl-mp align-vertical remove-margin">5% to 20%</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="modGro_max" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_ModerateGrowth_Max_MDF" />
+
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set maximum MDF 30% when sellout growth is from 5% to 20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="modGro_min" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_ModerateGrowth_Min_MDF" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set minimum MDF 5% when sellout growth is from 5% to 20%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-body font-black no-padding">
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-5 col-md-5 col-sm-5 no-padding">
+                                        <label class="lbl-mp align-vertical row-head sub-head">High Growth</label>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-7 no-padding">
+                                        <label class="lbl-mp align-vertical remove-margin">20%+</label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="highGro_max" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_HighGrowth_Max" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set maximum MDF 80% when sellout growth is more than 5% "><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+                                        <div class="inputText2 input-group model-relative">
+
+                                            <input type="text" id="highGro_min" class="form-control align-perc"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Max_Sellout_HighGrowth_Min" />
+                                            <span class="input-group-addon">%</span>
+                                        </div>
+                                        <a data-toggle="popover" data-content="Set minimum MDF 10% when sellout growth is more than 5%"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default shade-2">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <h5 class="model-head" class="accordion-toggle collapsed">
+                                    Advanced Inputs
+                                </h5>
+                                <i class="indicator glyphicon glyphicon-chevron-down expand-btn model-btn" id="exp_0" ng-click="expand($index,'exp_')" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"></i>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="panel-body font-black">
+                                <h5 class="acc-heading">Projected Sales</h5><br />
+                                <p class="acc-para">
+                                    Historical Target Accomplishment
+                                    <!--<a href="#" data-toggle="popover" data-content="Some content inside the popover"><img src="../../../assets/resources/info@1x.png" /></a>-->
+                                </p>
+
+                                <div class="input-slider">
+                                    <h5 class="slider-heading">High Precision <a data-toggle="popover" data-content="If target accomplish % is higher than this threshold, the precision score for planned sales is 'High', meaning it is very likely that the planned sales will be achieved"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+
+
+                                    <div class="inputText2 input-group slider-relative">
+                                        <input type="text" id="storlek_testet4" class="form-control align-perc" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                               ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                               ng-model="data[0][0].Target_accomplish_HighPrecision_Score" ng-blur="data[0][0].Target_accomplish_HighPrecision_Score = validateRangedInput(data[0][0].Target_accomplish_HighPrecision_Score,80,100,'storlek_testet4')" />
+                                        <span class="input-group-addon">%</span>
+
+                                    </div>
+                                    <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider4" ng-model="data[0][0].Target_accomplish_HighPrecision_Score"><p class="slider-min">80</p><p class="slider-max">100</p></fieldset>
+                                </div>
+                                <div class="input-slider">
+                                    <h5 class="slider-heading">Medium Precision <a data-toggle="popover" data-content="If target accomplish % is lower than this threshold, the precision score for planned sales is 'Low' meaning it is not likely that the planned sales will be achieved"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+
+                                    <div class="inputText2 input-group slider-relative">
+                                        <input type="text" id="storlek_testet5" class="form-control align-perc" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                               ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                               ng-model="data[0][0].Target_accomplish_MediumPrecision_Score" ng-blur="data[0][0].Target_accomplish_MediumPrecision_Score = validateRangedInput(data[0][0].Target_accomplish_MediumPrecision_Score,50,80,'storlek_testet5')" />
+                                        <span class="input-group-addon">%</span>
+
+                                    </div>
+                                    <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider5" ng-model="data[0][0].Target_accomplish_MediumPrecision_Score"><p class="slider-min">50</p><p class="slider-max">80</p></fieldset>
+                                </div>
+                                <div class="input-slider">
+                                    <h5 class="slider-heading">
+                                        Max
+                                        <a uib-popover="The maximum value for target accomplish %, which is used to adjust the planned sales in order to project sellout"
+                                           popover-trigger="'mouseenter'"
+                                           popover-placement="right">
+                                            <img class="cursor-point" src="../../../assets/resources/info@1x.png" />
+                                        </a>
+                                    </h5>
+
+                                    <div class="inputText2 input-group slider-relative">
+                                        <input type="text" id="storlek_testet6" class="form-control align-perc" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                               ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                               ng-model="data[0][0].Max_Target_Accomplish_percentage" ng-blur="data[0][0].Max_Target_Accomplish_percentage = validateRangedInput(data[0][0].Max_Target_Accomplish_percentage,80,100,'storlek_testet6')" />
+                                        <span class="input-group-addon">%</span>
+
+                                    </div>
+                                    <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider6" ng-model="data[0][0].Max_Target_Accomplish_percentage"><p class="slider-min">80</p><p class="slider-max">100</p></fieldset>
+                                </div>
+                                <div class="input-slider">
+                                    <h5 class="slider-heading">
+                                        Min <a popover-trigger="'mouseenter'"
+                                               popover-placement="right" uib-popover="The minimum value for target accomplish %, which is used to adjust the planned sales in order to project sellout"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                    </h5>
+
+
+                                    <div class="inputText2 input-group slider-relative">
+                                        <input type="text" id="storlek_testet7" class="form-control align-perc" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                               ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                               ng-model="data[0][0].Min_Target_Accomplish_percentage" ng-blur="data[0][0].Min_Target_Accomplish_percentage = validateRangedInput(data[0][0].Min_Target_Accomplish_percentage,50,100,'storlek_testet7')" />
+                                        <span class="input-group-addon">%</span>
+
+                                    </div>
+                                    <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider7" ng-model="data[0][0].Min_Target_Accomplish_percentage"><p class="slider-min">50</p><p class="slider-max">100</p></fieldset>
+                                </div>
+                                <div class="panel-section">
+                                    <p class="acc-para">
+                                        Projected sales change boundaries when
+                                    </p>
+                                    <div class="panel-body font-black sales">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding align-center">
+
+                                                <label class="lbl-mp align-vertical row-head">MAX</label>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 no-padding align-center">
+
+                                                <label class="lbl-mp align-vertical row-head">MIN</label>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body font-black sales">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                                                <label class="lbl-mp align-vertical row-head">JBP Available </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="jbp_max" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].JPB_Max"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+
+                                                </div>
+                                                <a data-toggle="popover" data-content="The maximum projected sellout increase % when JBP is available"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="jbp_min" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].JPB_Min"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+
+                                                </div>
+                                                <a data-toggle="popover" data-content="The maximum projected sellout decline % when JBP is available"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body font-black sales">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                                                <label class="lbl-mp align-vertical row-head">Prediction accuracy is high</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="predAccH_max" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].Prediction_High_Max"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                                <a data-toggle="popover" data-content="if the average historical target accomplish % calculated is higher than 90%, the precision score is “High”"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="predAccH_min" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].Prediction_High_Min"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                                <a data-toggle="popover" data-content="if the average historical target accomplish % calculated is between 70% and 90% (set above),  the precision score is “Medium”; If lower than 70%, precision score is “Low”"><img src="../../../assets/resources/info@1x.png" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body font-black sales">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 no-padding">
+                                                <label class="lbl-mp align-vertical row-head">Prediction accuracy is Low </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding mp-boxes">
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="predAccL_max" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].Prediction_Low_Max"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                                <a data-toggle="popover" data-content="The maximum projected sellout increase % when prediction accuracy is low"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                            </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-5 no-padding tenright-margin">
+
+
+                                                <div class="inputText2 input-group model-relative">
+
+                                                    <input type="text" id="predAccL_min" class="form-control align-perc align-right"
+                                                           ng-model="data[0][0].Prediction_Low_Min"
+                                                           ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                           ng-keypress="validateInput($event)" />
+                                                    <span class="input-group-addon">%</span>
+                                                </div>
+                                                <a data-toggle="popover" data-content="The maximum projected sellout decline % when prediction accuracy is low"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-section">
+                                    <h5 class="acc-heading">Productivity</h5><br />
+                                    <p class="acc-para">
+                                        weights applied in average Historical productivity  calculations
+                                    </p>
+                                    <div class="input-slider">
+                                        <h5 class="slider-heading">T - 1H <a data-toggle="popover" data-content="Weighting applied to the last period's productivity"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet" class="form-control align-perc align-right" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Weights_applied_t_1H" ng-blur="data[0][0].Weights_applied_t_1H = validateRangedInput(data[0][0].Weights_applied_t_1H,0,100,'storlek_testet')" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+                                        <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider" ng-model="data[0][0].Weights_applied_t_1H"><p class="slider-min">0</p><p class="slider-max">100</p></fieldset>
+
+
+
+                                    </div>
+                                    <div class="input-slider">
+                                        <h5 class="slider-heading">T - 2H <a data-toggle="popover" data-content="Weighting applied to the productivity from two period's ago in order to calculate the average historical productivity"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet1" class="form-control align-perc align-right" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Weights_applied_t_2H" ng-blur="data[0][0].Weights_applied_t_2H = validateRangedInput(data[0][0].Weights_applied_t_2H,0,100,'storlek_testet1')" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+                                        <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider1" ng-model="data[0][0].Weights_applied_t_2H"><p class="slider-min">0</p><p class="slider-max">100</p></fieldset>
+                                    </div>
+                                    <div class="input-slider">
+                                        <h5 class="slider-heading">T - 3H <a data-toggle="popover" data-content="Weighting applied to the productivity from three period's ago in order to calculate the average historical productivity"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet2" class="form-control align-perc align-right" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].Weights_applied_t_3H" ng-blur="data[0][0].Weights_applied_t_3H = validateRangedInput(data[0][0].Weights_applied_t_3H,0,100,'storlek_testet2')" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+
+                                        <fieldset ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess" class="storlekslider stroke-relative" id="storlekslider2" ng-model="data[0][0].Weights_applied_t_3H"><p class="slider-min">0</p><p class="slider-max">100</p></fieldset>
+
+
+                                    </div>
+                                    <div class="input-slider">
+                                        <h5 class="slider-heading">Min Target Productivity <a data-toggle="popover" data-content="The minimum target productivity a partner needs to achieve"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+
+
+                                            <div class="inputText2 input-group model-relative">
+                                                <span class="input-group-addon before">$</span>
+                                                <input type="text" id="storlek_testet3" class="specialText form-control align-perc align-dollar align-right"
+                                                       ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                       ng-model="data[0][0].Min_Target_Productivity"
+                                                       ng-keypress="validateInput($event)"
+                                                       ng-change="AssignPosition()" />
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="storlekslider" id="storlekslider3" ng-model="data[0][0].Min_Target_Productivity"></div>-->
+                                    </div>
+                                </div>
+                                <div class="input-slider">
+                                    <h5 class="slider-heading">Partner Size Threshold <a href="#" data-toggle="popover" data-content="Threshold, based on the amount of sellout from previous period, used to determine the size of the partner"><img class="cursor-point" src="../../../assets/resources/info@1x.png" /></a></h5>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 no-padding">
+                                        <!--<input type="text" class="form-control" value="$100,000">-->
+
+                                        <div class="inputText2 input-group model-relative">
+                                            <span class="input-group-addon before">$</span>
+                                            <input type="text" id="partSize_testet8" class="specialText form-control align-perc align-dollar trucated align-right"
+                                                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-model="data[0][0].partner_size_threshold"
+                                                   ng-keypress="validateInput($event)"
+                                                   ng-change="AssignPosition()" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-section">
+                                    <h5 class="acc-heading">Won MGO performance accelerator</h5><br />
+
+                                    <div class="input-slider wmgoSlider">
+                                        <h5 class="slider-heading">1st Quantile <a data-toggle="popover" data-content="">
+                                            <!--<img class="cursor-point" src="../../../assets/resources/info@1x.png" />--></a></h5>
+
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet" class="form-control align-perc align-right"
+                                                   ng-model="data[0][0].WMGO_Perf_Acc_VeryHigh"
+                                                    ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                    ng-change="invperformanceacc(data[0][0].WMGO_Perf_Acc_VeryHigh)" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                    <div class="input-slider wmgoSlider">
+                                        <h5 class="slider-heading">2nd Quantile<a data-toggle="popover" data-content="">
+                                            <!--<img class="cursor-point" src="../../../assets/resources/info@1x.png" />--></a></h5>
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet1" class="form-control align-perc align-right"
+                                                   ng-model="data[0][0].WMGO_Perf_Acc_High" 
+                                                    ng-disabled="role.disabled || disablePrevious || NOACCESS  || getBUAccess"
+                                                   ng-change="invperformanceacchigh(data[0][0].WMGO_Perf_Acc_High)" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="input-slider wmgoSlider">
+                                        <h5 class="slider-heading">3rd Quantile<a data-toggle="popover" data-content="">
+                                            <!--<img class="cursor-point" src="../../../assets/resources/info@1x.png" />--></a></h5>
+
+                                        <div class="inputText2 input-group slider-relative">
+
+
+                                            <input type="text" id="storlek_testet2" class="form-control align-perc align-right"
+                                                   disabled
+                                                   ng-model="data[0][0].WMGO_Perf_Acc_Medium" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="input-slider wmgoSlider">
+                                        <h5 class="slider-heading">4th Quantile <a data-toggle="popover" data-content="">
+                                            <!--<img class="cursor-point" src="../../../assets/resources/info@1x.png" />--></a></h5>
+
+                                        <div class="inputText2 input-group slider-relative">
+
+
+                                            <input type="text" id="storlek_testet2" class="form-control align-perc align-right"
+                                                   disabled
+                                                   ng-model="data[0][0].WMGO_Perf_Acc_Low" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+                                     </div>
+                                    <div class="input-slider wmgoSlider">
+                                        <h5 class="slider-heading">5th Quantile <a data-toggle="popover" data-content="">
+                                            <!--<img class="cursor-point" src="../../../assets/resources/info@1x.png" />--></a></h5>
+
+
+                                        <div class="inputText2 input-group slider-relative">
+                                            <input type="text" id="storlek_testet" class="form-control align-perc align-right"
+                                                   disabled
+                                                   ng-model="data[0][0].WMGO_Perf_Acc_VeryLow" />
+                                            <span class="input-group-addon">%</span>
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of left panel -->
+            <!-- Container -->
+            <div class="col-lg-9 col-md-9 col-sm-9">
+
+                <ul id="modelParamOptions">
+                    <li ng-repeat="bu in BU track by bu.ID"
+                        ng-click="enableTab(bu,$index)"
+                        ng-class="{'active-tab': $index == currentBuTabIndex}">
+                        <a>{{bu.Name}}</a>
+                    </li>
+                    <!-- <li ng-click="enableTab('total');" ng-class="{'active-tab': (total === true)}"><a>TOTAL</a></li>
+                    <li><a ng-click="enableTab('dcn');" ng-class="{'active-tab': (dcn === true)}">DCN</a></li>
+                    <li><a ng-click="enableTab('compute');" ng-class="{'active-tab': (compute === true)}">COMPUTE</a></li>
+                    <li><a ng-click="enableTab('storage');" ng-class="{'active-tab': (storage === true)}">STORAGE</a></li>
+                    <li><a ng-click="enableTab('service');" ng-class="{'active-tab': (service === true)}">SERVICE</a></li>
+                    <li><a ng-click="enableTab('aruba');" ng-class="{'active-tab': (aruba === true)}">ARUBA</a></li> -->
+                </ul>
+                <!--<div ng-show="total === true">-->
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box">
+                    <div class="panel panel-default shade-2">
+                        <!--<div class="panel-body">Panel Content</div>-->
+                        <div class="chart-heading">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod1"><span class=""></span></button>
+                            <div id="myMod1" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">% of MDF focused on growth</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="options5" data="data1" class="nvdCharts"></nvd3>
+                                            <div class="chart-model-param">
+                                                <div class="square blue"></div>
+                                                <p class="status">Growth MDF</p>
+                                                <div class="square graph-green"></div>
+                                                <p class="status">Sustain MDF</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nvd3 options="options1" data="data1"></nvd3>
+                            <div class="square blue"></div>
+                            <p class="status">Growth MDF</p>
+                            <div class="square graph-green"></div>
+                            <p class="status">Sustain MDF</p>
+                        </div>
+                    </div>
+                    <div class="side-box col-lg-12">
+                        <div class="circle blue" ng-show="DGrowth_MDF_Percentage === FGrowth_MDF_Percentage"></div>
+                        <div class="circle green" ng-show="DGrowth_MDF_Percentage < FGrowth_MDF_Percentage"></div>
+                        <div class="circle yellow" ng-show="DGrowth_MDF_Percentage > FGrowth_MDF_Percentage"></div>
+                        <p class="side-content">% of MDF focused on growth changed from {{DGrowth_MDF_Percentage}}% to {{FGrowth_MDF_Percentage}}%</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box">
+                    <div class="panel panel-default shade-2">
+                        <div class="chart-heading sales-Chart">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod4"><span class=""></span></button>
+                            <div id="myMod4" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Sales growth of partner with <br />MDF vs without MDF</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="options7" data="data2" class="nvdCharts"></nvd3>
+                                            <div class="chart-model-param">
+                                                <div class="square blue"></div>
+                                                <p class="status pull-left">With MDF</p>
+                                                <div class="square graph-green"></div>
+                                                <p class="status">without MDF</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <nvd3 options="options2" data="data2"></nvd3>
+                            <div>
+                                <div class="square blue"></div>
+                                <p class="status pull-left">With MDF</p>
+                                <div class="square graph-green"></div>
+                                <p class="status">without MDF</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-box col-lg-12">
+                        <div class="circle blue" ng-show="Default_SalesGrowth_with_mdf === FSalesGrowth_with_mdf"></div>
+                        <div class="circle green" ng-show="Default_SalesGrowth_with_mdf < FSalesGrowth_with_mdf"></div>
+                        <div class="circle yellow" ng-show="Default_SalesGrowth_with_mdf > FSalesGrowth_with_mdf"></div>
+                        <p class="side-content">Sales growth of partner with MDF changed from {{Default_SalesGrowth_with_mdf}}% to {{FSalesGrowth_with_mdf}}%</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box">
+                    <div class="panel panel-default shade-2">
+                        <div class="chart-heading">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod3"><span class=""></span></button>
+                            <div id="myMod3" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">MDF / Sellout</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="options8" data="data3" class="nvdCharts"></nvd3>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <nvd3 options="options3" data="data3"></nvd3>
+                        </div>
+                    </div>
+                    <div class="side-box col-lg-12">
+                        <div class="circle blue" ng-show="Default_MDFBYSellout_Percentage === MDFBYSellout_Percentage"></div>
+                        <div class="circle green" ng-show="Default_MDFBYSellout_Percentage < MDFBYSellout_Percentage"></div>
+                        <div class="circle yellow" ng-show="Default_MDFBYSellout_Percentage > MDFBYSellout_Percentage"></div>
+                        <p class="side-content">MDF/sellout changed from {{Default_MDFBYSellout_Percentage}}% to {{MDFBYSellout_Percentage}}%</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box">
+                    <div class="panel panel-default shade-2">
+                        <div class="chart-heading">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod5"><span class=""></span></button>
+                            <div id="myMod5" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">
+                                                Alignment of Investment Change vs Sales Change
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="options9" data="data6" class="nvdCharts"></nvd3>
+                                            <div class="chart-model-param">
+                                                <div class="square blue"></div>
+                                                <p class="status">Aligned</p>
+                                                <div class="square graph-green"></div>
+                                                <p class="status">Misaligned</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <a class="exp-icon"
+                               data-toggle="popover"
+                               data-content="% of MDF that is allocated in alignment with their projected sales growth, i.e. the sign of the change in projected sellout is the same as the change in allocated MDF. For example, increase in MDF investment for a partner projected to grow or vice versa.">
+                                <img class="cursor-point" src="../../../assets/resources/info@1x.png" />
+                            </a>
+                            <nvd3 options="options6" data="data6"></nvd3>
+                            <div class="square blue"></div>
+                            <p class="status">Aligned</p>
+                            <div class="square graph-green"></div>
+                            <p class="status">Misaligned</p>
+                        </div>
+                    </div>
+                    <div class="side-box col-lg-12">
+                        <div class="circle blue" ng-show="DAligned_Percentage === FAligned_Percentage"></div>
+                        <div class="circle green" ng-show="DAligned_Percentage < FAligned_Percentage"></div>
+                        <div class="circle yellow" ng-show="DAligned_Percentage > FAligned_Percentage"></div>
+                        <p class="side-content">Aligned investment changed from {{DAligned_Percentage}}% to {{FAligned_Percentage}}%</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box" ng-show="bucket !== 'Distributor'">
+                    <div class="panel panel-default shade-2">
+                        <div class="chart-heading">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod6"><span class=""></span></button>
+                            <div id="myMod6" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">MDF by membership tier</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="options10" data="data11" class="nvdCharts"></nvd3>
+                                            <div class="chart-model-param1">
+                                                <div class="square blue"></div>
+                                                <p class=" status">Platinum</p>
+
+                                                <div class="square darkgold"></div>
+                                                <p class="status ">Gold</p>
+
+                                                <div class="square silver"></div>
+                                                <p class="status ">Silver & below</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <nvd3 options="options11" data="data11"></nvd3>
+                            <div class="square blue"></div>
+                            <p class="status">Platinum</p>
+                            <div class="square darkgold"></div>
+                            <p class="status">Gold</p>
+                            <div class="square silver"></div>
+                            <p class="status">Silver & Below</p>
+                        </div>
+                    </div>
+                    <div class="side-box col-lg-12">
+                        <div class="circle blue"></div>
+                        <p class="side-content">% of MDF allocated to Platinum changed from {{Default_MDF_Platinum_Percentage}}% to {{Final_MDF_Platinum_Percentage}}%,Gold from {{Default_MDF_Gold_Percentage}}% to {{Final_MDF_Gold_Percentage}}%,Silver & below from {{Default_MDF_SB_Percentage}}% to {{Final_MDF_SB_Percentage}}%</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 graph-box">
+                    <div class="panel panel-default shade-2">
+                        <div class="chart-heading scatter-Chart">
+                            <button type="button" class="btn zoom-img chart-margin" data-toggle="modal" data-target="#myMod7"><span class=""></span></button>
+                            <div id="myMod7" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">YOY Growth Portfolio (Calculated)</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <nvd3 options="sactteroptions1" data="sactterdata" class="nvdCharts"></nvd3>
+                                            <div class="chart-model-param">
+                                                <div class="square graph-green"></div>
+                                                <p class="status pull-left">With MDF</p>
+                                                <div class="square blue four-left"></div>
+                                                <p class="status">without MDF</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <nvd3 options="sactteroptions" data="sactterdata"></nvd3>
+                            <div class="square graph-green"></div>
+                            <p class="status pull-left">With MDF</p>
+                            <div class="square blue four-left"></div>
+                            <p class="status">Without MDF</p>
+                        </div>
+                        <div class="side-box col-lg-12">
+                            <div class="circle blue" ng-show="MDFForYOYmin === MDFForYOYmax"></div>
+                            <div class="circle green" ng-show="MDFForYOYmin < MDFForYOYmax"></div>
+                            <div class="circle yellow" ng-show="MDFForYOYmin > MDFForYOYmax"></div>
+                            <p class="side-content">% of MDF allocated to large growing partner changed from {{MDFForYOYmin}}% to {{MDFForYOYmax}}%</p>
+                        </div>
+                        <div class="side-box col-lg-12">
+                            <div class="circle blue" ng-show="MDFForBUYOYmin === MDFForBUYOYmax"></div>
+                            <div class="circle green" ng-show="MDFForBUYOYmin < MDFForBUYOYmax"></div>
+                            <div class="circle yellow" ng-show="MDFForBUYOYmin > MDFForBUYOYmax"></div>
+                            <p class="side-content">% of large growing partner-BU with MDF changed from {{MDFForBUYOYmin}}% to {{MDFForBUYOYmax}}%</p>
+                        </div>
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+
+        </div>
+        <!-- End of container -->
+    </div>
+    </div>
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="col-lg-9 col-md-9 col-sm-9 ng-hide" ng-show="final >= 1">
+            </div>
+            <div class="col-lg-3 col-sm-4 col-md-6 count">
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 icon-holder top-ten-padding">
+                <div class="col-md-3 resetButtons modelParmerReset">
+                    <button class="col-lg-2 col-md-2 col-sm-2 icon-holder" ng-disabled="role.copy || NOACCESS"
+                            data-toggle="modal" data-target="#CopyModal">
+                        <div><img class="top5-margin" src="assets/resources/Copy Green.svg"></div>
+                        <div><label>COPY</label></div>
+                    </button>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <button ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                            class="btn btn-success edit-button sticky-reset-button"
+                            ng-click="resetModelParam()"
+                            href="#/budget/allocation">
+                        RESET
+                    </button>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2">
+                    <button ng-click="modelParamOnApply()"
+                            ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                            class="btn btn-success edit-button sticky-save-button" href="#/budget/model-parameter">
+                        APPLY &amp; SAVE
+                    </button>
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 icon-holder top-ten-padding">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <button class="btn btn-success sticky-prev-button" href="#/budget/allocation" ng-click="validateJson('previous')">
+                        PREVIOUS
+                    </button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                    <button class="btn btn-success sticky-next-button" href="#/budget/model-parameter" ng-click="validateJson('next')">
+                        NEXT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of tabs -->
+    <!-- popup starts for copy -->
+    <div class="modal fade" id="CopyModal" role="dialog">
+        <div class="modal-dialog copyPopup">
+
+            <!-- Modal content-->
+            <form name="copyPlan">
+                <div class="modal-content createPopup">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Create Copy of Version </h4>
+                    </div>
+                    <div class="createConataier">
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Source Financial Period</p></div>
+
+                            <div class="col-md-6"><input type="text" ng-model="versiondata.Financialyear" ng-disabled="true" name="Year" ng-value="versiondata.Financialyear" placeholder="FY181 2H" /></div>
+
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Version</p></div>
+                            <div class="col-md-6"><input type="text" ng-model="versiondata.VersionNo" ng-disabled="true" name="Version" placeholder="4" /></div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Source Plan Name</p></div>
+                            <div class="col-md-6"><input type="text" name="planName" ng-model="versiondata.VersionName" ng-disabled="true" placeholder="MDF Plan for FY 18 2H" /></div>
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Destination Financial Period</p></div>
+                            <div class="col-md-6">
+                                <select name="financial" required
+                                        ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in Financialyearend track by Financialyears.FinancialyearID"
+                                        ng-model="drpdpwnvalue1">
+                                    <option value="" label="Select Financial Period"></option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-12 createData">
+                            <div class="col-md-6"><p>Destination Plan Name</p></div>
+                            <div class="col-md-6"><input type="text" ng-model="DestPlanvalue" required placeholder="Enter Plan name here..." /></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="copydata()" ng-disabled="copyPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+
+</section>
+<script>
+    function toggleChevron(e) {
+        $(e.target)
+            .prev('.panel-heading')
+            .find("i.indicator")
+            .toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+    }
+    $('#accordion').on('hidden.bs.collapse', toggleChevron);
+    $('#accordion').on('shown.bs.collapse', toggleChevron);
+
+    $(document).ready(function () {
+        $('[data-toggle="popover"]').popover({
+            placement: 'top',
+            trigger: 'hover',
+            container: 'body'
+        });
+    });
+
+</script>

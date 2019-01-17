@@ -1,0 +1,350 @@
+﻿<td class="history-text-t">
+    <!-- SHow tde BU'S -->
+    <div ng-repeat="bu in businessUnit" class="business-unit">
+        {{bu.Business_Unit}}
+        <div ng-show="showSpartlines">
+        
+                <nvd3 options="mdfChartOption" data="bu.mdfHistory"></nvd3>
+                <div class="graph-title">MDF</div>
+                <nvd3 options="selloutChartOption" data="bu.selloutHistory"></nvd3>
+                <div class="graph-title">Sellout</div>
+        </div>
+    </div>
+
+
+</td>
+<td class="history-text-t" id="idcol" ng-if="selectedPartner[1]" style="text-align: left !important">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            -
+        </div>
+    </div>
+</td>
+<td class="history-text-t" ng-if=" PartnerTypeID==2"></td>
+<td class="history-text-t">
+    <!-- ### SELLOUT -->
+    <div ng-repeat="bu in businessUnit">
+        <div class="formated-price projected-sellout" ng-class="{'col-lg-12': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            {{bu.Sellout[0].Projected_Sellout | number : 0 }}
+        </div>
+        <div class="formated-price projected-sellout" ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            {{bu.Sellout[0].Last_Period_Sellout | number: 0}}
+        </div>
+
+        <div class=" projected-sellout" ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            <span class="formated-price">{{bu.Sellout[0].YoY_change_sellout | number : 1}}</span> %
+        </div>
+        <div class="formated-price projected-sellout" ng-class="{'hide-elem': !selloutColExpnd, 'col-lg-3': selloutColExpnd}">
+            {{bu.Analysis[0].PredictionAccuracy}}
+        </div>
+    </div>
+
+</td>
+<td class="history-text-t">
+    <!-- ### MDF -->
+    <div ng-repeat="bu in businessUnit" class="row">
+
+        <div class="row">
+
+            <div class="formated-price projected-sellout" ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                {{bu.MDF[0].Recommended_MDF | number}}
+            </div>
+            <div class="projected-sellout" ng-class="{'col-lg-6': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+               
+                 <!-- ************** FIRST ROW ******************** -->
+
+                <!-- Misaligned &&  Overfunded -->
+                <img ng-if="bu.MDF_Alignment == 'Misaligned' && bu.PREV_MDF_Assessment == 'Overfunded' "
+                     src="assets/resources/arrow_down_red@1x.png">
+
+                <!-- Misaligned &&  Underfunded -->
+                <img ng-if="bu.MDF_Alignment == 'Misaligned' && bu.PREV_MDF_Assessment == 'Underfunded' "
+                     src="assets/resources/arrow_up_yellow@1x.png">
+
+                <!-- Misaligned and New Opportunity -->
+                    <!-- No Icon -->
+
+                <!-- Misaligned and null -->
+                <img ng-if="bu.MDF_Alignment == 'Misaligned' && (bu.PREV_MDF_Assessment == '' || bu.PREV_MDF_Assessment == null ) "
+                     src="assets/resources/verify_magnitude@1x.png">
+
+                <!-- ************** End of FIRST ROW ******************** -->
+
+
+                <!-- ************** Second ROW ******************** -->
+                <!-- Aligned &&  Overfunded -->
+                <img ng-if="bu.MDF_Alignment == 'Aligned' && bu.PREV_MDF_Assessment == 'Overfunded' "
+                     src="assets/resources/verify_magnitude@1x.png">
+
+                <!-- Aligned &&  Underfunded -->
+                <img ng-if="bu.MDF_Alignment == 'Aligned' && bu.PREV_MDF_Assessment == 'Underfunded' "
+                     src="assets/resources/verify_magnitude@1x.png">
+
+                <!-- Aligned and New Opportunity -->
+                    <!-- No Icon -->
+
+                <!-- Aligned and null -->
+                    <!-- No Icon -->
+
+                <!-- ************** End of Second ROW ******************** -->
+
+                <!-- ************** Third ROW ******************** -->
+                <!-- null &&  Overfunded -->
+                    <!-- No Icon -->    
+
+                <!-- null &&  Underfunded -->
+                    <!-- No Icon -->                    
+
+                <!-- null and New Opportunity -->
+                    <img ng-if="bu.MDF_Alignment == '' && bu.PREV_MDF_Assessment == 'New Opportunity' "
+                     src="assets/resources/new_opportunity@1x.png">
+
+                <!-- null and null -->
+                    <!-- No Icon -->
+
+                <!-- ************** End of Third ROW ******************** -->
+
+            </div>
+            <div class="projected-sellout" ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                {{bu.MDF[0].Last_Period_MDF | number:0 }}
+            </div>
+            <div class="projected-sellout" ng-class="{'hide-elem': !mdfColExpnd, 'col-lg-3': mdfColExpnd}">
+                <span class="formated-price">{{bu.MDF[0].YoY_change_MDF | number: 1}}</span> %
+            </div>
+        </div>
+    </div>
+</td>
+<td class="history-text-t">
+    <div ng-repeat="bu in businessUnit" class="row">
+        <div class="row">
+            <div class="projected-sellout col-lg-4">
+                <!-- ng-keyup="calculate($parent.$index,$index,bu)"  -->
+                <input type="number"
+                       id="baseline_{{$index}}"
+                       maxlength="11"
+                       ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                       ng-click="copyTotalVal(bu.MDF[0].BaseLineMDF)"
+                       ng-blur="save($parent.$index,$index,bu)"
+                       ng-keypress="saveOnEnter($parent.$index,$index,bu,$event)"
+                       ng-model=bu.MDF[0].BaseLineMDF class="form-control">
+            </div>
+            <div class="projected-sellout col-lg-6">
+                <div class="dropdown">
+
+                    <!-- ng-init="bu.MDF[0].MDFVarianceReasonID = buildModel(bu.MDF[0].MDFVarianceReasonID)" -->
+
+                    <select class="form-control"
+                            ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                            id="reason_{{$parent.$index}}_{{$index}}"
+                            ng-options="item as item.Reason for item in reason track by item.MDFVarianceReasonID"
+                            ng-model="bu.MDF[0].MDFVarianceReasonID" ng-change="save($parent.$index,$index,bu)"></select>
+                </div>
+            </div>
+            <div class="projected-sellout col-lg-2">
+                <div class="dropdown" >
+                    <img ng-if="bu.MDF[0].Comment.length > 0"
+                         src="assets/resources/comment@1x.png"
+                         data-toggle="dropdown"
+                         class="dropdown-toggle" />
+
+                    <img ng-if="bu.MDF[0].Comment.length == 0"
+                         src="assets/resources/comment_grey@1x.png"
+                         data-toggle="dropdown"
+                         class="dropdown-toggle" />
+
+                    <div class="dropdown-menu comment-box" style="position:fixed;left:77.55%;top:59%">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" class="lbl-comment"></label>
+                            <textarea ng-disabled="role.disabled || disablePrevious || NOACCESS " style="width:360px;" class="form-control coment-box-textarea" ng-model="bu.MDF[0].Comment"></textarea>
+                        </div>
+                        <button type="submit"  class="btn btn-default pull-right x-button">Close</button>
+                        <button ng-click="save(history._parent,$index,bu,false,false)" ng-disabled="role.disabled || disablePrevious || NOACCESS " class="btn btn-success pull-right">Add Comment</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</td>
+<td class="history-text-t">
+
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}" class="projected-sellout">
+            {{bu.MDFOrSellout[0].LastYearMDFOrSellout | number:1}} %
+        </div>
+        <div ng-class="{'col-lg-12': !msExpnd, 'col-lg-3': msExpnd}" class="projected-sellout">
+
+            {{ bu.MDFOrSellout[0].ProjectedMDFOrSellout |number: 1 }} %
+        </div>
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}" class="projected-sellout">
+            {{bu.MDFOrSellout[0].MedianAvdMDFOrSellout | number:1}} %
+        </div>
+        <div ng-class="{'hide-elem': !msExpnd, 'col-lg-3': msExpnd}" class="projected-sellout">
+            {{bu.MDFOrSellout[0].ProductivityImprovementPer | number:1}} %
+        </div>
+    </div>
+
+</td>
+
+
+<!-- EXTRA COLS -->
+
+<td class="history-text-t" id="" ng-if="selectedPartner[2]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.PBM | checkZero | number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[3]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.PMM |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[4]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            -
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[5]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            -
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[6]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            -
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[7]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.PlannedSales |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[8]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.targetAchievement |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[9]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12" style="padding: 0;">
+            {{bu.SOW |number : 1}} %
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[10]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.SOWGrowth |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[11]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.FootprintGrowth |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[12]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.Total_MDF |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[13]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.Incremental_MDF |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[14]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.Late_MDF |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[15]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.W_MGO_Marketing_MDF |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[16]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.New_Logos_MGO |number : 0}}
+        </div>
+    </div>
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[17]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.MDF[0].Last_year_MGO |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[18]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.MDF[0].Last_year_MGO_ROI |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[19]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.MDF[0].Last_year_Won_MGO |number : 0}}
+        </div>
+    </div>
+</td>
+<td class="history-text-t" id="" ng-if="selectedPartner[20]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.MDF[0].Last_year_Won_MGO_ROI |number : 0}}
+        </div>
+    </div>
+</td>
+
+<td class="history-text-t" id="" ng-if="selectedPartner[20]">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            {{bu.MDF[0].Last_year_mdf |number : 0}}
+        </div>
+    </div>
+</td>
+
+
+<!-- END OF Extra cols -->
+
+<td class="history-text-t" ng-show=" reseller.district.DistrictID !=0 ">
+    <div class="row" ng-repeat="bu in businessUnit">
+        <div class="projected-sellout col-lg-12">
+            <!-- <input type="" name="" ng-model="bu.MSA[0].MSAValue" class="form-control formated-price"> -->
+        </div>
+    </div>
+
+
+</td>
+
+
+

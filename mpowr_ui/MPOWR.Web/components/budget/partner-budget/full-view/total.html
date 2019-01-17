@@ -1,0 +1,193 @@
+
+
+<td>
+    -  <!--{{total.Last_year_MGO_ROI |decorateToNA : 1}}-->
+</td>
+
+<td>
+    <!-- MT -->
+    -
+</td>
+ 
+<!-- Last Period Year Sellout -->
+<td ng-bind="total.Last_Period_Sellout | number: 0"></td>
+
+<!-- Newly added -->
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+    <span ng-bind="total.Sellout_Silver_Below | conditionalDistributor"></span>
+
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+    <span ng-bind="total.Sellout_Gold_Platinum | conditionalDistributor"></span>
+
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}" ng-bind="total.Unweighted_Sellout | conditionalDistributor"></td>
+<!-- end -->
+<!-- YOY -->
+<!--<td>
+    <span ng-bind="total.YoY_change_sellout | number: 1"></span> %
+</td>-->
+
+ <td>
+     <span ng-bind="total.YoY_SO | number: 0"></span>%
+ </td>
+
+
+<td ng-bind="total.Scaled_Sellout | number : 0"></td>
+
+ <td>
+     <span ng-bind="total.HOH_SO | number: 0"></span>%
+ </td>
+
+
+<!-- PJ Sellout -->
+<td ng-bind="total.Projected_Sellout  | number: 0"></td>
+
+<td><!--Source of 1H18 Projected Sellout-->-</td>
+
+ <td>
+     <span ng-bind="total.YOY_CY_PY | number: 0"></span>%
+ </td>
+
+<!-- CALCULATED MDF -->
+<td ng-bind="total.Recommended_MDF | number: 0"></td>
+
+<!-- Alloc_PrevYear_MDF -->
+<td ng-bind="total.Alloc_PrevY_MDF | number: 0"></td>
+
+<td ng-bind="total.Last_year_mdf | number : 0"></td>
+
+<td>
+    <div ng-show="reseller.district.DistrictID > 0">
+        {{total.Total_MSA}}
+    </div>
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{total.BU_MSA}} 
+    </div>
+</td>
+<!-- Raveendra to change -->
+<td>
+    <div ng-show="(reseller.district.DistrictID > 0 &amp;&amp; (buId == 0  || buId==5)) || ((reseller.obj.countries  == null ? reseller.obj.geo.DisplayName =='North America' : reseller.obj.countries[0].DisplayName=='CANADA' )&amp;&amp; reseller.partner.PartnerName=='Reseller' &amp;&amp;( buId == 0  || buId==5))">
+        {{total.Total_ARUBAMSA}}
+ 
+    </div>
+</td>
+<!-- Alloc_PrevPeriod_MDF -->
+<td ng-bind="total.Alloc_PrevP_MDF | number: 0"></td>
+
+<td ng-bind="total.Last_Period_MDF | number: 0"></td>
+
+<!-- Allocated MDF --> 
+<td class="br-trans" ng-bind="total.TotalMDF | number: 0"></td>
+
+ <!-- Total MDF -->
+<td class="br-trans" ng-bind="total.BaseLineMDF | number: 0"></td>
+ 
+
+ <!-- Carve Out --> 
+ <td class="br-trans">
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{total.CarveOut | number: 0}}
+    </div>
+</td>
+
+<!-- Reason of Variance -->
+<td>-</td>
+
+ <td ng-bind="total.MDF_CY_PYD | number: 0"></td>
+<td ng-bind="(total.YoY_change_MDF | number: 1)+'%'"></td>
+
+ <td>
+     <span ng-bind="total.HOH_CP_PP | number: 0"></span>%
+ </td>
+
+<td ng-bind="(total.LastYearMDFOrSellout | number : 1) + '%'"></td>
+
+<td ng-bind="(total.PMf_PSt | number: 0) + '%'"></td>
+ 
+<td ng-bind="(total.ProjectedMDFOrSellout | number: 1) + '%'">-</td>
+
+
+<td><!--<td ng-bind="(total.MedianAvdMDFOrSellout | number: 1) + '%'"></td>-->-</td>
+
+
+<td ng-bind="(total.ProductivityImprovementPer | number :1 ) + '%'"></td>
+
+
+<td>
+    <!-- Last Quarter SOW-->    -
+</td>
+
+<!--WMGO-->
+<td ng-bind="total.MGO_Ratio_Total | number: 1"></td>
+
+<td ng-bind="total.Previous_Period_MGO | number: 0"></td>
+
+
+<td ng-bind="total.Previous_Period_Won_MGO | number: 0"></td>
+
+<!-- NEW  -->
+<td>-<!--{{total.Last_year_Won_MGO_ROI | decorateToNA : 1 }}--></td>
+
+<td>-</td>
+
+<!-- PA -->
+<td>
+    -
+</td>
+
+<!-- PM -->
+<td>
+    -
+</td>
+
+<td>
+    <!-- ASSESMENT -->
+</td>
+
+<td ng-bind="total.PlannedSales | number: 0"></td>
+
+<td>
+    <!-- ng-bind="total.targetAchievement | number : 0" -->
+    -
+</td>
+<!-- HSM-947 -->
+<td>
+    {{ total.HQ }}
+</td>
+<td>
+    {{ total.Value_Perc }}
+</td>
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

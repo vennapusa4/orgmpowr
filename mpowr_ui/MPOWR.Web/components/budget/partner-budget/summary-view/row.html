@@ -1,0 +1,111 @@
+
+<td title="{{history.Partner_Name}}">
+    <!-- Partner name -->
+    {{history.Partner_Name | limitTo: 40}} <span ng-if="history.Partner_Name.length > 40">...</span>
+    <i class="fa fa-caret-down expand-btn exp-x pull-right" ng-click="toogleCurrent($index,'reseler',history,'false')"
+       id="icon-{{$index}}"></i>
+
+</td>
+<td>
+    <!-- Partner ID -->
+    {{history.PartnerID  }}
+</td>
+<td>
+
+    <div ng-show="reseller.partner.PartnerTypeID == 2">
+        {{
+          history.Membership_Type.toUpperCase() | nafilter
+        }}
+    </div>
+    <div ng-show="reseller.partner.PartnerTypeID == 1">
+        -
+    </div>
+</td>
+<td>
+    <!-- Projected Sellout -->
+    {{history.Sellout[0].Projected_Sellout | number: 0}} 
+</td>
+
+
+
+<td>
+    <!-- Calculated MFD -->
+    {{history.MDF[0].Recommended_MDF | number: 0}}
+</td>
+<td>
+    <!-- WMGO MFD -->
+    {{history.MDF[0].MGO_Ratio | number: 1}}
+</td>
+
+
+<td>
+ <!--MSA-->
+    <div ng-if="reseller.district.DistrictID > 0 ">
+        <div>
+            <!--<span class="input-group-addon">$</span>-->
+            <input ng-disabled="role.disabled || disablePrevious || NOACCESS "
+                   ng-click="copyValue(history.MSA[0].MSAValue)"
+                   ng-blur="saveMSA($index,'MSA')"
+                   ng-keyup="AssignPosition()"
+                   type="text" name=""
+                   class="form-control msa-text specialText"
+                   id="MSA_{{history.PartnerID}}"
+                   ng-model="history.MSA[0].MSAValue">
+        </div>
+     </div>
+     <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+       {{history.BU_MSA | number: 0}} 
+    </div>
+
+</td>
+
+<td>
+    <div  ng-if="reseller.district.DistrictID > 0 ||(reseller.obj.countries[0].DisplayName=='CANADA'&& reseller.partner.PartnerName=='Reseller')">
+        <!--<span class="input-group-addon">$</span>-->
+        <input ng-disabled="role.disabled || disablePrevious || NOACCESS ||isARUMSA"
+               ng-click="copyARUBAMSAValue(history.MSA[0].ArubaMsa)"
+               ng-blur="saveMSA($index, 'ARUBA MSA')"
+               ng-keyup="AssignPosition()"
+               type="text" name=""
+               class="form-control msa-text  specialText right"
+               id="ARUBA_{{history.PartnerID}}"
+               ng-class="{'ng-not-empty':history.MSA[0].ArubaMsa==0}"
+               ng-model="history.MSA[0].ArubaMsa">
+    </div>
+</td>
+
+<td class="br-trans">
+    <!-- Allocated MDF Swap Column-->
+    {{history.TotalMDF | number: 0}}
+</td>
+<td>
+    <!-- Total MDF Swap Column -->
+     {{history.MDF[0].BaseLineMDF | number: 0}}
+</td>
+<td>
+    <!-- Carve Out -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{history.CarveOut | number: 0}}
+    </div>
+</td>
+ <!--
+<td>
+    Reason of variance 
+    -
+</td>-->
+<td>
+    <!-- Projected MDF/Sellout -->
+    {{
+        history.Sellout[0].Projected_Sellout   > 0 ? (((history.MDF[0].BaseLineMDF  / history.Sellout[0].Projected_Sellout )*100) | number : 1 ): '0.0'
+    }}%
+    <!--{{history.MDFOrSellout[0].ProjectedMDFOrSellout }}%-->
+</td>
+
+<!-- HSM-947 -->
+<td >
+    {{ history.HQ }}
+</td>
+<td >
+    {{ history.Value_Perc }}
+</td>
+

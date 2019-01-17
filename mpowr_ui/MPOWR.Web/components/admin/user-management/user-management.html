@@ -1,0 +1,867 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+<style>
+    .multiselect-parent.btn-group.dropdown-multiselect {
+        width:100%;
+    }
+     .has-error input, button.has-error, div.dhas-error {
+             border: 1px solid #a94442;
+                 margin-top: -3px;
+             }
+     .alert-danger {
+        background-color: transparent;
+        font-size: 18px;
+        vertical-align: top;
+        height: 10px;
+        display: inline-block;
+     }
+     .bottom-align {
+        display: inline-block;
+        float: left;
+     }
+     .data-container.user-management.role.shade-1 [type="checkbox"]:not(:checked) + label, [type="checkbox"]:checked + label.multiselect-label {
+        padding-left: 25px !important;
+        margin-right: 0px !important;
+        padding-top: 5px;
+     }
+     a.multi-link {
+        padding: 0px !important;
+     }
+     a.multi-link p.checkbox-text {
+        padding: 5px 0px 0px 10px !important;
+        width: 100%;
+     }
+     .caret.multi-country {
+
+
+         right: 4px;
+     }
+
+</style>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 user-management partner-credit">
+        <div class="col-lg-12 data-container user-management admin">
+            <!-- User Details -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="UemailId" ng-click="sort('EmailID','UemailId')">Email<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UnameId" ng-click="sort('FirstName','UnameId')">Name<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UroleId" ng-click="sort('role.displayname','UroleId')">Role<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UaccessId" ng-click="sort('userTypeDetails.DisplayName','UaccessId')">Access level<i class="pull-right fa fa-caret-down"></i></th>
+                        <!--<th id="UregionId" ng-click="sort('RegionDetails[0].DisplayName','UregionId')">Region<i class="pull-right fa fa-caret-down"></i></th>-->
+                        <th id="UgeoId" ng-click="sort('GeoDetails[0].DisplayName','UgeoId')">Geo<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UcountryId" ng-click="sort('countries[0].DisplayName','UcountryId')">Country<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UDistrictId" ng-click="sort('districts[0].DisplayName','UDistrictId')">District<i class="pull-right fa fa-caret-down"></i></th>
+                        <th id="UStatusId" ng-click="sort('IsActive','UStatusId')">Status<i class="pull-right fa fa-caret-down"></i></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="umObj in uMData track by $index">
+                        <td><span class="nothing">{{umObj['user'].EmailID}}</span></td>
+                        <td><span class="nothing">{{umObj['user'].FirstName + ' ' + umObj['user'].LastName}}</span></td>
+                        <td><span class="nothing">{{umObj['user']['role'].displayname !== null ? umObj['user']['role'].displayname : '-'}}</span></td>
+                        <td><span class="nothing">{{umObj['user']['userTypeDetails'] !== undefined ? umObj['user']['userTypeDetails'].DisplayName : '-'}}</span></td>
+                        <td>
+                            <span class="nothing " ng-show="umObj['user']['GeoDetails'][0].DisplayName === ''">
+                                -
+                            </span>
+                            <span class="nothing" ng-show="umObj['user']['GeoDetails'].length === 1 && umObj['user']['GeoDetails'][0].DisplayName !== ''">
+                                {{ umObj['user']['GeoDetails'][0].DisplayName }}
+                            </span>
+                            <span ng-show="umObj['user']['GeoDetails'].length > 1" ng-mouseover="showCountriesWithEllipses(umObj['user']['GeoDetails'])" data-toggle="popover" data-content="{{ctries}}">
+                                {{ umObj['user']['GeoDetails'][0].DisplayName + ' ...'}}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="nothing " ng-show="umObj['user']['countries'][0].DisplayName === ''">
+                                -
+                            </span>
+                            <span class="nothing" ng-show="umObj['user']['countries'].length === 1 && umObj['user']['countries'][0].DisplayName !== ''">
+                                {{ umObj['user']['countries'][0].DisplayName }}
+                            </span>
+                            <span ng-show="umObj['user']['countries'].length > 1" ng-mouseover="showCountriesWithEllipses(umObj['user']['countries'])" data-toggle="popover" data-content="{{ctries}}">
+                                {{ umObj['user']['countries'][0].DisplayName + ' ...'}}
+                            </span>
+                        </td>
+                        <td>
+                            <!--<span class="nothing">{{umObj['user']['districts'][0].DisplayName !== '' ? umObj['user']['districts'][0].DisplayName : '-'}}</span>-->
+                            <span class="nothing " ng-show="umObj['user']['districts'][0].DisplayName === ''">
+                                -
+                            </span>
+                            <span class="nothing" ng-show="umObj['user']['districts'].length === 1 && umObj['user']['districts'][0].DisplayName !== ''">
+                                {{ umObj['user']['districts'][0].DisplayName }}
+                            </span>
+                            <span ng-show="umObj['user']['districts'].length > 1" ng-mouseover="showCountriesWithEllipses(umObj['user']['districts'])" data-toggle="popover" data-content="{{ctries}}">
+                                {{ umObj['user']['districts'][0].DisplayName + ' ...'}}
+                            </span>
+                        </td>
+                        <td class="active-row">
+                            <div class="circle green active" ng-show="umObj['user'].IsActive"><span class="nothing ng-binding">{{umObj['user'].IsActive === true ? 'Active':'InActive'}}</span></div>
+                            <div class="circle red active" ng-show="!umObj['user'].IsActive"><span class="nothing ng-binding">{{umObj['user'].IsActive === true ? 'Active':'InActive'}}</span></div>
+                        </td>
+                        <td>
+                            <!-- Reset Password -->
+                            <span class="nothing">
+                                <a data-toggle="modal" data-target="#myModalNorm2" title="Reset Password">
+                                    <img class="cursor-point" src="../../../assets/resources/Change password@1x.png" ng-click="resetUserPassword(umObj);" />
+                                </a>
+                                <!--<a data-toggle="popover" data-content="Reset Password"></a>-->
+                            </span>
+                        </td>
+                        <td>
+                            <!-- Edit user -->
+                            <span class="nothing">
+                                <a data-toggle="modal" data-target="#myModalNorm1" title="Edit User">
+                                    <img class="cursor-point" src="../../../assets/resources/Edit@1x.png" ng-click="editUserInfo(umObj);" />
+                                </a>
+                            </span>
+                        </td>
+                        <td>
+                            <!-- Delete User -->
+                            <span class="nothing">
+                                <a data-toggle="modal" data-target="#myModalNorm3" title="Delete User">
+                                    <img class="cursor-point" src="../../../assets/resources/delete_BU@1x.png" ng-click="setDeleteUser(umObj);" />
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- End of user details -->
+        </div>
+    </div>
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+
+        <div class="col-lg-6 col-md-8 col-sm-8">
+
+            <div class="col-lg-9 col-md-9 col-sm-9 ng-hide" ng-show="final >= 1">
+
+            </div>
+            <div class="col-lg-3 col-sm-4 col-md-6 count">
+
+            </div>
+
+        </div>
+
+        <!-- Add new User Button-->
+        <div class="col-lg-5 col-md-4 col-sm-4">
+            <div class="col-lg-6 col-md-6 col-sm-6 top-ten-padding">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 top-ten-padding">
+                <div class="col-lg-4 col-md-4 col-sm-4 pull-right">
+                    <button class="btn btn-success add-user-align" data-toggle="modal" data-target="#myModalNorm" ng-click="reset(userForm, true);addNewUser()">
+                        ADD USER
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <!-- Modal to new user-->
+    <div class="modal fade" id="myModalNorm1" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header no-bottom">
+                    <button type="button" class="close"
+                            data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Edit User Information
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form add-user-align-form">
+                    <form role="form" name="userExForm" autocomplete="off">
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 top-margin left-padding user-form-height">
+                                <label class="bottom-align" for="exampleInputEmail">Email</label>
+                                <input type="text" class="form-control input-border disabled"
+                                       id="exampleInputEmail2" ng-model="editObj['user'].EmailID" disabled>
+                            </div>
+                            <div class="form-group col-lg-6 col-md-6 col-sm-6 top-margin right-padding left-padding user-form-height">
+                                <div ng-class="{'has-error': (userExForm.fName.$invalid  && !userExForm.fName.$pristine)}"
+                                     class="col-lg-6 col-md-6 col-sm-6 right-padding">
+                                    <label class="bottom-align" for="exampleInputPassword1">First Name <span ng-show="userExForm.fName.$error.required" class="alert-danger">*</span></label>
+                                    <input type="text" class="form-control input-border"
+                                           id="exampleInputPassword1"
+                                           name="fName"
+                                           ng-model="editObj['user'].FirstName"
+                                           placeholder="First Name"
+                                           maxlength="50"
+                                           pattern="[a-zA-Z\s]+"
+                                           required>
+                                    <small ng-if="userExForm.fName.$error.required && !userExForm.fName.$pristine">
+                                        Please enter first name
+                                    </small>
+                                    <small ng-if="userExForm.fName.$error.pattern && !userExForm.fName.$pristine">
+                                        Please enter only characters
+                                    </small>
+                                </div>
+                                <div ng-class="{'has-error': (userExForm.lName.$invalid  && !userExForm.lName.$pristine)}"
+                                     class="col-lg-6 col-md-6 col-sm-6 right-padding">
+                                    <label class="bottom-align" for="exampleInputPassword1">Last Name <span ng-show="userExForm.lName.$error.required" class="alert-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control input-border"
+                                           id="exampleInputPassword1"
+                                           name="lName"
+                                           ng-model="editObj['user'].LastName"
+                                           placeholder="Last Name"
+                                           maxlength="50"
+                                           pattern="[a-zA-Z\s]+"
+                                           required>
+                                    <small ng-if="userExForm.lName.$error.required && !userExForm.lName.$pristine">
+                                        Please enter last name
+                                    </small>
+                                    <small ng-if="userExForm.lName.$error.pattern && !userExForm.lName.$pristine">
+                                        Please enter only characters
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group btn-group custom-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                                <label class="display-block">Role <span ng-show="editObj['user']['role'].displayname === null" class="alert-danger">*</span></label>
+                                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" ng-click="closeDropDown()">
+                                    <span data-bind="label">{{editObj['user']['role'].displayname !== null ? editObj['user']['role'].displayname : 'Select Role'}}</span>&nbsp;<span class="caret dropdown"></span>
+                                </button>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="role in userOptionsData[0] | orderBy : 'DisplayName'"><a href="" ng-click="updateRoleDataOnEdit(role, editObj);validateAdd(editObj, example12model, example13model, example14model, example11model);">{{role.DisplayName}}</a></li>
+                                </ul>
+
+                            </div>
+                            
+
+                            <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                                <label class="display-block">Access level <span ng-show="(editObj['user']['userTypeDetails'].DisplayName === null)" class="alert-danger">*</span></label>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="closeDropDown()">
+                                    <span data-bind="label">{{editObj['user']['userTypeDetails'].DisplayName !== null ? editObj['user']['userTypeDetails'].DisplayName : 'Select Access Level'}}</span>&nbsp;<span class="caret dropdown"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="accessObj in userOptionsData[1]"><a href="" ng-click="updateAcessDataOnEdit(accessObj, editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">{{accessObj.DisplayName}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="form-group btn-group custom-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                            </div>
+                            <!--<div class="form-group btn-group col-lg-2 col-md-2 col-sm-2 left-padding">
+
+            <label class="display-block">Geo <span ng-show="(editObj['user']['RegionDetails'].DisplayName === null && editObj['user']['userTypeDetails'].DisplayName !== null && editObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && editObj['user']['userTypeDetails'].DisplayName !== 'District')" class="alert-danger">*</span></label>
+
+
+            <div id="example81" ng-show="editObj.user.userTypeDetails.DisplayName != 'District'"
+                 ng-dropdown-partselect=""
+                 options="userOptionsData[2]"
+                 selected-model="gioSelectedValues"
+                 checkboxes="true"
+                 extra-settings="example12settings"
+                 display-Prop="DisplayName"
+                 external-id-prop="RegionID"
+                 ng-click="updateRegionDataOnEdit(editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+            </div>
+
+            <div ng-show="editObj.user.userTypeDetails.DisplayName === 'District'" id="example81" ng-init="editObj['user']['RegionDetails'] = userOptionsData[2]">
+                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                    <span data-bind="label">{{editObj['user']['RegionDetails'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" ng-show="userOptionsData[2].length > 1">
+                    <li ng-repeat="subRegion in defaultData[3]"><a href="">{{subRegion.DisplayName}}</a></li>
+                </ul>
+            </div>
+
+        </div>-->
+                            <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                                <label class="display-block">Geo <span ng-show="((editObj['user']['GeoDetails'].length === 0 ) && editObj['user']['userTypeDetails'].DisplayName !== null && editObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && editObj['user']['userTypeDetails'].DisplayName !== 'District' &&  (editObj['user']['userTypeDetails'].DisplayName === 'Geo' || editObj['user']['userTypeDetails'].DisplayName === 'Country' ))" class="alert-danger">*</span></label>
+                                <!--<div id="example42">
+                <button type="button"
+                        class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here" ng-click="closeDropDown()">
+                    <span data-bind="label">{{(editObj['user']['SubRegionDetails'].length !== 0 && editObj['user']['SubRegionDetails'].DisplayName !== null) ? editObj['user']['SubRegionDetails'].DisplayName : 'Select Sub Region'}}</span>&nbsp;<span class="caret multi-sub-region"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" ng-show="editObj['user']['userTypeDetails'].DisplayName !== 'District'">
+                    <li ng-repeat="subRegion in exampleCountrydata"><a href="" ng-click="updateSubRegionDataOnEdit(subRegion, editObj);validateAdd(editObj, example12model, example13model, example14model, example11model);">{{subRegion.DisplayName}}</a></li>
+                </ul>
+            </div>-->
+                                <div id="example42" ng-show="editObj.user.userTypeDetails.DisplayName != 'District'"
+                                     ng-dropdown-partselect=""
+                                     options="exampleCountrydata"
+                                     selected-model="subRegionSelectedValues"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="GeoID"
+                                     ng-click="updateSubRegionDataOnEdit(editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+                                <div ng-show="editObj.user.userTypeDetails.DisplayName === 'District'" id="example42" ng-init="editObj['user']['GeoDetails'] = exampleCountrydata">
+                                    <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                                        <span data-bind="label">{{editObj['user']['GeoDetails'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" ng-show="exampleCountrydata.length > 1">
+                                        <li ng-repeat="subRegion in exampleCountrydata"><a href="">{{subRegion.DisplayName}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                                <label class="display-block">Country <span ng-show="(editObj.user.countries.length === 0 && editObj['user']['userTypeDetails'].DisplayName === 'Country')" class="alert-danger">*</span></label>
+
+                                <div ng-show="editObj.user.userTypeDetails.DisplayName !== 'District'" id="example40" class="dropdown-toggle"
+                                     ng-dropdown-partselect=""
+                                     options="example14data"
+                                     selected-model="example14model"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="CountryID"
+                                     ng-click="updateCountriesDataOnEdit(editObj);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+                                <div ng-show="editObj.user.userTypeDetails.DisplayName === 'District'" id="example40" ng-init="editObj['user']['countries'] = example14data">
+                                    <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                                        <span data-bind="label">{{editObj['user']['countries'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" ng-show="editObj['user']['userTypeDetails'].DisplayName !== 'District'">
+                                        <li ng-repeat="subRegion in example14data"><a href="">{{subRegion.DisplayName}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                                <label class="display-block">District <span ng-show="(editObj.user.districts.length === 0 && editObj['user']['userTypeDetails'].DisplayName === 'District')" class="alert-danger">*</span></label>
+
+                                <div id="example39"
+                                     ng-dropdown-partselect=""
+                                     options="example13data"
+                                     selected-model="example13model"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="DistrictID"
+                                     ng-click="updateDistrictsOnEdit(editObj);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+                            </div>
+                            <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                                <label class="display-block">Select BU <span ng-show="(example12model.length === 0)" class="alert-danger">*</span></label>
+
+                                <div id="example47"
+                                     ng-dropdown-partselect=""
+                                     options="userOptionsData[4]"
+                                     selected-model="example12model"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="BusinessUnitID"
+                                     ng-click="updateBUsOnEdit(editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+                            </div>
+
+                            <div class="btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                                <label class="display-block">Route To Market <span ng-if="(example11model.length === 0)" class="alert-danger">*</span></label>
+                                <div id="example48"
+                                     ng-show="editObj.user.userTypeDetails.DisplayName != 'District'"
+                                     ng-dropdown-partselect=""
+                                     options="userOptionsData[5]"
+                                     selected-model="example11model"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="PartnerTypeID"
+                                     ng-click="updatePartnersOnEdit(editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+                                <div id="example48"
+                                     ng-show="editObj.user.userTypeDetails.DisplayName == 'District'"
+                                     ng-dropdown-partselect=""
+                                     options="reseller"
+                                     selected-model="example11model"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="PartnerTypeID"
+                                     ng-click="updatePartnersOnEdit(editObj, false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                </div>
+
+                                <!--<div ng-show="editObj.user.userTypeDetails.DisplayName === 'District'" id="example48" ng-init="editObj['user']['partnerType'] = userOptionsData[5]">
+                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="Route To Market here">
+                    <span data-bind="label">{{editObj['user']['partnerType'][1].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" ng-show="editObj['user']['userTypeDetails'].DisplayName !== 'District'">
+                    <li ng-repeat="access in userOptionsData[5]"><a href="">{{access.DisplayName}}</a></li>
+                </ul>
+            </div>-->
+
+                            </div>
+
+                            <div class="btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                                <label class="display-block">Status</label>
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="closeDropDown()">
+                                    <span data-bind="label">{{editObj['user'].IsActive === true ? 'Active':'InActive'}}</span>&nbsp;<span class="caret caret-user-info"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="activeObj in acceessLevelOptions" ng-click="editObj['user'].IsActive = (activeObj === 'Active' ? true : false);validateAdd(editObj, example12model, example13model, example14model, example11model);"><a href="">{{activeObj}}</a></li>
+                                </ul>
+                            </div>
+                            <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                                <p class="checkbox-text admin">
+                                    <label style="margin-left:3px;">Non BU Access</label>
+                                    <input type="checkbox" ng-disabled="userOptionsData[4].length !== example12model.length" ng-model="editObj['user'].BUAccess" ng-checked="editObj['user'].BUAccess" id="test9" ng-click="validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                    <label class="check" for="test9"><span class="check-label"></span></label>
+
+                                </p>
+
+                            </div>
+                        <div ng-if="ShowDataUpload" class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                            <p class="checkbox-text admin">
+                                <label style="margin-left:3px;">Data Upload Access</label>
+                                <input type="checkbox" ng-disabled="userOptionsData[4].length !== example12model.length" ng-model="editObj['user'].DataUpload" ng-checked="editObj['user'].DataUpload" id="test13" ng-click="validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                <label class="check" for="test13"><span class="check-label"></span></label>
+
+                            </p>
+
+                        </div>
+                            <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+
+                                <p class="checkbox-text admin">
+                                    <label>Administrator</label>
+                                    <input type="checkbox" id="testuser1" ng-checked="editObj['user'].IsAdmin" ng-click="editObj['user'].IsAdmin = !editObj['user'].IsAdmin;updateAccessLevelForAdmin(editObj,false);validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                    <label class="check" for="testuser1"><span class="check-label"></span></label>
+                                </p>
+
+                            </div>
+                            <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                                <p class="checkbox-text admin">
+                                    <label style="margin-left:3px;">Glossary Approver</label>
+                                    <input type="checkbox" id="testglossary" ng-disabled="editObj['user'].IsAdmin == true ? false: true" ng-checked="editObj['user'].GlossaryApprover" ng-click="editObj['user'].GlossaryApprover = !editObj['user'].GlossaryApprover;validateAdd(editObj, example12model, example13model, example14model, example11model);">
+                                    <label class="check" for="testglossary"><span class="check-label"></span></label>
+
+                                </p>
+
+                            </div>
+</form>
+
+
+</div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button type="button" 
+                            class="btn btn-default theme-colr addExUserCancel"
+                            ng-click="reset(userExForm, false)"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button 
+                            ng-disabled="!( !userExForm.$invalid && enableSave )" 
+                            type="button" 
+                            class="btn btn-primary theme-colr saveEdit addExUserSave" 
+                            ng-click="saveEditedUserData(editObj, false)">
+                        SAVE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header no-bottom">
+                    <button type="button" class="close"
+                            data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Add New User
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form">
+
+                    <form role="form" name="userForm" autocomplete="off">
+                        <div  
+                             ng-class="{'has-error': (userForm.email.$invalid  && !userForm.email.$pristine)}"
+                             class="form-group col-lg-6 col-md-6 col-sm-6 top-margin left-padding user-form-height">
+                            <label class="bottom-align" for="exampleInputEmail1">Email <span ng-show="userForm.email.$error.required" class="alert-danger">*</span></label>
+                            <input 
+                                   type="email" 
+                                   name="email"
+                                   class="form-control input-border"
+                                   id="exampleInputEmail1" 
+                                   ng-blur="validateAdd(addObj, example12model, example13model, example14model, example11model);"
+                                   placeholder="Enter Email Id" 
+                                   ng-model="addObj['user'].EmailID"
+                                   ng-pattern="/\S+@\S+\.com$/"
+                                   maxlength="50"
+                                   required/>
+                            <small ng-if="userForm.email.$error.required && !userForm.email.$pristine">
+                                Please enter email
+                            </small>
+                            <small ng-if="(userForm.email.$error.pattern && !userForm.email.$pristine)||userForm.email.$error.email">
+                                Please enter the valid email ID
+                            </small>
+                        </div>
+                        <div class="form-group col-lg-6 col-md-6 col-sm-6 top-margin right-padding left-padding user-form-height">
+                            <div 
+                                 ng-class="{'has-error': (userForm.fName.$invalid  && !userForm.fName.$pristine)}"
+                                 class="col-lg-6 col-md-6 col-sm-6 right-padding">
+                                <label class="bottom-align" for="exampleInputPassword1">First Name <span ng-show="userForm.fName.$error.required" class="alert-danger">*</span></label>
+                                <input type="text" class="form-control input-border" 
+                                       id="addInputPassword1" 
+                                       name="fName" 
+                                       ng-model="addObj['user'].FirstName" 
+                                       placeholder="First Name"
+                                       ng-blur="validateAdd(addObj, example12model, example13model, example14model, example11model);"
+                                       pattern="[a-zA-Z\s]+" 
+                                       maxlength="50"
+                                       required>
+                                <small ng-if="userForm.fName.$error.required && !userForm.fName.$pristine">
+                                    Please enter first name
+                                </small>
+                                <small ng-if="userForm.fName.$error.pattern && !userForm.fName.$pristine">
+                                    Please enter only characters
+                                </small>
+                            </div>
+                            <div 
+                                ng-class="{'has-error': (userForm.lName.$invalid  && !userForm.lName.$pristine)}"
+                                class="col-lg-6 col-md-6 col-sm-6 right-padding">
+                                <label class="bottom-align" for="exampleInputPassword1">Last Name <span ng-show="userForm.lName.$error.required" class="alert-danger">*</span></label>
+                                <input type="text" 
+                                       class="form-control input-border" 
+                                       id="addInputPassword1"
+                                       name="lName"  
+                                       ng-model="addObj['user'].LastName" 
+                                       placeholder="Last Name"
+                                       ng-blur="validateAdd(addObj, example12model, example13model, example14model, example11model);"
+                                       maxlength="50"
+                                       pattern="[a-zA-Z\s]+" 
+                                       required>
+                                <small ng-if="userForm.lName.$error.required && !userForm.lName.$pristine">
+                                    Please enter last name
+                                </small>
+                                <small ng-if="userForm.lName.$error.pattern && !userForm.lName.$pristine">
+                                    Please enter only characters
+                                </small>
+                            </div>
+                        </div>
+                        <div 
+                             class="form-group btn-group custom-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                            <label class="display-block">Role <span ng-show="addObj['user']['role'].displayname === null" class="alert-danger">*</span></label>
+                            <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" ng-click="closeDropDown()">
+                                <span data-bind="label">{{addObj['user']['role'].displayname !== null ? addObj['user']['role'].displayname : 'Select Role'}}</span>&nbsp;<span class="caret dropdown"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="role in defaultData[0] | orderBy : 'DisplayName'"><a href="" ng-click="updateRoleDataOnEdit(role, addObj);validateAdd(addObj, example12model, example13model, example14model, example11model);">{{role.DisplayName}}</a></li>
+                            </ul>
+                        </div>
+
+
+                        <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                            <label class="display-block">Access level <span ng-show="(addObj['user']['userTypeDetails'].DisplayName === null)" class="alert-danger">*</span></label>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"  ng-click="closeDropDown()">
+                                <span data-bind="label">{{addObj['user']['userTypeDetails'].DisplayName !== null ? addObj['user']['userTypeDetails'].DisplayName : 'Select Acess level'}}</span>&nbsp;<span class="caret caret-user-info"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="accessObj in defaultData[1]"><a href="" ng-click="updateAcessDataOnEdit(accessObj, addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);">{{accessObj.DisplayName}}</a></li>
+                            </ul>
+                        </div>
+                        <div class="form-group btn-group custom-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                        </div>
+                        <!--<div class="form-group btn-group col-lg-2 col-md-2 col-sm-2 left-padding">
+                            <label class="display-block">Geo <span ng-show="(addObj['user']['RegionDetails'].DisplayName === null && addObj['user']['userTypeDetails'].DisplayName !== null && addObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && addObj['user']['userTypeDetails'].DisplayName !== 'District')" class="alert-danger">*</span></label>
+                           
+
+                                <div id="example91" ng-show="addObj.user.userTypeDetails.DisplayName != 'District'"
+                                     ng-dropdown-partselect=""
+                                     options="defaultData[3]"
+                                     selected-model="gioSelectedValues"
+                                     checkboxes="true"
+                                     extra-settings="example12settings"
+                                     display-Prop="DisplayName"
+                                     external-id-prop="RegionID"
+                                     ng-click="updateRegionDataOnEdit(addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);"
+                                     >
+                                </div>
+
+                            <div ng-show="addObj.user.userTypeDetails.DisplayName === 'District'" id="example91" ng-init="addObj['user']['RegionDetails'] = defaultData[3]">
+                                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                                    <span data-bind="label">{{addObj['user']['RegionDetails'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" ng-show="defaultData[3].length > 1">
+                                    <li ng-repeat="subRegion in defaultData[3]"><a href="">{{subRegion.DisplayName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>-->
+                        <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                            <label class="display-block">Geo <span ng-show="( addObj['user']['userTypeDetails'].DisplayName !== null && addObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && addObj['user']['userTypeDetails'].DisplayName !== 'District' && (addObj['user']['userTypeDetails'].DisplayName === 'Geo' || addObj['user']['userTypeDetails'].DisplayName === 'Country')  )" class="alert-danger">*</span></label>
+                            <!--<div id="example92">
+                                <button type="button"
+                                        class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here" ng-click="closeDropDown()">
+                                    <span data-bind="label">{{(addObj['user']['SubRegionDetails'].length !== 0 && addObj['user']['SubRegionDetails'].DisplayName !== null) ? addObj['user']['SubRegionDetails'].DisplayName : 'Select Sub Regions'}}</span>&nbsp;<span class="caret multi-sub-region"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" ng-show="exampleCountrydata.length > 1">
+                                    <li ng-repeat="subRegion in exampleCountrydata"><a href="" ng-click="updateSubRegionDataOnEdit(subRegion, addObj);validateAdd(addObj, example12model, example13model, example14model, example11model);">{{subRegion.DisplayName}}</a></li>
+                                </ul>
+                            </div>-->
+
+                            <div id="example92" ng-show="addObj.user.userTypeDetails.DisplayName != 'District'" 
+                                 ng-dropdown-partselect=""
+                                 options="exampleCountrydata"
+                                 selected-model="subRegionSelectedValues"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="GeoID"
+                                 ng-click="updateSubRegionDataOnEdit(addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                            <div ng-show="addObj.user.userTypeDetails.DisplayName === 'District'" id="example92" ng-init="addObj['user']['GeoDetails'] = exampleCountrydata">
+                                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                                    <span data-bind="label">{{addObj['user']['GeoDetails'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" ng-show="exampleCountrydata.length > 1">
+                                    <li ng-repeat="subRegion in exampleCountrydata"><a href="">{{subRegion.DisplayName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                            <label class="display-block">Country <span ng-show="(example14model.length === 0 && addObj['user']['userTypeDetails'].DisplayName !== null && addObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && addObj['user']['userTypeDetails'].DisplayName !== 'District' &&  addObj['user']['userTypeDetails'].DisplayName !== 'Regional' &&  addObj['user']['userTypeDetails'].DisplayName === 'Country')" class="alert-danger">*</span></label>
+                            
+                            <div id="example93" ng-show="addObj.user.userTypeDetails.DisplayName !== 'District'"
+                                 ng-dropdown-partselect=""
+                                 options="example14data"
+                                 selected-model="example14model"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="CountryID"
+                                 ng-click="updateCountriesDataOnEdit(addObj);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                            <div ng-show="addObj.user.userTypeDetails.DisplayName === 'District'" id="example93" ng-init="addObj['user']['countries'] = example14data">
+                                <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="SubRegion here">
+                                    <span data-bind="label">{{addObj['user']['countries'][0].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" ng-show="example14data.length > 1">
+                                    <li ng-repeat="subRegion in example14data"><a href="">{{subRegion.DisplayName}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                            <label class="display-block">District <span ng-show="(example13model.length === 0 && addObj['user']['userTypeDetails'].DisplayName !== null && addObj['user']['userTypeDetails'].DisplayName !== 'World Wide' && addObj['user']['userTypeDetails'].DisplayName === 'District')" class="alert-danger">*</span></label>
+                            
+                            <div id="example94"
+                                 ng-dropdown-partselect=""
+                                 options="example13data"
+                                 selected-model="example13model"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="DistrictID"
+                                 ng-click="updateDistrictsOnEdit(addObj);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                        </div>
+                        <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                            <label class="display-block">Select BU <span ng-show="example12model.length === 0" class="alert-danger">*</span></label>
+                           
+                            <div id="example98"
+                                 ng-dropdown-partselect=""
+                                 options="defaultData[2]"
+                                 selected-model="example12model"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="BusinessUnitID"
+                                 ng-click="updateBUsOnEdit(addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                        </div>
+
+                        <div class="btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                            <label class="display-block">Route To Market <span ng-show="(example11model.length === 0)" class="alert-danger">*</span></label>
+                            <div id="example95"
+                                 ng-disabled="true"
+                                 ng-show="addObj.user.userTypeDetails.DisplayName !== 'District'"
+                                 ng-dropdown-partselect=""
+                                 options="defaultData[3]"
+                                 selected-model="example11model"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="PartnerTypeID"
+                                 ng-click="updatePartnersOnEdit(addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                             <div id="example95"
+                                 ng-show="addObj.user.userTypeDetails.DisplayName === 'District'"
+                                 ng-dropdown-partselect=""
+                                 options="reseller"
+                                 selected-model="example11model"
+                                 checkboxes="true"
+                                 extra-settings="example12settings"
+                                 display-Prop="DisplayName"
+                                 external-id-prop="PartnerTypeID"
+                                 ng-click="updatePartnersOnEdit(addObj, true);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                            </div>
+                         <!--    <div ng-show="addObj.user.userTypeDetails.DisplayName === 'District'" id="example95" ng-init="addObj['user']['partnerType'] = defaultData[3]">
+                                    <button type="button" class="btn btn-default dropdown-toggle add-user-drop" data-toggle="dropdown" placeholder="Route To Market here">
+                                        <span data-bind="label">{{addObj['user']['partnerType'][1].DisplayName}}</span>&nbsp;<span class="caret multi-country dropdown"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" ng-show="defaultData[3].length > 1">
+                                        <li ng-repeat="access in defaultData[3]"><a href="">{{access.DisplayName}}</a></li>
+                                    </ul>
+                            </div>-->
+                        </div>
+
+                        <div class="btn-group col-lg-4 col-md-4 col-sm-4 right-padding">
+                            <label class="display-block">Status</label>
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-click="closeDropDown()">
+                                <span data-bind="label">{{addObj['user'].IsActive === true ? 'Active':'Inactive'}}</span>&nbsp;<span class="caret caret-user-info"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li ng-repeat="activeObj in acceessLevelOptions" ng-click="addObj['user'].IsActive = (activeObj === 'Active' ? true : false);"><a href="">{{activeObj}}</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                            <p class="checkbox-text admin">
+                                <label style="margin-left:3px;">Non BU Access</label>
+                                <input type="checkbox" ng-disabled="example12model.length !== defaultData[2].length"  ng-model="addObj['user'].BUAccess" id="test8" ng-click="validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                                <label class="check" for="test8"><span class="check-label"></span></label>
+
+                            </p>
+
+                        </div>
+                        <div ng-if="ShowDataUpload" class="btn-group col-lg-4 col-md-4 col-sm-4 left-padding">
+                            <p class="checkbox-text admin">
+                                <label style="margin-left:3px;">Data Upload Access</label>
+                                <input type="checkbox" ng-disabled="example12model.length !== defaultData[2].length" ng-model="addObj['user'].DataUpload" id="test11" ng-click="validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                                <label class="check" for="test11"><span class="check-label"></span></label>
+
+                            </p>
+
+                        </div>
+                        <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                            <p class="checkbox-text admin">
+                                <label>Administrator</label>
+                                <input type="checkbox" id="test7" ng-checked="addObj['user'].IsAdmin" ng-click="addObj['user'].IsAdmin = !addObj['user'].IsAdmin;updateAccessLevelForAdmin(addObj,true);validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                                <label class="check" for="test7"><span class="check-label"></span></label>
+                            </p>
+                        </div>
+                        <div class="form-group custom-group btn-group col-lg-4 col-md-4 col-sm-4 left-padding right-padding">
+                            <p class="checkbox-text admin">
+                                <label style="margin-left:3px;">Glossary Approver</label>
+                                <input type="checkbox" id="testglossary1" ng-disabled="addObj['user'].IsAdmin == true ? false: true" ng-checked="addObj['user'].GlossaryApprover" ng-click="addObj['user'].GlossaryApprover = !addObj['user'].GlossaryApprover;validateAdd(addObj, example12model, example13model, example14model, example11model);">
+                                <label class="check" for="testglossary1"><span class="check-label"></span></label>
+
+                            </p>
+
+                        </div>
+                    </form>
+
+
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button 
+                            type="button" 
+                            class="btn btn-default theme-colr addNewUserCancel"
+                            ng-click="reset(userForm, true)"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button ng-disabled="!( !userForm.$invalid && enableSave )" 
+                            type="button" 
+                            class="btn btn-primary theme-colr addNewUserSave" 
+                            ng-click="saveEditedUserData(addObj, true)">
+                        SAVE 
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalNorm2" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-reset">
+                <!-- Modal Header -->
+                <div class="modal-header no-bottom">
+                    <button type="button" class="close"
+                            data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Reset Password
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form modal-reset">
+
+                    <form role="form">
+                        <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                            <h5 class="user-black-bold">
+                                <img class="user-info-icon" src="../../../assets/resources/export copy 2@1x.png">
+                                <span class="user-info-text">Are you sure you want to reset password?</span>
+                            </h5>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button type="button" class="btn btn-default theme-colr"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button type="button" class="btn btn-primary theme-colr resetUser" ng-click="resetPassword();">
+                        RESET
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModalNorm3" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content modal-delete">
+                <!-- Modal Header -->
+                <div class="modal-header no-bottom">
+                    <button type="button" class="close"
+                            data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Delete User
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form modal-delete">
+
+                    <form role="form">
+                        <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                            <h5 class="user-black-bold">
+                                <img class="user-info-icon" src="assets/resources/export copy 2@1x.png">
+                                <span class="user-info-delete-text">Are you sure you want to delete user?</span>
+                            </h5>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button type="button" class="btn btn-default theme-colr"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button type="button" class="btn btn-primary theme-colr" ng-click="deleteUser()" data-dismiss="modal">
+                        DELETE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+

@@ -1,0 +1,87 @@
+<td>
+    
+      {{bu.DisplayName}}
+      <div ng-show="showSpartlines">
+        <nvd3 options="mdfChartOption" data="bu.mdfHistory"></nvd3>
+        <div class="graph-title">MDF</div>
+        <nvd3 options="selloutChartOption" data="bu.selloutHistory"></nvd3>
+        <div class="graph-title">Sellout</div>
+      </div>
+
+  
+</td>
+<td>
+           <div class="cont">
+              -
+          </div>
+      
+</td>
+<td>
+    
+          <div class="cont">
+              -
+          </div>
+      
+</td>
+ 
+
+<td>
+           {{bu.Sellout[0].Projected_Sellout | number : 0 }}
+ </td>
+<td>
+    
+      {{bu.MDF[0].Recommended_MDF | number : 0}}    
+    
+</td>
+<td>
+
+    {{bu.MDF[0].MGO_Ratio_Total | number : 1}}
+
+</td>
+<!--
+<td>
+     Assesment
+</td>
+-->
+<td>
+    <!--MSA-->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{bu.BU_MSA}}
+     </div>
+</td>
+<td>
+  -<!-- Aruba MSA -->
+</td>
+
+<!-- Allocated MDF -->
+<td class="br-trans">
+    {{bu.TotalMDF | number: 0}}  
+    
+</td>
+<td><!-- Total MDF -->  
+    {{bu.MDF[0].BaseLineMDF | number :0 }}
+ </td>
+<td>
+    <!-- Carve Out -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{bu.CarveOut | number: 0}}
+        </div>
+</td>
+<!--<td>
+     -
+ </td>-->
+
+<td>
+
+    <!--{{ (bu.MDF[0].BaseLineMDF / bu.Sellout[0].Projected_Sellout)*100 | number: 1 }} %-->
+ {{bu.MDFOrSellout[0].ProjectedMDFOrSellout}}%
+
+    
+</td>
+<!-- HSM-947 -->
+<td>
+   {{bu.HQ}} 
+</td>
+<td>
+  {{bu.Value_Perc}}
+</td>

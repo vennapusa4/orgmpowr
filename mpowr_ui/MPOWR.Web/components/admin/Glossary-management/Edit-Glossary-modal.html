@@ -1,0 +1,35 @@
+﻿<div class="glossary-screen-edit-modal">
+    <div class="modal-header">
+        <h3 class="modal-title">Edit Glossary</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            <b class="heading-color">Current Description:</b><p class="glossary-edit" ng-bind-html=opted.Description></p>
+            <b class="heading-color">Suggested Description:</b>
+            <div class="glossary-text-angular" text-angular="text-angular" ng-model="opted.EditedDesc" name="textareaDesc" ng-keydown="textKeyDown($event,'textareaDesc','textareaFormula')" ng-blur="ValidateLength('textareaDesc','textareaFormula')"
+                 ta-toolbar="[['bold','underline','strikeThrough','italics','undo','redo','clear', 'quote','pre','ul','ol','fontSize',
+          'fontColor','fontName','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']]"></div>
+            <span>Characters left : {{descCharLeft}}</span>
+            <br />
+            <hr class="hr-style" />
+            <b class="heading-color">Current Definitions/Formula:</b><p class="glossary-edit" ng-bind-html=opted.Formula></p>
+            <b class="heading-color">Suggested Definitions/Formula:</b>
+            <div class="glossary-text-angular" text-angular="text-angular" ng-model="opted.EditedFormula" name="textareaFormula" ng-keydown="textKeyDown($event,'textareaFormula','textareaDesc')" ng-blur="ValidateLength('textareaFormula','textareaDesc')"
+                 ta-toolbar="[['bold','underline','strikeThrough','italics','undo','redo','clear', 'quote','pre','ul','ol','fontSize',
+          'fontColor','fontName','justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']]"></div>
+            <span>Characters left : {{formulaCharLeft}}</span>
+
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-disabled="disableSave" ng-click="SaveData(opted)"
+                class="btn btn-success">
+            SAVE
+        </button>
+        <button type="button" class="btn btn btn-success"
+                ng-click="cancel()">
+            CANCEL
+        </button>
+    </div>
+</div>

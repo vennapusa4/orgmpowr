@@ -1,0 +1,338 @@
+<div class="row sticky-graph" ng-show="expand" ng-init="hideIfFullScreen()">
+    <div class="graph-set-1">
+        <div class="col-lg-3 col-md-3 col-sm-3 graph">
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <label>Allocated vs. Remaining MDF </label>
+                    </div>
+                </div>
+                <div class="multi-bar-chart" ng-show="buId == 0" style="overflow-x:auto;">
+                     <table style="width:100%" class="table table-striped no-shadow allocate_table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Allocated</th>
+                            <th>Remaining</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody class="tabfont">
+                          <tr ng-class="{ red: (bu.remaining < 0) && bu.name !='Total'}"  ng-repeat="bu in allocatedVsRemainingData" >
+                            <td>{{bu.name}}</td>
+                            <td>{{bu.allocated | number: 0}}</td>
+                            <td>{{bu.remaining | number: 0}}</td>
+                            <td>{{bu.total | number: 0}}</td>
+                            
+                          </tr>
+                          
+                        </tbody>
+                      </table>
+                </div>
+                <div class="multi-bar-chart" ng-show="buId > 0">
+                    <div id="chart2"><svg width="450" height="320"></svg></div>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 graph">
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <label>Allocated vs. Remaining {{title}} </label>
+                    </div>
+                </div>
+                <div class="multi-bar-chart" ng-show="buId == 0" style="overflow-x:auto;">
+                     <table style="width:100%" class="table table-striped no-shadow allocate_table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Allocated</th>
+                                <th>Remaining</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabfont">
+                            <tr ng-class="{'red' : bu.remaining < 0 && bu.name !='Total'}" ng-repeat="bu in Carveout_allocatedVsRemainingData" class="{{bu.name}}">
+                                <td>{{bu.name}}</td>
+                                <td>{{bu.allocated | number: 0}}</td>
+                                <td>{{bu.remaining | number: 0}}</td>
+                                <td>{{bu.total | number: 0}}</td>
+                             </tr>
+                         </tbody>
+                    </table>
+                </div>
+                <div class="multi-bar-chart" ng-show="buId > 0">
+                    <div id="chart3"><svg width="450" height="320"></svg></div>
+                </div>
+             </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 graph">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-10 col-md-10 col-sm-10">
+                        <label>
+                            Sales growth of partners
+                            with MDF vs Without
+                        </label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <img ng-click="enlargeGraph('Sales growth of partners with MDF vs Without',salesOptions,salesData)"
+                             data-toggle="modal"
+                             data-target="#graph-modal"
+                             src="assets/resources/popout@1x.png" class="pull-right">
+                    </div>
+
+                </div>
+                <nvd3 options="salesOptions" data="salesData"></nvd3>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="square blue"></div>
+                        <p class="status">With MDF</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="square graph-green"></div>
+                        <p class="status">Without</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 graph">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-10 col-md-10 col-sm-10">
+                        <label>
+                            MDF / Sellout <br /><br />
+                        </label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <img ng-click="enlargeGraph('MDF / Sellout',mdfBySelloutOptions,mdfBySelloutData)"
+                             data-toggle="modal"
+                             data-target="#graph-modal"
+                             src="assets/resources/popout@1x.png"
+                             class="pull-right">
+                    </div>
+
+                </div>
+                <nvd3 options="mdfBySelloutOptions" data="mdfBySelloutData"></nvd3>
+
+            </div>
+
+        </div>
+     
+    </div>
+    <div class="graph-set-2">
+        <div class="col-lg-3 col-md-3 col-sm-3 graph" ng-show="reseller.partner.PartnerTypeID == 2 ">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <label>MDF by membership tier</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <img ng-click="enlargeGraph('MDF by membership tier',baselineMDFbyMembershipOption,baselineMDFbyMembershipData)"
+                             data-toggle="modal"
+                             data-target="#graph-modal"
+                             src="assets/resources/popout@1x.png" class="pull-right">
+
+                    </div>
+
+                </div>
+                <nvd3 options="baselineMDFbyMembershipOption" data="baselineMDFbyMembershipData"></nvd3>
+                <div class="row bultes">
+                    <div class="col-lg-4">
+                        <div class="square platinum"></div>
+                        <p class="status">Platinum</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="square gold"></div>
+                        <p class="status">Gold</p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="square sb"></div>
+                        <p class="status">Silver &amp; Bellow</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 graph">
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-10 col-md-10 col-sm-10">
+                        <label>
+                            Alignment of investment change vs sales change
+                        </label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <img ng-click="enlargeGraph('Alignment of investment change vs sales change',investmentChangeOption,investmentChangeData)"
+                             data-toggle="modal"
+                             data-target="#graph-modal"
+                             src="assets/resources/popout@1x.png" class="pull-right">
+                    </div>
+
+                </div>
+                <nvd3 options="investmentChangeOption" data="investmentChangeData"></nvd3>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="square green"></div>
+                        <p class="status">Aligned</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="square blue"></div>
+                        <p class="status">Misaligned</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 graph scatter-Chart" ng-class="{'full-width': reseller.partner.PartnerTypeID == 1 }">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 original-graph shade-2">
+                <div class="col-lg-12 col-md-12 col-sm-12 main-graph">
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <label>
+                            YoY Growth Portfolio (Allocated)
+                        </label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <img ng-click="enlargeGraph('YoY Growth Portfolio (Allocated)',options53,data51)"
+                             data-toggle="modal"
+                             data-target="#graph-modal"
+                             src="assets/resources/popout@1x.png" class="pull-right">
+
+                    </div>
+
+                </div>
+                <nvd3 options="options51" data="data51">
+                 </nvd3>
+                <div class="row bultes">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="action-button">
+
+        <img src="assets/resources/previous@1x.png" class="left-button" ng-click="showGraph('right')">
+        <img src="assets/resources/next_on_hover@1x.png" class="right-button" ng-click="showGraph('left')">
+    </div>
+</div>
+
+<div class="the-graph">
+    <div id="graph-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog chart-area">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{graphTitle}}</h4>
+                </div>
+                <div class="modal-body" >
+                <div ng-if="graphTitle != 'YoY Growth Portfolio (Allocated)'" style="word-spacing:8PX;"> 
+                    <nvd3 options="graphOption" data="graphDataForModal"></nvd3>
+                </div>
+
+                <div ng-if="graphTitle == 'YoY Growth Portfolio (Allocated)' " class="scatter-Chart"> 
+                    <nvd3 options="graphOption" data="graphDataForModal"></nvd3>
+                </div>
+
+
+                    <!-- <div class="graph-labels">
+                        <ul class="list-inline" ng-show="graphTitle == 'Allocated vs. Remaining MDF' ">
+                            <li ng-repeat="data  in graphData.AllocatedGraph">
+                                {{getNames(data.Business_Unit)}}
+                                <br>
+                                {{data.TotalBaseline  | thousandSuffix}}
+                            </li>
+                            <li ng-show="reseller.district.DistrictID > 0 && buId == 0">
+                                MSA <br/>
+                                {{graphData.MSAGraph[0].Total_MSA | thousandSuffix }}
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <div class="row graph-legends">
+
+                        <!-- Allocated vs. Remaining MDF -->
+                        <div class="col-lg-4" ng-show="graphTitle == 'Allocated vs. Remaining MDF' ">
+                            <!-- <div class="col-lg-5">
+                                <div class="square graph-green"></div>
+                                <p class="status">Allocated</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="square blue"></div>
+                                <p class="status">Remaining</p>
+                            </div> -->
+
+                             <div id="chart2"><svg width="450" height="320"></svg></div>
+
+                        </div>
+
+                        <!-- Allocated vs. Remaining CarveOut -->
+                        <!--<div class="col-lg-4" ng-show="graphTitle == 'Allocated vs. Remaining CarveOut' ">
+                             <div id="chart2"><svg width="450" height="320"></svg></div>
+                         </div>-->
+
+                        <!-- Allocated vs. Remaining MDF -->
+                        <div class="col-lg-4" ng-show="graphTitle == 'Sales growth of partners with MDF vs Without' ">
+                            <div class="col-lg-5">
+                                <div class="square blue"></div>
+                                <p class="status">With MDF</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="square graph-green"></div>
+                                <p class="status">Without</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" ng-show="graphTitle == 'Alignment of investment change vs sales change' ">
+                            <div class="col-lg-5">
+                                <div class="square green"></div>
+                                <p class="status">Aligned</p>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class="square blue"></div>
+                                <p class="status">Misaligned</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" ng-show="graphTitle == 'MDF by membership tier' ">
+                            <div class="col-lg-4">
+                                <div class="square platinum"></div>
+                                <p class="status">Platinum</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="square gold"></div>
+                                <p class="status">Gold</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="square sb"></div>
+                                <p class="status">Silver &amp; Bellow</p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4" ng-show="graphTitle == 'YoY Growth Portfolio' ">
+                            <div class="col-lg-6">
+                                <div class="square graph-green"></div>
+                                <p class="status">With MDF</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="square" style="background-color:#333"></div>
+                                <p class="status">Without MDF</p>
+                            </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+ 

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html ng-app="hpe">
+<head>
+    <title>HPE</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+
+    
+    <!-- Library lins -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="assets/css/app.css" rel="stylesheet" />
+    <link href="assets/css/material-input.css" rel="stylesheet" />
+    <link href="assets/css/checkbox.css" rel="stylesheet" />
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/moment/min/moment.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="../node_modules/angular-ui-notification/dist/angular-ui-notification.css" rel="stylesheet" />
+    <script src="../node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+    <script src="../node_modules/underscore/underscore-min.js"></script>
+    <script src="../node_modules/ngstorage/ngStorage.min.js"></script>
+
+    <script src="../node_modules/d3/d3.min.js"></script>
+    <script src="../node_modules/nvd3/build/nv.d3.js"></script>
+    <link rel="stylesheet" type="text/css" href="../node_modules/nvd3/build/nv.d3.css">
+    <script src="../node_modules/angular-nvd3/dist/angular-nvd3.min.js"></script>
+
+    <!-- End of Library links -->
+    
+    <!-- Dependency modules -->
+    <script type="text/javascript" src="modules/nav/nav.module.js"></script>
+    <link rel="stylesheet" type="text/css" href="modules/nav/nav.css">
+
+    <script type="text/javascript" src="modules/leftbar/leftbar.module.js"></script>
+    <link rel="stylesheet" type="text/css" href="modules/leftbar/leftbar.css">
+
+    <!-- End of Dependency modules -->
+
+    <!-- Application Files -->
+    <script src="app.module.js"></script>
+    <script src="app.route.js"></script>
+    <script src="app.config.js"></script>
+    <script src="app.run.js"></script>
+    <script src="components/login/app.loginCtrl.js"></script>
+    <script src="components/dashboard/app.dashboardCtrl.js"></script>
+    <script src="components/budget/allocation/budgetCtrl.js"></script>
+    <script src="components/budget/prebudgetCtrl.js"></script>
+    <script src="libs/jquery.priceformat.js"></script>
+    <script src="directives/breadcrumb/breadcrumbBar.js"></script>
+    <script src="components/budget/allocation/budgetFactory.js"></script>
+    <script src="services/loginService.js"></script>
+    <script src="services/authService.js"></script>
+    <script src="factories/countryParnerFactoy.js"></script>
+
+    <!-- HISTORICAL -->
+    <script src="components/budget/historical/historicalCtrl.js"></script>
+    <script src="components/budget/historical/historicalFactory.js"></script>
+
+    <!-- End of Application Files -->
+
+
+</head>
+<body class="container-fluid">
+    <div ui-view>
+    </div>
+</body>
+</html>
+

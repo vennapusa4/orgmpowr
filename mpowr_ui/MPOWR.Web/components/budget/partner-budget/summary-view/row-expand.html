@@ -1,0 +1,159 @@
+<td>
+    
+      {{bu.Business_Unit}}
+      <div ng-show="showSpartlines"><nvd3 options="mdfChartOption" data="bu.mdfHistory"></nvd3>
+
+            <div class="graph-title">MDF</div>
+            <nvd3 options="selloutChartOption" data="bu.selloutHistory"></nvd3>
+            <div class="graph-title">Sell   out</div>
+      </div>
+
+  
+</td>
+<td>
+    - 
+</td>
+<td>
+    -  
+</td>
+<td>
+          {{bu.Sellout[0].Projected_Sellout | number : 0 }}
+</td>
+<td>
+    
+      {{bu.MDF[0].Recommended_MDF | number}}    
+    
+</td>
+<td>
+    {{bu.MDF[0].MGO_Ratio | number : 1}}
+</td>
+
+  <!-- MSA -->
+<td>
+    <!-- BU MSA -->
+    <!-- cell formating -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <input type="text"
+               id="BU_MSA_{{$index}}_{{history.PartnerID}}"
+               ng-class="{'yelow':'BU_MSA_' + $index +'_' + history.PartnerID == Varid}"
+               ng-mouseover='Popover($event)'
+               ng-focus="copyTotalVal(bu.BU_MSA)"
+               maxlength="11"
+               ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+               ng-blur="save(history._parent,$index,$event,bu,true,true)"
+               ng-keypress="saveOnEnter(history._parent,$index,bu,true,true,$event);"
+               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+               ng-keyup="AssignPosition()"
+               ng-model="bu.BU_MSA" class="specialText form-control p-0 right">
+    </div>
+</td>
+<td>
+    -
+</td>
+<td class="br-trans businessUnit_{{bu.BusinessUnitID}}">
+    <!--<span class="input-group-addon">$</span>-->
+    <input type="text"
+           id="baseline_{{$index}}_{{history.PartnerID}}"
+           maxlength="11"
+           ng-class="{'yelow':'baseline_' + $index +'_' + history.PartnerID == Varid}"
+           ng-mouseover='Popover($event)'
+           ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+           ng-focus="copyTotalVal(bu.TotalMDF)"
+           ng-blur="save(history._parent,$index,$event,bu,true,false)"
+           ng-keypress="saveOnEnter(history._parent,$index,bu,true,false,$event);"
+           onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+           ng-keyup="AssignPosition()"
+           ng-model="bu.TotalMDF" class="specialText form-control p-0 right">
+ </td>
+
+<!-- Total MDF -->
+<td>{{ bu.MDF[0].BaseLineMDF | number :0 }}</td>
+<!--<td>{{bu.TotalMDF | number :0 }}</td>-->
+
+
+<!-- CarveOut -->
+<td  class="br-trans businessUnit_{{bu.BusinessUnitID}}">
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <input type="text"
+               id="CarveOut_{{$index}}_{{history.PartnerID}}"
+               ng-class="{'yelow':'CarveOut_' + $index +'_' + history.PartnerID == Varid}"
+               ng-mouseover='Popover($event)'
+               ng-focus="copyTotalVal(bu.CarveOut)"
+               maxlength="11"
+               ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+               ng-blur="save(history._parent,$index,$event,bu,true,true)"
+               ng-keypress="saveOnEnter(history._parent,$index,$event,bu,true,true,$event);"
+               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+               ng-keyup="AssignPosition()"
+               ng-model="bu.CarveOut" class="specialText form-control p-0 right">
+        </div>
+</td>
+
+<!-- cell formating -->
+<!--<td class="businessUnit_{{bu.BusinessUnitID}}">
+    
+          <div class="row">
+          
+          <div class="col-lg-9">
+              <div class="dropdown">
+                  <select class="form-control select-for-rov"
+                          ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                          id="reason_{{history._parent}}_{{$index}}"
+                          ng-click="event = $event"
+                          ng-options="item as item.Reason for item in reason track by item.MDFVarianceReasonID"
+                          ng-model="bu.MDF[0].MDFVarianceReasonID" ng-change="save(history._parent,$index,event,bu,false,false)">
+                  </select>
+              </div>
+              
+                  <img ng-if="bu.MDF[0].Comment.length > 0"
+                       src="assets/resources/comment@1x.png"
+                       style="margin-right: -55px;"
+                       ng-hide="isbuu"
+                       
+                      ng-click="clickBU(history._parent, $index,$event, bu, false,false)"
+                       class="comment-btn"
+                       id="businessUnit_{{bu.BusinessUnitID}}" />
+              
+                  
+                      <img ng-if="bu.MDF[0].Comment.length == 0 || !bu.MDF[0].Comment"
+                           src="assets/resources/comment_grey@1x.png"
+                           style="margin-right: -55px;"
+                           ng-hide="isbuu"
+                           class="comment-btn"
+                           ng-click="clickBU(history._parent, $index,$event, bu, false,false)"
+                           id="businessUnit_{{bu.BusinessUnitID}}" />
+                  
+              </div>
+
+          <div class="comment-button">
+              <div class="dropdown">
+                  <span data-toggle="dropdown"
+                         class="dropdown-toggle">
+                    </span>
+                   <div class="dropdown-menu comment-box" style="margin-left: -100px;position: inherit;margin-top: 24px;">
+                       <div class="form-group">
+                          <label for="exampleInputEmail1" class="lbl-comment"></label>
+                          <textarea ng-disabled="role.disabled || disablePrevious || NOACCESS " style="width:360px;" class="form-control coment-box-textarea" ng-model="bu.MDF[0].Comment"></textarea>
+                      </div>
+                      <button type="submit" class="btn btn-default pull-right x-button">Close</button>
+                      <button ng-click="save(history._parent,$index,$event,bu,false,false)" ng-disabled="role.disabled || disablePrevious || NOACCESS " class="btn btn-success pull-right">Add Comment</button>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+    
+</td>-->
+
+<td>
+    {{bu.MDFOrSellout[0].ProjectedMDFOrSellout | number :1 }} %
+     <!--{{ (bu.MDF[0].BaseLineMDF / bu.Sellout[0].Projected_Sellout)*100 | number: 1 }}--> 
+     
+</td>
+<!-- HSM-947 -->
+<td>
+    {{ bu.MDFOrSellout[0].HQ }}
+</td>
+<td>
+    {{ bu.MDFOrSellout[0].Value_Perc }}
+</td>

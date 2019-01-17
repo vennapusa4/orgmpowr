@@ -1,0 +1,61 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+<div class="col-lg-11 col-sm-11 col-md-11 col-xs-11 user-management">
+    <div class="col-lg-12 data-container user-management role shade-1">
+
+        <!-- Select Role & Partner Type -->
+        <div class="row">
+            <!--<div class="col-lg-12 data-container user-management admin">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th id="UemailId">Geo</th>
+                            <th id="UnameId">Geo to Country Allocation</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="data in Data">
+                            <td><span class="nothing">{{data.GeoName}}</span></td>
+                            <td>
+                                <p class="checkbox-text admin">
+                                    <input type="checkbox" id="{{data.GeoName}}-{{$index}}" ng-checked="data.IsCountryLevel" ng-click="data.IsCountryLevel = !data.IsCountryLevel;isDirty()">
+                                    <label class="check" for="{{data.GeoName}}-{{$index}}"><span class="check-label"></span></label>
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+            <div  style="height:400px;padding-top:20px" ui-grid="gridOptions" class="grid geogrid col-md-6">
+                <div ng-show="gridOptions.data.length==0">
+                    <div class="msg msgNotFound">
+                        <h3>
+                            <span>
+                                No Results Found
+                            </span>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+
+    <div class="col-lg-6 col-md-8 col-sm-8">
+        
+    </div>
+
+    <div class="col-lg-5 col-md-4 col-sm-4">
+        <div class="col-lg-6 col-md-6 col-sm-6 top-ten-padding">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 top-ten-padding">
+            <div class="col-lg-4 col-md-4 col-sm-4 pull-right">
+                <button class="btn btn-success add-user-align" ng-click="SaveData(Data)">
+                    Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

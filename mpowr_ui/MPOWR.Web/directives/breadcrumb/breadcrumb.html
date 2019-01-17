@@ -1,0 +1,18 @@
+<div class="col-lg-12 bradcrumb-bar">
+	<div class="col-lg-3 col-md-3 col-sm-3 holder" 
+		ng-repeat="menu in menus"
+		ng-click="validate(menu)|| goto(menu)"
+		ng-class="{'active': menu.active ,'menu-disabled': !menu.enabled || validate(menu)}">       
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div ng-if="menus.length >3" class="number-bg">
+                    {{$index}}
+                </div>
+                <div ng-if="menus.length==3" class="number-bg">
+                    {{$index+1}}
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                {{menu.name}}
+            </div>      
+	</div>
+</div>

@@ -1,0 +1,233 @@
+
+<td>
+    {{bu.MDF[0].Last_year_MGO_ROI |number: 1}}
+</td>
+
+<td >
+          <div class="cont"> -</div>
+</td>
+
+<td>
+    {{bu.Sellout[0].Last_Period_Sellout | number : 0 }}
+</td>
+
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{bu.Sellout[0].Sellout_Silver_Below | number : 0 }}
+    </span>
+
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{bu.Sellout[0].Sellout_Gold_Platinum | number : 0 }}
+    </span>
+
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{bu.Sellout[0].Unweighted_Sellout | number : 0 }}
+    </span>
+
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+</td>
+
+<td>
+    {{bu.Sellout[0].YoY_SO | number : 0 }}%
+</td>
+
+<td>
+
+    {{bu.Sellout[0].Scaled_Sellout | number : 0 }}
+
+</td>
+
+ <td>
+    {{bu.Sellout[0].HOH_SO | number : 0 }}%
+</td>
+
+<td>
+          {{bu.Sellout[0].Projected_Sellout | number : 0 }}
+</td>
+
+ 
+<!--<td>
+          {{bu.Sellout[0].YoY_change_sellout | number : 1 }} %
+</td>-->
+
+<td> <!--Source of 1H18 Projected Sellout--> -</td>
+
+<td>
+
+    {{bu.Sellout[0].YOY_CY_PY | number : 0 }}%
+
+</td>
+
+<td>
+
+    {{bu.MDF[0].Recommended_MDF | number}}
+
+</td>
+
+<td>
+    {{bu.MDF[0].Alloc_PrevY_MDF | number}}
+</td>
+
+<td>
+
+    {{bu.MDF[0].Last_year_mdf |number: 0}}
+
+</td>
+
+
+<td>
+    <!--MSA-->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+         {{bu.BU_MSA}} 
+    </div>
+</td>
+
+
+<td>
+    <!--Aruba MSA-->
+          -
+</td>
+
+<td>
+    {{bu.MDF[0].Alloc_PrevP_MDF | number}}
+</td>
+
+<td class="br-trans">
+    {{bu.MDF[0].Last_Period_MDF | number :0 }} 
+  </td>
+
+<!--BaseLine MDF-->
+<td>{{bu.TotalMDF | number: 0}}</td>
+
+<td><!-- Total MDF -->
+    {{bu.MDF[0].BaseLineMDF | number :0 }} </td>
+
+<td><!-- Carve Out -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{bu.CarveOut | number: 0}}
+        </div>
+</td>
+
+<td><!--Reason for Variance-->-</td>
+
+<td> {{bu.MDF[0].MDF_CY_PYD  }}</td>
+
+<td>
+
+    {{bu.MDF[0].YoY_change_MDF | number: 1}}%
+
+</td>
+
+<td> {{bu.MDF[0].HOH_CP_PP  }}%</td>
+
+<td>
+
+   <!-- {{  (bu.MDF[0].BaseLineMDF / bu.Sellout[0].Projected_Sellout)*100 | number: 1 }} %-->
+    {{bu.MDFOrSellout[0].LastYearMDFOrSellout}}%
+</td>
+
+
+<td> {{bu.MDFOrSellout[0].PMf_PSt  }}%</td>
+
+<td>{{bu.MDFOrSellout[0].ProjectedMDFOrSellout}}%</td>
+
+<td>
+
+    - <!--{{ (bu.MDFOrSellout[0].MedianAvdMDFOrSellout | number: 1) }} %-->
+
+</td>
+
+<td>
+
+     {{ (bu.MDFOrSellout[0].ProductivityImprovementPer | number: 1) }}% 
+
+</td>
+
+
+<td>
+
+    {{bu.SOW | decorateSOW}}
+
+</td>
+
+ <td>
+
+    {{bu.MDF[0].MGO_Ratio_Total | number : 1}}
+
+</td>
+
+<td>
+
+    {{bu.MDF[0].Last_year_MGO |number: 0}}
+
+</td>
+
+<td>
+
+    {{bu.MDF[0].Last_year_Won_MGO |number: 0}}
+
+</td>
+
+<!-- NEW  -->
+<td>
+
+    {{bu.MDF[0].Last_year_Won_MGO_ROI |number: 1}}
+
+</td>
+<td>
+    -
+</td>
+<!-- PA -->
+<td>
+    -
+</td>
+
+<!-- PM -->
+<td>
+    -
+</td>
+<td>
+    <!-- ASSESMENT -->
+</td>
+
+<td>
+
+    {{bu.PlannedSales |number : 0}}
+
+</td>
+
+
+<td>
+
+    {{
+          bu.targetAchievement | decorateToPer
+    }}
+
+</td>
+<!-- HSM-947 -->
+<td style="text-align:center !important">
+   {{bu.HQ}} 
+</td>
+<td style="text-align:center !important">
+    {{bu.Value_Perc}}
+</td>
+
+
+
+
+

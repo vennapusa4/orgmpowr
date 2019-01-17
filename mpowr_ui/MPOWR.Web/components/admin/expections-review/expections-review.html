@@ -1,0 +1,597 @@
+﻿<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 user-management partner-credit">
+    <div class="btn-group financial col-lg-3 col-md-3 col-sm-3 left-padding right-padding">
+        <h4 class="exception-head" data-toggle="modal" data-target="#dialog-example">
+            Expectations Review
+        </h4>
+    </div>
+    <div class="btn-group financial col-lg-7 col-md-7 col-sm-7 left-padding">
+        <label class="exec-drop">Region</label>
+        <div class="btn-group financial col-lg-5 col-md-3 col-sm-3 left-padding right-padding">
+
+            <button type="button" class="btn btn-default dropdown-toggle custom-channel btn-exception" data-toggle="dropdown" aria-expanded="false">
+                <span data-bind="label">APJ</span>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" data-original-title="" title="">APJ</a></li>
+                <li><a href="#" data-original-title="" title="">BANGLADESH</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-lg-12 data-container user-management portfolio expectations">
+        <div class="col-lg-12 col-md-12 col-sm-12 apj-section left-padding right-padding">
+            <div class="btn-group guard-link apj-head portfolio content-heading col-lg-3 col-md-3 col-sm-3 right-padding">
+                <a class="guard-link apj-link" data-original-title="" title="">APJ REGION</a>
+            </div>
+
+            <div class="btn-group guard-link apj-head content-radio portfolio col-lg-6 col-md-3 col-sm-3 left-padding">
+                <div class="round2-rad-section exception">
+
+                   <div  class="col-lg-12 col-md-12 col-sm-12 mdf-status padding-0 round-2 ng-scope">
+                        <div class="col-lg-3 radio">
+                            <input id="100" type="radio" checked>
+                            <label id="label_100" for="100">Carveout</label>
+                        </div>
+                       <div class="col-lg-3 radio">
+                           <input id="101" type="radio">
+                           <label id="label_101" for="101">Under/Over Allocation</label>
+                       </div>
+                       <p class="checkbox-text">
+                           <input type="checkbox" id="id1" checked>
+                           <label for="id1" class="pname"><span class="check-label">Compliant</span></label>
+                       </p>
+                       <p class="checkbox-text">
+                           <input type="checkbox" id="id2" checked>
+                           <label for="id2" class="pname"><span class="check-label">Borderline</span></label>
+                       </p>
+                       <p class="checkbox-text">
+                           <input type="checkbox" id="id3" checked>
+                           <label for="id3" class="pname"><span class="check-label">Exceeds Guidance</span></label>
+                       </p>
+                       </div>
+                </div>
+            </div>
+            <div class="btn-group guard-link apj-head content-radio portfolio col-lg-6 col-md-3 col-sm-3 left-padding">
+                <div class="round2-rad-section exception">
+                    <div class="col-lg-12 col-md-12 col-sm-12 mdf-status padding-0 round-2 ng-scope">
+                        <p class="checkbox-text">
+                            <input type="checkbox" id="id4" checked>
+                            <label for="id4" class="pname"><span class="check-label">Review Complete</span></label>
+                        </p>
+                        <p class="checkbox-text">
+                            <input type="checkbox" id="id5" checked>
+                            <label for="id5" class="pname"><span class="check-label">Review Pending</span></label>
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group guard-link apj-head content-radio portfolio no-border col-lg-6 col-md-3 col-sm-3 left-padding">
+                <div class="col-lg-6 col-md-6 col-sm-6 ">
+                    <button class="btn btn-success apply-filter">
+                        APPLY
+                    </button>
+                </div>
+                </div>
+            </div>
+        <table class="table table-striped exceptions">
+            <thead>
+                <tr>
+                    <th>Sub-Region<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Total MDF<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Carve Out<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Country Reserve MDF<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Baseline Budget<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Allocated MDF<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Over/Under Allocation<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>Recommendation<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>MDF Allocation vs Budget<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>MDF Allocation vs Recommended<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th>MDF/Sellout<i class="pull-right fa fa-caret-down exc-rightmargin5"></i></th>
+                    <th class="compliant">Compliant</th>
+                    <th class="borderline">Borderline</th>
+                    <th class="noncompliant">Noncompliant</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><span class="exceptions-ellipse">Total</span></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"><p>SEA</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse" title="Hong Kong"><p>Hong Kong</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"><p>India</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"><p>Japan</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"><p>Korea</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"><p>China</p></span><i class="fa expand-btn fa-caret-down exc-caret" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i></td>
+                    <td><span>3,438,715,939</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>2,517,219</span></td>
+                    <td><span>517,219</span></td>
+                    <td><span>463,219</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>2,332,000</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>90%</span></td>
+                    <td><span>2%</span></td>
+                    <td><span>30</span></td>
+                    <td><span>5</span></td>
+                    <td><span>8</span></td>
+                </tr>
+
+        </table>
+    </div>
+    <div class="col-lg-12 data-container user-management portfolio expectations">
+        <div class="col-lg-12 col-md-12 col-sm-12 apj-section left-padding right-padding">
+            <div class="btn-group guard-link apj-head content-radio portfolio blank-sec col-lg-6 col-md-3 col-sm-3 left-padding">
+                </div>
+
+                <div class="btn-group guard-link apj-head content-radio portfolio col-lg-6 col-md-3 col-sm-3 left-padding">
+                    <div class="round2-rad-section exception">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 mdf-status padding-0 round-2 ng-scope">
+                            <div class="col-lg-3 radio">
+                                <input id="102" type="radio" checked>
+                                <label id="label_102" for="102">Actual MDF Allocation</label>
+                            </div>
+                            <div class="col-lg-3 radio">
+                                <input id="103" type="radio">
+                                <label id="label_103" for="103">MDF/Sellout</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group guard-link apj-head content-radio portfolio col-lg-6 col-md-3 col-sm-3 left-padding">
+                    <div class="round2-rad-section exception filter-top">
+                        <div class="col-lg-12 col-md-12 col-sm-12 mdf-status padding-0 round-2 ng-scope">
+                            <p class="filter-label">Filter by Top %</p>
+                            <div class="sliderBox col-lg-8 col-md-8 col-sm-8 filter-slider">
+                                <input type="text" name="volume" id="delta" class="change" value="50"><p class="col-lg-6">0</p><p class="pull-right">100</p>
+                                <input id="slider" type="range" min="0" max="100" step="1" value="50">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-group guard-link apj-head content-radio portfolio col-lg-6 col-md-3 col-sm-3 left-padding">
+                    <div class="round2-rad-section exception filter-top filter-search">
+                        <div class="col-lg-12 col-md-12 col-sm-12 mdf-status padding-0 round-2 ng-scope">
+                            <div class="sliderBox col-lg-8">
+                                <input class="filter-search" type="text" name="LastName" placeholder="Search">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <table class="table table-striped exceptions">
+            <thead>
+                <tr>
+                    <th>Sub-Region<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Total MDF<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Carve Out<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Country Reserve MDF<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Baseline Budget<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Allocated MDF<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Over/Under Allocation<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>Recommendation<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>MDF Allocation vs Budget<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>MDF Allocation vs Recommended<i class="pull-right fa fa-caret-down"></i></th>
+                    <th>MDF/Sellout<i class="pull-right fa fa-caret-down"></i></th>
+                    <th class="compliant">Compliant</th>
+                    <th class="borderline">Borderline</th>
+                    <th class="noncompliant">Noncompliant</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="exceptions-ellipse"></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                </tr>
+        </table>
+    </div>
+    <!--// A Basic HTML Page, just standard html elements and innerText values //-->
+</div>
+
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+    <div class="col-lg-7 col-md-6 col-sm-6">
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-4">
+        <form name="form" class="resetButtons ng-pristine ng-valid">
+            <button ng-disabled="validate()" class="col-lg-2 col-md-2 col-sm-2 icon-holder" data-toggle="modal" data-target="#myModalguardcopy">
+                <div><img src="assets/resources/export@1x.png"></div>
+                <div><label class="excexp-btn">EXPORT TO SDFC</label></div>
+            </button>
+            <button ng-disabled="validate()" class="col-lg-2 col-md-2 col-sm-2 icon-holder">
+                <div><img src="assets/resources/export@1x.png"></div>
+                <div><label class="excexp-btn">EXPORT EXCEPTIONS</label></div>
+            </button>
+        </form>
+
+        <div class="col-lg-6 col-md-6 col-sm-6 icon-holder right-padding sticky-review">
+            <div class="col-lg-12 col-md-12 col-sm-6 right-padding">
+                <button class="btn btn-success" data-toggle="modal" data-target="#myModalguard">
+                    REVIEW COMPLETE
+                </button>
+            </div>
+        </div><div class="col-lg-2 col-md-2 col-sm-2 left-padding sticky-submit">
+            <div class="col-lg-12 col-md-12 col-sm-6 left-padding">
+                <button class="btn btn-success" data-toggle="modal" data-target="#myModalguard">
+                    SUBMIT
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="dialog-example" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="label-dialog-example" style="display: none;">
+    <div class="modal-dialog full-screen" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="label-dialog-example">Discussions</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-div">
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                                <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                            </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                    <div>
+                        <p class="exc-model">
+                            <span class="exc-model-width7">
+                                <img class="setting-top-margin" src="assets/resources/profile@1x.png">
+                        <p class="exc-profile-name">John Doe<span class="exc-profile-date">14th March 2017,06:45 PM</span></p>
+                        </span>
+                        <p class="modal-header bottom-bottom">
+                            Lorem ipsum dolor sit amet, cu modo unum laudem nam, novum conclusionemque cu vim. Id nec cibo liber. Ius fugit atomorum cu. Id assum nihil quo, no sea utroque facilisi posidonium. Essent inermis te duo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <textarea class="exc-model-textarea" rows="4" cols="50">
+                    
+                </textarea>
+                <button type="button" class="btn btn-primary">POST</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<!-- Modal -->
+
+<script>
+    $(document).ready(function () {
+        //vars
+        var timeout, tabMinus = $('#minus'), tabPlus = $('#plus');
+
+        //slider functionality
+        $('#slider').mouseup(function () {
+            $('#delta').val($('#slider').val());
+        });
+
+        $('#delta').keyup(function () {
+            $('#slider').val($('#delta').val());
+        });
+
+        //plus-minus tab functionality
+        tabMinus.mouseup(function () {
+            $('#delta').val($('#slider').val() - 1);
+            $('#slider').val($('#delta').val() - .2);
+        });
+
+        tabPlus.mouseup(function () {
+            $('#delta').val($('#slider').val() + 1);
+            $('#slider').val($('#delta').val() + .2);
+            console.log($('#delta').val());
+        });
+    });
+</script>

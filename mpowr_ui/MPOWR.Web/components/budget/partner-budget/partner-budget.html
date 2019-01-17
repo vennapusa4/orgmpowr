@@ -1,0 +1,455 @@
+<section class="allocation-page">
+    <breadcrumb-bar module="portal">
+    </breadcrumb-bar>
+</section>
+
+<div 
+     class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance partner-credit">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 header">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 header-label partnerTab">
+            <a ui-sref="budget.partner-budget" class="col-lg-4 col-md-4 col-sm-4 tab-partner-credit round-1-mdf partnerTab1">
+                Round 1 MDF Allocation
+            </a>
+            <a ng-hide="ShowRound2Tab" ui-sref="budget.partner-budget-round2" class="col-lg-5 col-md-5 col-sm-4 tab-partner-credit-inactive round-2-mdf partnerTab2">
+                Round 2 MDF Allocation (Optional)
+            </a>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 country partnerTabHeader">
+            <div class="col-md-3 budgetHeader">
+                <!--<h3>
+                    Start by setting MDF for the period {{BUObj.FinancialYear}}
+                </h3>-->
+                <show-version></show-version>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 country-box left-padding">
+                <div class="col-lg-3 col-md-3 col-sm-3 lbl">
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                    <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                        <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                             popover-trigger="'mouseenter'"
+                             popover-placement="bottom"
+                             uib-popover="{{ctries}}"
+                             ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                             class="input-group">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                        <span class="input-group-addon country-section" id="basic-addon1">
+                            <i class="fa fa-globe globe"></i>
+                        </span>
+                        <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 country-box">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <label class="top9-padding">Budget</label>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 control">
+                <div popover-trigger="'mouseenter'"
+                     popover-placement="bottom"
+                     uib-popover="{{reseller.partner.PartnerName }} {{reseller.district.DistrictName.length > 0 ? '-': '' }} {{ reseller.district.DistrictName  }}"
+                     ng-if="$sessionstorage.resellerPartner.district.DistrictName.length > 0"
+                     class="input-group">
+                    <input type="text"
+                           readonly class="form-control partner-input partner-country-section-input"
+                           placeholder="Country" disabled aria-describedby="basic-addon1"
+                           value="{{reseller.partner.PartnerName }} {{reseller.district.DistrictName.length > 0 ? '-': '' }} {{ reseller.district.DistrictName.slice(0,3)+'...' }}">
+                </div>
+                    <div class="input-group" ng-if="($sessionstorage.resellerPartner.district.length == 0 || $sessionstorage.resellerPartner.district.length === undefined) && ($sessionstorage.resellerPartner.district.DistrictName === undefined || $sessionstorage.resellerPartner.district.DistrictName.length == 0)">
+                        <input type="text"
+                               readonly class="form-control partner-input partner-country-section-input"
+                               placeholder="Country" disabled aria-describedby="basic-addon1"
+                               value="{{reseller.partner.PartnerName }}">
+                    </div>
+                </div>
+      </div> 
+      <div class="col-lg-3 col-md-3 col-sm-3 country-box left-padding" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+          <div class="col-lg-5 col-md-5 col-sm-5">
+              <label class="top9-padding">Membership</label>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-7 control left-padding">
+              <div popover-trigger="'mouseenter'"
+                   popover-placement="bottom"
+                   uib-popover="{{reseller.membership.MembershipName }}"
+                   ng-if="reseller.membership.MembershipGroupID < 3"
+                   class="input-group">
+                  <input type="text" disabled readonly class="form-control partner-input country-section-input" placeholder="Country" value="{{reseller.membership.MembershipName.slice(0,9)+'...'}}" aria-describedby="basic-addon1">
+               </div>
+                  <div class="input-group" ng-if="reseller.membership.MembershipGroupID == 3">
+
+                      <input type="text" disabled readonly class="form-control partner-input country-section-input" placeholder="Country" value="{{reseller.membership.MembershipName }}" aria-describedby="basic-addon1">
+                  </div>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="header row bu-tabs">
+    <div class="bu-unit " ng-repeat="bu in bus" ng-click="selectBu($index,bu.ID)" ng-class="{'active-bu': $index == currentBu }">
+        {{bu.Name}}
+    </div>
+    <div class="pmp-report pull-right">
+        <a class="btn btn-success pull-right graph-exp-btn btn-sm" 
+                ui-sref="budget.partner-budget-expand({currentBu: buId})" 
+                title="Full Screen">
+                Full Screen
+                <i class="fa fa-arrows-alt"></i>
+        </a>
+        <button class="btn btn-success pull-right graph-exp-btn btn-sm" 
+                ng-click="hideShowGraph()"
+                title="Hide/Show Graph">
+                <span ng-show="expand">Hide Graph</span>
+                <span ng-show="!expand">Show Graph</span>
+                <i class="fa" ng-class="{'fa-chevron-up' : expand,'fa-chevron-down': !expand }">
+                </i>
+        </button>
+    </div>
+</div>
+<!-- <div class="col-lg-2 col-md-2 col-sm-2 extra-cols">
+    <div class="dropdown" ng-click="show()">
+        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+        <ul class="dropdown-menu" id="dpr">
+            <label class="select-cols">Select Columns</label>
+            <li ng-repeat="partner in partnerCols">
+                <input type="checkbox"
+                ng-click="selectExtraCols()"
+                ng-model="selectedPartner[partner.id]"
+                id="{{partner.id}}" />
+                <label for="{{partner.id}}">{{partner.name}}</label>
+            </li>
+            <br>
+            <label class="select-cols-partner">History Data</label>
+            <li ng-repeat="history in historyCols">
+                <input type="checkbox"
+                ng-model="selectedHistory[history.id]"
+                id="his-{{history.id}}" />
+                <label for="his-{{history.id}}">{{history.name}}</label>
+            </li>
+            <div class="pull-right done" ng-click="selectCols(showDropDown)">
+                DONE
+            </div>
+        </ul>
+    </div>
+
+</div> -->
+<div ng-include="'components/budget/partner-budget/total.html'" class="{{ view }}-{{expand}}"  ng-if="currentBu == 0 ">
+</div>
+<div ng-include="'components/budget/partner-budget/business-unit.html'" class="{{ view }}-{{expand}}"  ng-if="currentBu > 0 ">
+
+
+
+</div>
+<!--</div>
+</div>-->
+<!-- End of Data -->
+</div>
+
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="footer-items">
+            <div class="col-lg-2 pd-top-10">
+                <div class="col-lg-2 pd-top-10">
+                    <img style="margin-top: -2px;" src="assets/resources/verify_magnitude@1x.png" data-toggle="dropdown" class="dropdown-toggle">
+                </div>
+                <div class="col-lg-10 pd-top-10">
+                    <label class="icn">Large MDF change</label>
+                </div>
+            </div>
+            <div class="col-lg-2 pd-top-10">
+                <div class="col-lg-2 pd-top-10">
+                    <img src="assets/resources/arrow_down_red@1x.png" data-toggle="dropdown" class="dropdown-toggle">
+                </div>
+                <div class="col-lg-10 pd-top-10">
+                    <label>Large MDF decrease & growth in Sales</label>
+                </div>
+            </div>
+            <div class="col-lg-2 pd-top-10">
+                <div class="col-lg-2 pd-top-10">
+                    <img src="assets/resources/arrow_up_yellow@1x.png" data-toggle="dropdown" class="dropdown-toggle">
+                </div>
+                <div class="col-lg-10 pd-top-10">
+                    <label>Large MDF increase & decline in Sales</label>
+                </div>
+            </div>
+            <div class="col-lg-2 pd-top-10">
+                <div class="col-lg-2 pd-top-10">
+                    <img style="margin-top: -2px;" src="assets/resources/new_opportunity@1x.png" data-toggle="dropdown" class="dropdown-toggle">
+                </div>
+                <div class="col-lg-10 pd-top-10">
+                    <label class="icn">New MDF Partner</label>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-xs-3 col-md-3 pd-top-10 notification-muted">
+                <p class="">
+                    <label><i class="fa fa-info-circle"></i> Note:Entered allocated MDF and data will be <br/> saved automatically!</label>
+</p>
+            </div>
+             <!--<div class="col-lg-1 col-md-1 col-sm-1 icon-holder parnterBudgetExport" style="padding-bottom">
+
+                <button class="col-lg-2 col-md-2 col-sm-2 icon-holder export-button"
+                        data-toggle="modal" data-target="#CopyModal" ng-disabled="role.copy || NOACCESS">
+                    <div><img  src="assets/resources/Copy Green.svg"></div>
+                    <div class="copyPartener"><label>COPY</label></div>
+                </button>
+               
+            </div>-->
+
+            <div class="col-lg-1 col-md-2 col-sm-2  sparkline-checkbox" style="padding-top: 21px" >
+                <input  ng-model="chkhistory"
+                        type="checkbox"
+                        ng-change='WithoutHistory()' 
+                        id="history" />
+                <label for="history" class="pull-right">Without History</label>
+            </div>
+
+            
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+         <div class="col-lg-2 col-md-2 col-sm-2  sparkline-checkbox" style="padding-top: 21px">
+                 <input 
+                    ng-model="showSpartlines" 
+                    type="checkbox" 
+                    id="ALLBU" />
+                <label for="ALLBU" class="pull-right">Show Sparklines</label>
+        </div>
+       
+        <div class="col-lg-10 col-md-10 col-sm-10 icon-holder parnterBudgetExport" style="">
+
+            <button class="btn btn-success btnsize" ng-click="setPrev()" ui-sref="budget.model-parameter">
+                PREVIOUS  
+            </button>
+            <button class="btn btn-success btnsize" ui-sref="budget.partner-budget-round2">
+                NEXT
+            </button>
+
+          <!--<button class="export-button"  id="btnImport" ng-click="openImportProdModal()" ng-disabled="role.exportButton">
+            <div><img src="assets/resources/export@1x.png"></div>
+            <div class="left9-padding"><label>Import</label></div>
+          </button>-->
+            <button class="icon-holder export-button"
+                    data-toggle="modal" data-target="#CopyModal" ng-disabled="role.copy || NOACCESS">
+                <div><img src="assets/resources/Copy Green.svg"></div>
+                <div class="copyPartener"><label>COPY</label></div>
+            </button>
+            <button class="anc"
+               ng-click="import()"ng-disabled="role.importButton || disablePrevious || NOACCESS"  data-toggle="modal" data-target="#importModel" style="padding:0px;">
+              <img src="assets/resources/Import Icon.svg">
+              <div><label class="labelExport">IMPORT</label></div>
+            </button>
+       
+            <button class="export-button" ng-click="export()" ng-disabled="role.exportButton" style="padding:0px;">
+                <div><img src="assets/resources/export@1x.png"></div>
+                <div><label class="labelExport">EXPORT</label></div>
+            </button>
+            <button class="export-sfdc" ng-click="exportSFDC()" ng-disabled="role.exportSFDC" style="padding:0px;">
+                <div><img src="assets/resources/export@1x.png"></div>
+                <div ><label class="labelExport">EXPORT to SFDC</label></div>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="confirm-copy" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-lg-1">
+                  <!-- <img src="assets/resources/export copy 2@1x.png"> -->
+              </div>
+              <div class="col-lg-11">
+                <p>
+                    <h4>
+                        Calculated MDF will be copied to Basline MDF, if Basline MDF is zero
+                    </h4>
+                    <br>
+                    <br>
+                    <h4>Do you want to continue?</h4>
+                </p>      
+            </div>
+        </div>
+        <div class="col-lg-12 btn-area">
+            <button class="btn btn-success pull-right" data-dismiss="modal">
+                CANCEL
+            </button>
+            <button 
+            ng-click="copy()" 
+            data-dismiss="modal" 
+            class="btn btn-success pull-right right7-margin">
+            COPY
+        </button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+
+ <!-- popup starts for copy -->
+<div class="modal fade" id="CopyModal" role="dialog">
+    <div class="modal-dialog copyPopup">
+
+        <!-- Modal content-->
+        <form name="copyPlan">
+            <div class="modal-content createPopup">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create Copy of Version </h4>
+                </div>
+                <div class="createConataier">
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Source Financial Period</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="versiondata.Financialyear" ng-disabled="true" name="Year" placeholder="FY18 2H" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Version</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="versiondata.VersionNo" ng-disabled="true" name="Version" placeholder="4" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Source Plan Name</p></div>
+                        <div class="col-md-6"><input type="text" name="planName" ng-model="versiondata.VersionName" ng-disabled="true" placeholder="MDF Plan for FY 18 2H" /></div>
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Destination Financial Period</p></div>
+                        <div class="col-md-6">
+                            <select name="financial" required
+                                    ng-options="Financialyears.FinancialyearID as Financialyears.Financialyear  for Financialyears in Financialyearend track by Financialyears.FinancialyearID"
+                                    ng-model="drpdpwnvalue1">
+                                <option value="" label="Select Financial Period"></option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 createData">
+                        <div class="col-md-6"><p>Destination Plan Name</p></div>
+                        <div class="col-md-6"><input type="text" ng-model="DestPlanvalue" required placeholder="Enter Plan name here..." /></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click="copydata()" ng-disabled="copyPlan.$invalid" data-dismiss="modal">SUBMIT</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+<div id="importModel" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" ng-click="displayname=''" class="close" data-dismiss="modal" aria-hidden="true">
+         X
+        </button>
+        <h4 class="modal-title" id="classModalLabel">
+          Import MDF Allocation
+        </h4>
+       
+        </div>
+
+      <div class="modal-body  row">
+          <div class="inp_type_file_section_left col-md-12">
+              <div class="choose_file1"><input id="uploadFilep" placeholder="File Name" disabled="disabled" /></div>
+              <div class="fileUpload btn btn-primary choose_file">
+                  <span>Attach File..</span>
+                  <input id="uploadBtnp" type="file" onchange="angular.element(this).scope().setFile(this)" multiple class="upload" />
+              </div>
+              <button type="button" class="btn btn-success sticky-prev-button  upload_file_btn"
+                      ng-click="onUpload()">
+                  UPLOAD
+              </button>
+
+          </div>
+          <div class="col-md-12">
+              <p> <b>MSA column is applicable for US-Reseller only. 
+                 Aruba MSA column is applicable for Canada-Reseller and US-Reseller only and value will be considered if given against Aruba Products Business Unit.</b></p>
+          </div>
+          <div class="col-md-12">
+              <table class="table table-striped dynamicdata ">
+                  <thead>
+                      <tr>
+                          <th id="paertnerid" ng-click="orderByField='PartnerID'; reverseSort = !reverseSort">
+                              Partner Id
+                              <i ng-show="orderByField == 'displayname' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                              <i ng-show="orderByField == 'displayname' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                          </th>
+                          <th id="Country" ng-click="orderByField='Country'; reverseSort = !reverseSort">
+                              Country<i ng-show="orderByField == 'Country' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                              <i ng-show="orderByField == 'Country' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                          </th>
+                          <th id="BusinessUnit" ng-click="orderByField='BusinessUnit'; reverseSort = !reverseSort">
+                              Business Unit<i ng-show="orderByField == 'BusinessUnit' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                              <i ng-show="orderByField == 'BusinessUnit' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                          </th>
+                          <th id="ProcessResult" ng-click="orderByField='ProcessResult'; reverseSort = !reverseSort">
+                              Process Result<i ng-show="orderByField == 'ProcessResult' && !reverseSort" class="pull-right fa fa-caret-up"></i>
+                              <i ng-show="orderByField == 'ProcessResult' && reverseSort" class="pull-right fa fa-caret-down"></i>
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody ng-if="invalidRows.length != 0">
+                      <tr ng-repeat="list in invalidRows | filter:{PartnerID} | orderBy:orderByField:PartnerID">
+                          <td class="pfd-view">{{list.partnerid}}</td>
+                          <td class="pfd-view">{{list.country}}</td>
+                          <td class="pfd-view">{{list.business_unit}}</td>
+                          <td class="pfd-view">Invalid partner id , country , buisnessunit combination</td>
+                          <!-- <td class="delete-list" ></td>-->
+                      </tr>
+                  </tbody>
+
+              </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <h5 ng-show="importTotal> 0" class="pull-left">Total : {{importTotal}} , Success : {{importSuccess}}</h5>
+        <button type="button" class="btn btn-success sticky-prev-button manual-button pull-right upload_file_btn"
+                ng-click="SaveImportData()">
+          Save
+        </button>
+        <!--<button type="button" class="btn btn-primary sticky-prev-button pull-right" ng-click="displayname=''" data-dismiss="modal">
+            Close
+        </button>-->
+        <!--<input id="file1"
+               type="file" name="file"
+               ng-files="getTheFiles($files)"
+               multiple
+               onchange ="angular.element(this).scope().onFileSelect(); return false;"
+               accept="application/msword, text/plain, application/pdf, video/mp4, video/x-m4v, video/*"
+               style="visibility: hidden;" />-->
+
+
+       
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

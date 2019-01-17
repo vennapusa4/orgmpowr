@@ -1,0 +1,708 @@
+<section class="allocation-page">
+    <breadcrumb-bar module="portal"> </breadcrumb-bar>
+</section>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance partner-credit">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 header final-summary">
+        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-6 header-label">
+            <h4>Final Summary</h4>
+        </div>
+        <div class="col-md-3 budgetHeader">
+            <!--<h3>
+                Start by setting MDF for the period {{BUObj.FinancialYear}}
+            </h3>-->
+            <show-version></show-version>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 country final-summary">
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box">
+                <div class="col-lg-3 col-md-3 col-sm-3 lbl ">
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">Country</label>
+                    <label ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">Geo</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 control right-padding left-padding">
+                    <div ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Country' || $sessionstorage.resellerPartner.obj.AllocationLevel === 'District'">
+
+                        <div ng-mouseover="showCountriesWithEllipses($sessionstorage.resellerPartner.obj.countries)"
+                             popover-trigger="'mouseenter'"
+                             popover-placement="bottom"
+                             uib-popover="{{ctries}}"
+                             ng-if="$sessionstorage.resellerPartner.obj.countries.length > 1"
+                             class="input-group"
+                             title="{{ctries}}">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName +'...'" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.countries.length === 1">
+                            <span class="input-group-addon country-section" id="basic-addon1">
+                                <i class="fa fa-globe globe"></i>
+                            </span>
+                            <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.countries[0].DisplayName " aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="input-group" ng-if="$sessionstorage.resellerPartner.obj.AllocationLevel === 'Geo'">
+                        <span class="input-group-addon country-section" id="basic-addon1">
+                            <i class="fa fa-globe globe"></i>
+                        </span>
+                        <input type="text" disabled readonly class="form-control right8-padding country-section-input" placeholder="Country" ng-model="$sessionstorage.resellerPartner.obj.geo.DisplayName" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <label class="top9-padding">Budget</label>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 control">
+                    <div class="input-group">
+                        <input type="text" disabled readonly class="form-control partner-input" placeholder="Country" ng-model="budget" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 country-box" ng-if="$sessionstorage.resellerPartner.partner.PartnerTypeID === 2">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <label class="top9-padding">Membership</label>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-8 control">
+                    <div class="input-group">
+                        <input type="text" disabled
+                               readonly class="form-control partner-input country-section-input"
+                               placeholder="Country" aria-describedby="basic-addon1"
+                               ng-model="membership">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header row bu-tabs final-summary hide">
+        <div class="bu-unit col-lg-2 col-md-2 col-sm-2" ng-repeat="bu in bus" ng-click="selectBu($index,bu.ID)" ng-class="{'active-bu': bu.ID == currentBu }">
+            {{bu.Name}}
+        </div>
+    </div>
+    <div class="row final-summary sticky-graph">
+        <div ng-show="graphOne==true" class="graph-set-1">
+            <div class="col-lg-3 col-md-3 col-sm-3 graph">
+                <div class="col-lg-12 original-graph shade-1 sales-Chart">
+                    <button type="button" class="btn zoom-img final" data-toggle="modal" data-target="#myMod1"><span class=""></span></button>
+
+                    <nvd3 options="chartOneOption" data="chartOneData"></nvd3>
+                    <div class="row toptenperc-margin">
+                        <div class="col-md-12 top-margin">
+                            <div class="col-md-6">
+                                <div class="square final-black"></div>
+                                <p class="status pull-left">With MDF</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="square final-green"></div>
+                                <p class="status">Without MDF</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 graph">
+                <div class="col-lg-12 original-graph shade-1">
+                    <button type="button" class="btn zoom-img final" data-toggle="modal" data-target="#myMod2"><span class=""></span></button>
+                    
+                    <nvd3 options="mdfOptions" data="MdfData"></nvd3>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 graph">
+                <div class="col-lg-12 original-graph stacked1 shade-1">
+                    <button type="button" class="btn zoom-img final" data-toggle="modal" data-target="#myMod3"><span class=""></span></button>
+                    
+                    <nvd3 options="chartThreeOption" data="chartThreeData"></nvd3>
+                    <div class="row toptenperc-margin">
+                        <div class="col-md-12 top-margin">
+                            <div class="col-md-12 ">
+                                <div class="col-md-6">
+                                    <div class="square final-black"></div>
+                                    <p class="status pull-left final-width35">Aligned</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="square final-green"></div>
+                                    <p class="status">Misaligned</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 graph" ng-show="budget !== 'Distributor'">
+                <div class="col-lg-12 original-graph stacked1 shade-1">
+                    <button type="button" class="btn zoom-img final" data-toggle="modal" data-target="#myMod4"><span class=""></span></button>
+                   
+                    <nvd3 options="chartFourOption" data="chartFourData"></nvd3>
+                    <div class="row toptenperc-margin">
+                        <div class="col-md-12 top-margin">
+                            <div class="col-md-4">
+                                <div class="square final-blue"></div>
+                                <p class="status pull-left final-width35">Platinum</p>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="square darkgold"></div>
+                                <p class="status">Gold</p>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="square silver"></div>
+                                <p class="status">Silver & below</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="graphOne== false" lass="graph-set-1">
+            <div class="col-lg-12 graph">
+                <div class="col-lg-12 original-graph shade-1 scatter-Chart">
+                    <button type="button" class="btn zoom-img final" data-toggle="modal" data-target="#myMod5"><span class=""></span></button>
+                    
+                    <div class="modal-header">
+                        <h4 class="modal-title final-graph">YOY Growth Portfolio (Allocated)</h4>
+                    </div>
+                    <nvd3 options="psgOptions" data="psgData"></nvd3>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="action-button" ng-click="changeFunction()"> <img ng-if="condition==false" src="assets/resources/previous@1x.png" class="left-button"> <img ng-if="condition==true" src="assets/resources/next_on_hover@1x.png" class="right-button"> </div>-->
+        <div class="action-button"> <img ng-if="condition==true" src="assets/resources/previous@1x.png" class="left-button"> <img ng-if="condition==true" ng-click="changeFunction()" src="assets/resources/next_on_hover@1x.png" class="right-button"> </div>
+        <div class="action-button"> <img ng-if="condition==false" src="assets/resources/previous_on_hover@1x.png" ng-click="changeFunction()" class="left-button"> <img ng-if="condition==false" src="assets/resources/next@1x.png" class="right-button"> </div>
+    </div>
+</div>
+<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 hitorical-perfomance final-summary partner-credit">
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 data pb2-table-content" ng-init="hideGraph()">
+        <div class="col-lg-12 data-container final-summary">
+            <table class="table table-bordered">
+                <thead class="top-header">
+                    <tr>
+                        <th class="col-md-4 table-heading"> </th>
+                        <th class="col-md-4 table-heading" colspan="3"> Growing Partner</th>
+                        <th class="col-md-4 table-heading" colspan="3"> Declining Partner</th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===true">
+                    <tr>
+                        <th class="final-width21"></th>
+                        <th class="border-left final-width15">Previous Period </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period)</th>
+                        <th class="border-left final-width15">Previous Period </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width13"> PoP % (Period over period)</th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===false">
+                    <tr>
+                        <th class="final-width21"></th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year) </th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width13"> YoY % (Year over year) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="nothing">
+                                <p class="elipse-desc">{{gridArray[0].Description}}</p> <i class="fa expand-btn fa-caret-down" ng-click="toggleFlag = !toggleFlag;toogleCaretIcon('icon-0',toggleFlag)" id="icon-0"></i>
+                            </span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[0].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[0].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[0].Grew_PoP.slice(0,gridArray[0].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[0].Grew_PoP.slice(0,gridArray[0].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">
+                                {{gridArray[0].Grew_PoP}}
+                            </span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[0].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[0].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[0].Decl_PoP.slice(0,gridArray[0].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[0].Decl_PoP.slice(0,gridArray[0].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[0].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[1].Description}}</td>
+                        <td><span class="nothing">{{gridArray[1].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[1].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[1].Grew_PoP.slice(0,gridArray[1].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[1].Grew_PoP.slice(0,gridArray[1].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[1].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[1].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[1].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[1].Decl_PoP.slice(0,gridArray[1].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[1].Decl_PoP.slice(0,gridArray[1].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">
+                                {{gridArray[1].Decl_PoP}}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[2].Description}}</td>
+                        <td><span class="nothing">{{gridArray[2].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[2].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[2].Grew_PoP.slice(0,gridArray[2].Grew_PoP.length-4)) >= 0,'yellow': format(gridArray[2].Grew_PoP.slice(0,gridArray[2].Grew_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[2].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[2].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[2].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[2].Decl_PoP.slice(0,gridArray[2].Decl_PoP.length-4)) >= 0,'green': format(gridArray[2].Decl_PoP.slice(0,gridArray[2].Decl_PoP.length-4)) < 0 }">
+                            <span class="nothing">
+                                {{gridArray[2].Decl_PoP}}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr ng-show="toggleFlag === false">
+                        <td>{{gridArray[3].Description}}</td>
+                        <td><span class="nothing">{{gridArray[3].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[3].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[3].Grew_PoP.slice(0,gridArray[3].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[3].Grew_PoP.slice(0,gridArray[3].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[3].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[3].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[3].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[3].Decl_PoP.slice(0,gridArray[3].Decl_PoP.length-1)) >= 0,'green': format(gridArray[3].Decl_PoP.slice(0,gridArray[3].Decl_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[3].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-show="toggleFlag === false">
+                        <td>{{gridArray[4].Description}}</td>
+                        <td><span class="nothing">{{gridArray[4].Grew_Previous_Period}}</span></td>
+                        <td>
+                            <span class="nothing">{{gridArray[4].Grew_Current_Period}}</span>
+                        </td>
+                        <td ng-class="{'yellow': format(gridArray[4].Grew_PoP.slice(0,gridArray[4].Grew_PoP.length-1)) >= 0,'green': format(gridArray[4].Grew_PoP.slice(0,gridArray[4].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[4].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[4].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[4].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[4].Decl_PoP.slice(0,gridArray[4].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[4].Decl_PoP.slice(0,gridArray[4].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[4].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-show="toggleFlag === false">
+                        <td>{{gridArray[5].Description}}</td>
+                        <td><span class="nothing">{{gridArray[5].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[5].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[5].Grew_PoP.slice(0,gridArray[5].Grew_PoP.length-1)) >= 0,'green': format(gridArray[5].Grew_PoP.slice(0,gridArray[5].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[5].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[5].Decl_Previous_Period}}</span></td>
+                        <td>
+                            <span class="nothing">{{gridArray[5].Decl_Current_Period}}</span>
+                        </td>
+                        <td ng-class="{'green': format(gridArray[5].Decl_PoP.slice(0,gridArray[5].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[5].Decl_PoP.slice(0,gridArray[5].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[5].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-12 data-container final-summary">
+            <table class="table table-bordered">
+                <thead class="top-header">
+                    <tr>
+                        <th class="col-md-4 table-heading"> </th>
+                        <th class="col-md-4 table-heading" colspan="3"> Growing Partner</th>
+                        <th class="col-md-4 table-heading" colspan="3"> Declining Partner</th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===true">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15">Previous Period </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period) </th>
+                        <th class="border-left final-width15">Previous Period </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period) </th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===false">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15">YoY % (Year over year)</th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="nothing"><p class="elipse-desc">{{gridArray[6].Description}}</p></span></td>
+                        <td><span class="nothing">{{gridArray[6].Grew_Previous_Period}}</span></td>
+                        <td>
+                            <span class="nothing">{{gridArray[6].Grew_Current_Period}}</span>
+                        </td>
+                        <td ng-class="{'green': format(gridArray[6].Grew_PoP.slice(0,gridArray[6].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[6].Grew_PoP.slice(0,gridArray[6].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[6].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[6].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[6].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[6].Decl_PoP.slice(0,gridArray[6].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[6].Decl_PoP.slice(0,gridArray[6].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing"> {{gridArray[6].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[7].Description}}</td>
+                        <td><span class="nothing">{{gridArray[7].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[7].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[7].Grew_PoP.slice(0,gridArray[7].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[7].Grew_PoP.slice(0,gridArray[7].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[7].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[7].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[7].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[7].Decl_PoP.slice(0,gridArray[7].Decl_PoP.length-1)) >= 0,'green': format(gridArray[7].Decl_PoP.slice(0,gridArray[7].Decl_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[7].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[8].Description}}</td>
+                        <td><span class="nothing">{{gridArray[8].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[8].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[8].Grew_PoP.slice(0,gridArray[8].Grew_PoP.length-4)) >= 0,'yellow': format(gridArray[8].Grew_PoP.slice(0,gridArray[8].Grew_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[8].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[8].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[8].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[8].Decl_PoP.slice(0,gridArray[8].Decl_PoP.length-4)) >= 0,'green': format(gridArray[8].Decl_PoP.slice(0,gridArray[8].Decl_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[8].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-12 data-container final-summary">
+            <table class="table table-bordered">
+                <thead class="top-header">
+                    <tr>
+                        <th class="col-md-4 table-heading"> </th>
+                        <th class="col-md-4 table-heading" colspan="3"> Growing Partner</th>
+                        <th class="col-md-4 table-heading" colspan="3"> Declining Partner</th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===true">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15">Previous Period </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period) </th>
+                        <th class="border-left final-width15">Previous Period</th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period) </th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===false">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year)</th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="nothing"><p class="elipse-desc">{{gridArray[9].Description}}</p> <i class="fa expand-btn fa-caret-down" ng-click="toggleFlagForMDF = !toggleFlagForMDF;toogleCaretIcon('icon-1',toggleFlagForMDF)" id="icon-1"></i></span></td>
+                        <td><span class="nothing">{{gridArray[9].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[9].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[9].Grew_PoP.slice(0,gridArray[9].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[9].Grew_PoP.slice(0,gridArray[9].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[9].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[9].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[9].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[9].Decl_PoP.slice(0,gridArray[9].Decl_PoP.length-1)) >= 0,'green': format(gridArray[9].Decl_PoP.slice(0,gridArray[9].Decl_PoP.length-1)) < 0 }">
+                            <span class="nothing">
+
+                                {{gridArray[9].Decl_PoP}}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[10].Description}}</td>
+                        <td><span class="nothing">{{gridArray[10].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[10].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[10].Grew_PoP.slice(0,gridArray[10].Grew_PoP.length-4)) >= 0,'yellow': format(gridArray[10].Grew_PoP.slice(0,gridArray[10].Grew_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[10].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[10].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[10].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[10].Decl_PoP.slice(0,gridArray[10].Decl_PoP.length-4)) >= 0,'green': format(gridArray[10].Decl_PoP.slice(0,gridArray[10].Decl_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[10].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-show="toggleFlagForMDF === false">
+                        <td>{{gridArray[11].Description}}</td>
+                        <td><span class="nothing">{{gridArray[11].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[11].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[11].Grew_PoP.slice(0,gridArray[11].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[11].Grew_PoP.slice(0,gridArray[11].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">
+                                {{gridArray[11].Grew_PoP}}
+                            </span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[11].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[11].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[11].Decl_PoP.slice(0,gridArray[11].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[11].Decl_PoP.slice(0,gridArray[11].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[11].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-12 data-container final-summary">
+            <table class="table table-bordered">
+                <thead class="top-header">
+                    <tr>
+                        <th class="col-md-4 table-heading"> </th>
+                        <th class="col-md-4 table-heading" colspan="3"> Growing Partner</th>
+                        <th class="col-md-4 table-heading" colspan="3"> Declining Partner</th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===true">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15"> Previous period </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period)</th>
+                        <th class="border-left final-width15">Previous period </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> PoP % (Period over period) </th>
+                    </tr>
+                </thead>
+                <thead ng-show="periodsApplied===false">
+                    <tr>
+                        <th class="final-width21"> </th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width12">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year) </th>
+                        <th class="border-left final-width15">Previous Year </th>
+                        <th class="final-width13">Current Period </th>
+                        <th class="final-width15"> YoY % (Year over year) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td title="{{gridArray[12].Description}}"><span class="nothing"><p class="elipse-desc">{{gridArray[12].Description}} </p><i class="fa expand-btn fa-caret-down" ng-click="toggleFlagForSelloutMDF = !toggleFlagForSelloutMDF;toogleCaretIcon('icon-3',toggleFlagForSelloutMDF)" id="icon-3"></i></span></td>
+                        <td>
+                            <span class="nothing">{{gridArray[12].Grew_Previous_Period}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[12].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[12].Grew_PoP.slice(0,gridArray[12].Grew_PoP.length-1)) >= 0,'yellow': format(gridArray[12].Grew_PoP.slice(0,gridArray[12].Grew_PoP.length-1)) < 0 }">
+                            <span class="nothing">{{gridArray[12].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[12].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[12].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[12].Decl_PoP.slice(0,gridArray[12].Decl_PoP.length-1)) < 0,'yellow': format(gridArray[12].Decl_PoP.slice(0,gridArray[12].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[12].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[13].Description}}</td>
+                        <td><span class="nothing">{{gridArray[13].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[13].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': gridArray[13].Grew_PoP.slice(0,gridArray[13].Grew_PoP.length-1) >= 0,'yellow': gridArray[13].Grew_PoP.slice(0,gridArray[13].Grew_PoP.length-1) < 0 }">
+                            <span class="nothing">{{gridArray[13].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[13].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[13].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': gridArray[13].Decl_PoP.slice(0,gridArray[13].Decl_PoP.length-1) >= 0,'green': gridArray[13].Decl_PoP.slice(0,gridArray[13].Decl_PoP.length-1) < 0 }">
+                            <span class="nothing">{{gridArray[13].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{{gridArray[14].Description}}</td>
+                        <td><span class="nothing">{{gridArray[14].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[14].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'green': format(gridArray[14].Grew_PoP.slice(0,gridArray[14].Grew_PoP.length-4)) < 0,'yellow': format(gridArray[14].Grew_PoP.slice(0,gridArray[14].Grew_PoP.length-4)) >= 0 }">
+                            <span class="nothing">{{gridArray[14].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[14].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[14].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[14].Decl_PoP.slice(0,gridArray[14].Decl_PoP.length-4)) >= 0,'green': format(gridArray[14].Decl_PoP.slice(0,gridArray[14].Decl_PoP.length-4)) < 0 }">
+                            <span class="nothing">{{gridArray[14].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                    <tr ng-show="toggleFlagForSelloutMDF === false">
+                        <td>{{gridArray[15].Description}}</td>
+                        <td><span class="nothing">{{gridArray[15].Grew_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[15].Grew_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[15].Grew_PoP.slice(0,gridArray[15].Grew_PoP.length-1)) < 0,'green': format(gridArray[15].Grew_PoP.slice(0,gridArray[15].Grew_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[15].Grew_PoP}}</span>
+                        </td>
+                        <td><span class="nothing">{{gridArray[15].Decl_Previous_Period}}</span></td>
+                        <td><span class="nothing">{{gridArray[15].Decl_Current_Period}}</span></td>
+                        <td ng-class="{'yellow': format(gridArray[15].Decl_PoP.slice(0,gridArray[15].Decl_PoP.length-1)) < 0,'green': format(gridArray[15].Decl_PoP.slice(0,gridArray[15].Decl_PoP.length-1)) >= 0 }">
+                            <span class="nothing">{{gridArray[15].Decl_PoP}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer-sticky col-lg-12 col-md-12 col-sm-12">
+    <div class="col-lg-7 col-md-7 col-sm-7">
+        <div class="col-lg-9 col-md-9 col-sm-9 ng-hide" ng-show="final >= 1">
+            <ul class="pagination">
+                <li ng-click="prev()">
+                    <a>
+                        Prev
+                    </a>
+                </li>
+                <li ng-repeat="page in pages | limitTo: pageLimit " ng-class="{'active': page.name == currentPage }" ng-click="gotoPage(page.name)">
+                    <a>
+                        {{page.name}}
+                    </a>
+                </li>
+                <li ng-click="next()">
+                    <a>
+                        Next
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-3 col-sm-4 col-md-6 count">
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-4 col-sm-4" id="contol-role-management">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="col-lg-4 col-md-4 col-sm-4 icon-holder disableExport">
+                <button class="export-button" ng-disabled="role.exportButton">
+                    <div><img src="assets/resources/export@1x.png"></div>
+                    <div><label>EXPORT</label></div>
+                </button>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 icon-holder">
+                <button class="btn btn-success" ng-click="setPrev()" ui-sref="budget.partner-budget">
+                    PREVIOUS
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /*
+    $('.btn.zoom-img.final').click(function () {
+        $(this).closest('.sticky-graph').css({ 'position': 'static' });
+    });
+    $('.close').click(function () {
+        $(this).closest('.sticky-graph').css({ 'position': 'fixed' });
+    });
+    */
+</script>
+<div class="final-summary">
+    <div class="col-lg-3 col-md-3 col-sm-3 graph">
+        <div class="col-lg-12 original-graph shade-1 sales-Chart">
+            <div id="myMod1" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title final-graph">Sales growth of Partner With MDF vs without MDF</h4>
+                        </div>
+                        <div class="modal-body final-nopadding">
+                            <nvd3 options="chartOneZoomOption" data="chartOneData" class="nvdCharts"></nvd3>
+                            <div class="final-sticky-graph">
+                                <div class="square blue"></div>
+                                <p class="status">With MDF</p>
+                                <div class="square green"></div>
+                                <p class="status">without MDF</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="myMod2" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title final-graph">MDF/Sellout</h4>
+                        </div>
+                        <div class="modal-body final-nopadding">
+                            <nvd3 options="mdfOptions1" data="MdfData" class="nvdCharts"></nvd3>
+                            <div class="final-sticky-graph">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="myMod3" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title final-graph">Alignment of Investment Change vs Sales Change</h4>
+                        </div>
+                        <div class="modal-body final-nopadding">
+                            <nvd3 options="chartThreeOption1" data="chartThreeData" class="nvdCharts"></nvd3>
+                            <div class="final-sticky-graph">
+                                <div class="square blue"></div>
+                                <p class="status">Aligned</p>
+                                <div class="square green"></div>
+                                <p class="status">Misaligned</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal content-->
+            <div id="myMod4" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title final-graph">MDF by membership tier</h4>
+                        </div>
+                        <div class="modal-body final-nopadding">
+                            <nvd3 options="chartFourOption1" data="chartFourData" class="nvdCharts"></nvd3>
+                            <div class="final-sticky-graph">
+                                <div class="square final-blue"></div>
+                                <p class="status">Platinum</p>
+                                <div class="square darkgold"></div>
+                                <p class="status">Gold</p>
+                                <div class="square silver"></div>
+                                <p class="status">Silver & Below</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div id="myMod5" class="modal fade  sctr" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title final-graph">YOY Growth Portfolio (Allocated)</h4>
+                        </div>
+                        <div class="modal-body final-nopadding">
+                            <nvd3 options="psgOptions1" data="psgData" class="nvdCharts"></nvd3>
+                            <div class="final-sticky-graph">
+                                <div class="square graph-green"></div>
+                                <p class="status">With MDF</p>
+                                <div class="square blue"></div>
+                                <p class="status">without MDF</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

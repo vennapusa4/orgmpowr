@@ -1,0 +1,61 @@
+<td class="total-col">
+    <!-- Partner name -->
+    Total <span ng-if="history.Partner_Name.length > 15">...</span>
+    <i class="fa fa-caret-down expand-btn total-expand-btn exp-x pull-right " ng-click="toogleTotal()" id="icon-{{$index}}"></i>
+</td>
+<td>
+    <!-- PID -->
+    -
+</td>
+<td></td>
+<!-- PJ Sellout -->
+<td ng-bind="total.Projected_Sellout  | number: 0"></td>
+
+<td ng-bind="total.Recommended_MDF | number: 0"></td>
+<!--WMGO summary-->
+
+<td ng-bind="total.MGO_Ratio_Total | number: 1"></td>
+  <!-- <td>
+   ASSESMENT 
+</td>-->
+
+<td>
+    <div ng-show="reseller.district.DistrictID > 0">
+        {{total.Total_MSA}}
+    </div>
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{total.BU_MSA}}
+     </div>
+</td>
+<!--<td  ng-bind="total.Total_ARUBAMSA | number: 0"></td>-->
+<td>
+    <div ng-show="(reseller.district.DistrictID > 0 &amp;&amp; (buId == 0  || buId==5)) || (reseller.obj.countries[0].DisplayName=='CANADA'&amp;&amp; reseller.partner.PartnerName=='Reseller' &amp;&amp;( buId == 0  || buId==5))">
+        {{total.Total_ARUBAMSA}}
+    </div>
+</td>
+ <!-- Allocated MDF -->
+<td class="br-trans" ng-bind="total.TotalMDF | number: 0"></td>
+
+  <!-- Total MDF -->
+<td ng-bind="total.BaseLineMDF | number: 0" class="br-trans"></td>
+
+<!-- Carve Out -->
+ <td class="br-trans">
+ <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+    {{total.CarveOut | number: 0}}
+</div>
+</td>
+<!-- Reason of Variance -->
+<!--<td>-</td>-->
+<!-- EN D oF ROV -->
+
+
+
+<td ng-bind="(total.ProjectedMDFOrSellout | number: 1) + '%'">-</td>
+<!-- HSM-947 -->
+<td>
+    {{ total.HQ }}
+</td>
+<td>
+    {{ total.Value_Perc }}
+</td>

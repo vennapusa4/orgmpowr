@@ -1,0 +1,253 @@
+
+
+<td>
+    -   <!--{{ history.Last_year_MGO_ROI | number : 1 }}-->
+</td>
+
+<td>
+    <!-- Membership type -->
+    <div ng-show="reseller.partner.PartnerTypeID == 2">
+        {{
+          history.Membership_Type.toUpperCase() | nafilter
+        }}
+    </div>
+    <div ng-show="reseller.partner.PartnerTypeID == 1">
+        -
+    </div>
+</td>
+
+<td>
+    <!-- Last Period Sellout -->
+    {{history.Sellout[0].Last_Period_Sellout | number: 0}}
+</td>
+
+
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{history.Sellout[0].Sellout_Silver_Below | decorateToNA: 0}}
+    </span>
+
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{history.Sellout[0].Sellout_Gold_Platinum | decorateToNA: 0}}
+    </span>
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+</td>
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+    <span ng-if="reseller.partner.PartnerTypeID == 1">
+        {{history.Sellout[0].Unweighted_Sellout | decorateToNA: 0}}
+    </span>
+    <span ng-if="reseller.partner.PartnerTypeID == 2">
+        N/A
+    </span>
+
+</td>
+
+
+<!--<td>
+    {{history.Sellout[0].YoY_change_sellout | number: 1}}%
+</td>-->
+
+<td>
+
+    {{history.Sellout[0].YoY_SO | number: 0}}%
+</td>
+
+<td>
+    {{
+    history.Sellout[0].Scaled_Sellout | decorateToNA: 0
+    }}
+</td>
+
+<td>
+
+    {{history.Sellout[0].HOH_SO | number: 0}}%
+</td>
+<td>
+    <!-- Projected Sellout -->
+    {{history.Sellout[0].Projected_Sellout | number: 0}}
+</td>
+
+<td><!--Source of 1H18 Projected Sellout--> -</td>
+
+<td>
+
+    {{history.Sellout[0].YOY_CY_PY | number: 0}}%
+</td>
+
+<td>
+    <!-- Calculated MDF -->
+    {{history.MDF[0].Recommended_MDF | number: 0}}
+</td>
+
+<td>
+    <!-- Alloc_PrevYear_MDF   -->
+    {{history.MDF[0].Alloc_PrevY_MDF | number: 0}}
+</td>
+
+<td>
+    {{ history.MDF[0].Last_year_mdf | number : 0 }}
+</td>
+
+<td>
+    <!-- cell formating -->
+    <div ng-if="reseller.district.DistrictID > 0">
+        <input ng-disabled="role.disabled || disablePrevious || NOACCESS "
+               ng-click="copyValue(history.MSA[0].MSAValue)"
+               ng-blur="saveMSA($index,'MSA')"
+               type="text" name=""
+               class="form-control msa-text specialText"
+               id="MSA_{{history.PartnerID}}"
+               ng-model="history.MSA[0].MSAValue"
+               ng-keyup="AssignPosition()">
+    </div>
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{history.BU_MSA | number: 0}} 
+    </div>
+
+</td>
+
+<td>
+    <!-- cell formating -->
+   
+    <div ng-if="reseller.district.DistrictID > 0 ||((reseller.obj.countries.length ==0 ? reseller.obj.geo.DisplayName =='North America' : reseller.obj.countries[0].DisplayName=='CANADA' )&& reseller.partner.PartnerName=='Reseller')">
+        <input ng-disabled="role.disabled || disablePrevious || NOACCESS ||isARUMSA"
+               ng-click="copyARUBAMSAValue(history.MSA[0].ArubaMsa)"
+               ng-blur="saveMSA($index,'ARUBA MSA')"
+               type="text" name=""
+               class="form-control msa-text specialText right"
+               id="ARUBA_{{history.PartnerID}}"
+               ng-model="history.MSA[0].ArubaMsa"
+               ng-keyup="AssignPosition()">
+    </div>
+</td>
+<td>
+    <!-- Alloc_PrevPeriod_MDF   -->
+    {{history.MDF[0].Alloc_PrevP_MDF | number: 0}}
+</td>
+<td>
+    <!-- Last Period MDF -->
+    {{history.MDF[0].Last_Period_MDF | number: 0}}
+</td>
+<td class="br-trans">
+    <!-- Allocated MDF Swap Column-->
+    {{history.TotalMDF | number: 0}}
+    
+  
+</td>
+ <td>
+     <!-- Total MDF Swap Column -->
+     {{history.MDF[0].BaseLineMDF | number: 0}}
+</td>
+<td>
+    <!-- Carve Out -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        {{history.CarveOut | number: 0}}
+        </div>
+</td>
+<td>
+    <!-- Reason of variance -->
+    -
+</td>
+<td> {{history.MDF[0].BaseLineMDF - history.MDF[0].Last_Period_MDF  | number: 1}}</td>
+
+<td>
+    <!-- YoY Change -->
+    {{history.MDF[0].YoY_change_MDF | number: 1}}%
+</td>
+
+<td> 
+  <!--{{history.MDF[0].HOH_CP_PP | number: 1}}%-->
+            {{
+   history.MDF[0].Last_Period_MDF>0 ? ((( history.MDF[0].BaseLineMDF- history.MDF[0].Last_Period_MDF)/history.MDF[0].Last_Period_MDF)*100 | number :1): '0.0'
+}}%
+ 
+</td>
+
+<td>
+    <!-- Last Period MDF/ Sellout -->
+    {{
+        history.MDF[0].Last_year_mdf > 0 ? ((history.MDF[0].Last_year_mdf/history.Sellout[0].Last_Period_Sellout)*100 | number :1 ) : '0.0'
+    }}%
+</td>
+ 
+<td>{{history.MDFOrSellout[0].PMf_PSt }}%
+    </td>
+
+<td>
+    <!-- Projected MDF/Sellout -->
+    {{
+          history.Sellout[0].Projected_Sellout   > 0 ? (((history.MDF[0].BaseLineMDF  / history.Sellout[0].Projected_Sellout )*100) | number : 1 ): '0.0'
+    }}%
+    <!--{{history.MDFOrSellout[0].ProjectedMDFOrSellout }}%-->
+</td>
+
+
+
+
+<td>-<!--{{history.MDFOrSellout[0].MedianAvdMDFOrSellout | number :1 }} %--></td>
+<td>
+    <!--{{history.ProductivityImprovementPer | number: 1}}%-->
+
+   {{ProductivityImprovement(history.PartnerID)}}%
+</td>
+
+<td>-</td> <!-- {{ history.SOW | number : 0 }} -->
+
+<td>
+    <!-- WMGo MFD -->
+    {{history.MDF[0].MGO_Ratio | number: 1}}
+</td>
+
+<td>
+    {{ history.MDF[0].Last_year_MGO | number : 0 }}
+</td>
+
+<td>
+    {{ history.MDF[0].Last_year_Won_MGO | number : 0 }}
+</td>
+<!-- NEW -->
+<td>
+    -<!-- {{ history.Last_year_Won_MGO_ROI | number : 1 }}-->
+
+</td>
+
+<td>
+    {{ history.Country }}
+</td>
+<!-- PA -->
+<td>
+    -
+</td>
+
+<!-- PM -->
+<td>
+    <!-- {{
+      history.Sellout[0].ProjectionMethod
+    }} -->
+    -
+</td>
+<td>
+    <!-- ASSESMENT -->
+</td>
+<td>{{ history.PlannedSales | number : 0 }}</td>
+<td>
+    - <!-- {{ history.targetAchievement | number : 0 }} -->
+</td>
+<!-- HSM-947 -->
+<td >
+  {{ history.HQ }}
+</td>
+<td >
+   {{ history.Value_Perc }}%
+</td>
+
+

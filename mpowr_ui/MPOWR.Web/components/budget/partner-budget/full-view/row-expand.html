@@ -1,0 +1,422 @@
+<td>
+
+    {{bu.MDF[0].Last_year_MGO_ROI |decorateToNA : 1}}
+
+</td>
+<td>
+      -
+</td>
+
+<td>
+    {{bu.Sellout[0].Last_Period_Sellout | number : 0 }}
+
+</td>
+ 
+
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+      
+          <span ng-if="reseller.partner.PartnerTypeID == 1">
+              {{bu.Sellout[0].Sellout_Silver_Below | decorateToNA : 0 }}
+          </span>
+
+          <span ng-if="reseller.partner.PartnerTypeID == 2">
+            N/A
+          </span>
+</td>
+
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+      
+
+          <span ng-if="reseller.partner.PartnerTypeID == 1">
+              {{bu.Sellout[0].Sellout_Gold_Platinum | decorateToNA : 0 }}
+          </span>
+
+          <span ng-if="reseller.partner.PartnerTypeID == 2">
+            N/A
+          </span>
+      
+
+</td>
+
+<td ng-class="{'gray-out': PartnerTypeID == 2}">
+      
+          <span ng-if="reseller.partner.PartnerTypeID == 1">
+              {{bu.Sellout[0].Unweighted_Sellout | decorateToNA : 0 }}
+          </span>
+
+          <span ng-if="reseller.partner.PartnerTypeID == 2">
+            N/A
+          </span>
+      
+
+</td>
+
+<!-- end of newly added -->
+
+
+<!--<td>
+      {{bu.Sellout[0].YoY_change_sellout | number : 1 }}% 
+</td>-->
+
+<td>
+
+    {{bu.Sellout[0].YoY_SO | number : 1 }}%
+
+</td>
+
+  
+<td>
+      {{bu.Sellout[0].Scaled_Sellout | decorateToNA : 0 }} 
+</td>
+
+<td>
+    {{bu.Sellout[0].HOH_SO | decorateToNA : 0 }}%
+</td>
+
+ 
+<td>
+    {{bu.Sellout[0].Projected_Sellout | number : 0 }}
+</td>
+ 
+<!--Source of 1H18 Projected Sellout-->
+<td> {{bu.Sellout[0].SOS}} </td>
+
+<td>
+    {{bu.Sellout[0].YOY_CY_PY | number : 0 }}%
+</td>
+
+ <td>
+   {{bu.MDF[0].Recommended_MDF | number}} 
+</td>
+
+<td>
+    {{bu.MDF[0].Alloc_PrevY_MDF | number}}
+</td>
+
+<td>
+
+    {{bu.MDF[0].Last_year_mdf |decorateToNA : 0}}
+
+</td>
+ 
+<td style="padding-top:0px !important " class="br-trans businessUnit_{{bu.BusinessUnitID}}">
+    <!--BU_MSA-->
+    <!-- cell formating -->
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <div class="row">
+            <div class="col-lg-12 pull-right">
+                <input type="text"
+                       id="BU_MSA_{{$index}}_{{history.PartnerID}}"
+                       ng-class="{'yelow':'BU_MSA_' + $index +'_' + history.PartnerID == Varid}"
+                       ng-mouseover='Popover($event)'
+                       ng-focus="copyTotalVal(bu.BU_MSA)"
+                       maxlength="11"
+                       ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                       ng-blur="save(history._parent,$index,$event,bu,true,true)"
+                       ng-keypress="saveOnEnter(history._parent,$index,bu,true,true,$event)"
+                       onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                       ng-keyup="AssignPosition()"
+                       ng-model="bu.BU_MSA" class="specialText form-control right">
+            </div>
+        </div>
+    </div>
+</td>
+<td><!--ArubaMSA--></td>
+
+<td>
+    {{bu.MDF[0].Alloc_PrevP_MDF | number}}
+</td>
+
+<td>
+
+
+    {{bu.MDF[0].Last_Period_MDF | number :0 }}
+
+</td>
+
+<td style="padding-top:0px !important " class="br-trans businessUnit_{{bu.BusinessUnitID}}">
+     <div class="row">
+        <div class="col-lg-12 pull-right">
+            <!-- ng-keyup="calculat
+                e(history._parent,$index,bu)"  -->
+            <!-- cell formating -->
+            <input type="text"
+                   id="baseline_{{$index}}_{{history.PartnerID}}"
+                   maxlength="11"
+                    ng-class="{'yelow':'baseline_' + $index +'_' + history.PartnerID == Varid}"
+                    ng-mouseover='Popover($event)'
+                   ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                   ng-focus="copyTotalVal(bu.TotalMDF)"
+                   ng-blur="save(history._parent,$index,$event,bu,true,false)"
+                   ng-keypress="saveOnEnter(history._parent,$index,bu,true,false,$event)"
+                   onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                   ng-keyup="AssignPosition()"
+                   ng-model="bu.TotalMDF" class="specialText form-control right">
+        </div>
+
+    </div>
+
+</td>
+ <!-- Total MDF -->
+<td>
+    {{bu.MDF[0].BaseLineMDF | number :0 }}
+</td>
+<!-- CarveOut -->
+<td style="padding-top:0px !important " class="br-trans businessUnit_{{bu.BusinessUnitID}}">
+    <div ng-if="reseller.obj.geo.DisplayName !='North America' ">
+        <div class="row">
+            <div class="col-lg-12 pull-right">
+                <!-- cell formating -->
+                <input type="text"
+                       id="CarveOut_{{$index}}_{{history.PartnerID}}"
+                       ng-class="{'yelow':'CarveOut_' + $index +'_' + history.PartnerID == Varid}"
+                       ng-mouseover='Popover($event)'
+                       ng-focus="copyTotalVal(bu.CarveOut)"
+                       maxlength="11"
+                       ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                       ng-blur="save(history._parent,$index,$event,bu,true,true)"
+                       ng-keypress="saveOnEnter(history._parent,$index,bu,true,true,$event)"
+                       onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                       ng-keyup="AssignPosition()"
+                       ng-model="bu.CarveOut" class="specialText form-control right">
+            </div>
+          </div>
+        </div>
+
+</td>
+
+<td style="padding-top:0px !important" class="businessUnit_{{bu.BusinessUnitID}}">
+
+    <div class="row">
+
+        <div class="col-lg-10">
+            <div class="dropdown">
+
+                <!-- ng-init="bu.MDF[0].MDFVarianceReasonID = buildModel(bu.MDF[0].MDFVarianceReasonID)" -->
+
+                <select class="form-control"
+                        ng-disabled="role.disabled || disablePrevious || NOACCESS  || isbuu"
+                        id="reason_{{history._parent}}_{{$index}}"
+                         ng-click="event = $event"
+                        ng-options="item as item.Reason for item in reason track by item.MDFVarianceReasonID"
+                        ng-model="bu.MDF[0].MDFVarianceReasonID" ng-change="save(history._parent,$index,event,bu,false,false)"></select>
+            </div>
+
+            <img ng-if="bu.MDF[0].Comment.length > 0"
+                 ng-hide="isbuu"
+                 src="assets/resources/comment@1x.png"
+                 ng-click="clickBU(history._parent,$index,$event,bu,false,false)"
+                 class="comment-btn" />
+
+            <img ng-if="bu.MDF[0].Comment.length == 0 || !bu.MDF[0].Comment"
+                 ng-hide="isbuu"
+                 src="assets/resources/comment_grey@1x.png"
+                 ng-click="clickBU(history._parent,$index,$event,bu,false,false)"
+                 class="comment-btn" />
+
+        </div>
+        <div class="comment-button">
+            <div class="dropdown">
+
+                <span data-toggle="dropdown"
+                      class="dropdown-toggle">
+                </span>
+                <div class="dropdown-menu comment-box" style="position: inherit;    margin-top: 24px;">
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" class="lbl-comment"></label>
+                        <textarea ng-disabled="role.disabled || disablePrevious || NOACCESS " style="width:360px;" class="form-control coment-box-textarea" ng-model="bu.MDF[0].Comment"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default pull-right x-button">Close</button>
+                    <button ng-click="save(history._parent,$index,$event,bu,false,false)" ng-disabled="role.disabled || disablePrevious || NOACCESS " class="btn btn-success pull-right">Add Comment</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</td>
+
+ <td>
+  {{bu.MDF[0].MDF_CY_PYD | number}} 
+</td>
+
+<td>
+    {{bu.MDF[0].YoY_change_MDF | number: 1}}% 
+</td>
+
+<td> {{bu.MDF[0].HOH_CP_PP | number: 1}}%</td>
+
+<td>
+      {{ bu.MDFOrSellout[0].LastYearMDFOrSellout | number: 1 }}% 
+</td>
+
+<td>
+   {{ bu.MDFOrSellout[0].PMf_PSt | number: 1 }}% 
+</td>
+
+<td>
+    
+      {{bu.MDFOrSellout[0].ProjectedMDFOrSellout | number :1 }}%
+    <!--{{ (bu.MDF[0].BaseLineMDF / bu.Sellout[0].Projected_Sellout)*100 | number: 1 }}-->
+
+    
+    
+</td>
+
+<td>
+    
+      {{bu.MDFOrSellout[0].MedianAvdMDFOrSellout | number :1 }}%
+    
+</td>
+<td>
+    
+      {{bu.MDFOrSellout[0].ProductivityImprovementPer | number :1 }}%
+    
+</td>
+
+ 
+<td>
+    
+      {{bu.SOW | decorateSOW }} 
+    
+</td>
+
+<!--
+<td>
+    <div class="cont" ng-repeat="bu in businessUnit" pause-children-watchers-if>
+      {{bu.Total_MDF |number : 0}}
+  </div>
+</td>
+<td>
+    <div class="cont" ng-repeat="bu in businessUnit" pause-children-watchers-if>
+      {{bu.Incremental_MDF |number : 0}}
+  </div>
+</td>
+<td>
+  <div class="cont" ng-repeat="bu in businessUnit" pause-children-watchers-if>
+     {{bu.Late_MDF |number : 0}}
+  </div>
+</td>
+
+<td>
+    <div class="cont" ng-repeat="bu in businessUnit" pause-children-watchers-if>
+      {{bu.W_MGO_Marketing_MDF |number : 0}}
+  </div>
+</td>
+<td>
+    <div class="cont" ng-repeat="bu in businessUnit" pause-children-watchers-if>
+      {{bu.New_Logos_MGO |number : 0}}
+  </div>
+</td> 
+    -->
+
+
+<td>
+    {{bu.MDF[0].MGO_Ratio | number : 1}}
+</td>
+
+<td>
+     
+      {{bu.MDF[0].Last_year_MGO | decorateToNA : 0}}
+  
+</td>
+
+
+
+<td>
+     
+      {{bu.MDF[0].Last_year_Won_MGO |decorateToNA : 0}}
+  
+</td>
+
+<td>
+        {{bu.MDF[0].Last_year_Won_MGO_ROI | decorateToNA : 1 }} 
+    
+</td>
+
+<td>
+    <!--Country-->
+   -
+</td>
+<!-- PA -->
+<td>
+
+    {{bu.Analysis[0].PredictionAccuracy | decorateToNaStr}}
+
+</td>
+
+<!-- PM -->
+<td>
+
+    {{bu.Sellout[0].ProjectionMethod | decorateToNaStr }}
+
+</td>
+
+ 
+ 
+    <!-- ASSESMENT -->
+ <td>
+
+    <!-- Misaligned &&  Overfunded -->
+    <img ng-if="bu.MDF_Alignment == 'Misaligned' && bu.PREV_MDF_Assessment == 'Overfunded' "
+         src="assets/resources/arrow_down_red@1x.png">
+
+    <!-- Misaligned &&  Underfunded -->
+    <img ng-if="bu.MDF_Alignment == 'Misaligned' && bu.PREV_MDF_Assessment == 'Underfunded' "
+         src="assets/resources/arrow_up_yellow@1x.png">
+
+    <!-- Misaligned and New Opportunity -->
+    <!-- No Icon -->
+    <!-- Misaligned and null -->
+    <img ng-if="bu.MDF_Alignment == 'Misaligned' && (bu.PREV_MDF_Assessment == '' || bu.PREV_MDF_Assessment == null ) "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!-- ************** End of FIRST ROW ******************** -->
+    <!-- ************** Second ROW ******************** -->
+    <!-- Aligned &&  Overfunded -->
+    <img ng-if="bu.MDF_Alignment == 'Aligned' && bu.PREV_MDF_Assessment == 'Overfunded' "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!-- Aligned &&  Underfunded -->
+    <img ng-if="bu.MDF_Alignment == 'Aligned' && bu.PREV_MDF_Assessment == 'Underfunded' "
+         src="assets/resources/verify_magnitude@1x.png">
+
+    <!-- Aligned and New Opportunity -->
+    <!-- No Icon -->
+    <!-- Aligned and null -->
+    <!-- No Icon -->
+    <!-- ************** End of Second ROW ******************** -->
+    <!-- ************** Third ROW ******************** -->
+    <!-- null &&  Overfunded -->
+    <!-- No Icon -->
+    <!-- null &&  Underfunded -->
+    <!-- No Icon -->
+    <!-- null and New Opportunity -->
+    <img ng-if="bu.MDF_Alignment == '' && bu.PREV_MDF_Assessment == 'New Opportunity' "
+         src="assets/resources/new_opportunity@1x.png">
+
+    <!-- null and null -->
+    <!-- No Icon -->
+    <!-- ************** End of Third ROW ******************** -->
+
+</td>
+
+<td>
+
+    {{bu.PlannedSales |number : 0}}
+
+</td>
+<td>
+
+    {{ bu.targetAchievement | decorateToPer }}
+
+</td>
+<!-- HSM-947 -->
+<td>
+    {{ bu.MDFOrSellout[0].HQ }}
+</td>
+<td>
+    {{ bu.MDFOrSellout[0].Value_Perc }}
+</td>
+

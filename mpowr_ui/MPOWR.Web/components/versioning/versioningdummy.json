@@ -1,0 +1,22 @@
+﻿[
+    {
+        "PlanName": "MDF Plan for FY18 1H",
+        "FinancialPeriod": "",
+        "Version": "4",
+        "TotalMDF": "300,000",
+        "BaselineMDF": "260000",
+        "ProgramMDFCaveOuts": "33434",
+        "CountryReverseMDF": "444"
+    }, 
+    {
+		"PlanName": "MDF Plan for FY18 1H",
+		"FinancialPeriod": "",
+		"Version": "4",
+		"TotalMDF": "300,000",
+		"BaselineMDF": "260000",
+		"ProgramMDFCaveOuts": "33434",
+		"CountryReverseMDF": "444"
+	}
+
+
+]

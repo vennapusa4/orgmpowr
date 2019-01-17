@@ -1,0 +1,115 @@
+<div class="col-lg-12 data-container">
+
+    <table class="table table-bordered historical-chart">
+        <thead>
+            <tr>
+                <th>
+                    BG Membership
+                    
+                </th>
+                <th>
+                    {{prevYear}} Sellout ($)
+                    
+                </th>
+                <th>
+                    YoY Sellout Growth ($) 
+                    
+                </th>
+
+                <th>
+                    YoY Sellout growth (%)
+                    
+                </th>
+
+
+                <th>
+                    {{prevYear}} MDF ($)
+                    
+                </th>
+
+
+                <th>
+                    {{prevYear}} MDF / {{prevYear}} Sellout (%)
+                    
+                </th>
+
+
+                <!-- <th>
+                    Footprint growth
+                    
+                </th> -->
+            </tr>
+        </thead>
+        <tbody ng-repeat="history in histories">
+            <tr>
+                <td>
+                    <div class="text-hp">{{history.Name}}</div>
+                    <div class="text-ic">
+                        <i class="fa fa-caret-down expand-btn" ng-click="toogle($index,'reseler');initTicks(history.MDFX,history.SELLOUTX)" id="icn-reseler-{{$index}}"></i>
+                    </div>
+                </td>
+                <td class="history-text-t">{{history.LastPeriodSellout| checkZero | number : 0 }}</td>
+                <td class="history-text-t">{{history.LastPeriodSelloutGrowth| checkZero | number : 0}}</td>
+                <td class="history-text-t">{{ history.LastPeriodSelloutGrowthPer | checkZero | number: 0 }}</td>
+                <td class="history-text-t">{{history.LastPeriodMDF| checkZero | number : 0}}</td>
+                <td class="history-text-t">{{history.OverallROI| checkZero | number: 1}}</td>
+                <!-- <td class="history-text-t">{{ angular.isNumber(history.FootprintGrowth) ? history.FootprintGrowth : 0}}</td> -->
+            </tr>
+            <tr class="graph-row" id="reseler-graph-row-{{$index}}">
+                <td colspan="8">
+
+                    <div class="row graph">
+                        <div class="col-lg-5">
+                                <center>
+                                    <h4>
+                                        MDF
+                                        <img ng-click="openModal('MDF',optionsMDF1,sortByDate(history.MDFX))"
+                                             data-toggle="modal"
+                                             data-target="#mdf-modal"
+                                             src="assets/resources/popout@1x.png"
+                                             class="pull-right">
+                                    </h4>
+
+                                </center>
+                            <nvd3 options="optionsMDF" data="sortByDate(history.MDFX)"></nvd3>
+                            <!-- <button
+                                type="button"
+                                class="btn btn-info"
+                                ng-click="openModal('MDF',optionsMDF,sortByDate(history.mdf))"
+                                data-toggle="modal"
+                                data-target="#myModal">Open Modal</button> -->
+                        </div>
+
+                        <div class="col-lg-5 col-lg-offset-1">
+                            <center>
+                                <h4>
+                                    Sellout
+                                    <img ng-click="openModal('Sellout',optionsSellout1,sortByDate(history.SELLOUTX))"
+                                         data-toggle="modal"
+                                         data-target="#reseller-modal"
+                                         src="assets/resources/popout@1x.png"
+                                         class="pull-right">
+                                </h4>
+                            </center>
+                            <nvd3 options="optionsSellout" data="sortByDate(history.SELLOUTX)"></nvd3>
+                            <!-- <button
+                               type="button"
+                               class="btn btn-info"
+                               ng-click="openModal('Sellout',optionsSellout,sortByDate(history.sellout))"
+                               data-toggle="modal"
+                               data-target="#myModal">Open Modal</button> -->
+                        </div>
+
+                    </div>
+
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <!--<button ng-click="export(prevYear,prevToPrevYear,true)" class="btn btn-green pull-right login-button" style="margin-bottom: 21px;margin-right: 22px;">
+      Export
+     </button>-->
+</div>
+
+

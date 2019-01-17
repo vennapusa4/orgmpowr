@@ -1,0 +1,670 @@
+﻿<breadcrumb-bar module="admin">
+</breadcrumb-bar>
+
+<form name="gaurdrailForm" novalidate>
+    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 user-management partner-credit guardrial">
+
+        <div class="col-lg-12 data-container user-management role guardrial">
+            <!-- Guardrail data -->
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <!-- Display Region and Finantial Year -->
+                            <span class="nothing">
+                                <div class="btn-group guard-link col-lg-1 col-md-1 col-sm-1 left-padding" ng-repeat="region in regions">
+                                    <a ng-click="setActive(region,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"
+                                       class="guard-link account-heading"
+                                       ng-class="{active : activeMenu == region.Region.RegionId }">
+                                        {{ region.Region.DisplayName }}
+                                    </a>
+                                </div>
+
+                                <div class="btn-group financial col-lg-7 col-md-3 col-sm-3 left-padding pull-right">
+                                    <label class="top-head-drop">Financial Period</label>
+                                    <div class="btn-group financial col-lg-5 col-md-3 col-sm-3 left-padding right-padding top-drop-btn">
+                                        <select class="form-control"
+                                                ng-model="selectedYear"
+                                                ng-options="year.year.ShortName for year in years"
+                                                ng-change="setActive(activeDummyMenu,activeMenu.Region.RegionId,selectedYear.year.FinancialYearID)"></select>
+                                        <span class="caret dropdown guard-head"></span>
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="guard-head">
+                        <td>
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-1 col-sm-1 left-padding blank-guard">
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding compliant">
+                                    <label class="guard-label">Compliant</label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding borderline">
+                                    <label class="guard-label">Borderline</label>
+                                </div>
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding non-compliant">
+                                    <label class="guard-label">Exceeds Guidance</label>
+                                </div>
+                                <div class="btn-group col-lg-1 col-md-2 col-sm-2 left-padding ganularity">
+                                    <label class="guard-label">Level of Granularity</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="guard-body">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-body-sec">
+                                    <label>
+                                        Program Carve-Out
+                                        <a href="" data-toggle="tooltip" data-placement="top" 
+                                           title="" data-original-title="Cap at a given % of budget pre-commit to strategic initiatives"
+                                           class="red-tooltip"><img src="../../../assets/resources/info@1x.png" /></a>
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                   
+                                    <div ng-class="{'has-error': gaurdrailForm.ProgramCarveOutComplaint.$invalid && !gaurdrailForm.ProgramCarveOutComplaint.$pristine }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   name="ProgramCarveOutComplaint"
+                                                   max="100" 
+                                                   required
+                                                   
+                                                   ng-model="ProgramCarveOutComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                                <div 
+                                     
+                                     class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 input left-padding right-padding disabled" 
+                                         ng-show="ProgramCarveOutComplaint != ProgramCarveOutNonComplaint">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                   ng-model="ProgramCarveOutComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 input right-padding left disabled"
+                                         ng-show="ProgramCarveOutComplaint != ProgramCarveOutNonComplaint"
+                                         >
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   ng-model="ProgramCarveOutNonComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.ProgramCarveOutNonComplaint.$invalid && !gaurdrailForm.ProgramCarveOutNonComplaint.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                   name="ProgramCarveOutNonComplaint"
+                                                   required
+                                                   max="100"
+                                                   min="{{ProgramCarveOutComplaint}}"
+                                                   ng-model="ProgramCarveOutNonComplaint"
+                                                   
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 input ganularity-opt">
+                                    <label>Country</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="guard-body">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-body-sec">
+                                    <label>
+                                        Actual MDF Allocation
+                                        <a href="" data-toggle="tooltip" data-placement="top" 
+                                           title="" data-original-title="Ensure partner budget allocation is within specified limits of recommendation"
+                                           class="red-tooltip"><img src="../../../assets/resources/info@1x.png" /></a>
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left">Within</label>
+                                    <div ng-class="{'has-error': gaurdrailForm.BorderlineMin.$invalid && !gaurdrailForm.BorderlineMin.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                +/-
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   name="BorderlineMin"
+                                                   ng-model="BorderlineMin"
+                                                   
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName">
+
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <div ng-show="BorderlineMin != BorderlineMax">
+                                        <label class="guard-desc pull-left">Between</label>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 input right-padding left-padding disabled">
+                                            <div class="inputText1 input-group">
+                                                <span class="input-group-addon guardrail disabled plus-min">
+                                                    +/-
+                                                </span>
+                                                <input type="number"
+                                                       ng-model="BorderlineMin"
+                                                       class="form-control MDFText specialText crmTotal input-pretext percentage"
+                                                       disabled>
+                                                <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5 col-md-5 col-sm-5 input right-padding left disabled">
+                                            <div class="inputText1 input-group">
+                                                <span class="input-group-addon guardrail disabled plus-min">
+                                                    +/-
+                                                </span>
+                                                <input type="number"
+                                                       ng-model="BorderlineMax"
+                                                       class="form-control MDFText specialText crmTotal input-pretext percentage"
+                                                       disabled>
+                                                <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-input">
+                                    <label class="guard-desc pull-left">Beyond</label>
+                                    <div ng-class="{'has-error': gaurdrailForm.BorderlineMax.$invalid && !gaurdrailForm.BorderlineMax.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                +/-
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   name="BorderlineMax"
+                                                   ng-model="BorderlineMax"
+                                                  
+                                                   min="{{BorderlineMin}}"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 input ganularity-opt">
+                                    <label>Partner-BU</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="guard-body">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-body-sec">
+                                    <label>
+                                        MDF vs Sellout Index
+                                        <a href="" data-toggle="tooltip" data-placement="top" 
+                                           title="" data-original-title="Ensure positive sales return for every dollar of MDF invested"
+                                           class="red-tooltip"><img src="assets/resources/info@1x.png" /></a>
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.BorderlineMin1.$invalid && !gaurdrailForm.BorderlineMin1.$pristine  }"
+
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail" >
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   
+                                                   name="BorderlineMin1"
+                                                   ng-model="BorderlineMin1"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-show="BorderlineMin1 != BorderlineMax1"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding right-padding disabled">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                  
+                                                   ng-model="BorderlineMin1"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="BorderlineMin1 != BorderlineMax1"
+                                         class="col-lg-5 col-md-5 col-sm-5 input right-padding left disabled">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   ng-model="BorderlineMax1"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.BorderlineMax1.$invalid && !gaurdrailForm.BorderlineMax1.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   min="{{BorderlineMin1}}"
+                                                   name="BorderlineMax1"
+                                                    
+                                                   ng-model="BorderlineMax1"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 input ganularity-opt">
+                                    <label>Partner-BU</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="guard-body">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-body-sec">
+                                    <label>
+                                        Over Allocation
+                                        <a href="" data-toggle="tooltip" data-placement="top" 
+                                           title="" data-original-title="Ensure allocation is within budget."
+                                           class="red-tooltip"><img src="../../../assets/resources/info@1x.png" /></a>
+
+                                    </label>
+                                    <p class="checkbox-text">
+                                        <label class="guardrail-check">Allow over Allocation</label>
+                                        <input 
+                                               type="checkbox"
+                                               id="guardtest7"  
+                                               ng-change="SetGuardrailValue(AllowOverAllocation)"
+                                               ng-model="AllowOverAllocation" 
+                                               name="AllowOverAllocation">
+
+                                        <label for="guardtest7" class="allow-check"><span class="check-label"></span></label>
+                                    </p>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.OverAllocationComplaint.$invalid && !gaurdrailForm.OverAllocationComplaint.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   name="OverAllocationComplaint"
+                                                   ng-disabled="AllowOverAllocation == false"
+                                                   ng-model="OverAllocationComplaint"
+                                                   
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="id1">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-show="OverAllocationComplaint != OverAllocationNonComplaint"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding right-padding disabled">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                   ng-model="OverAllocationComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5 input right-padding left disabled">
+                                        <div ng-show="OverAllocationComplaint != OverAllocationNonComplaint"
+                                             class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                <=
+                                            </span>
+                                            <input type="number"
+                                                   ng-model="OverAllocationNonComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.OverAllocationNonComplaint.$invalid && !gaurdrailForm.OverAllocationNonComplaint.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                >
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   ng-disabled="AllowOverAllocation == false"
+                                                   name="OverAllocationNonComplaint"
+                                                   min="{{OverAllocationComplaint}}"
+                                                  
+                                                   ng-model="OverAllocationNonComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="id1">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-1 col-md-1 col-sm-1 input ganularity-opt">
+                                    <label>Country</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="guard-body">
+                            <span class="nothing">
+                                <div class="btn-group col-lg-2 col-md-2 col-sm-2 left-padding body guard-body-sec">
+                                    <label>
+                                        Under Allocation
+                                        <a href="" data-toggle="tooltip" data-placement="top"
+                                           title="" data-original-title="Ensure Budget utilization."
+                                           class="red-tooltip"><img src="../../../assets/resources/info@1x.png" /></a>
+
+                                    </label>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.UnderAllocationComplaint.$invalid && !gaurdrailForm.UnderAllocationComplaint.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                >=
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   name="UnderAllocationComplaint"
+                                                   
+                                                   min="{{UnderAllocationNonComplaint}}"
+                                                   ng-model="UnderAllocationComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="id1">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+
+                                       
+                                    </div>
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+
+                                    <label class="guard-desc pull-left"></label>
+                                    <div  ng-show="UnderAllocationComplaint != UnderAllocationNonComplaint"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding right-padding disabled">
+
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                >
+                                            </span>
+                                            <input 
+                                                   ng-model="UnderAllocationComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+                                    <div ng-show="UnderAllocationComplaint != UnderAllocationNonComplaint"
+                                         class="col-lg-5 col-md-5 col-sm-5 input right-padding left disabled">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail disabled">
+                                                <=
+                                            </span>
+                                            <input 
+                                                   ng-model="UnderAllocationNonComplaint"
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="txtCountryName" disabled>
+                                            <span class="input-group-addon percentage-guardrail disabled">%</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="btn-group col-lg-3 col-md-3 col-sm-3 left-padding body guard-input">
+                                    <label class="guard-desc pull-left"></label>
+                                    <div ng-class="{'has-error': gaurdrailForm.UnderAllocationNonComplaint.$invalid && !gaurdrailForm.UnderAllocationNonComplaint.$pristine  }"
+                                         class="col-lg-5 col-md-5 col-sm-5 input left-padding">
+                                        <div class="inputText1 input-group">
+                                            <span class="input-group-addon guardrail">
+                                                <
+                                            </span>
+                                            <input type="number"
+                                                   required max="100"
+                                                   name="UnderAllocationNonComplaint"
+                                                   ng-model="UnderAllocationNonComplaint"
+                                                   
+                                                   class="form-control MDFText specialText crmTotal input-pretext percentage" id="id1">
+                                            <span class="input-group-addon percentage-guardrail">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-1 col-md-1 col-sm-1 input ganularity-opt">
+                                    <label>Country</label>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+            <!-- end of guardrail data -->
+            <!-- Reviews -->
+            <div class="col-lg-12 data-container user-management role guardrial select-review">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="nothing">
+                                    <div class="btn-group guard-link col-lg-12 col-md-12 col-sm-12 left-padding">
+                                        <a class="guard-link select-review">Select Reviewer</a>
+                                    </div>
+                                    
+                                </span>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="btn-group financial col-lg-4 col-md-3 col-sm-3 left-padding review-row">
+                                    <label class="review-row-head">Reviewer 1</label>
+
+                                    <select ng-class="{'has-error': (selectedReviewer1 == selectedReviewer2 || selectedReviewer1 == selectedReviewer3 || selectedReviewer1 == selectedReviewer4) && selectedReviewer1 != undefined  }"
+                                            class="form-control" id="rev1" ng-class="duplicate1"
+                                            ng-required="rev1"
+                                            name="selectedReviewer1"
+                                            ng-options="item as item.DisplayName for item in reviewer | orderBy:'item.DisplayName'"
+                                            ng-model="selectedReviewer1"
+                                            ng-change="selectReviewer1(selectedReviewer1 )">
+                                        <!--<option value="">Please select</option>-->
+                                    </select>
+                                    <small ng-show="(selectedReviewer1 == selectedReviewer2 || selectedReviewer1 == selectedReviewer3 || selectedReviewer1 == selectedReviewer4) && selectedReviewer1 != undefined "
+                                           class="rev-error">
+                                           {{rev_msg}}</small>
+                                </div>
+                                <div class="btn-group financial col-lg-4 col-md-3 col-sm-3 left-padding review-row">
+                                    <label class="review-row-head">Reviewer 2</label>
+
+                                    <select ng-class="{'has-error': (selectedReviewer1 == selectedReviewer2 || selectedReviewer2 == selectedReviewer3 || selectedReviewer2 == selectedReviewer4) && selectedReviewer2 != undefined  }"
+                                            class="form-control " id="rev1" ng-class="duplicate2"
+                                            ng-required="rev2"
+                                            name="selectedReviewer2"
+                                            ng-options="item as item.DisplayName for item in reviewer | orderBy:'item.DisplayName'"
+                                            ng-model="selectedReviewer2"
+                                            ng-change="selectReviewer2(selectedReviewer2)">
+                                        <!--<option value="">Please select</option>-->
+                                    </select>
+                                    <small ng-show="(selectedReviewer1 == selectedReviewer2 || selectedReviewer2 == selectedReviewer3 || selectedReviewer2 == selectedReviewer4) && selectedReviewer2 != undefined  "
+                                           class="rev-error">{{rev_msg}}</small>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <div class="btn-group financial col-lg-4 col-md-3 col-sm-3 left-padding review-row">
+                                    <label class="review-row-head">Reviewer 3</label>
+
+                                    <select ng-class="{'has-error': (selectedReviewer3 == selectedReviewer2 || selectedReviewer1 == selectedReviewer3 || selectedReviewer3 == selectedReviewer4) && selectedReviewer3 != undefined  }"
+                                            class="form-control" id="rev2" ng-class="duplicate3"
+                                            ng-required="rev3"
+                                            name="selectedReviewer3"
+                                            ng-options="item as item.DisplayName for item in reviewer | orderBy:'item.DisplayName'"
+                                            ng-model="selectedReviewer3"
+                                            ng-change="selectReviewer3(selectedReviewer3)">
+                                        <!--<option value="">Please select</option>-->
+                                    </select>
+                                    <small ng-show="(selectedReviewer3 == selectedReviewer2 || selectedReviewer1 == selectedReviewer3 || selectedReviewer3 == selectedReviewer4) && selectedReviewer3 != undefined  "
+                                           class="rev-error">{{rev_msg}}</small>
+                                </div>
+                                <div class="btn-group financial col-lg-4 col-md-3 col-sm-3 left-padding review-row">
+                                    <label class="review-row-head">Reviewer 4 </label>
+
+                                    <select ng-class="{'has-error': (selectedReviewer4 == selectedReviewer2 || selectedReviewer4 == selectedReviewer3 || selectedReviewer1 == selectedReviewer4) && selectedReviewer4 != undefined  }"
+                                            class="form-control" id="rev4" ng-class="duplicate4"
+                                            ng-required="rev4"
+                                            name="selectedReviewer4"
+                                            ng-options="item as item.DisplayName for item in reviewer | orderBy:'item.DisplayName'"
+                                            ng-model="selectedReviewer4"
+                                            ng-change="selectReviewer4(selectedReviewer4 )">
+                                        <!--<option value="">Please select</option>-->
+                                    </select>
+                                    <small ng-show="(selectedReviewer4 == selectedReviewer2 || selectedReviewer4 == selectedReviewer3 || selectedReviewer1 == selectedReviewer4) && selectedReviewer4 != undefined  "
+                                           class="rev-error">{{rev_msg}}</small>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+           <!-- end of review -->
+        </div>
+    </div>
+    
+    <!-- Save and Copy -->
+    <div class="footer-sticky col-lg-12 col-md-12 col-sm-12 ng-scope">
+
+        <div class="col-lg-9 col-md-8 col-sm-8">
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+            <div class="col-lg-3 col-md-2 col-sm-2 icon-holder cursor-point" data-toggle="modal" data-target="#myModalguardcopy">
+                <div><img class="model-copy" src="assets/resources/copy_calculated@1x.png" ng-click="export()"></div>
+                <div class="copy-label"><label ng-click="export()">COPY</label></div>
+            </div>
+            <div class="col-lg-3 col-md-2 col-sm-2 icon-holder">
+                <button class="save-disabled-footer" class="btn" ng-click="save(activeMenu)" ng-disabled="condition || gaurdrailForm.$invalid">
+                    <div><img src="assets/resources/save@1x.png" ng-click="save(activeMenu)"></div>
+                    <div class="copy-label cursor-auto">
+                        <label class="cursor-auto" ng-click="save(activeMenu)">
+                            SAVE
+                        </label>
+                    </div>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <!--End of Save and Copy -->
+
+    <!-- Modal to copy Guardrail Data-->
+    <div class="modal fade" id="myModalguardcopy" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content copyto-model modal-reset">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" id="saveClose">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Copy To Financial Period
+                    </h4>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body add-user-form">
+                    <form role="form">
+                        <div class="col-lg-12 col-md-12 col-sm-12 top-margin left-padding">
+                            <label for="exampleInputEmail1">Select Financial Period</label>
+                            <select class="form-control"
+                                    ng-model="selectedYearForCopy"
+                                    ng-options="year.year.ShortName for year in years"></select>
+                            <span class="caret dropdown guard-select"></span>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="modal-footer add-user-form">
+                    <button type="button" class="btn btn-default theme-colr"
+                            data-dismiss="modal">
+                        CANCEL
+                    </button>
+                    <button type="button" class="btn btn-primary theme-colr" ng-disabled="condition || gaurdrailForm.$invalid" ng-click="copyYearData(activeMenu,selectedYearForCopy.year.FinancialYearID)">
+                        COPY
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script>
+    $(document).ready(function () {
+        $("a").tooltip();
+    });
+</script>
